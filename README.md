@@ -19,4 +19,4 @@ Two paths depending on what you need:
 
 **Have a clear workflow in mind?** Use the `workflow-builder` skill — it walks you through designing a reusable skill from scratch, step by step.
 
-**Need us to build it for you?** Run the agency intake loop (`agency-intake` → `agency-build` → `agency-feedback`). We interview you, build the skill, ship it for testing, and iterate based on your feedback.
+**Need something custom?** Run the agency intake loop (`agency-intake` → `agency-build` → `agency-feedback`). The intake interviews you and hands off a spec — then James builds it with you directly, ships it for testing, and iterates from your feedback.
