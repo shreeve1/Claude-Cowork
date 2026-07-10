@@ -2,4 +2,8 @@
 
 Copy and paste this into your AI agent:
 
-> Clone this repo from `https://github.com/shreeve1/Claude-Cowork`. Then copy each folder from its `.claude/skills/` into my `.claude/skills/` directory and each agent from its `agents-library/` into my `.claude/agents/` directory, creating any missing folders. After that, for every skill folder, look inside for a `cowork/SKILL.md` file and output its contents as a `.SKILL` file — I'll click save in the desktop app to register the pointer skill.
+> Clone this repo from `https://github.com/shreeve1/Claude-Cowork` (into a local temp dir — cloning into the mounted workspace fails). Then copy each folder from its `.claude/skills/` into my `.claude/skills/` directory and each agent from its `agents-library/` into my `.claude/agents/` directory, creating any missing folders and ignoring `.DS_Store`.
+>
+> Then register the pointer skills — but only the ones I'm missing. First build the set of pointer skills I already have: the skills already available/registered to you in this session (match by skill name, ignoring any plugin prefix like `anthropic-skills:`), plus any skill folder that already existed in my `.claude/skills/` before this copy. For every skill folder that has a `cowork/SKILL.md` and is NOT in that already-have set, package its loader as an installable `.skill` bundle — a zip with `SKILL.md` at the root and a lowercase `.skill` extension — so the desktop app shows a "Save skill" button. Before zipping, in each loader's `description` frontmatter replace any angle-bracket placeholders (e.g. `<name>`, `<slug>`) with curly braces (`{name}`, `{slug}`); the app rejects descriptions with XML-like tags.
+>
+> Skip any pointer skill that's already registered and output nothing for it. List which skills you registered and which you skipped as already present. If none are missing, say so and output no bundles.
