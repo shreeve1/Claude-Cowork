@@ -7,6 +7,10 @@ A collection of reusable skills and specialist agents for your Cowork workspace,
 - **Skills** in `.claude/skills/` — structured workflows your AI agent can run (onboarding, interviews, memory management, prototyping, and more)
 - **Agents** in `agents-library/` — 150+ specialist personas for design, engineering, marketing, sales, finance, and other roles
 
+### Pointer skills
+
+Each skill folder includes a `cowork/SKILL.md` — a lightweight pointer that tells Cowork where the real skill lives. During install or update, your AI agent will output these as `.SKILL` files in chat. When you see one, click **Save** in the Cowork desktop app to register it. Re-save them after any update so Cowork picks up the latest version.
+
 ## Getting started
 
 Copy and paste this into your AI agent:
