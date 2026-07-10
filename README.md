@@ -21,6 +21,10 @@ Read INSTALL.md from https://github.com/shreeve1/Claude-Cowork/blob/main/INSTALL
 Read UPDATE.md from https://github.com/shreeve1/Claude-Cowork/blob/main/UPDATE.md and follow its directions.
 ```
 
+## Onboarding
+
+After install, run the `cowork-onboarding` skill — it walks you through setting up your profile, memory, and connected tools.
+
 ## Building your own skills
 
 Two paths depending on what you need:
