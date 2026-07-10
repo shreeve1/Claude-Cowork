@@ -29,10 +29,6 @@ Read UPDATE.md from https://github.com/shreeve1/Claude-Cowork/blob/main/UPDATE.m
 
 First time installing? After the install prompt finishes, run the `cowork-onboarding` skill — it walks you through setting up your profile, memory, and connected tools.
 
-## Professional guidance
-
-Describe a problem in plain English and the `professional-guidance` skill matches you with the best-fit specialist from 100+ expert personas. It picks the right persona, confirms with you, then becomes that specialist in-session — no need to browse or restate anything.
-
 ## Building your own skills
 
 Two paths depending on what you need:
@@ -40,3 +36,7 @@ Two paths depending on what you need:
 **Have a clear workflow in mind?** Use the `workflow-builder` skill — it walks you through designing a reusable skill from scratch, step by step.
 
 **Need something custom?** Run the agency intake loop (`agency-intake` → `agency-build` → `agency-feedback`). The intake interviews you and hands off a spec — then James builds it with you directly, ships it for testing, and iterates from your feedback.
+
+## Professional guidance
+
+Describe a problem in plain English and the `professional-guidance` skill matches you with the best-fit specialist from 100+ expert personas. It picks the right persona, confirms with you, then becomes that specialist in-session — no need to browse or restate anything.
