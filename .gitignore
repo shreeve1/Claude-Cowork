@@ -1,0 +1,43 @@
+# Personal memory: populated files are personal state and stay untracked.
+# Committed scaffold (memory/README.md, memory/TEMPLATES.md) and any
+# memory/**/.gitkeep placeholders remain tracked.
+
+memory/index.md
+memory/log.md
+memory/glossary.md
+
+memory/preferences/*
+memory/docs/*
+memory/voice/*
+memory/email/*
+memory/guides/*
+memory/workflows/*
+memory/decisions/*
+memory/raw/*
+
+!memory/preferences/.gitkeep
+!memory/docs/.gitkeep
+!memory/voice/.gitkeep
+!memory/email/.gitkeep
+!memory/guides/.gitkeep
+!memory/workflows/.gitkeep
+!memory/decisions/.gitkeep
+!memory/raw/.gitkeep
+
+# Working/scratch buckets: throwaway, never tracked.
+scratch/
+**/working/
+
+.handoff/
+
+# macOS
+.DS_Store
+
+# Cowork internal tooling (not for client distribution)
+.claude/skills/_shared/
+.claude/skills/agency-build/
+.claude/agents/
+clients/
+CONTEXT.md
+docs/
+specs/
