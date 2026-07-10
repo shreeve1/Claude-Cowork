@@ -9,9 +9,17 @@ A collection of reusable skills and specialist agents for your Cowork workspace,
 
 ## Getting started
 
-**First time?** Copy the prompt from [`INSTALL.md`](INSTALL.md) into your AI agent. It places everything in the right folders and outputs pointer skills you can save with one click in the Cowork desktop app.
+Copy and paste this into your AI agent:
 
-**Already installed?** Use [`UPDATE.md`](UPDATE.md) instead — it checks for new or changed files and re-outputs pointer skills for any that updated.
+```
+Read INSTALL.md from https://github.com/shreeve1/Claude-Cowork/blob/main/INSTALL.md and follow its directions.
+```
+
+**Already installed?** Use this instead:
+
+```
+Read UPDATE.md from https://github.com/shreeve1/Claude-Cowork/blob/main/UPDATE.md and follow its directions.
+```
 
 ## Building your own skills
 
