@@ -23,7 +23,7 @@ Read UPDATE.md from https://github.com/shreeve1/Claude-Cowork/blob/main/UPDATE.m
 
 ## Onboarding
 
-After install, run the `cowork-onboarding` skill — it walks you through setting up your profile, memory, and connected tools.
+First time installing? After the install prompt finishes, run the `cowork-onboarding` skill — it walks you through setting up your profile, memory, and connected tools.
 
 ## Building your own skills
 
