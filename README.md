@@ -29,6 +29,10 @@ Read UPDATE.md from https://github.com/shreeve1/Claude-Cowork/blob/main/UPDATE.m
 
 First time installing? After the install prompt finishes, run the `cowork-onboarding` skill — it walks you through setting up your profile, memory, and connected tools.
 
+## Professional guidance
+
+Describe a problem in plain English and the `professional-guidance` skill matches you with the best-fit specialist from 100+ expert personas. It picks the right persona, confirms with you, then becomes that specialist in-session — no need to browse or restate anything.
+
 ## Building your own skills
 
 Two paths depending on what you need:
