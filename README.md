@@ -4,13 +4,6 @@ Give your AI assistant a team of 150+ specialists and a shelf of ready-made
 workflows — so it handles more of your work, better, without you crafting a
 single prompt.
 
-## What you get
-
-- **150+ expert personas** — marketing, sales, finance, design, IT, and more.
-  Describe a problem in plain English and the right specialist takes over.
-- **Ready-made workflows** — onboarding, interviews, memory, prototyping, and
-  tools to build your own.
-
 ## Get started (about 2 minutes)
 
 Paste this to your AI assistant:
@@ -23,6 +16,13 @@ memory, and connected tools for you.
 Already installed? Paste the UPDATE.md line instead:
 
     Read UPDATE.md from https://github.com/shreeve1/Claude-Cowork/blob/main/UPDATE.md and follow its directions.
+
+## What you get
+
+- **150+ expert personas** — marketing, sales, finance, design, IT, and more.
+  Describe a problem in plain English and the right specialist takes over.
+- **Ready-made workflows** — onboarding, interviews, memory, prototyping, and
+  tools to build your own.
 
 ## Want a specialist right now?
 
