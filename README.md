@@ -1,42 +1,85 @@
 # Cowork Skills & Agents
 
-A collection of reusable skills and specialist agents for your Cowork workspace, delivered as one-sentence prompts that any AI agent can follow.
+Give your AI assistant a team of 150+ specialists and a shelf of ready-made
+workflows — so it handles more of your work, better, without you crafting a
+single prompt.
 
-## What's included
+## What you get
 
-- **Skills** in `.claude/skills/` — structured workflows your AI agent can run (onboarding, interviews, memory management, prototyping, and more)
-- **Agents** in `agents-library/` — 150+ specialist personas for design, engineering, marketing, sales, finance, and other roles
+- **150+ expert personas** — marketing, sales, finance, design, IT, and more.
+  Describe a problem in plain English and the right specialist takes over.
+- **Ready-made workflows** — onboarding, interviews, memory, prototyping, and
+  tools to build your own.
 
-### Pointer skills
+## Get started (about 2 minutes)
 
-Each skill folder includes a `cowork/SKILL.md` — a lightweight pointer that tells Cowork where the real skill lives. During install or update, your AI agent will output these as `.SKILL` files in chat. When you see one, click **Save** in the Cowork desktop app to register it. Re-save them after any update so Cowork picks up the latest version.
+Paste this to your AI assistant:
 
-## Getting started
+    Read INSTALL.md from https://github.com/shreeve1/Claude-Cowork/blob/main/INSTALL.md and follow its directions.
 
-Copy and paste this into your AI agent:
+That's it. New here? Run `cowork-onboarding` next — it sets up your profile,
+memory, and connected tools for you.
 
-```
-Read INSTALL.md from https://github.com/shreeve1/Claude-Cowork/blob/main/INSTALL.md and follow its directions.
-```
+Already installed? Paste the UPDATE.md line instead:
 
-**Already installed?** Use this instead:
+    Read UPDATE.md from https://github.com/shreeve1/Claude-Cowork/blob/main/UPDATE.md and follow its directions.
 
-```
-Read UPDATE.md from https://github.com/shreeve1/Claude-Cowork/blob/main/UPDATE.md and follow its directions.
-```
+## Want a specialist right now?
 
-## Onboarding
+Run `professional-guidance`, describe your problem in plain English, and it
+becomes the best-fit expert from the library — no browsing, no restating.
 
-First time installing? After the install prompt finishes, run the `cowork-onboarding` skill — it walks you through setting up your profile, memory, and connected tools.
+## Want to build your own?
 
-## Building your own skills
+- **Have a workflow in mind?** Run `workflow-builder`.
+- **Want something built for you?** Run `agency-intake` and James builds it with
+  you, ships it to test, and refines it from your feedback.
 
-Two paths depending on what you need:
+## What's in the box
 
-**Have a clear workflow in mind?** Use the `workflow-builder` skill — it walks you through designing a reusable skill from scratch, step by step.
+**Get set up**
 
-**Need something custom?** Run the agency intake loop (`agency-intake` → `agency-build` → `agency-feedback`). The intake interviews you and hands off a spec — then James builds it with you directly, ships it for testing, and iterates from your feedback.
+| Skill | What it does for you |
+|---|---|
+| `cowork-onboarding` | Gets you running on day one — profile, memory, and connected tools. |
 
-## Professional guidance
+**Get expert help**
 
-Describe a problem in plain English and the `professional-guidance` skill matches you with the best-fit specialist from 100+ expert personas. It picks the right persona, confirms with you, then becomes that specialist in-session — no need to browse or restate anything.
+| Skill | What it does for you |
+|---|---|
+| `professional-guidance` | Describe a problem, get the right expert instantly. |
+| `talk-it-through` | Start every conversation here — it sharpens your plan and remembers what you decide. |
+| `interview` | Gets your idea out of your head with the right questions. |
+| `prototype` | Mocks up a design or workflow so you can try it before you build it. |
+
+**Build your own**
+
+| Skill | What it does for you |
+|---|---|
+| `workflow-builder` | Turns a workflow you have in mind into a reusable skill, step by step. |
+| `agency-intake` | Kicks off a custom skill built for you by James. |
+| `agency-build` | Builds your custom skill from the intake. |
+| `agency-feedback` | Sends your test notes back so James can refine the skill. |
+| `project-to-skill` | Turns a Claude Project you already use into a reusable skill. |
+| `skill-creator` | Helps you create a new skill from scratch. |
+| `skill-scaffolder` | Sets up the files for a new skill so you start clean. |
+| `cowork-pointer` | Lets you tweak a skill without reinstalling it. |
+| `writing-great-skills` | The reference for writing skills that behave predictably. |
+
+**Housekeeping**
+
+| Skill | What it does for you |
+|---|---|
+| `personal-memory` | Remembers your preferences so you stop repeating yourself. |
+| `handoff` | Hands your work to the next session without losing context. |
+
+---
+
+<details>
+<summary>Technical notes (how skills register)</summary>
+
+Each skill folder includes a `cowork/SKILL.md` pointer that tells Cowork where
+the real skill lives. On install or update, your agent outputs these as `.SKILL`
+files in chat — click **Save** in the Cowork desktop app to register each one,
+and re-save after updates.
+</details>
