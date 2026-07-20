@@ -1,28 +1,13 @@
 # Personal memory: populated files are personal state and stay untracked.
-# Committed scaffold (memory/README.md, memory/TEMPLATES.md) and any
-# memory/**/.gitkeep placeholders remain tracked.
+# Memory directory is fully local; nothing under it is committed.
+memory/
 
-memory/index.md
-memory/log.md
-memory/glossary.md
+# Local skills and agents: rebuilt per-machine, never tracked.
+.claude/skills/
+.claude/agents/
 
-memory/preferences/*
-memory/docs/*
-memory/voice/*
-memory/email/*
-memory/guides/*
-memory/workflows/*
-memory/decisions/*
-memory/raw/*
-
-!memory/preferences/.gitkeep
-!memory/docs/.gitkeep
-!memory/voice/.gitkeep
-!memory/email/.gitkeep
-!memory/guides/.gitkeep
-!memory/workflows/.gitkeep
-!memory/decisions/.gitkeep
-!memory/raw/.gitkeep
+# Local agents library: rebuilt per-machine, never tracked.
+agents-library/
 
 # Working/scratch buckets: throwaway, never tracked.
 scratch/
@@ -34,9 +19,6 @@ scratch/
 .DS_Store
 
 # Cowork internal tooling (not for client distribution)
-.claude/skills/_shared/
-.claude/skills/agency-build/
-.claude/agents/
 clients/
 CONTEXT.md
 docs/
