@@ -8,8 +8,8 @@ single prompt.
 
 1. **Download the skills.** On the GitHub page, click the green **Code** button →
    **Download ZIP**, then unzip it.
-2. **Find the bundles.** The six skills are the `.skill` files in the
-   `.claude/cowork/` folder inside the unzipped download.
+2. **Find the bundles.** The six skills are the `.skill` files in the `cowork/`
+   folder inside the unzipped download.
 3. **Install each one.** In the Claude desktop app, install each `.skill` file
    (**Save skill**). Each bundle is a complete skill — no extra setup.
 4. **New here?** Run `cowork-onboarding` — it sets up your profile, memory, and
@@ -51,7 +51,7 @@ skill, step by step.
 <details>
 <summary>Technical notes (how skills register)</summary>
 
-Skills ship as self-contained `.skill` bundles under `.claude/cowork/`. Each
+Skills ship as self-contained `.skill` bundles in the `cowork/` folder. Each
 bundle is a full skill (its `SKILL.md` plus any assets), so installing one is
 just saving the `.skill` file into the Claude desktop app — no cloning, no setup
 script. To update, download the latest ZIP and re-save the bundles that changed.
