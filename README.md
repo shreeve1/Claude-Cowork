@@ -12,7 +12,7 @@ Paste this to your AI assistant:
 
 Your assistant outputs each skill as a `.skill` file in chat — click **Save
 skill** in the Cowork desktop app to register it. New here? Run
-`talk-it-through` next — it sharpens your plan and remembers what you decide.
+`cowork-onboarding` next — it sets up your profile, memory, and connected tools.
 
 Already installed? Paste the UPDATE.md line instead:
 
@@ -39,6 +39,7 @@ skill, step by step.
 
 | Skill | What it does for you |
 |---|---|
+| `cowork-onboarding` | Gets you running on day one — profile, memory, and connected tools. |
 | `professional-guidance` | Describe a problem, get the right expert instantly. |
 | `talk-it-through` | Start every conversation here — it sharpens your plan and remembers what you decide. |
 | `prototype` | Mocks up a design or workflow so you can try it before you build it. |
