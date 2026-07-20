@@ -4,19 +4,19 @@ Give your AI assistant a team of 150+ specialists and a shelf of ready-made
 workflows — so it handles more of your work, better, without you crafting a
 single prompt.
 
-## Get started (about 2 minutes)
+## Get started
 
-Paste this to your AI assistant:
+1. **Download the skills.** On the GitHub page, click the green **Code** button →
+   **Download ZIP**, then unzip it.
+2. **Find the bundles.** The six skills are the `.skill` files in the
+   `.claude/cowork/` folder inside the unzipped download.
+3. **Install each one.** In the Claude desktop app, install each `.skill` file
+   (**Save skill**). Each bundle is a complete skill — no extra setup.
+4. **New here?** Run `cowork-onboarding` — it sets up your profile, memory, and
+   connected tools.
 
-    Read INSTALL.md from https://github.com/shreeve1/Claude-Cowork/blob/main/INSTALL.md and follow its directions.
-
-Your assistant outputs each skill as a `.skill` file in chat — click **Save
-skill** in the Cowork desktop app to register it. New here? Run
-`cowork-onboarding` next — it sets up your profile, memory, and connected tools.
-
-Already installed? Paste the UPDATE.md line instead:
-
-    Read UPDATE.md from https://github.com/shreeve1/Claude-Cowork/blob/main/UPDATE.md and follow its directions.
+**Updating:** download the latest ZIP again and re-install (re-save) the `.skill`
+files.
 
 ## What you get
 
@@ -51,9 +51,8 @@ skill, step by step.
 <details>
 <summary>Technical notes (how skills register)</summary>
 
-Skills ship as self-contained `.skill` bundles committed under `.claude/cowork/`.
-On install or update, your assistant outputs each new or changed bundle as a
-`.skill` file in chat — click **Save skill** in the Cowork desktop app to
-register it, and re-save after updates. Update only re-presents the skills that
-changed.
+Skills ship as self-contained `.skill` bundles under `.claude/cowork/`. Each
+bundle is a full skill (its `SKILL.md` plus any assets), so installing one is
+just saving the `.skill` file into the Claude desktop app — no cloning, no setup
+script. To update, download the latest ZIP and re-save the bundles that changed.
 </details>
