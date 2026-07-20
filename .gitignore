@@ -4,6 +4,7 @@ memory/
 
 # Local skills and agents: rebuilt per-machine, never tracked.
 .claude/skills/
+.claude/cowork/
 .claude/agents/
 
 # Local agents library: rebuilt per-machine, never tracked.
