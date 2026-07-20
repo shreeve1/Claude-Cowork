@@ -74,9 +74,9 @@ Structure is **engagement-first**: top level is one folder per unit-of-work, nam
 - `research/` — gathered inputs, sources, data
 - `notes/` — records, logs, meeting notes
 
-Workspace-level (not tied to one engagement): `reference/` (reusable templates, boilerplate, brand kits — in this workspace served by `docs/`), `specs/` (canonical home for engagement specs), `memory/`, `agents-library/`, `.claude/`, and `scratch/` (cross-engagement throwaway, git-ignored).
+Workspace-level (not tied to one engagement): `reference/` (reusable templates, boilerplate, brand kits — in this workspace served by `docs/`), `specs/` (canonical home for engagement specs), `memory/`, `.claude/`, and `scratch/` (cross-engagement throwaway, git-ignored).
 
-**A skill that owns an engagement's internal layout wins inside that engagement.** Where the agency-* skills materialize a client folder (e.g. `clients/<c>/v#/` holding spec + zip + `agents/` + `skills/`), follow that layout — not the four buckets. The four-bucket default applies only where no skill owns the layout.
+**A skill that owns an engagement's internal layout wins inside that engagement.** Follow that skill's layout, not the four buckets; the four-bucket default applies only where no skill owns the layout. See `memory/workflows/file-placement.md` for the skill-owned layouts in use in this workspace.
 
 Procedure on every file creation: (1) which engagement? → top-level folder (none → workspace-level); (2) does a skill own this engagement's layout? → follow it; else (3) what purpose? → bucket above; (4) fits no bucket? → `scratch/`, **never root**, and say so. Create folders lazily. Do **not** invent new bucket names freely — route into the known vocabulary so sessions stay consistent. Read `memory/workflows/file-placement.md` for this workspace's current map and any custom buckets; when you add a bucket, record it there. This rule governs files created going forward; don't retroactively move existing files unless asked.
 
