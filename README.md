@@ -8,7 +8,7 @@ single prompt.
 
 1. **Download the skills.** On the GitHub page, click the green **Code** button →
    **Download ZIP**, then unzip it.
-2. **Find the bundles.** The six skills are the `.skill` files in the `cowork/`
+2. **Find the bundles.** The seven skills are the `.skill` files in the `cowork/`
    folder inside the unzipped download.
 3. **Install each one.** In the Claude desktop app, install each `.skill` file
    (**Save skill**). Each bundle is a complete skill — no extra setup.
@@ -45,6 +45,7 @@ skill, step by step.
 | `prototype` | Mocks up a design or workflow so you can try it before you build it. |
 | `workflow-builder` | Turns a workflow you have in mind into a reusable skill, step by step. |
 | `personal-memory` | Remembers your preferences so you stop repeating yourself. |
+| `questionnaire` | Turns something you can't answer alone into a set of questions for one person — an office colleague or vendor, or a client describing their IT environment — drafted in chat and saved to Word on request. |
 
 ---
 
