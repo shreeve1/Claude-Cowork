@@ -1,26 +1,11 @@
-# Personal memory: populated files are personal state and stay untracked.
-# Memory directory is fully local; nothing under it is committed.
-memory/
+# Tracked policy: only cowork/ and CLAUDE.md are tracked.
+# Everything else at root is local-only. Negate to add a new tracked root item.
 
-# Local skills and agents: rebuilt per-machine, never tracked.
-.claude/skills/
-.claude/cowork/
-.claude/agents/
-
-# Local agents library: rebuilt per-machine, never tracked.
-agents-library/
-
-# Working/scratch buckets: throwaway, never tracked.
-scratch/
-**/working/
-
-.handoff/
+/*
+!/cowork/
+!/CLAUDE.md
+!/.gitignore
 
 # macOS
 .DS_Store
-
-# Cowork internal tooling (not for client distribution)
-clients/
-CONTEXT.md
-docs/
-specs/
+**/.DS_Store
