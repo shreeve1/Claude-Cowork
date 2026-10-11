@@ -27,7 +27,7 @@ def staged_added_lines():
     diff = subprocess.run(
         ["git", "diff", "--cached", "-U0", "--no-color", "--no-ext-diff",
          "--src-prefix=a/", "--dst-prefix=b/", "--diff-filter=AM"],
-        capture_output=True, text=True, check=True,
+        capture_output=True, encoding="utf-8", errors="replace", check=True,
     ).stdout
     path = None
     for line in diff.splitlines():
@@ -53,7 +53,7 @@ def is_reviewed(path, text, reviewed):
 def staged_paths():
     """Every staged path, old and new side, for adds, edits, deletes and renames."""
     out = subprocess.run(["git", "diff", "--cached", "--name-status", "--no-renames", "-z"],
-                         capture_output=True, text=True, check=True).stdout.split("\0")
+                         capture_output=True, encoding="utf-8", errors="replace", check=True).stdout.split("\0")
     return [p for p in out[1::2] if p]
 
 
@@ -86,7 +86,7 @@ def main():
     staged = staged_paths()
     gate = pathlib.Path(".claude/skills/personal-memory/gate.py")
     if gate.exists() and needs_memory_audit(staged):
-        audit = subprocess.run([sys.executable, str(gate), "--memory", "memory", "audit"], capture_output=True, text=True)
+        audit = subprocess.run([sys.executable, str(gate), "--memory", "memory", "audit"], capture_output=True, encoding="utf-8", errors="replace")
         if audit.returncode != 0:
             print("pre-commit: memory audit failed. Run hubs.py and fix the issues below.", file=sys.stderr)
             print(audit.stdout + audit.stderr, file=sys.stderr)
@@ -97,8 +97,8 @@ def main():
             print("\n".join(warnings), file=sys.stderr)
     if any(p.startswith((".claude/skills/", ".githooks/")) for p in staged):
         for tests in test_dirs():
-            run = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", tests, "-q"], capture_output=True, text=True)
-            if run.returncode != 0:
+            run = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", tests, "-q"], capture_output=True, encoding="utf-8", errors="replace")
+            if run.returncode not in (0, 5):  # 5 = no unittest tests in that folder (for example other test frameworks)
                 print(f"pre-commit: tests failed in {tests}.", file=sys.stderr)
                 print(run.stderr[-4000:], file=sys.stderr)
                 return 1

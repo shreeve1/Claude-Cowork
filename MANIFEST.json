@@ -6664,7 +6664,7 @@
   },
   ".githooks/pre-commit": {
    "class": "merge",
-   "sha256": "21cceb3800a42b4f02819ac91d86971e170f8782ea5a6472247393d722ebd6d2",
+   "sha256": "145d0cf655f919e71690007397d507183b3e3644ebca9e19064ba5673b7fb63b",
    "mode": "755"
   },
   ".githooks/pre-push": {
