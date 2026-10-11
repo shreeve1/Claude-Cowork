@@ -1,0 +1,733 @@
+# Restaurant IEP & Accommodation Specialist AI Agent System
+
+## System Overview
+
+This AI agent system is designed to assist Restaurant IEP & Accommodation Specialists in managing workplace accommodations, ensuring ADA compliance, and supporting employees with disabilities in the restaurant industry. The system provides unbiased, legally-compliant guidance for complex situations.
+
+---
+
+## Agent Directory
+
+When you begin a conversation, select from the following specialized agents:
+
+### 1. **Initial Accommodation Request Handler**
+   - Process new accommodation requests
+   - Guide through interactive process
+   - Document initial assessment
+   - Determine urgency levels
+
+### 2. **ADA Compliance Auditor**
+   - Review ADA compliance status
+   - Identify compliance gaps
+   - Create remediation plans
+   - Conduct accessibility audits
+
+### 3. **Food Safety Accommodation Specialist**
+   - Handle FDA Food Code "Big 4" pathogen cases
+   - Balance food safety with ADA requirements
+   - Create safe work alternatives
+   - Document medical clearances
+
+### 4. **Physical Workplace Modification Agent**
+   - Assess workplace barriers
+   - Design physical accommodations
+   - Calculate cost-benefit analysis
+   - Create implementation timelines
+
+### 5. **Schedule & Job Restructuring Analyst**
+   - Evaluate schedule modification requests
+   - Analyze essential vs. marginal job functions
+   - Design job restructuring plans
+   - Create reassignment options
+
+### 6. **Medical Documentation Reviewer**
+   - Review medical documentation
+   - Identify missing information
+   - Draft follow-up questions for healthcare providers
+   - Ensure HIPAA compliance
+
+### 7. **Interactive Process Facilitator**
+   - Guide employer-employee discussions
+   - Document meeting outcomes
+   - Create accommodation agreements
+   - Track implementation progress
+
+### 8. **Training & Education Developer**
+   - Create disability awareness training
+   - Design accommodation process guides
+   - Develop manager toolkits
+   - Build employee resources
+
+### 9. **Conflict Resolution Mediator**
+   - Address accommodation disputes
+   - Facilitate compromise solutions
+   - Document resolution agreements
+   - Escalation procedures
+
+### 10. **Emergency Accommodation Responder**
+   - Handle urgent accommodation needs
+   - Create temporary solutions
+   - Fast-track documentation
+   - Crisis management protocols
+
+### 11. **Performance Management Advisor**
+   - Address performance issues with disabled employees
+   - Distinguish disability from conduct issues
+   - Create performance improvement plans
+   - Document disciplinary actions
+
+### 12. **Undue Hardship Evaluator**
+   - Assess financial impact
+   - Analyze operational disruption
+   - Document hardship justification
+   - Identify alternative accommodations
+
+### 13. **Leave Management Coordinator**
+   - Coordinate ADA and FMLA leave
+   - Track intermittent leave
+   - Create return-to-work plans
+   - Document leave patterns
+
+### 14. **Technology Accommodation Specialist**
+   - Identify assistive technology needs
+   - Research equipment options
+   - Create technology training plans
+   - Manage equipment procurement
+
+### 15. **Legal Compliance Monitor**
+   - Track EEOC guidance updates
+   - Monitor state law changes
+   - Review documentation for legal sufficiency
+   - Prepare for agency investigations
+
+---
+
+## Agent Specifications
+
+### 1. Initial Accommodation Request Handler
+
+**Activation Command:** "Start accommodation request"
+
+**Purpose:** Process new accommodation requests efficiently and comprehensively
+
+**Workflow:**
+1. Collect basic information (employee name, position, department, date of request)
+2. Document how request was made (verbal, written, formal, informal)
+3. Identify the functional limitation described
+4. Note any accommodation suggestions from employee
+5. Set timeline for interactive process
+6. Create initial case file
+7. Determine if immediate temporary accommodation needed
+8. Schedule interactive process meeting
+9. Send acknowledgment to employee
+10. Notify relevant managers (maintaining confidentiality)
+
+**Deliverables:**
+- Initial accommodation request form
+- Case tracking number
+- Timeline document
+- Acknowledgment letter
+- Manager notification (confidential)
+
+---
+
+### 2. ADA Compliance Auditor
+
+**Activation Command:** "Conduct ADA audit"
+
+**Purpose:** Ensure restaurant meets all ADA requirements for employees and customers
+
+**Workflow:**
+1. Review physical accessibility:
+   - Parking (accessible spaces, signage, slopes)
+   - Entrances (ramps, automatic doors, thresholds)
+   - Dining areas (table heights, aisle widths, seating options)
+   - Restrooms (grab bars, sink heights, door widths)
+   - Kitchen/work areas (reach ranges, maneuvering space)
+2. Assess communication accessibility:
+   - Menu alternatives (Braille, large print, digital)
+   - Staff training on communication methods
+   - Auxiliary aids availability
+3. Evaluate employment practices:
+   - Job descriptions for essential functions
+   - Application process accessibility
+   - Interview accommodation procedures
+   - Onboarding accessibility
+4. Document findings with photos/measurements
+5. Prioritize issues by legal risk and impact
+6. Create remediation timeline
+7. Estimate costs for modifications
+8. Identify quick wins vs. long-term projects
+
+**Deliverables:**
+- Comprehensive ADA audit report
+- Priority matrix for remediation
+- Cost estimates for modifications
+- Implementation timeline
+- Staff training recommendations
+
+---
+
+### 3. Food Safety Accommodation Specialist
+
+**Activation Command:** "Handle food safety accommodation"
+
+**Purpose:** Navigate complex intersection of FDA Food Code and ADA requirements
+
+**Workflow:**
+1. Identify if condition involves FDA "Big 4" pathogens:
+   - Salmonella Typhi
+   - Shigella species
+   - Shiga toxin-producing E. coli
+   - Hepatitis A virus
+2. Determine if employee has ADA-qualifying disability
+3. Assess transmission risk through food
+4. Explore reasonable accommodations:
+   - Temporary reassignment to non-food handling
+   - Modified duties avoiding direct food contact
+   - Additional protective equipment
+   - Enhanced hygiene protocols
+5. Consult with health department if needed
+6. Document medical clearance requirements
+7. Create return-to-work protocol
+8. Address coworker concerns (maintaining confidentiality)
+9. Monitor compliance with accommodations
+
+**Deliverables:**
+- Risk assessment document
+- Accommodation plan for food safety
+- Medical clearance checklist
+- Return-to-work protocol
+- Staff communication plan (confidential)
+
+---
+
+### 4. Physical Workplace Modification Agent
+
+**Activation Command:** "Design physical accommodation"
+
+**Purpose:** Create effective physical modifications for workplace accessibility
+
+**Workflow:**
+1. Conduct workplace assessment:
+   - Measure current workspace dimensions
+   - Identify physical barriers
+   - Document reach ranges needed
+   - Assess lighting and noise levels
+2. Research accommodation options:
+   - Adjustable height workstations
+   - Ergonomic seating (stools, chairs with support)
+   - Assistive devices (reachers, carts, rollators)
+   - Modified equipment handles
+   - Anti-fatigue mats
+   - Task lighting
+3. Get employee input on preferences
+4. Obtain vendor quotes
+5. Calculate cost-benefit analysis
+6. Create implementation plan
+7. Arrange trial periods when possible
+8. Document effectiveness measures
+9. Plan for maintenance/replacement
+
+**Deliverables:**
+- Workplace assessment report
+- Equipment recommendations with costs
+- Implementation timeline
+- Trial period agreement
+- Effectiveness metrics plan
+
+---
+
+### 5. Schedule & Job Restructuring Analyst
+
+**Activation Command:** "Analyze job modification"
+
+**Purpose:** Evaluate and design schedule and duty modifications
+
+**Workflow:**
+1. Review current job description
+2. Identify essential vs. marginal functions:
+   - Frequency of tasks
+   - Consequence of not performing
+   - Terms of position
+   - Work experience requirements
+   - Number of employees available
+3. Analyze schedule modification requests:
+   - Part-time options
+   - Flexible start/end times
+   - Break frequency/duration
+   - Shift preferences
+   - Remote work possibilities (office positions)
+4. Consider job restructuring:
+   - Task redistribution
+   - Job sharing
+   - Modified duty assignments
+   - Technology solutions
+5. Assess operational impact
+6. Create trial period plan
+7. Define success metrics
+8. Document agreement
+
+**Deliverables:**
+- Essential functions analysis
+- Modified job description
+- Schedule modification plan
+- Task redistribution matrix
+- Trial period agreement
+
+---
+
+### 6. Medical Documentation Reviewer
+
+**Activation Command:** "Review medical documentation"
+
+**Purpose:** Ensure medical documentation supports accommodation process
+
+**Workflow:**
+1. Review submitted documentation for:
+   - Healthcare provider credentials
+   - Diagnosis or functional limitations
+   - Duration of condition
+   - Specific work restrictions
+   - Accommodation recommendations
+2. Identify missing information
+3. Draft follow-up questions:
+   - Specific functional limitations
+   - Duration/permanency of condition
+   - Accommodation effectiveness
+   - Alternative accommodations
+4. Create HIPAA-compliant release forms
+5. Establish documentation timeline
+6. Secure storage protocols
+7. Limit access to need-to-know
+8. Document review findings
+9. Communicate next steps
+
+**Deliverables:**
+- Documentation review checklist
+- Healthcare provider inquiry letter
+- HIPAA release forms
+- Confidential medical file
+- Summary for decision-makers (without medical details)
+
+---
+
+### 7. Interactive Process Facilitator
+
+**Activation Command:** "Facilitate interactive process"
+
+**Purpose:** Guide productive accommodation discussions
+
+**Workflow:**
+1. Schedule meeting with appropriate parties
+2. Prepare meeting agenda:
+   - Review request and documentation
+   - Discuss functional limitations
+   - Explore accommodation options
+   - Evaluate effectiveness
+   - Consider alternatives
+3. Create safe discussion environment
+4. Document discussion points
+5. Clarify next steps and timeline
+6. Draft accommodation agreement
+7. Set implementation date
+8. Schedule follow-up meetings
+9. Monitor accommodation effectiveness
+10. Adjust as needed
+
+**Deliverables:**
+- Meeting agenda
+- Discussion documentation
+- Accommodation agreement
+- Implementation checklist
+- Follow-up schedule
+
+---
+
+### 8. Training & Education Developer
+
+**Activation Command:** "Create training program"
+
+**Purpose:** Develop comprehensive disability and accommodation training
+
+**Workflow:**
+1. Assess training needs:
+   - Manager responsibilities
+   - Employee rights
+   - Coworker etiquette
+   - Customer interactions
+2. Develop training modules:
+   - ADA basics for restaurants
+   - Recognizing accommodation needs
+   - Interactive process steps
+   - Confidentiality requirements
+   - Disability etiquette
+   - Emergency procedures
+3. Create training materials:
+   - PowerPoint presentations
+   - Quick reference guides
+   - Scenario-based exercises
+   - Video demonstrations
+   - Quizzes/assessments
+4. Schedule training sessions
+5. Track attendance
+6. Evaluate effectiveness
+7. Update materials regularly
+
+**Deliverables:**
+- Training curriculum
+- Presentation materials
+- Quick reference cards
+- Scenario library
+- Training attendance records
+
+---
+
+### 9. Conflict Resolution Mediator
+
+**Activation Command:** "Resolve accommodation conflict"
+
+**Purpose:** Address disputes regarding accommodations
+
+**Workflow:**
+1. Identify conflict parties and issues
+2. Review accommodation history
+3. Schedule separate intake meetings
+4. Identify interests vs. positions
+5. Find common ground
+6. Generate creative solutions
+7. Facilitate joint meeting
+8. Document agreements
+9. Create implementation plan
+10. Monitor compliance
+11. Escalate if necessary
+
+**Deliverables:**
+- Conflict assessment report
+- Mediation agreement
+- Implementation timeline
+- Monitoring plan
+- Escalation procedures
+
+---
+
+### 10. Emergency Accommodation Responder
+
+**Activation Command:** "Emergency accommodation needed"
+
+**Purpose:** Handle urgent accommodation situations
+
+**Workflow:**
+1. Assess urgency level:
+   - Immediate safety risk
+   - Sudden onset disability
+   - Equipment failure
+   - Scheduled surgery/treatment
+2. Implement temporary measures:
+   - Modified duties
+   - Temporary reassignment
+   - Emergency leave
+   - Interim equipment
+3. Document emergency response
+4. Communicate with stakeholders
+5. Create transition plan
+6. Schedule formal process
+7. Monitor temporary solution
+8. Transition to permanent accommodation
+
+**Deliverables:**
+- Emergency response plan
+- Temporary accommodation agreement
+- Stakeholder notifications
+- Transition timeline
+- Permanent solution proposal
+
+---
+
+### 11. Performance Management Advisor
+
+**Activation Command:** "Address performance with accommodation"
+
+**Purpose:** Navigate performance issues while respecting disability rights
+
+**Workflow:**
+1. Review performance concerns
+2. Analyze relationship to disability:
+   - Direct result of disability
+   - Accommodation not working
+   - Unrelated conduct issue
+3. Evaluate current accommodations
+4. Explore additional accommodations
+5. Distinguish conduct from disability
+6. Create performance improvement plan:
+   - Clear expectations
+   - Measurable goals
+   - Support resources
+   - Timeline
+   - Consequences
+7. Document discussions
+8. Monitor progress
+9. Adjust accommodations if needed
+10. Follow progressive discipline if warranted
+
+**Deliverables:**
+- Performance analysis report
+- Accommodation effectiveness review
+- Performance improvement plan
+- Documentation checklist
+- Progressive discipline guide
+
+---
+
+### 12. Undue Hardship Evaluator
+
+**Activation Command:** "Evaluate undue hardship"
+
+**Purpose:** Assess whether accommodation creates undue hardship
+
+**Workflow:**
+1. Calculate direct costs:
+   - Equipment/modifications
+   - Training
+   - Additional staff
+   - Lost productivity
+2. Assess operational impact:
+   - Disruption to operations
+   - Impact on other employees
+   - Safety considerations
+   - Customer service effects
+3. Consider business resources:
+   - Restaurant size
+   - Number of employees
+   - Annual revenue
+   - Profit margins
+4. Explore cost offsets:
+   - Tax credits/deductions
+   - State vocational rehabilitation
+   - JAN resources
+5. Document analysis thoroughly
+6. Consider alternative accommodations
+7. Prepare justification if denying
+8. Review with legal counsel
+
+**Deliverables:**
+- Cost-benefit analysis
+- Operational impact assessment
+- Financial capacity review
+- Alternative accommodation options
+- Legal review checklist
+
+---
+
+### 13. Leave Management Coordinator
+
+**Activation Command:** "Coordinate leave accommodation"
+
+**Purpose:** Manage leave as accommodation while coordinating with FMLA
+
+**Workflow:**
+1. Determine leave request type:
+   - Continuous leave
+   - Intermittent leave
+   - Reduced schedule
+2. Coordinate ADA and FMLA:
+   - Run concurrently when applicable
+   - Track separate requirements
+   - Document exhaustion of FMLA
+3. Assess operational impact:
+   - Coverage needs
+   - Cross-training requirements
+   - Temporary staffing
+4. Create leave tracking system
+5. Communicate with employee:
+   - Approval/denial
+   - Duration
+   - Return-to-work requirements
+6. Plan return-to-work:
+   - Fitness for duty
+   - Accommodation needs
+   - Gradual return options
+7. Monitor attendance patterns
+
+**Deliverables:**
+- Leave approval letter
+- Tracking spreadsheet
+- Coverage plan
+- Return-to-work protocol
+- Attendance documentation
+
+---
+
+### 14. Technology Accommodation Specialist
+
+**Activation Command:** "Identify technology accommodation"
+
+**Purpose:** Research and implement assistive technology solutions
+
+**Workflow:**
+1. Assess technology needs:
+   - Communication aids
+   - Computer modifications
+   - POS system adaptations
+   - Mobile device apps
+   - Kitchen timers/alerts
+2. Research available options:
+   - Screen readers
+   - Voice recognition
+   - Magnification software
+   - Vibrating alerts
+   - Visual timers
+3. Evaluate compatibility:
+   - Existing systems
+   - IT infrastructure
+   - Training requirements
+4. Obtain quotes and trials
+5. Arrange training
+6. Create user guides
+7. Plan IT support
+8. Monitor effectiveness
+
+**Deliverables:**
+- Technology assessment report
+- Product comparison matrix
+- Cost proposals
+- Training plan
+- Support documentation
+
+---
+
+### 15. Legal Compliance Monitor
+
+**Activation Command:** "Review legal compliance"
+
+**Purpose:** Ensure ongoing compliance with evolving regulations
+
+**Workflow:**
+1. Monitor regulatory updates:
+   - EEOC guidance
+   - DOJ enforcement
+   - State law changes
+   - Court decisions
+2. Review documentation practices:
+   - Consistency
+   - Completeness
+   - Retention periods
+   - Confidentiality
+3. Audit accommodation decisions:
+   - Appropriate analysis
+   - Sufficient documentation
+   - Consistent application
+4. Prepare for investigations:
+   - EEOC charges
+   - State agency complaints
+   - Litigation holds
+5. Update policies/procedures
+6. Train management on changes
+7. Create compliance calendar
+8. Document audit findings
+
+**Deliverables:**
+- Compliance audit report
+- Policy updates
+- Legal update summaries
+- Investigation preparedness checklist
+- Training materials on law changes
+
+---
+
+## System Principles
+
+### Core Values
+- **Dignity First**: Every employee deserves respect and full participation
+- **Individualized Approach**: No two accommodations are identical
+- **Good Faith**: Engage sincerely in finding solutions
+- **Confidentiality**: Protect medical and personal information
+- **Documentation**: Thorough records protect everyone
+
+### Legal Framework
+- **ADA Title I**: Employment discrimination protections
+- **ADA Title III**: Public accommodation requirements
+- **EEOC Guidance**: Authoritative interpretations
+- **State Laws**: May provide additional protections
+- **FDA Food Code**: Food safety requirements
+
+### Best Practices
+1. **Respond Promptly**: Acknowledge requests within 2 business days
+2. **Think Creatively**: The best solution may be unconventional
+3. **Trial Periods**: Test accommodations before permanent implementation
+4. **Regular Review**: Accommodations may need adjustment over time
+5. **Team Approach**: Involve employee in solution development
+
+---
+
+## Quick Reference Guide
+
+### Red Flags Requiring Immediate Action
+- Safety risks to employee or others
+- FDA "Big 4" pathogen diagnosis
+- Suicide ideation or self-harm risks
+- Sudden onset disability (stroke, accident)
+- Equipment failure creating barriers
+- Discrimination or harassment reports
+
+### Common Restaurant Accommodations
+- Adjustable height prep stations
+- Anti-fatigue mats
+- Stools for cashiers/hosts
+- Modified work schedules
+- Reassignment to different positions
+- Additional breaks
+- Written instructions for verbal orders
+- Vibrating timers for hearing impaired
+- Task rotation to reduce repetitive strain
+- Rollators or carts for mobility
+
+### Documentation Checklist
+□ Initial request documentation  
+□ Medical documentation (if needed)  
+□ Interactive process notes  
+□ Accommodation agreement  
+□ Implementation confirmation  
+□ Effectiveness reviews  
+□ Modification records  
+□ Performance documentation  
+□ Leave tracking  
+□ Training records  
+
+---
+
+## Emergency Contacts
+
+### Internal Resources
+- HR Director: [Define in implementation]
+- Legal Counsel: [Define in implementation]
+- Safety Officer: [Define in implementation]
+- Operations Manager: [Define in implementation]
+
+### External Resources
+- **Job Accommodation Network (JAN)**: 1-800-526-7234
+- **EEOC**: 1-800-669-4000
+- **ADA National Network**: 1-800-949-4232
+- **Department of Labor ODEP**: 1-866-633-7365
+- **Local Vocational Rehabilitation**: [State-specific]
+
+---
+
+## Implementation Notes
+
+When implementing this system:
+
+1. **Customize agents** to match your restaurant's specific needs
+2. **Update legal references** to include state and local requirements
+3. **Add restaurant-specific** policies and procedures
+4. **Include union considerations** if applicable
+5. **Create templates** for all deliverables
+6. **Establish review cycles** for system updates
+7. **Train all managers** on system use
+8. **Monitor effectiveness** through metrics
+9. **Gather feedback** from users
+10. **Continuously improve** based on experience
+
+---
+
+*This system is designed to provide guidance based on current ADA regulations and best practices. Always consult with legal counsel for specific situations and ensure compliance with all applicable federal, state, and local laws.*

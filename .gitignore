@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.mcp.json
+.DS_Store
+*.zip
+.claude/startday.state.json
+artifacts/migration/

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #ffffff; overflow: hidden; }
+    #root { display: inline-block; }
+    #root svg { display: block; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+    const SVG_NS = "http://www.w3.org/2000/svg";
+
+    function svgEl(name, attrs = {}) {
+      const el = document.createElementNS(SVG_NS, name);
+      for (const [key, value] of Object.entries(attrs)) {
+        if (value !== null && value !== undefined) el.setAttribute(key, String(value));
+      }
+      return el;
+    }
+
+    function bounds(elements) {
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      for (const el of elements) {
+        if (el.isDeleted) continue;
+        if ((el.type === "arrow" || el.type === "line") && Array.isArray(el.points)) {
+          for (const [px, py] of el.points) {
+            minX = Math.min(minX, el.x + px);
+            minY = Math.min(minY, el.y + py);
+            maxX = Math.max(maxX, el.x + px);
+            maxY = Math.max(maxY, el.y + py);
+          }
+        } else {
+          minX = Math.min(minX, el.x);
+          minY = Math.min(minY, el.y);
+          maxX = Math.max(maxX, el.x + Math.abs(el.width || 0));
+          maxY = Math.max(maxY, el.y + Math.abs(el.height || 0));
+        }
+      }
+      if (!Number.isFinite(minX)) return { minX: 0, minY: 0, maxX: 800, maxY: 600 };
+      return { minX, minY, maxX, maxY };
+    }
+
+    function styleAttrs(el) {
+      const dash = el.strokeStyle === "dashed" ? "8 8" : el.strokeStyle === "dotted" ? "2 6" : null;
+      return {
+        stroke: el.strokeColor || "#000000",
+        fill: el.backgroundColor && el.backgroundColor !== "transparent" ? el.backgroundColor : "none",
+        "stroke-width": el.strokeWidth || 1,
+        "stroke-dasharray": dash,
+        opacity: (el.opacity ?? 100) / 100,
+      };
+    }
+
+    function addText(svg, el, offsetX, offsetY) {
+      const text = svgEl("text", {
+        x: el.x + offsetX,
+        y: el.y + offsetY,
+        fill: el.strokeColor || "#111827",
+        "font-size": el.fontSize || 16,
+        "font-family": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+        "text-anchor": el.textAlign === "center" ? "middle" : el.textAlign === "right" ? "end" : "start",
+        opacity: (el.opacity ?? 100) / 100,
+      });
+
+      const lines = String(el.text || "").split("\n");
+      const lineHeight = (el.fontSize || 16) * (el.lineHeight || 1.25);
+      const anchorX = el.textAlign === "center" ? (el.x + el.width / 2 + offsetX) : el.textAlign === "right" ? (el.x + el.width + offsetX) : (el.x + offsetX);
+      const baseY = el.verticalAlign === "middle"
+        ? el.y + el.height / 2 - ((lines.length - 1) * lineHeight) / 2 + (el.fontSize || 16) / 3 + offsetY
+        : el.y + (el.fontSize || 16) + offsetY;
+      text.setAttribute("x", String(anchorX));
+      lines.forEach((line, index) => {
+        const tspan = svgEl("tspan", { x: anchorX, y: baseY + index * lineHeight });
+        tspan.textContent = line;
+        text.appendChild(tspan);
+      });
+      svg.appendChild(text);
+    }
+
+    function addArrowMarker(svg, color) {
+      const id = `arrowhead-${color.replace(/[^a-zA-Z0-9]/g, "")}`;
+      if (document.getElementById(id)) return id;
+      let defs = svg.querySelector("defs");
+      if (!defs) {
+        defs = svgEl("defs");
+        svg.appendChild(defs);
+      }
+      const marker = svgEl("marker", {
+        id,
+        markerWidth: 10,
+        markerHeight: 10,
+        refX: 8,
+        refY: 3,
+        orient: "auto",
+        markerUnits: "strokeWidth",
+      });
+      marker.appendChild(svgEl("path", { d: "M0,0 L0,6 L9,3 z", fill: color }));
+      defs.appendChild(marker);
+      return id;
+    }
+
+    window.renderDiagram = function(jsonData) {
+      try {
+        const data = typeof jsonData === "string" ? JSON.parse(jsonData) : jsonData;
+        const elements = (data.elements || []).filter((el) => !el.isDeleted);
+        const box = bounds(elements);
+        const padding = 80;
+        const width = box.maxX - box.minX + padding * 2;
+        const height = box.maxY - box.minY + padding * 2;
+        const offsetX = padding - box.minX;
+        const offsetY = padding - box.minY;
+
+        const svg = svgEl("svg", {
+          width,
+          height,
+          viewBox: `0 0 ${width} ${height}`,
+          xmlns: SVG_NS,
+        });
+        svg.appendChild(svgEl("rect", { x: 0, y: 0, width, height, fill: data.appState?.viewBackgroundColor || "#ffffff" }));
+        if (data.appState?.theme === "dark") svg.style.filter = "invert(93%) hue-rotate(180deg)";
+
+        for (const el of elements) {
+          if (el.type === "rectangle") {
+            svg.appendChild(svgEl("rect", {
+              x: el.x + offsetX,
+              y: el.y + offsetY,
+              width: Math.abs(el.width || 0),
+              height: Math.abs(el.height || 0),
+              rx: el.roundness ? 12 : 0,
+              ...styleAttrs(el),
+            }));
+          } else if (el.type === "ellipse") {
+            svg.appendChild(svgEl("ellipse", {
+              cx: el.x + Math.abs(el.width || 0) / 2 + offsetX,
+              cy: el.y + Math.abs(el.height || 0) / 2 + offsetY,
+              rx: Math.abs(el.width || 0) / 2,
+              ry: Math.abs(el.height || 0) / 2,
+              ...styleAttrs(el),
+            }));
+          } else if (el.type === "diamond") {
+            const x = el.x + offsetX, y = el.y + offsetY, w = Math.abs(el.width || 0), h = Math.abs(el.height || 0);
+            svg.appendChild(svgEl("polygon", {
+              points: `${x + w / 2},${y} ${x + w},${y + h / 2} ${x + w / 2},${y + h} ${x},${y + h / 2}`,
+              ...styleAttrs(el),
+            }));
+          } else if (el.type === "arrow" || el.type === "line") {
+            const points = (el.points || [[0, 0], [el.width || 0, el.height || 0]])
+              .map(([px, py]) => `${el.x + px + offsetX},${el.y + py + offsetY}`)
+              .join(" ");
+            const attrs = {
+              points,
+              fill: "none",
+              stroke: el.strokeColor || "#000000",
+              "stroke-width": el.strokeWidth || 2,
+              "stroke-dasharray": el.strokeStyle === "dashed" ? "8 8" : el.strokeStyle === "dotted" ? "2 6" : null,
+              opacity: (el.opacity ?? 100) / 100,
+            };
+            if (el.type === "arrow" && el.endArrowhead) {
+              const markerId = addArrowMarker(svg, el.strokeColor || "#000000");
+              attrs["marker-end"] = `url(#${markerId})`;
+            }
+            svg.appendChild(svgEl("polyline", attrs));
+          }
+        }
+
+        for (const el of elements) {
+          if (el.type === "text") addText(svg, el, offsetX, offsetY);
+        }
+
+        const root = document.getElementById("root");
+        root.innerHTML = "";
+        root.appendChild(svg);
+        window.__renderComplete = true;
+        return { success: true, width, height };
+      } catch (err) {
+        window.__renderComplete = true;
+        window.__renderError = err.message;
+        return { success: false, error: err.message };
+      }
+    };
+
+    window.__moduleReady = true;
+  </script>
+</body>
+</html>

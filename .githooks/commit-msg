@@ -1,0 +1,7 @@
+#!/bin/sh
+# CLAUDE.md: commit messages are extremely concise. Detail goes in the body, after a blank line.
+subject=$(grep -v '^#' "$1" | head -n 1)
+if [ "${#subject}" -gt 72 ]; then
+    echo "commit-msg: subject is ${#subject} chars; keep it to 72 and put detail in the body after a blank line." >&2
+    exit 1
+fi

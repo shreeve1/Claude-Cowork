@@ -1,0 +1,6 @@
+{
+  "client_subjects": [],
+  "topics": ["knowledge", "skills", "memory", "projects", "workstation"],
+  "topic_dirs": ["workflows", "decisions"],
+  "client_dirs": ["tickets", "projects", "procedures", "meetings", "templates"]
+}

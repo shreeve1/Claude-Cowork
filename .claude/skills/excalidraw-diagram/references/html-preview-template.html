@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Excalidraw Preview</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f8fafc; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: #334155; }
+    header { padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #dbe4f0; position: sticky; top: 0; z-index: 1; }
+    header strong { color: #1e40af; }
+    header code { color: #64748b; }
+    main { padding: 16px; overflow: auto; }
+    #root { display: inline-block; background: #ffffff; box-shadow: 0 8px 30px rgba(15, 23, 42, .08); }
+    #root svg { display: block; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    #error { display: none; margin: 16px; padding: 12px; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Excalidraw Preview</strong>
+    <span> · source: <code id="source-name">SCENE_FILE.excalidraw</code></span>
+  </header>
+  <div id="error"></div>
+  <main><div id="root"></div></main>
+
+  <script>
+    const SCENE_FILE = "SCENE_FILE.excalidraw";
+    const SCENE_DATA = SCENE_DATA_PLACEHOLDER;
+    document.getElementById("source-name").textContent = SCENE_FILE;
+    const SVG_NS = "http://www.w3.org/2000/svg";
+
+    function svgEl(name, attrs = {}) {
+      const el = document.createElementNS(SVG_NS, name);
+      for (const [key, value] of Object.entries(attrs)) {
+        if (value !== null && value !== undefined) el.setAttribute(key, String(value));
+      }
+      return el;
+    }
+
+    function bounds(elements) {
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      for (const el of elements) {
+        if (el.isDeleted) continue;
+        if ((el.type === "arrow" || el.type === "line") && Array.isArray(el.points)) {
+          for (const [px, py] of el.points) {
+            minX = Math.min(minX, el.x + px); minY = Math.min(minY, el.y + py);
+            maxX = Math.max(maxX, el.x + px); maxY = Math.max(maxY, el.y + py);
+          }
+        } else {
+          minX = Math.min(minX, el.x); minY = Math.min(minY, el.y);
+          maxX = Math.max(maxX, el.x + Math.abs(el.width || 0));
+          maxY = Math.max(maxY, el.y + Math.abs(el.height || 0));
+        }
+      }
+      if (!Number.isFinite(minX)) return { minX: 0, minY: 0, maxX: 800, maxY: 600 };
+      return { minX, minY, maxX, maxY };
+    }
+
+    function styleAttrs(el) {
+      return {
+        stroke: el.strokeColor || "#000000",
+        fill: el.backgroundColor && el.backgroundColor !== "transparent" ? el.backgroundColor : "none",
+        "stroke-width": el.strokeWidth || 1,
+        "stroke-dasharray": el.strokeStyle === "dashed" ? "8 8" : el.strokeStyle === "dotted" ? "2 6" : null,
+        opacity: (el.opacity ?? 100) / 100,
+      };
+    }
+
+    function addText(svg, el, offsetX, offsetY) {
+      const text = svgEl("text", {
+        fill: el.strokeColor || "#111827",
+        "font-size": el.fontSize || 16,
+        "font-family": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+        "text-anchor": el.textAlign === "center" ? "middle" : el.textAlign === "right" ? "end" : "start",
+        opacity: (el.opacity ?? 100) / 100,
+      });
+      const lines = String(el.text || "").split("\n");
+      const lineHeight = (el.fontSize || 16) * (el.lineHeight || 1.25);
+      const anchorX = el.textAlign === "center" ? el.x + el.width / 2 + offsetX : el.textAlign === "right" ? el.x + el.width + offsetX : el.x + offsetX;
+      const baseY = el.verticalAlign === "middle" ? el.y + el.height / 2 - ((lines.length - 1) * lineHeight) / 2 + (el.fontSize || 16) / 3 + offsetY : el.y + (el.fontSize || 16) + offsetY;
+      lines.forEach((line, index) => {
+        const tspan = svgEl("tspan", { x: anchorX, y: baseY + index * lineHeight });
+        tspan.textContent = line;
+        text.appendChild(tspan);
+      });
+      svg.appendChild(text);
+    }
+
+    function addArrowMarker(svg, color) {
+      const id = `arrowhead-${color.replace(/[^a-zA-Z0-9]/g, "")}`;
+      if (svg.querySelector(`#${id}`)) return id;
+      let defs = svg.querySelector("defs");
+      if (!defs) { defs = svgEl("defs"); svg.appendChild(defs); }
+      const marker = svgEl("marker", { id, markerWidth: 10, markerHeight: 10, refX: 8, refY: 3, orient: "auto", markerUnits: "strokeWidth" });
+      marker.appendChild(svgEl("path", { d: "M0,0 L0,6 L9,3 z", fill: color }));
+      defs.appendChild(marker);
+      return id;
+    }
+
+    function renderDiagram(data) {
+      const elements = (data.elements || []).filter((el) => !el.isDeleted);
+      const box = bounds(elements);
+      const padding = 80;
+      const width = box.maxX - box.minX + padding * 2;
+      const height = box.maxY - box.minY + padding * 2;
+      const offsetX = padding - box.minX;
+      const offsetY = padding - box.minY;
+      const svg = svgEl("svg", { width, height, viewBox: `0 0 ${width} ${height}`, xmlns: SVG_NS });
+      svg.appendChild(svgEl("rect", { x: 0, y: 0, width, height, fill: data.appState?.viewBackgroundColor || "#ffffff" }));
+      if (data.appState?.theme === "dark") svg.style.filter = "invert(93%) hue-rotate(180deg)";
+
+      for (const el of elements) {
+        if (el.type === "rectangle") svg.appendChild(svgEl("rect", { x: el.x + offsetX, y: el.y + offsetY, width: Math.abs(el.width || 0), height: Math.abs(el.height || 0), rx: el.roundness ? 12 : 0, ...styleAttrs(el) }));
+        else if (el.type === "ellipse") svg.appendChild(svgEl("ellipse", { cx: el.x + Math.abs(el.width || 0) / 2 + offsetX, cy: el.y + Math.abs(el.height || 0) / 2 + offsetY, rx: Math.abs(el.width || 0) / 2, ry: Math.abs(el.height || 0) / 2, ...styleAttrs(el) }));
+        else if (el.type === "diamond") {
+          const x = el.x + offsetX, y = el.y + offsetY, w = Math.abs(el.width || 0), h = Math.abs(el.height || 0);
+          svg.appendChild(svgEl("polygon", { points: `${x + w / 2},${y} ${x + w},${y + h / 2} ${x + w / 2},${y + h} ${x},${y + h / 2}`, ...styleAttrs(el) }));
+        } else if (el.type === "arrow" || el.type === "line") {
+          const attrs = { points: (el.points || [[0, 0], [el.width || 0, el.height || 0]]).map(([px, py]) => `${el.x + px + offsetX},${el.y + py + offsetY}`).join(" "), fill: "none", stroke: el.strokeColor || "#000000", "stroke-width": el.strokeWidth || 2, "stroke-dasharray": el.strokeStyle === "dashed" ? "8 8" : el.strokeStyle === "dotted" ? "2 6" : null, opacity: (el.opacity ?? 100) / 100 };
+          if (el.type === "arrow" && el.endArrowhead) attrs["marker-end"] = `url(#${addArrowMarker(svg, el.strokeColor || "#000000")})`;
+          svg.appendChild(svgEl("polyline", attrs));
+        }
+      }
+      for (const el of elements) if (el.type === "text") addText(svg, el, offsetX, offsetY);
+      document.getElementById("root").replaceChildren(svg);
+    }
+
+    try {
+      renderDiagram(SCENE_DATA);
+    } catch (error) {
+      const box = document.getElementById("error");
+      box.style.display = "block";
+      box.textContent = `${error.message}. Open the .excalidraw file manually in Excalidraw if fallback preview cannot render it.`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+"""Tests for the personal-memory topic-folder reorg: indexes.py + gate.py.
+
+Each test builds its own throwaway `memory/` directory (a minimal valid shape)
+and drives the scripts with subprocess, asserting literal stdout/exit codes.
+"""
+import json
+import shutil
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+SKILL_DIR = Path(__file__).resolve().parents[1]  # .claude/skills/personal-memory
+INDEXES = SKILL_DIR / "indexes.py"
+GATE = SKILL_DIR / "gate.py"
+HUBS = SKILL_DIR / "hubs.py"
+
+TOPICS = ["halo", "365", "3cx", "network", "backup", "security", "endpoints",
+          "projects", "vendors", "knowledge", "skills", "memory", "workstation"]
+
+
+def run_script(script, memory_dir, *args):
+    return subprocess.run(
+        [sys.executable, str(script), "--memory", str(memory_dir), *args],
+        capture_output=True, text=True,
+    )
+
+
+def make_schema(memory_dir, client_subjects=None):
+    """Minimal memory/schema.json; client subjects default to the canonical list."""
+    (memory_dir / "schema.json").write_text(json.dumps({
+        "client_subjects": client_subjects if client_subjects is not None
+        else ["halo", "365", "3cx", "network", "backup", "security", "endpoints",
+              "contacts", "temperature"],
+        "topics": TOPICS,
+        "topic_dirs": ["workflows", "decisions"],
+        "client_dirs": ["tickets", "projects", "procedures", "meetings", "templates"],
+    }), encoding="utf-8")
+
+
+def make_client_note(path):
+    path.parent.mkdir(parents=True)
+    path.write_text(
+        "---\n"
+        "type: client-memory\n"
+        f"client: {path.parent.name}\n"
+        f"subject: {path.parent.parent.name}\n"
+        "title: Note\n"
+        "verified: 2026-10-01\n"
+        "source: x\n"
+        "---\n"
+        "\n"
+        "Body.\n",
+        encoding="utf-8",
+    )
+
+
+def make_index(memory_dir):
+    """Minimal valid memory/index.md linking both sub-indexes."""
+    (memory_dir / "index.md").write_text(
+        "# Memory Index\n"
+        "\n"
+        "## Promoted Memory\n"
+        "\n"
+        "| Page | Type | Summary | Updated |\n"
+        "|------|------|---------|---------|\n"
+        "| [Workflow Index](memory/workflows/index.md) | index | Workflows by topic. | 2026-10-07 |\n"
+        "| [Decision Index](memory/decisions/index.md) | index | Decisions by topic. | 2026-10-07 |\n"
+        "\n"
+        "## Client Hubs\n"
+        "\n"
+        "| Page | Type | Summary | Updated |\n"
+        "|------|------|---------|---------|\n",
+        encoding="utf-8",
+    )
+
+
+def write_fm(path, title, summary, status="promoted", updated="2026-10-07"):
+    path.write_text(
+        "---\n"
+        f"title: {title}\n"
+        f"summary: {summary}\n"
+        f"status: {status}\n"
+        f"updated: {updated}\n"
+        "---\n"
+        "\n"
+        "Body.\n",
+        encoding="utf-8",
+    )
+
+
+class TopicFolderReorgTests(unittest.TestCase):
+    def test_flat_file_in_topic_dir_fails_audit(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            make_schema(mem)
+            (mem / "workflows").mkdir()
+            (mem / "workflows" / "x.md").write_text("---\ntitle: X\n---\n", encoding="utf-8")
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            self.assertIn("memory/workflows/x.md", proc.stdout)
+
+    def test_unknown_topic_dir_fails_audit(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            make_schema(mem)
+            (mem / "workflows" / "bogus").mkdir(parents=True)
+            (mem / "workflows" / "bogus" / "x.md").write_text("body", encoding="utf-8")
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            self.assertIn("bogus", proc.stdout)
+
+    def test_stale_subindex_drift_then_regenerate(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            make_schema(mem)
+            halo = mem / "workflows" / "halo"
+            halo.mkdir(parents=True)
+            write_fm(halo / "x.md", "X Topic", "One-line summary.")
+            (mem / "workflows" / "index.md").write_text(
+                "---\ntype: memory-index\n---\n\nSTALE\n", encoding="utf-8")
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            self.assertIn("drift", proc.stdout)
+            regen = run_script(INDEXES, mem)
+            self.assertEqual(regen.returncode, 0, regen.stdout + regen.stderr)
+            proc2 = run_script(GATE, mem, "audit")
+            self.assertEqual(proc2.returncode, 0, proc2.stdout + proc2.stderr)
+
+    def test_crowded_16_guides(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_schema(mem)
+            guides = mem / "guides"
+            guides.mkdir()
+            for i in range(16):
+                (guides / f"g{i:02d}.md").write_text("x", encoding="utf-8")
+            proc = run_script(GATE, mem, "crowded")
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            self.assertIn("crowded: memory/guides 16 files", proc.stdout)
+
+    def test_not_crowded_15_guides(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_schema(mem)
+            guides = mem / "guides"
+            guides.mkdir()
+            for i in range(15):
+                (guides / f"g{i:02d}.md").write_text("x", encoding="utf-8")
+            proc = run_script(GATE, mem, "crowded")
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            self.assertEqual(proc.stdout.strip(), "")
+
+    def test_fresh_install_audits_green_after_indexes_run(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            make_schema(mem)
+            for d in ("workflows", "decisions"):
+                (mem / d).mkdir()
+                (mem / d / ".gitkeep").write_text("", encoding="utf-8")
+            self.assertEqual(run_script(INDEXES, mem).returncode, 0)
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            self.assertIn("Success", proc.stdout)
+
+    def test_deleting_a_populated_topic_dir_fails_audit(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            make_schema(mem)
+            halo = mem / "decisions" / "halo"
+            halo.mkdir(parents=True)
+            (mem / "workflows").mkdir()
+            write_fm(halo / "decision-x.md", "X", "A decision.")
+            self.assertEqual(run_script(INDEXES, mem).returncode, 0)
+            self.assertEqual(run_script(GATE, mem, "audit").returncode, 0)
+            shutil.rmtree(mem / "decisions")
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            self.assertIn("memory/decisions/index.md", proc.stdout)
+
+    def test_unlisted_subject_fails_audit(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            make_schema(mem)
+            make_client_note(mem / "clients" / "bogus" / "xyz" / "note.md")
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            self.assertIn("folder subject 'bogus' not in", proc.stdout)
+            self.assertIn("subject 'bogus' not in", proc.stdout)
+
+    def test_subject_added_to_schema_passes_audit(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            make_schema(mem, client_subjects=["halo", "bogus"])
+            for d in ("workflows", "decisions"):
+                (mem / d).mkdir()
+            self.assertEqual(run_script(INDEXES, mem).returncode, 0)
+            make_client_note(mem / "clients" / "bogus" / "xyz" / "note.md")
+            (mem / "index.md").write_text(
+                (mem / "index.md").read_text(encoding="utf-8")
+                + "| [xyz hub](memory/clients/_hubs/xyz.md) | hub | Hub for xyz. | 2026-10-07 |\n",
+                encoding="utf-8")
+            hubs = run_script(HUBS, mem)
+            self.assertEqual(hubs.returncode, 0, hubs.stdout + hubs.stderr)
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            self.assertNotIn("not in", proc.stdout)
+            self.assertIn("Success", proc.stdout)
+
+    def test_audit_follows_configured_client_folder(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            make_schema(mem, client_subjects=["contacts"])
+            data = json.loads((mem / "schema.json").read_text(encoding="utf-8"))
+            data["client_folder"] = "students"
+            (mem / "schema.json").write_text(json.dumps(data), encoding="utf-8")
+            for d in ("workflows", "decisions"):
+                (mem / d).mkdir()
+            self.assertEqual(run_script(INDEXES, mem).returncode, 0)
+            make_client_note(mem / "students" / "contacts" / "ana" / "note.md")
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            self.assertIn("memory/students/_hubs/ana.md", proc.stdout)
+            self.assertEqual(run_script(HUBS, mem).returncode, 0)
+            (mem / "index.md").write_text(
+                (mem / "index.md").read_text(encoding="utf-8")
+                + "| [ana hub](memory/students/_hubs/ana.md) | hub | Hub for ana. | 2026-10-07 |\n",
+                encoding="utf-8")
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            self.assertIn("Success", proc.stdout)
+            self.assertFalse((mem / "clients").exists())
+
+    def test_client_notes_outside_the_configured_folder_fail_audit(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            make_schema(mem, client_subjects=["contacts"])
+            for d in ("workflows", "decisions"):
+                (mem / d).mkdir()
+            self.assertEqual(run_script(INDEXES, mem).returncode, 0)
+            make_client_note(mem / "students" / "contacts" / "ana" / "note.md")
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            self.assertIn("memory/students/", proc.stdout)
+            self.assertIn("client_folder", proc.stdout)
+
+    def test_missing_schema_json_fails_audit(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = Path(td)
+            make_index(mem)
+            proc = run_script(GATE, mem, "audit")
+            self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+            self.assertIn("schema.json", proc.stderr)
+            self.assertIn("not found", proc.stderr)
+
+
+if __name__ == "__main__":
+    unittest.main()

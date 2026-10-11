@@ -1,0 +1,1926 @@
+{
+ "edition": "friends",
+ "release": 3,
+ "files": {
+  ".claude/setup/ADAPTING.md": {
+   "class": "merge",
+   "sha256": "93cf61889c90dd0d74e938f8cefb789b77e2d5f3cc3dc4a28c0adc3e54d106c1",
+   "mode": "644"
+  },
+  ".claude/setup/CHECKLIST.md": {
+   "class": "merge",
+   "sha256": "8bcb5153956ef9d64d973ab08466e530ad64523d7939a1b5e89a861e4aed0c3f",
+   "mode": "644"
+  },
+  ".claude/setup/INSTALL.md": {
+   "class": "merge",
+   "sha256": "4174e34a6eb2767e15736798cb237d915cfb32d3edf72323a4a66b0964fb401c",
+   "mode": "644"
+  },
+  ".claude/setup/MANIFEST.md": {
+   "class": "merge",
+   "sha256": "5b9fed6436fc839f3574b67a683beb90aea98b7a4fae657ccbd932320fb96d36",
+   "mode": "644"
+  },
+  ".claude/setup/MARKERS.md": {
+   "class": "merge",
+   "sha256": "13ce79cd73bc18be8ca930ecfbd14eb01978a1f479922956f619b58bbe45aaeb",
+   "mode": "644"
+  },
+  ".claude/setup/MIGRATING.md": {
+   "class": "merge",
+   "sha256": "5ac3ff7601143b5a6d8e90b2e973083605d9748a39584d772e6059eaab48be3c",
+   "mode": "644"
+  },
+  ".claude/setup/README.md": {
+   "class": "merge",
+   "sha256": "0f916301e5d6984e494aefe817d6ca6b5973786be0e2de2d83541e199f7a6448",
+   "mode": "644"
+  },
+  ".claude/setup/ROLLBACK.md": {
+   "class": "merge",
+   "sha256": "70ec01d1cefb62ab5ae6dc112041a59938b7a32e20b9ffae42dcae659f3506db",
+   "mode": "644"
+  },
+  ".claude/setup/UPDATE.md": {
+   "class": "merge",
+   "sha256": "8baaf0c180e36b33bf7bf851941f598dc2fe911e99b1e918fd4f95b0a65eff8b",
+   "mode": "644"
+  },
+  ".claude/setup/doctor.ps1": {
+   "class": "merge",
+   "sha256": "496793372b6865c5a6bbcf8a8c4bab8206d99fb6ef0b22db0d888e64735b75e7",
+   "mode": "644"
+  },
+  ".claude/setup/doctor.py": {
+   "class": "merge",
+   "sha256": "bc43e9e0fa8df73cd0196b57eb2d86aadb6b0dc2883f75697831bb22511f4532",
+   "mode": "755"
+  },
+  ".claude/skills/adhd/SKILL.md": {
+   "class": "merge",
+   "sha256": "06debe68a370206acd93e0b2ee54d6395bc367fdfbc079f2348e3ce2966dac0a",
+   "mode": "644"
+  },
+  ".claude/skills/brainstorm-idea/SKILL.md": {
+   "class": "merge",
+   "sha256": "c93a6ae1f4de82978f4ff9e5b580f9961f94a9cef36b40ec9f24bfdb3d7fd8bb",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/SKILL.md": {
+   "class": "merge",
+   "sha256": "d9ecd1de2d58c6e9f0961fd3fa615d9a7181ce77f07d44bbc138fec59e8abfe5",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/references/color-palette.md": {
+   "class": "merge",
+   "sha256": "f9db150888277e67801304babdfa95a58053e950fbc47d5bcfd95b9e7941c0b5",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/references/element-templates.md": {
+   "class": "merge",
+   "sha256": "243a4e387e6bc8b8387b629691f6e24ba2a2159e6540a77896dc8c14edb16baa",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/references/html-preview-template.html": {
+   "class": "merge",
+   "sha256": "1c166e6ea53a1565a2287ffa09e3f1718f55c9f538e0f227a3db919f9adac5d1",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/references/json-schema.md": {
+   "class": "merge",
+   "sha256": "0f6b4eebf595ad502705af786a7258e760263b05c9408bccd566e3b593823198",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/scripts/export_to_excalidraw_url.py": {
+   "class": "merge",
+   "sha256": "e4698b70fa4b558a0f5f3319ec196cf8b0ff1d80e425ebb7bf545e927bb7ff90",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/scripts/pyproject.toml": {
+   "class": "merge",
+   "sha256": "b68f2d373a50b623bb04f3f96e9ce12118d89b01d5ac7a538820f64e7fbdcdd0",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/scripts/render_excalidraw.py": {
+   "class": "merge",
+   "sha256": "f1deeffb2d40fe3ab1714d65f286b6b587c6af390734842bc0fa498aaf70b904",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/scripts/render_template.html": {
+   "class": "merge",
+   "sha256": "d81497084713edd02faabddb54536bc03c2ed672c3ff826ac18b290ca9204573",
+   "mode": "644"
+  },
+  ".claude/skills/excalidraw-diagram/scripts/uv.lock": {
+   "class": "merge",
+   "sha256": "a9ab4edd80d85e013287c719f0ff4af9657b7a1424ca3a5fefaca99b869e03a2",
+   "mode": "644"
+  },
+  ".claude/skills/handoff/SKILL.md": {
+   "class": "merge",
+   "sha256": "4d08e642a47834329c9d1a1f57d3ccce737801f2649863a672012b01862631dd",
+   "mode": "644"
+  },
+  ".claude/skills/personal-memory/SKILL.md": {
+   "class": "merge",
+   "sha256": "38d6a25b084667923bac56ae4159d29e18ca39f00534283935181fb1e5fc695a",
+   "mode": "644"
+  },
+  ".claude/skills/personal-memory/gate.py": {
+   "class": "merge",
+   "sha256": "2271d00e59ee29a7ef42516eaacf2b48e03fc544d97aaa7c6bcb82d69ffe6d7e",
+   "mode": "755"
+  },
+  ".claude/skills/personal-memory/hubs.py": {
+   "class": "merge",
+   "sha256": "4da4c2d966a88b53891fdd636a58519e39567bbf302cae4071cdeef8c558f600",
+   "mode": "755"
+  },
+  ".claude/skills/personal-memory/indexes.py": {
+   "class": "merge",
+   "sha256": "28fdc0538b417c08e6fb96f3674635e6b0e4f43a8560a2aae4e7c62bc605bc69",
+   "mode": "755"
+  },
+  ".claude/skills/personal-memory/links.py": {
+   "class": "merge",
+   "sha256": "74fa5e9175448bd81e6be96748bc027e2b53066e76002a1fe24789b796827f7b",
+   "mode": "644"
+  },
+  ".claude/skills/personal-memory/reference.md": {
+   "class": "merge",
+   "sha256": "f647ca00ccc779283779c4c447b310b30ec7cdf68025e713a31949f44a28e5e0",
+   "mode": "644"
+  },
+  ".claude/skills/personal-memory/schema.py": {
+   "class": "merge",
+   "sha256": "cceef9d08e9a9687e9ed890409e8d2db8490fc13fc4ceca708d559c3d754c0e2",
+   "mode": "755"
+  },
+  ".claude/skills/personal-memory/tests/test_bloat.py": {
+   "class": "merge",
+   "sha256": "d0b6ceb68589ba024aae2037486708409bf0b18eb3beff166ce6cf9593f3f34c",
+   "mode": "644"
+  },
+  ".claude/skills/personal-memory/tests/test_hubs.py": {
+   "class": "merge",
+   "sha256": "2392b6c0a32214362ed651d20275b10dda57cb9e690cb371674f347b9843f2c2",
+   "mode": "644"
+  },
+  ".claude/skills/personal-memory/tests/test_indexes.py": {
+   "class": "merge",
+   "sha256": "f14dcd4092f926a07f9cc28c99e930a3deceeb6e1a5c63826ce2b158f0c5de75",
+   "mode": "644"
+  },
+  ".claude/skills/personal-memory/tests/test_links.py": {
+   "class": "merge",
+   "sha256": "aa0de9d63f9ca1fba8d2ea0193f742242aae231b7e2b33630a86d11006fe8aee",
+   "mode": "644"
+  },
+  ".claude/skills/personal-memory/tests/test_rules.py": {
+   "class": "merge",
+   "sha256": "575f4196927c95c0eeee9f0cf65d95158d315776f3d586005c26d664c2b5ce7f",
+   "mode": "644"
+  },
+  ".claude/skills/personal-memory/tests/test_schema.py": {
+   "class": "merge",
+   "sha256": "cdeb76c62561434ee0ed44470093fc2160b71cf7d4a85a05c679fc28ec84445c",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/SKILL.md": {
+   "class": "merge",
+   "sha256": "4b7868e6921d94762768e60ff607e8eeb39f0586f5094af219967485309f476c",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/INDEX.json": {
+   "class": "merge",
+   "sha256": "4a5348b97b17398a87cfdfc9c8a5f2ac00faa2e7a25032bf0985e26bfbd20b3c",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/INDEX.md": {
+   "class": "merge",
+   "sha256": "143c28d8d13ff59cd11491f7c20cc4b316bb7b08f407eba7527787fd896a467d",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/README.md": {
+   "class": "merge",
+   "sha256": "16f1856536198ca6b5c82768dcf12e02421950348336a59e87505a8c86c7fcab",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Food Safety & Compliance Expert.txt": {
+   "class": "merge",
+   "sha256": "9d1730bccd311ee01a437565c778f3dd407cc548aacf47f6286c48fa14bbe6b3",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Hospitality Labor Management Advisor.txt": {
+   "class": "merge",
+   "sha256": "23c83c98808099acc6bbdd421cb17837061ae0ce90061a1537c9b1838810204d",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/IEP & Accommodation Specialist.txt": {
+   "class": "merge",
+   "sha256": "ef66c1b1fc4cd3a74e1742fd044c08ec25d96d9efd7b8152973bf73702c2be79",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Menu Engineering & Pricing Strategist.txt": {
+   "class": "merge",
+   "sha256": "1d61a91528ee54726e49d3eee870166d309af8fefa7fffcc5fc22e5782794809",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Restaurant & Cafe Consultant.txt": {
+   "class": "merge",
+   "sha256": "617b4b9b4aa0f29e066b71e6372f965b9dabe4389db841f2a18ae354636649da",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Restaurant Marketing & Customer Experience Specialist.txt": {
+   "class": "merge",
+   "sha256": "e7e61e7858ea50690040fd5a59c0fbf2a51f5dfcc9c5e072cc12a539259cdfc5",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Assessment & Gap Analysis Expert.txt": {
+   "class": "merge",
+   "sha256": "44501dd6ae40452e4dc8dc9f6612d55b56c958888426da5d79b2a1338e578a06",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Cost Management & ROI Strategist.txt": {
+   "class": "merge",
+   "sha256": "a6217985ff75d5fb547619a7201199a857cc352536e7013f6b236e388bd41d8c",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Documentation & Policy Manager.txt": {
+   "class": "merge",
+   "sha256": "081c2343c0cdad1b0ad071743d633a0a99abbc8f2b774aa85f687d8754c5b9a6",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Supply Chain Security & Flow-Down Expert.txt": {
+   "class": "merge",
+   "sha256": "1b3b4dec11ab9e364047265eb0d37b26afbed09c3915a73107e85a5fe5e81ca0",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Technical Controls Implementation Specialist.txt": {
+   "class": "merge",
+   "sha256": "e11b1764a5c438b549c06be3e33f201445d7582f3104588a1d1d469d5719da45",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Business Consultant.txt": {
+   "class": "merge",
+   "sha256": "25edee432665dc2506cbbff6757105f24b5fe7678a435896a8824d116ec36036",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Business Plan Assistant.txt": {
+   "class": "merge",
+   "sha256": "d9dd75fefad0ab4a98a0371a57c011ec96a4b1780e38a2bcbf6eebfe605e1d96",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Career Path Navigator.txt": {
+   "class": "merge",
+   "sha256": "f836a5462b0279ef088356591102abfc31aff2869953f51ee35b0b928799b24c",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Compliance Navigator.txt": {
+   "class": "merge",
+   "sha256": "1db802d34821c823202c18a491463b58ddb8bd0ae963d4b8ef9a8dec673bf5aa",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Documentation Excellence.txt": {
+   "class": "merge",
+   "sha256": "9dcbbf2459e4379a562313821bc2a93c18182b0c9c70472cbe1ed75f74668109",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/EOS Implementer.txt": {
+   "class": "merge",
+   "sha256": "f33935db04ffc73be33d2d6c0e04035564339e9ba62aec120e85d56f748a81be",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Financial Forecaster.txt": {
+   "class": "merge",
+   "sha256": "5fe1d3cb2020fbc0f7048172645b72e9a35c1292df631f90d562fa0f2842ff35",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Manager General.txt": {
+   "class": "merge",
+   "sha256": "1d5ef35bb222a6453b40dec77aa963388b5fabfd644df2ce96207324d392932a",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Operational Efficiency Expert.txt": {
+   "class": "merge",
+   "sha256": "717abb72071e7b928ec01340458ae8f495b20a635cd4e45e55f959d80053c144",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Startup Mentor.txt": {
+   "class": "merge",
+   "sha256": "0ebff14c30091685bb29ab18e53965f67ad27e773c88c804e5331926b5acea7b",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Change Management Advisor.txt": {
+   "class": "merge",
+   "sha256": "8fdc7cba5ac3e524bea8c59b4046ce0fccc870f003cf0b06c4af1e519bf7c4e8",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Corporate Communications Specialist.txt": {
+   "class": "merge",
+   "sha256": "51a03f71951194065ebb547aef8fb74cf8ecb526b6d26d7b61f4e40803bd5606",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Corporate Trainer & eLearning Developer.txt": {
+   "class": "merge",
+   "sha256": "4f2c2884c0765a356bcc682a5ef5a401d0d8a9e7cf9f1206efdbff7c0ab6f24e",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Custom Agent Builder.txt": {
+   "class": "merge",
+   "sha256": "2022590e10f98b8aaa97ca89bb2a9df1cdccff9e0a8e93b3e209eea7f437d3f5",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Supply Chain & Logistics Coordinator.txt": {
+   "class": "merge",
+   "sha256": "cd44dd7b67d1eae4c3757a8e6b38079a95bd429cd848fa0d8a615c80b4e07f95",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/creative-design/Brand Identity Consultant.txt": {
+   "class": "merge",
+   "sha256": "81056c076e6039c62505359c8975ddb4fb72b52e81912a33a36acd331f4341a2",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/creative-design/Graphic Design Briefer.txt": {
+   "class": "merge",
+   "sha256": "d85b3184fd40f67a25e954d498559e77865bbc56c4625c08db2470b5230aeb7c",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/creative-design/Podcast Production Assistant.txt": {
+   "class": "merge",
+   "sha256": "16af614bdf322d76e730ac4d633dd06c18e17cc5f62f750df3508ff990498dcd",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/creative-design/UX-UI Feedback Bot.txt": {
+   "class": "merge",
+   "sha256": "5d8e0c3413035f5f85a8afd0a1774fdf7c0a467f6bf6184b0b788f682d7a3d5d",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/creative-design/Video Script Writer.txt": {
+   "class": "merge",
+   "sha256": "260242412c455f9ffdd6c3dcb107f13bec5f9068d724d06cf6bd54b82dd0a5a7",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/creative-design/Website Builder Assistant.txt": {
+   "class": "merge",
+   "sha256": "6fcf0ccdccb539d9ea3a7d8b3218942928eb1c5ba1f7e1aec5cc664242c219a4",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/customer-service-relationship-management/Client Relationship Manager.txt": {
+   "class": "merge",
+   "sha256": "179f2e537cc4f99a860a4cd93c18c552cc3408e90f4b930f4a7117f46da0f9a1",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/customer-service-relationship-management/Community Manager Assistant.txt": {
+   "class": "merge",
+   "sha256": "f636437bc16596801cbf000eff3e7bc946089b29451febac8bd2918d227cffea",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/customer-service-relationship-management/Customer Support Scripter.txt": {
+   "class": "merge",
+   "sha256": "74c77f4759f365a4634426e2736fe625e8d996544cffa9c92ac6ff43d99ba267",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/e-commerce/E-commerce Financial & Tax Advisor.txt": {
+   "class": "merge",
+   "sha256": "59d879095b7b51ed5078b40655e9037d4c368cee64aaf131598e598f64bd10f2",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/e-commerce/E-commerce Platform & Operations Optimizer.txt": {
+   "class": "merge",
+   "sha256": "ef8208531359ff3f3fe60443dadc752c7d2190695a7872afc3cc02612e1d9675",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/e-commerce/E-commerce Specialist.txt": {
+   "class": "merge",
+   "sha256": "2d8cccda9d2881f1c9476853b8e6f11d0231069859677e91f14c605956bb0765",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/e-commerce/Product Sourcing & Supplier Management Specialist.txt": {
+   "class": "merge",
+   "sha256": "2a85f5a3572d717dca227a10d6dee108a10d837db04f70b2089791562afbd891",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Bookkeeping Assistant.txt": {
+   "class": "merge",
+   "sha256": "ee15ec86b4b85be59143c69c9b1dbb8ad1607dbd6edc630cceeeac5145dba19b",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Business Tax Primer.txt": {
+   "class": "merge",
+   "sha256": "56cbd8f668aaeedf94d7f481c06bba86b145273ae4a2928ee043247fcd73eca7",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Financial Advisor.txt": {
+   "class": "merge",
+   "sha256": "c3aed5296d0164e10443b37ec2ecaa3a52a05d6717f5e945b5abe7a22355ac4d",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Invoice & Collections Advisor.txt": {
+   "class": "merge",
+   "sha256": "da6dde8234feb607ff34326e51ac2366bcc87b2c215da4bf5a681ec4efa41520",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Pricing Strategy Expert.txt": {
+   "class": "merge",
+   "sha256": "1d236500df3dd6a8c07aa50bd01ba82e2569ad392620767b5c2bce6dc8a13b10",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/freelancers-corporate-roles/Freelancer & Consultant Toolkit.txt": {
+   "class": "merge",
+   "sha256": "67873b0207b3949e353bc0987be7e268d52cd1d2b55ef73965b6a36b53af7c41",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/freelancers-corporate-roles/Freelancer Client Acquisition Coach.txt": {
+   "class": "merge",
+   "sha256": "cce0a48c96adbe053953e29b8932e798fe52bad8ca81bb0766ed9dd42314a08e",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/freelancers-corporate-roles/Freelancer Legal & Business Structure Advisor.txt": {
+   "class": "merge",
+   "sha256": "9a043610cbe113d8dfbb6ae336c320200a9a9c9b0082b64f9ea6c66d12e81f6b",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/Business Associate Agreement & Contract Specialist.txt": {
+   "class": "merge",
+   "sha256": "ae1ce2d94ad1c00192a2f40ee9ea781f08e96ea23c3836310943e9f79b53905b",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/HIPAA Breach Response & Patient Rights Advisor.txt": {
+   "class": "merge",
+   "sha256": "c82b6be02981de4557f373a7480b665c14eeee5c3ec997121fe1e6c414eed268",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/HIPAA Policies & Administrative Safeguards Manager.txt": {
+   "class": "merge",
+   "sha256": "368e637371c1d1ab15300d1ec675d635f3fcac326e5a4c261370556ddf7a0455",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/HIPAA Risk Assessment & Compliance Audit Expert.txt": {
+   "class": "merge",
+   "sha256": "40a9f9a7de3edb319efd0fbcf5f148d5add2e138774907693251bd55cf919fe3",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/HIPAA Technical Safeguards & IT Security Specialist.txt": {
+   "class": "merge",
+   "sha256": "28903ea904b3d06ce34801f1ca1293c3c6d9cdc788742a2d13e78d9eba1186e0",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/Basic Legal Document Reviewer.txt": {
+   "class": "merge",
+   "sha256": "7a9a605498e92a89416e46771eac1eb02f7f7a2a4bf1ef55960c2467da41bce5",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/Contract Drafter.txt": {
+   "class": "merge",
+   "sha256": "e3116f72bea78d4620e3ae1206175da85dcd424528f2d3195f7e982eab875bb8",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/Employee Onboarding Guide.txt": {
+   "class": "merge",
+   "sha256": "f70030cc8e259950563c46467a1269a1fd6b891e5b2d119223f9e0a2337f205d",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/HR Policy Advisor.txt": {
+   "class": "merge",
+   "sha256": "b70dee01acfca7a4940db13ce65ceeb1958795347906a9d1b4d4e98dc7de5c5e",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/Lawyer General.txt": {
+   "class": "merge",
+   "sha256": "28be0e38146871bb506027dd8be2a8727e3733e954700ff42cff1179894c6b00",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/Recruitment Assistant.txt": {
+   "class": "merge",
+   "sha256": "bccabf4eef5ac9df62cff577e3e846977488ee18cae218bd0e85fbb9e7bc659b",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Ad Copywriter.txt": {
+   "class": "merge",
+   "sha256": "ef9b77b72bfdfc10f83bd88d5411eb1a40f1fef252b16e2fca2ebcfd739b3ad1",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Content Creator.txt": {
+   "class": "merge",
+   "sha256": "d237a9dd28bcd63a9065b8f517f0a8a4e88bf1aabf7ec033205204eebe4d38f4",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Customer Persona Builder.txt": {
+   "class": "merge",
+   "sha256": "3d1634ff4a4ea1e3d679b2b822ad9fd35ab620ae51ce165857b77dc18316bfe2",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Market Research Analyst.txt": {
+   "class": "merge",
+   "sha256": "072f823159fe47894455d988babcb5b13ee9928c4da0c1962e06179ec84e9a23",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Marketing Strategist.txt": {
+   "class": "merge",
+   "sha256": "c4b5f2e66630b405d91d1ed0540ab22883b3651afdeb5b43b1a9993beeda360d",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/SEO Specialist.txt": {
+   "class": "merge",
+   "sha256": "0dadefe89d1a95cad33cea0c0eea985ddc0a5b5899c68d9ef7b112bac91bb4bb",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/SWOT Analysis Facilitator.txt": {
+   "class": "merge",
+   "sha256": "1fb90e2ab71406b77db74b0ca674195c3a2a3242b828dfe6959bcbb4a320aca8",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Sales Coach.txt": {
+   "class": "merge",
+   "sha256": "3576da73ccbf6eec36d1346d26bb11f77ef3a3301d6272d92f05389d8825c9ee",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Social Media Manager.txt": {
+   "class": "merge",
+   "sha256": "c3a3784b56842c14593a3f6301fca33bcd76e83a7241b020cc7cbbf576dddb4c",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Survey & Feedback Form Creator.txt": {
+   "class": "merge",
+   "sha256": "6e85f66818e8ea98b2cc51455abc242bc57506c0671b5fe7ff61f25757f9b2c9",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/non-profit/Non-Profit Advisor.txt": {
+   "class": "merge",
+   "sha256": "be356ba73d00cf608586633d52c3d3c7bc2e0182d9a78264155656b7382175bc",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/non-profit/Non-Profit Grant Writing & Funding Strategy Expert.txt": {
+   "class": "merge",
+   "sha256": "f85cb609626c8f33e479ded189f5880b4a7f4d11ea44bb0ce6aa61de017c47f8",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/non-profit/Non-Profit Legal & Compliance Advisor.txt": {
+   "class": "merge",
+   "sha256": "f9be0fed958b35ca9cdb83d133ab121526630536b75c80f13b468098a8ef1674",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/non-profit/Non-Profit Marketing & Community Outreach Strategist.txt": {
+   "class": "merge",
+   "sha256": "1f695586ff2fdffbfd09930b62725e9bdd0241d6ccd0122cea6a05e8bdc42449",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/non-profit/Program Development & Impact Measurement Expert.txt": {
+   "class": "merge",
+   "sha256": "dc4a7eed42631e4fd6a4eafa18e5f2af1845206f3c4a57b62d37fe961329f005",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/non-profit/Volunteer Management & Engagement Specialist.txt": {
+   "class": "merge",
+   "sha256": "b8200de95b8b2fe2815c8c838ec7dd1c4daf508874be6d43633a8510a9e1e7b2",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/planning/Agile Project Maestro Agile Coach.txt": {
+   "class": "merge",
+   "sha256": "bb7c52ef455c194b763c066a9241a63591ad015c43e26bfead661f0436ad4a8a",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/planning/EventPro Strategist.txt": {
+   "class": "merge",
+   "sha256": "4f72c61f1064c58ebcf4e38c1dd95f931362516df3c680b1be86d62b250a2a0c",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/planning/Project Management.txt": {
+   "class": "merge",
+   "sha256": "1782871d3afded0bf72dd5b0e7e80204065c12c81b802d3b49d7428894cde037",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/planning/Strategic Business Planner.txt": {
+   "class": "merge",
+   "sha256": "02a1553b305919f248f99706929d83757535e1fc5065e63b78a6c84c42e6f794",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/planning/Wedding Workflow Coordinator.txt": {
+   "class": "merge",
+   "sha256": "c20aecb0d003b4f039df0d460da0d36136c7080b338d3bb2baae644456a55bb6",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/Productivity Coach.txt": {
+   "class": "merge",
+   "sha256": "513a8ebf85debe5f0f68ec7d66af145cf7f864e1a789601155fde9409597eab6",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/Productivity Executive Assistant Simulator.txt": {
+   "class": "merge",
+   "sha256": "0dfb77103b06925abf261ed5c0e0f279a9a18752112d78fa5493f8f7d1c0cb11",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/Productivity Leadership & Management Mentor.txt": {
+   "class": "merge",
+   "sha256": "9b9a724fb7ffbb1b2aa14ab9436e0936dac98c5043b79a40058db56f7016c396",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/Public Speaking & Presentation Coach.txt": {
+   "class": "merge",
+   "sha256": "cf3a85c77cea9af1eb8e62b1ccfe0476c45a3470b10473d162f3d91b7a6b654e",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/real-estate/Property Management & Landlord Advisor.txt": {
+   "class": "merge",
+   "sha256": "f83203b6dedf498700de8c46d4e04c9c0a94c602998ed920195d40366c4dbb73",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/real-estate/Property Valuation & Investment Analyst.txt": {
+   "class": "merge",
+   "sha256": "ac28fceca43295b23bad7dea3f9c3d8b8510aff3345ef7921a601db4600da5d5",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/real-estate/Real Estate Agent Assistant.txt": {
+   "class": "merge",
+   "sha256": "e524ffade1b5552bd8b315034c5cecd79eb13ae3745fbc2c748ce778062c8a8d",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/real-estate/Real Estate Legal & Compliance Expert.txt": {
+   "class": "merge",
+   "sha256": "10bd954a332190e11df40ff571657a7bca1248937cd08b2b96b6f76c0c948d0f",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/real-estate/Real Estate Marketing & Lead Generation Specialist.txt": {
+   "class": "merge",
+   "sha256": "94d3fae6dc950030001937d74f9b4d117d5dd2666bed03dec991134d937d0014",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/real-estate/Real Estate Transaction & Closing Coordinator.txt": {
+   "class": "merge",
+   "sha256": "90324d44b4b51a708b859df9a5a2e64c22c48da1115f21b887a1e21cabc3e8ff",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/real-estate/Realtor General.txt": {
+   "class": "merge",
+   "sha256": "29218cb6e2e669fb552b087011bc1ccb9a86f798c699e07bafde1aed7a9b7daa",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/teachers/Classroom Behavior Strategist.txt": {
+   "class": "merge",
+   "sha256": "429b8fd42325ae6d6a2b11dcc700e6440e84ac44ac66b4f32de4ce25e8489244",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/teachers/Grading & Feedback Assistant.txt": {
+   "class": "merge",
+   "sha256": "a3f3f194a6aa1d2bb799ef93c5170587ee6bb46de6d65064cd5489838fb10915",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/teachers/Lesson Plan Architect.txt": {
+   "class": "merge",
+   "sha256": "8d90d0beb2f3387677bab9ba37eb3a89ef2b94b6a410bf60288441185ad656ae",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/teachers/Parent Communication Navigator.txt": {
+   "class": "merge",
+   "sha256": "14366f65b155165f0ac57a513dbcc54197795f6d13140da5c277d3bbdcb8b17d",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/Cybersecurity Basics Advisor.txt": {
+   "class": "merge",
+   "sha256": "b6ec8b491fe8c3adabf2b1fb540fc217e91dab3e81e77d0201a638f88d633ce5",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/Cybersecurity Compliance.txt": {
+   "class": "merge",
+   "sha256": "1bc12eeb06ed986fda0d2b16dfaa1362e48f79aea7b00385898359e79d45ab06",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/Data Pipeline Engineer.txt": {
+   "class": "merge",
+   "sha256": "39ef1ef15dadaf6b3bc5f4ecc541f67e839480a794f646a6241e0ab85555da15",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/DevOps Architecture.txt": {
+   "class": "merge",
+   "sha256": "0c4d4d09379d00f9ecf4c1d97c719e497749de0226121dcd76afc35c78f4b193",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/Halo PSA Admin.txt": {
+   "class": "merge",
+   "sha256": "c008c34ffb0c2b7c701722d8a8699846d15f165ac83e5eb0e40378d820c59859",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/IT Project & Vendor Management.txt": {
+   "class": "merge",
+   "sha256": "73e0cc16cb0c5d24d77f741f555fc1b24eb12742aa18b8e12b53f731ec20c2b0",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/IT Support Troubleshooter.txt": {
+   "class": "merge",
+   "sha256": "06140d68ee1e2e7d42a69570ae3de13429ecf321202e72ed8a8bab079c804056",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/MSP Consultant.txt": {
+   "class": "merge",
+   "sha256": "17a54c99859e8a5f33dc78e8a2c8d47bdc18d58e951e98b350e620b673f462c6",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/Software Architecture Advisor.txt": {
+   "class": "merge",
+   "sha256": "1ab7c2afb8824d0bca3642b890d6866061928bf1c508a95d672e55dd21a56880",
+   "mode": "644"
+  },
+  ".claude/skills/professional-guidance/agent-personas/technology-it/Software Selector.txt": {
+   "class": "merge",
+   "sha256": "c8f01e3e6431bf8462ccf699980dae65dd9b7ba5697ee2828c0f36c330ebcc8d",
+   "mode": "644"
+  },
+  ".claude/skills/startday-spec/SKILL.md": {
+   "class": "merge",
+   "sha256": "03a9b51c10d18559e3ecf9c530e7bb12ddea5ade37eef5b72461bc5b0e434c70",
+   "mode": "644"
+  },
+  ".claude/skills/startday-spec/references/adaptation-list.md": {
+   "class": "merge",
+   "sha256": "4910a6e53a5796430a3a668aa247ea377fe6c10e575a862b3aab4974d8187169",
+   "mode": "644"
+  },
+  ".claude/skills/startday-spec/references/core.md": {
+   "class": "merge",
+   "sha256": "6c8dde55ec5b862d93fa49a89537a2a79a1c7297920370d07eb35f5c0f63e568",
+   "mode": "644"
+  },
+  ".claude/skills/startday-spec/references/interview.md": {
+   "class": "merge",
+   "sha256": "f3da912b3b6c31191291ac175053f8a0e2d6deb491f83f0413069d9657d21069",
+   "mode": "644"
+  },
+  ".claude/skills/startday-spec/references/modules.md": {
+   "class": "merge",
+   "sha256": "544b24c0a7ba3a4f00ef8053b83d92e5004907474618b2e33dac7d486a9ea02e",
+   "mode": "644"
+  },
+  ".claude/skills/startday-spec/references/runners.md": {
+   "class": "merge",
+   "sha256": "cbacd3ac3d1610531709e3d98fa60d847427e3fb8454e641ae1668e347a30203",
+   "mode": "644"
+  },
+  ".claude/skills/startday-spec/references/skeleton-SKILL.md": {
+   "class": "merge",
+   "sha256": "d75660918562d6630744a2d7ad868113d7f122625281c2939c505441c83b7887",
+   "mode": "644"
+  },
+  ".claude/skills/startday-spec/scripts/tests/test_watch.py": {
+   "class": "merge",
+   "sha256": "eb66c3d86d8815068240f53554e4fa8f6e5b7be9be48ec40219d9b098a609aaa",
+   "mode": "644"
+  },
+  ".claude/skills/startday-spec/scripts/watch.py": {
+   "class": "merge",
+   "sha256": "f8b758b3d8ec09bf9db1882c8c46ade03b3b1851c3e9da8160379128b41e78f9",
+   "mode": "755"
+  },
+  ".claude/skills/talk-it-through/CONTEXT-FORMAT.md": {
+   "class": "merge",
+   "sha256": "c093386e0f2cd25e66f67ef7acc8a95b51b8678ab636a9feaa73f914c28a5408",
+   "mode": "644"
+  },
+  ".claude/skills/talk-it-through/DECISIONS-FORMAT.md": {
+   "class": "merge",
+   "sha256": "dd4da214f4a4171271c85c328b21e0f4af809e702c89d4c59332b859d48a70db",
+   "mode": "644"
+  },
+  ".claude/skills/talk-it-through/PROMOTED-MEMORY-FORMAT.md": {
+   "class": "merge",
+   "sha256": "777a9c761694676be1838ea7438b516344da72881c85891cace4d2c74994e3cf",
+   "mode": "644"
+  },
+  ".claude/skills/talk-it-through/SKILL.md": {
+   "class": "merge",
+   "sha256": "5e6fe0fb88907f0eb489e3fc46cb3fcef44a6887824412841f1d5d0a146c9a18",
+   "mode": "644"
+  },
+  ".claude/skills/teach/GLOSSARY-FORMAT.md": {
+   "class": "merge",
+   "sha256": "9b99859ec28437668130d8f2ce5a342938970f8a1ed4fd38c3eab4f4b5fff210",
+   "mode": "644"
+  },
+  ".claude/skills/teach/LEARNING-RECORD-FORMAT.md": {
+   "class": "merge",
+   "sha256": "701fa34b6748aa89e6c960ffb815257f481a7d77fb2900f9028f7edf3fdd6052",
+   "mode": "644"
+  },
+  ".claude/skills/teach/MISSION-FORMAT.md": {
+   "class": "merge",
+   "sha256": "8cacbb3c0644d3ae0ea4965564797099401a6930a23f7cf462918576587f2418",
+   "mode": "644"
+  },
+  ".claude/skills/teach/RESOURCES-FORMAT.md": {
+   "class": "merge",
+   "sha256": "e9cacf34026e11a8d1c8f9de88abe5bcbf654f4ebdb25cae8c0de0d5f48f44ec",
+   "mode": "644"
+  },
+  ".claude/skills/teach/SKILL.md": {
+   "class": "merge",
+   "sha256": "cf6d1bf8276a7a01fb97a720402f3452eb69ad90b573a2488684808e51091f76",
+   "mode": "644"
+  },
+  ".claude/skills/troubleshoot-my-pc/CONTEXT-FORMAT.md": {
+   "class": "merge",
+   "sha256": "c093386e0f2cd25e66f67ef7acc8a95b51b8678ab636a9feaa73f914c28a5408",
+   "mode": "644"
+  },
+  ".claude/skills/troubleshoot-my-pc/DECISIONS-FORMAT.md": {
+   "class": "merge",
+   "sha256": "dd4da214f4a4171271c85c328b21e0f4af809e702c89d4c59332b859d48a70db",
+   "mode": "644"
+  },
+  ".claude/skills/troubleshoot-my-pc/PROMOTED-MEMORY-FORMAT.md": {
+   "class": "merge",
+   "sha256": "777a9c761694676be1838ea7438b516344da72881c85891cace4d2c74994e3cf",
+   "mode": "644"
+  },
+  ".claude/skills/troubleshoot-my-pc/SKILL.md": {
+   "class": "merge",
+   "sha256": "fec249569ec0a96661cd3c804656c031ddbbdad5f5d658f7ecaa719667b63108",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/SKILL.md": {
+   "class": "merge",
+   "sha256": "d9f3a2bed039341023d8ae4f3b2c940f722b27dcc90d747d22de2359cee948c2",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/README.md": {
+   "class": "merge",
+   "sha256": "68a57959c97a22b89265a50f84d86be3ad579aaeb6c2ae38dd4e13f186c67567",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/academic/anthropologist.md": {
+   "class": "merge",
+   "sha256": "5239d76d94ad814facc6323776fda574b7598734ad4f98a94d47335fda4290ce",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/academic/geographer.md": {
+   "class": "merge",
+   "sha256": "c3502948ec575c9c3053a7cf7ed98319c7b19b05cfc6a08ae2d7e5051a4c8064",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/academic/historian.md": {
+   "class": "merge",
+   "sha256": "47ee0e2308248a9e22a27a529877d6ebdaeca55d7b65216d7b3e979ea716d9f5",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/academic/narratologist.md": {
+   "class": "merge",
+   "sha256": "142322008388bd03c1b095a64bac9316f7693742ee976709ad03cf18db1ea621",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/academic/psychologist.md": {
+   "class": "merge",
+   "sha256": "51b99ff4224e5e92e5adf6a6a909b40185832f288f1973bc901ae53d8aada463",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/design/brand-guardian.md": {
+   "class": "merge",
+   "sha256": "9160ea4a13c1a2d254a8327bc98f706258902fd2cc90664ffebfa70c20aed11d",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/design/image-prompt-engineer.md": {
+   "class": "merge",
+   "sha256": "b908ed90cc095b2f71fc760d6d334784c9ba39b8e81c78043d43c95634eaff1b",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/design/inclusive-visuals-specialist.md": {
+   "class": "merge",
+   "sha256": "c0999506d82f6c5075a7a71c94e64c1eb292152c091da78483cb76b2b5939ad9",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/design/persona-walkthrough-specialist.md": {
+   "class": "merge",
+   "sha256": "d2f04fcb070a2ffdf323c8babcf6a34b447a03ae3b06dbc1e21bceb2801d33b6",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/design/ui-designer.md": {
+   "class": "merge",
+   "sha256": "1774bc5e0c034e5ba2bb5b177db7a9ff38a1703d88098f9e62f98aae06bf7391",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/design/ux-architect.md": {
+   "class": "merge",
+   "sha256": "3eec293d0a16bfd29d20eb3037389ef05f44b0844187010637b38b78c44c1c3e",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/design/ux-researcher.md": {
+   "class": "merge",
+   "sha256": "796e17749ef3fb8c778ef1be2198cf4c3dcf054d86a9d988493b32d0312e10c8",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/design/visual-storyteller.md": {
+   "class": "merge",
+   "sha256": "50a96c57c202d95ceba33f7bfbf0b0bcc735c0618525cbb070361d5b87887ec6",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/design/whimsy-injector.md": {
+   "class": "merge",
+   "sha256": "0b70d24de9523554ec35eee3fcebaa68c758a0e5d9775a7a5904c97eac453fa5",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/ai-data-remediation-engineer.md": {
+   "class": "merge",
+   "sha256": "0a50c2c91fbe143a5341038a4a59b4af6262a879832a5d88fc3b239f02f6b667",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/ai-engineer.md": {
+   "class": "merge",
+   "sha256": "f9444226bcb60481d50d299127ea7abd959d6f4939978dce4f67308b771247e3",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/autonomous-optimization-architect.md": {
+   "class": "merge",
+   "sha256": "25060796c9adee3b6ea1deb2f216fdbded3ab6deba1bd8bce81404be2cd2b89b",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/backend-architect.md": {
+   "class": "merge",
+   "sha256": "8c8a9c4c31ddc3eb5a54a3a041a3ee7a69f49739f55916beb3347f7dcc0a51bd",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/cms-developer.md": {
+   "class": "merge",
+   "sha256": "6ad5abe3fff0cec1623796282c05053d6c609b186b7c40ebcbe31de86d177dae",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/code-reviewer.md": {
+   "class": "merge",
+   "sha256": "ac49f6a52df7c11043b2a5339e857a5a3a3217cb50a365f3c9852704cc2dc3f1",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/codebase-onboarding-engineer.md": {
+   "class": "merge",
+   "sha256": "58b0368211cf11557f9ac1ca940edbcc5c3f5f6870d1f14683c6b4548f931dd7",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/data-engineer.md": {
+   "class": "merge",
+   "sha256": "cc08c5dc364dcd04a43b73b1e9c43450481efbd00c3f423857fc1d9bb81de787",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/database-optimizer.md": {
+   "class": "merge",
+   "sha256": "595360be1a9cecf43a4f6c1023d88a0f24a73c2a4c035255420bc7581646f493",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/devops-automator.md": {
+   "class": "merge",
+   "sha256": "1cff3184262dca412a393d4eec3e9524b23f013053c4c48a26debd89fb1348c5",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/drupal-shopping-cart-engineer.md": {
+   "class": "merge",
+   "sha256": "6366eea997ce13c38ed1cdb3e6597544908bb5e526571224120c6c5363b460bb",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/email-intelligence-engineer.md": {
+   "class": "merge",
+   "sha256": "bb9fa626cbc7dd6751fecf1fb401319271456981f6beead27d3e5b6891942860",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/embedded-firmware-engineer.md": {
+   "class": "merge",
+   "sha256": "370fec0e162e58ce92ac0ed94655362842218e010e31442266070f139c7c0cc1",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/feishu-integration-developer.md": {
+   "class": "merge",
+   "sha256": "20aa87ab70e24c3fd729e400b0b93ab8eb56f71663089a37146376e351618d3e",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/filament-optimization-specialist.md": {
+   "class": "merge",
+   "sha256": "acf9eee6465fcb272f0884fc255837db7193c31583a2cd5223f7a8bfaa2a904b",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/frontend-developer.md": {
+   "class": "merge",
+   "sha256": "c6a4ed16e28c782af940c25d0b652ea4cb8c445f4cea9ebfb43b96e2693f6ae8",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/git-workflow-master.md": {
+   "class": "merge",
+   "sha256": "9181559dbddeb079ae0bcf6da5f5d0d099f3b7deb906d090a9cda44b2ba88fd5",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/incident-response-commander.md": {
+   "class": "merge",
+   "sha256": "591c4f05c4b6f0557196f0b8ff5cfff3009b7a42b9b60dbd9bc72400a49a56cc",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/it-service-manager.md": {
+   "class": "merge",
+   "sha256": "79c631df235fa7931d797620937e6c51082052f6c5084958f931ac16f112c7ba",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/minimal-change-engineer.md": {
+   "class": "merge",
+   "sha256": "607f6b23ffa9ce1f9f25b653032c8908bc396ebf7c5a3c5e08798c0b9e191715",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/mobile-app-builder.md": {
+   "class": "merge",
+   "sha256": "322f2b5a2bc9d417d3fbf7306038154aa84474b6c3aa437e68f8b4c32d1b0086",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/multi-agent-systems-architect.md": {
+   "class": "merge",
+   "sha256": "98529c2a6c88c3649b58b5d9878d21e73ef071b012391995306dd896f04e79ca",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/orgscript-engineer.md": {
+   "class": "merge",
+   "sha256": "b0206fc372c4cd449423fcaa24dbda691754f3c00170dbbbdb80b9809284040a",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/prompt-engineer.md": {
+   "class": "merge",
+   "sha256": "f2dc3faeadc62829ec3dfeb2789cd17bcdf50804c7f2657549be15bb82ea24e8",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/rapid-prototyper.md": {
+   "class": "merge",
+   "sha256": "4428f355a147cbd86be2f227e09c527bd38829c2217e3753c941c6118aead533",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/senior-developer.md": {
+   "class": "merge",
+   "sha256": "76af45cf309e12fa83741e106e875849aefda86f64057899615663ed2eaf5325",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/software-architect.md": {
+   "class": "merge",
+   "sha256": "2f77e05fba98f82b353c1f35942f5b22f2e035c1bef51a8ee1015eb3be657c8f",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/solidity-smart-contract-engineer.md": {
+   "class": "merge",
+   "sha256": "3a316009c2c00347e69e90224ff402a616d8920cad59654c85e0f336aba4e5bf",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/sre-site-reliability-engineer.md": {
+   "class": "merge",
+   "sha256": "79a29f2d36559e639d641756a1478eeabe31ce905063a29639aaf6d6773ddeef",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/technical-writer.md": {
+   "class": "merge",
+   "sha256": "81527fd97aba93eb5c60f31fd8486c4f0e59899a9c272b89d3dcf7806bfb6115",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/voice-ai-integration-engineer.md": {
+   "class": "merge",
+   "sha256": "e9d0dc91d9932d4476e1de3366cf012775e6cb49fc8abbe219da2e827793a37c",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/wechat-mini-program-developer.md": {
+   "class": "merge",
+   "sha256": "24f7454d020fe15d7b495328d320e098c707548d62c970e1378a9002bd2f4faf",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/engineering/wordpress-shopping-cart-engineer.md": {
+   "class": "merge",
+   "sha256": "18d542b8016592d6f6b6012bc6fcb720ce428e6f3011a1bb852b76e0d9939c02",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/finance/bookkeeper-controller.md": {
+   "class": "merge",
+   "sha256": "e20eefee17382ffe6bc098dffa134b51530bbfd5a5fd6094cd644606ee09ffdc",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/finance/financial-analyst.md": {
+   "class": "merge",
+   "sha256": "b80c58ab586d670a35ca1b415ddda31d966b9d1f4795aebe59b434c1d39a1bea",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/finance/fp-a-analyst.md": {
+   "class": "merge",
+   "sha256": "a3cb87728ea65e275ea82f7eb9c3efcf47abd1cd9e94ff8ccbf8d9b34960ceb3",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/finance/investment-researcher.md": {
+   "class": "merge",
+   "sha256": "711431187690029b4bc76debaab563149ce069e01c869c88a16cb39ced1118dd",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/finance/tax-strategist.md": {
+   "class": "merge",
+   "sha256": "9c267314421f1ca703af1d4c818a9552d6b55002f61cbaa022714e88818b4ff2",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/index.json": {
+   "class": "merge",
+   "sha256": "a02ba8ee0bb61e368018d7bd733c9b7f4c28563440ac88eaf02db75012136599",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/aeo-foundations-architect.md": {
+   "class": "merge",
+   "sha256": "2a1f2c570ed502846f503fbf6a93e9bb2bafb8b026f5315a1cfc4482f719bbc0",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/agentic-search-optimizer.md": {
+   "class": "merge",
+   "sha256": "803212517c427fe3d5d0f09620c76ab8cbb511600d1251d6cfa54c00d405b368",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/ai-citation-strategist.md": {
+   "class": "merge",
+   "sha256": "7a486342a4a5d9d77ea75c1bf9c9a969ae7589c591533b6ab1291a6edffdd424",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/app-store-optimizer.md": {
+   "class": "merge",
+   "sha256": "d3d4a0f39059e2cbec42fb7806235f155ff0f460dd63ab0e8f7d23129e135216",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/book-co-author.md": {
+   "class": "merge",
+   "sha256": "e4165b2201d1b20b370ce818cff4529cd17ac754c4c3a34b5155de96cf873431",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/content-creator.md": {
+   "class": "merge",
+   "sha256": "4643901820c2a2925c2803fe9fcd6e7f9dba2e485d1df720a52a767981df5097",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/email-marketing-strategist.md": {
+   "class": "merge",
+   "sha256": "1dbb6f8e5c83f6a266c2917dddb33152de2ed68d5130f5f45ffcd2b4c1e16774",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/global-podcast-strategist.md": {
+   "class": "merge",
+   "sha256": "e0c6b474d5904968da8c91d8d577ed5c46f754a539ee375c8c111f2cbfcf1730",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/growth-hacker.md": {
+   "class": "merge",
+   "sha256": "dfc8fa59bc5bf5fc181ba8bf3db432a5b9597734d0a12f9fceef6590a415bbea",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/instagram-curator.md": {
+   "class": "merge",
+   "sha256": "3c2099f56b6f4ae8b87b906b43e6c8add125c5703bbf7ff768c179a07686f0c6",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/linkedin-content-creator.md": {
+   "class": "merge",
+   "sha256": "b754f85487ad75b287847f9e8f158dcb55950beb9b09a3acd97ac95ecd5cee6c",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/livestream-commerce-coach.md": {
+   "class": "merge",
+   "sha256": "c38c89ce89e3ec045af217b9e03157d1adc4a3b2b18477a141fc2e104437fe8c",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/multi-platform-publisher.md": {
+   "class": "merge",
+   "sha256": "609d67d3f348c41c804c29ef9baf604aab3a079ec366abf5d73e2e15321eff60",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/podcast-strategist.md": {
+   "class": "merge",
+   "sha256": "11018b8d05b6086f39c5adc2bb164924caf28d22ce07d5ce3e1bbc7481319c27",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/pr-communications-manager.md": {
+   "class": "merge",
+   "sha256": "1737b38b6b8ecbf12c8aa8b382c3fd7a68d33b442dd31506a8a077f1fe5ceacd",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/private-domain-operator.md": {
+   "class": "merge",
+   "sha256": "0af69fe8c38ba68aa7001518d4034f06b791b003a9e8bc2e6059d9e6ab6ef5a7",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/reddit-community-builder.md": {
+   "class": "merge",
+   "sha256": "82c4bd68fd5f9e4395f9a7830322987b581af4e10234f6b20d15ee70345f24b5",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/seo-specialist.md": {
+   "class": "merge",
+   "sha256": "8c4b9edc5fe32978a849c5f1ac93953b586b24308a6d7fc96095aaea9bcd87f5",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/short-video-editing-coach.md": {
+   "class": "merge",
+   "sha256": "6effd56d272629d5cd350e7839e03bd1fdcc068807b78a84ad99f6a6c2b8b205",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/social-media-strategist.md": {
+   "class": "merge",
+   "sha256": "3ae1fee411b8a38f784d20f9220694ca4ed75dfa7cda5a1ab790857eb9237677",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/twitter-engager.md": {
+   "class": "merge",
+   "sha256": "92dcabfa371958104155af0c33ea22b2c96d979941de85137e8aedfea378eb01",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/video-optimization-specialist.md": {
+   "class": "merge",
+   "sha256": "e7497b1dba2f6d75e549bc7f59c8bf7c5e89c50d136f772add163c68ecdb8810",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/wechat-official-account-manager.md": {
+   "class": "merge",
+   "sha256": "37715771c416ebc4d81d299739384df546ddaf0fe822cf370c4e27fd7fe88fd6",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/marketing/x-twitter-intelligence-analyst.md": {
+   "class": "merge",
+   "sha256": "dbd1b915da177cf771596db4ae0d492ca75bfc68202c3c49ed17b4b79bffca1a",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/paid-media/ad-creative-strategist.md": {
+   "class": "merge",
+   "sha256": "d5d3e8acc748a245db626d84579c2333cc78dbfe7cda7f292986bf58a7d7a7d5",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/paid-media/paid-media-auditor.md": {
+   "class": "merge",
+   "sha256": "6393b33179b9736d15822a2ceac5a8b19f4c06e074a126a928f55926d1f04bb5",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/paid-media/paid-social-strategist.md": {
+   "class": "merge",
+   "sha256": "39a9924f8f3391e2a1cd40dd9cf5d784405db98409c63b0a3d64627ee1720f8f",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/paid-media/ppc-campaign-strategist.md": {
+   "class": "merge",
+   "sha256": "d94513fe05926360928bf5b3a8ad53d5371b683d3ae8845de275ab2eaa451628",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/paid-media/programmatic-display-buyer.md": {
+   "class": "merge",
+   "sha256": "cd5fcf519aacebe83b644ed31aeaad72c87756659023a1cdfd125b14d752b028",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/paid-media/search-query-analyst.md": {
+   "class": "merge",
+   "sha256": "c2490d28dcdfa60b9666839a39b66c87d5a0e14185dae4aa53d2a34a20abe828",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/paid-media/tracking-measurement-specialist.md": {
+   "class": "merge",
+   "sha256": "05f024b40a721975c71d3d2c3be6a85e84a28c66f836c4db82c4d96aa2a365aa",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/product/behavioral-nudge-engine.md": {
+   "class": "merge",
+   "sha256": "a5e48562447c670b7cf98c7b7b5b801f5de6b4eba1d4953225aac21b33812be6",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/product/feedback-synthesizer.md": {
+   "class": "merge",
+   "sha256": "be62941d3eb5bcc7a2547721713085aab55547b55925da1d21dea490dba05d4f",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/product/product-manager.md": {
+   "class": "merge",
+   "sha256": "005d856fd1ecf0615197e7b02365d0d01f58e79628078ed8cc6c09acbe4eb59d",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/product/sprint-prioritizer.md": {
+   "class": "merge",
+   "sha256": "1cc3f44494d83b3c6bd167dd45db0e3d2faf2ec53f176e68efaf573efd92e238",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/product/trend-researcher.md": {
+   "class": "merge",
+   "sha256": "77418383c71cf7e44e34069597fa7962354ce66e5d61c4cede6fa670fb0ce4c7",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/project-management/experiment-tracker.md": {
+   "class": "merge",
+   "sha256": "14105c0224e7d2b27eb91d8c18ae3d76fd1fbb3aa4b8b79637d151a9f19f1745",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/project-management/jira-workflow-steward.md": {
+   "class": "merge",
+   "sha256": "344e98724abf9bca31a2e7df3aadea39fc3f6ef5d6946af689d1eaff5bb57a13",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/project-management/meeting-notes-specialist.md": {
+   "class": "merge",
+   "sha256": "921684eb9cf31d74ad7f228be8aa5d9207b8cac151a28c46b389641af1c3bf7c",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/project-management/project-shepherd.md": {
+   "class": "merge",
+   "sha256": "c9450c957cc48da6dc50f6992ab2be96cf3918ed580040c42deb04c785159281",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/project-management/senior-project-manager.md": {
+   "class": "merge",
+   "sha256": "46f3f8e0d52f5455411e5a80f6055ababb43dc1cbe8dd2f9f3a169781d895c43",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/project-management/studio-operations.md": {
+   "class": "merge",
+   "sha256": "77fc26ad2716397a098b3e0ea042caa4542566d5fea2e74cd7826ac3564cc76a",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/project-management/studio-producer.md": {
+   "class": "merge",
+   "sha256": "ad940d280311f2b22064813825046895d96584aaf339560cd920e8d1b26e0927",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/sales/account-strategist.md": {
+   "class": "merge",
+   "sha256": "1cc5cd9c49231fb7a970d8740e7ba6b1f5986b4cd3ec9c5d69393bcb62baf07f",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/sales/deal-strategist.md": {
+   "class": "merge",
+   "sha256": "e1f34dab07809854afdd91ae3addb2457e3c209709f6c8d9a98008b0616f0da6",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/sales/discovery-coach.md": {
+   "class": "merge",
+   "sha256": "e5b0cad3a4080dd89a377e9bb3ae0589f465822d0a50a5f9c12f49cea066f797",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/sales/offer-lead-gen-strategist.md": {
+   "class": "merge",
+   "sha256": "16310ff4c5be6b4aacd37a12c0f372506c7cf043d00139510e5636ffeb30313d",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/sales/outbound-strategist.md": {
+   "class": "merge",
+   "sha256": "3591971614d875bae49499f522d7cd2bf97d9a887adbe01e6cce887895f52a63",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/sales/pipeline-analyst.md": {
+   "class": "merge",
+   "sha256": "9419d6861cf212e7d92efdf25bff88d542307e835a0c802634d6a8f307e7308e",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/sales/proposal-strategist.md": {
+   "class": "merge",
+   "sha256": "10e8583e1d8a8573781ed33b6c80995f5555c437e288f873b1f83731dfad8def",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/sales/sales-coach.md": {
+   "class": "merge",
+   "sha256": "9554a3732e0e9522d9bd9d6ac5e6eec6ff095bac3bc800cf499c5db26ee842fa",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/sales/sales-engineer.md": {
+   "class": "merge",
+   "sha256": "b3f60b0c7c127922c2cfcdedea450f97c438be8516d2876aa7cc63917723634c",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/application-security-engineer.md": {
+   "class": "merge",
+   "sha256": "989b4df9422052072233c56bcc7a2ef31de5e480de99d764930fb8d39efb1d4b",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/blockchain-security-auditor.md": {
+   "class": "merge",
+   "sha256": "65c138e90563acee6ea55099d4376cba8215766c56fb19bdeb95c2c2b7b173cb",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/cloud-security-architect.md": {
+   "class": "merge",
+   "sha256": "2dd83019c39afc57bf32f76260745b94b990ce8f965bf7b14073e15bc971d5e2",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/compliance-auditor.md": {
+   "class": "merge",
+   "sha256": "8ef63cfdcf89b040f2bc97e273c1a1000a1085a92714c4e98d0ea090033e13fb",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/incident-responder.md": {
+   "class": "merge",
+   "sha256": "22bd3d832226c0eaaba70c6df1ea6585b4d08925e2165c2b67a087bff6f106ec",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/penetration-tester.md": {
+   "class": "merge",
+   "sha256": "5cfe77d85edc7c4bb62941b0082836dd562d74f777494a2793a61f2b4f45a880",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/security-architect.md": {
+   "class": "merge",
+   "sha256": "586ba07b22caf243921ae3fbb45772cbc6f042cbc594706c0ef447717362852c",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/senior-secops-engineer.md": {
+   "class": "merge",
+   "sha256": "bcb1463b35528d777ed246558ba707e25e9932239c55ba60a5718c6eeff349d8",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/threat-detection-engineer.md": {
+   "class": "merge",
+   "sha256": "f55f2720cf19149713740915d4ced277c12146c2e3543f1e61989003d44845bd",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/security/threat-intelligence-analyst.md": {
+   "class": "merge",
+   "sha256": "d8dc7232b20f9924c6ad58b29f735b1d524958b5e70c56d69578002bfe311eed",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/spatial-computing/macos-spatial-metal-engineer.md": {
+   "class": "merge",
+   "sha256": "1a49dac5d0796c682328fa7759c7517dedfac1c88787d0c01181e96326890664",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/spatial-computing/terminal-integration-specialist.md": {
+   "class": "merge",
+   "sha256": "1ede082d0bec4ab74ac6e5cd4822c8d2622d7dff951c98988e4beb31c809b075",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/spatial-computing/visionos-spatial-engineer.md": {
+   "class": "merge",
+   "sha256": "39cfa9b0451446b405b7cb7499b9cb707f7e893c751d15159f3ab504e1d1fb42",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/spatial-computing/xr-cockpit-interaction-specialist.md": {
+   "class": "merge",
+   "sha256": "a92cfa589bf37640d6ea899c2905998f49344590832c1e01d37f5a2cba169bdf",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/spatial-computing/xr-immersive-developer.md": {
+   "class": "merge",
+   "sha256": "88481f5a6903398dc0d5f26ee8675266c5117350c3b02e55b2458c936e212a18",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/spatial-computing/xr-interface-architect.md": {
+   "class": "merge",
+   "sha256": "b16db3e8e314ca145454df367ca4c2bc1e3528dea945ffbaf2d2e0a4b060a847",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/accounts-payable-agent.md": {
+   "class": "merge",
+   "sha256": "3f95224c26637914eafb83e11177e278f155875342cc2233dcf7be560e57754b",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/agentic-identity-trust-architect.md": {
+   "class": "merge",
+   "sha256": "a138d36268d8997536da96f42342ea2aa5d837a8900a45deee50aa8d31122c10",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/agents-orchestrator.md": {
+   "class": "merge",
+   "sha256": "c7e92e79c3fffbbfb667ad66ae0afff71e7b4c6252b11b8657d6b0e0e469c239",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/automation-governance-architect.md": {
+   "class": "merge",
+   "sha256": "88ca445ed4af7125a5317a1b2ae97701695a9bfab88507df5e31783664a5e5ba",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/business-strategist.md": {
+   "class": "merge",
+   "sha256": "bc6cd10f2fbb21148d88f9975facce7791b1b6e9489e3772c497e27889315689",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/change-management-consultant.md": {
+   "class": "merge",
+   "sha256": "cb81cbe87dda4f3ab85793bc4cb09c237b85ea1807925ce7380df3be023f4cbb",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/chief-financial-officer.md": {
+   "class": "merge",
+   "sha256": "a8855509e91c1652f8001ff3a8759c684fd63482bd37cb024d4cd44b9c4f558b",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/chief-of-staff.md": {
+   "class": "merge",
+   "sha256": "42d3327be9a8feee6845a5ccd4ddd590c477a7f992241f45287756e8c68313a0",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/civil-engineer.md": {
+   "class": "merge",
+   "sha256": "2c41e80a7ef6f482d7221799a23e21659053024c45b95dc9d532c1b4357b247b",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/corporate-training-designer.md": {
+   "class": "merge",
+   "sha256": "a7c3909e2f8a3176852a8e42a64b6d50ebea447ba401a35a46e47950230ab012",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/cultural-intelligence-strategist.md": {
+   "class": "merge",
+   "sha256": "fb4dc9936f24d6398ae94b8307c9ebe106ac87673e1754f7699ac20aae849d9f",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/customer-service.md": {
+   "class": "merge",
+   "sha256": "a0fc04141939a604669d0fdd6d788a3a34ff86701cfa1468473dc42ddcd28330",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/customer-success-manager.md": {
+   "class": "merge",
+   "sha256": "85864d4df372b0c97f2ada0709dbf0928bbcd3628b2fb426d7d5765382219d08",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/data-consolidation-agent.md": {
+   "class": "merge",
+   "sha256": "7490b579c422006965fd377c953246ce0b65c7d803f0e3628cf4875c828f32af",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/data-privacy-officer.md": {
+   "class": "merge",
+   "sha256": "f1bc6abac1547fb98a85b2543a293365ef44d768e1464555569fa76ee46ef3ea",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/developer-advocate.md": {
+   "class": "merge",
+   "sha256": "e829fa7001bc4efd5a78132e76b65383d3c2bcf5c743dae154cd7d62c9225e31",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/document-generator.md": {
+   "class": "merge",
+   "sha256": "f370cd5d862f27b024bf6a8a6b9b2c8eb92daa09bc703fbedbbfbe0b3e66e69d",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/esg-sustainability-officer.md": {
+   "class": "merge",
+   "sha256": "a05f1903883e807a5bc99b2aa3406cfeca2f7cc9a5c9dc0b691540e3533ac5eb",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/french-consulting-market-navigator.md": {
+   "class": "merge",
+   "sha256": "286337fd62fced739d236b31ab31137e03197b5b98f1b92e296beb2b31610c89",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/government-digital-presales-consultant.md": {
+   "class": "merge",
+   "sha256": "13cc60d63f92624f228665ed389111c8e21a1ed43d522189dc0c77635cb29574",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/grant-writer.md": {
+   "class": "merge",
+   "sha256": "3445e50cb83ddf2ba1cab267678a922c294b8751d0cfb195549b45eef7f6738c",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/healthcare-customer-service.md": {
+   "class": "merge",
+   "sha256": "0e326dea18a1951a2983e2f60c31b43ad6e680083be00b4ce2e59ac8caf4b84d",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/healthcare-marketing-compliance-specialist.md": {
+   "class": "merge",
+   "sha256": "ed353c6a2b8b5430cf73f2536e072d6046cb74f4562e11e2425f5583f3cdd5fa",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/hospitality-guest-services.md": {
+   "class": "merge",
+   "sha256": "0e594ce11d5dc45d7eed33871d097d63d87d23ebde1c33dd50906900d8d620e1",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/hr-onboarding.md": {
+   "class": "merge",
+   "sha256": "b3881973be42f0b245a11617c38e84d679a483f4eb768aac64ad5118ec1c0a08",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/identity-graph-operator.md": {
+   "class": "merge",
+   "sha256": "ad9d97a077cf83a97f6f041a6fc8a39a9c94a1eb5ee253ef876533674a3ae058",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/korean-business-navigator.md": {
+   "class": "merge",
+   "sha256": "72076808ba66cb4d70da34c6011bca08e359bf4d34e845a78a27cb9de4a2cc6f",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/language-translator.md": {
+   "class": "merge",
+   "sha256": "a045b281e3d8a3861ffaba864e0f51e43a58a824d3c3cea2bfc1620cb02b8e23",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/legal-billing-time-tracking.md": {
+   "class": "merge",
+   "sha256": "ea8fa26071caf1eae5726ece7abaa0400f37839fd510bdcb282c18edb17f9390",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/legal-client-intake.md": {
+   "class": "merge",
+   "sha256": "5bb500ff4239e849f8fae5970907a2a58c4691b74f5cda4f125b5741212fe7a5",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/legal-document-review.md": {
+   "class": "merge",
+   "sha256": "b2d04c866da6918fab48f8bc8622682a14c9b5011718b1684d1ec68bb179d0e7",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/loan-officer-assistant.md": {
+   "class": "merge",
+   "sha256": "edcf6cde8678acf883025f5453066799c7651e31e4ddc2fafad8f8862812fd0f",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/lsp-index-engineer.md": {
+   "class": "merge",
+   "sha256": "5fe809aad808514e20f90bc962e022061303f85b754ca0aa6ddd9ba73a3f6fb4",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/m-a-integration-manager.md": {
+   "class": "merge",
+   "sha256": "287f2144155085d8416839acacfc1c757981654c718d91a1c6b6835c0d4d4346",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/mcp-builder.md": {
+   "class": "merge",
+   "sha256": "5e5d55f1f6251b243fdd15cb0cf78a220917eeeb621b2bcbb01f6ca73c623ea2",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/medical-billing-coding-specialist.md": {
+   "class": "merge",
+   "sha256": "cc648dd45ea8218dd37a1a0a9566e4b21ad8709246b370b802c5dbbd155337a0",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/model-qa-specialist.md": {
+   "class": "merge",
+   "sha256": "b11221758fc6fa19d4bcd24f460478dedb77f3833631b69d832971c76d127eec",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/operations-manager.md": {
+   "class": "merge",
+   "sha256": "8361b2cfc5169e8740dd4c2b34ebe83cb2e74c302eaaf1d7e05e5d0089b6aaac",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/organizational-psychologist.md": {
+   "class": "merge",
+   "sha256": "a84904ae750d116ec9a4c76d5934d7234aad7395b3cf33a41983a426df44c529",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/personal-growth-mentor.md": {
+   "class": "merge",
+   "sha256": "c79ff9bd08b0454ee534fdd8bd70716384c46e2df1e0c2c463993a1e26a50de4",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/pricing-analyst.md": {
+   "class": "merge",
+   "sha256": "07c589744f1a6cb1e979e59a9d341f8d292086a3c9fc0cad9ced3ae3e00472af",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/real-estate-buyer-seller.md": {
+   "class": "merge",
+   "sha256": "53e6d9b68f4bd44611b5c4859fddece85b916781c0205327bea0ebe662c4089a",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/recruitment-specialist.md": {
+   "class": "merge",
+   "sha256": "3d6a549b0a5e0c7fd42401bb9a9a74a4ed3dedf8f624588d56968cd36817b379",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/report-distribution-agent.md": {
+   "class": "merge",
+   "sha256": "34b22eb61487fc44113c4774afd7f122840cf5b1c2a332a425dbcb31dd400629",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/retail-customer-returns.md": {
+   "class": "merge",
+   "sha256": "a81f6ee0bc6a8c3979a8a0f260329ec1b4cae47d76b1bfa107bbf43a6af8826d",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/sales-data-extraction-agent.md": {
+   "class": "merge",
+   "sha256": "e14bf7c7fba4d1a8f89a2405bf52e29bdef25c75acaf125929430472a5a69517",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/sales-outreach.md": {
+   "class": "merge",
+   "sha256": "05dbdc12e84c01f74d40010eb316326e08ec5fc4f231669e0e33418d62f57d24",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/salesforce-architect.md": {
+   "class": "merge",
+   "sha256": "76f4db135a98ccd1ddd4aa57d5e4331ffcafd9e5550f9c2ee06077509b80f70f",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/strategy-duel-agent.md": {
+   "class": "merge",
+   "sha256": "5c09c95720fbed9163663ee7e8bb1857346be152dc5a267c478c2a85715e4652",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/study-abroad-advisor.md": {
+   "class": "merge",
+   "sha256": "7b89add97069a46c2662266b3442980ceaa6b387f9435ecf49c287ca0cb4bd7b",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/supply-chain-strategist.md": {
+   "class": "merge",
+   "sha256": "82897b364b78b5c60b8226e9f43087e1be78c8a118d8ededd8a0741864df6c29",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/workflow-architect.md": {
+   "class": "merge",
+   "sha256": "58ef08901a58e377120e1fd8f5fa3d7b50bf12c8c2c915b220cc8e5b90365145",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/specialized/zk-steward.md": {
+   "class": "merge",
+   "sha256": "9371af55cca33976259c285fdd92f51e46244b1c8eb956a0787c53bba3de54a2",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/support/analytics-reporter.md": {
+   "class": "merge",
+   "sha256": "01130854ea9a3854eac393b1ddfdf31d5b2e88affb10e6c0bc19d1b955c54ec7",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/support/executive-summary-generator.md": {
+   "class": "merge",
+   "sha256": "ab136b90199e3178d6679daf868d55c25b73733417d9e3a22c1a7dccab562106",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/support/finance-tracker.md": {
+   "class": "merge",
+   "sha256": "5859e7a6f5b9355dad1e73f7c1046ff4e3898c94c1196746537673a13e8d0b1c",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/support/infrastructure-maintainer.md": {
+   "class": "merge",
+   "sha256": "64561313ebd50e369b0c873b3f4d3b5492a2dc48c24ca84ff38488f20a0b0ae2",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/support/legal-compliance-checker.md": {
+   "class": "merge",
+   "sha256": "30b2a74c0c916cc4b88fe5b95c5b59918824ba81ac53f6fc2677f16a4929947d",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/support/support-responder.md": {
+   "class": "merge",
+   "sha256": "00eb7efe798b549ebf184da0afc98309cb25b7a07f0a8f24523d2e952256c173",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/testing/accessibility-auditor.md": {
+   "class": "merge",
+   "sha256": "1aaaab1d55a2dcab095e7380d1411e88c996b5ced20cac7219a3cb7d5b44e1a2",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/testing/api-tester.md": {
+   "class": "merge",
+   "sha256": "c9423a06ab4c89d041353633755730320f9fdcbace421391932fb8a0f799cf52",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/testing/evidence-collector.md": {
+   "class": "merge",
+   "sha256": "e07fcd717c78e5f70a322024e572439d3010a5206df16b399f10db5c7adf107a",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/testing/performance-benchmarker.md": {
+   "class": "merge",
+   "sha256": "f8a207356fc2f1d64d8262e2c8bc5103ca6c853464867a76f4fb989fda2f0fc7",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/testing/reality-checker.md": {
+   "class": "merge",
+   "sha256": "911b88692b499cfbd9d31088deeaacae636e0d8f5acd5e8b6cab19d8926012f2",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/testing/test-results-analyzer.md": {
+   "class": "merge",
+   "sha256": "6214b996b16aa9e06f62ac40ac8248c7b7326111f3b0819e70e7a25f7562a03a",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/testing/tool-evaluator.md": {
+   "class": "merge",
+   "sha256": "5cc8368b114fd439b96dd72c018ada82188066ecba5f62b6e167efb07af01771",
+   "mode": "644"
+  },
+  ".claude/skills/workflow-builder/agents-library/testing/workflow-optimizer.md": {
+   "class": "merge",
+   "sha256": "27d9845102c6567fad2b9a863b119675730eefb9578fe0aeb6ec6368060b9b02",
+   "mode": "644"
+  },
+  ".claude/skills/youtube/SKILL.md": {
+   "class": "merge",
+   "sha256": "2834a24dc44553233077288e51890df7edb92934706082f204c9268ff4ab9c64",
+   "mode": "644"
+  },
+  ".githooks/commit-msg": {
+   "class": "merge",
+   "sha256": "d5f3b36e5a756a2db5f0432635d48b596a7a74fe2f71214f52b5cdba752f6d08",
+   "mode": "755"
+  },
+  ".githooks/nopython/commit-msg": {
+   "class": "merge",
+   "sha256": "452f2d26f67fe4e4be7d69aa11d140dff6bb01e7adb03b727158e97c9931ca39",
+   "mode": "755"
+  },
+  ".githooks/nopython/pre-push": {
+   "class": "merge",
+   "sha256": "0cc0b1ff05d6e58234ac5d2e39f464b713c03def93810b65359525b53e0578e5",
+   "mode": "755"
+  },
+  ".githooks/pre-commit": {
+   "class": "merge",
+   "sha256": "21cceb3800a42b4f02819ac91d86971e170f8782ea5a6472247393d722ebd6d2",
+   "mode": "755"
+  },
+  ".githooks/pre-push": {
+   "class": "merge",
+   "sha256": "827b068abc5be6004594d5d98e9ad579a8551a8b608d80da00aa13b2a95445de",
+   "mode": "755"
+  },
+  ".githooks/secret-allow.json": {
+   "class": "merge",
+   "sha256": "36fe6457b761a371eceaf4f33d52b8efee5bd86ea71d9c6446a75a609fe9f1f4",
+   "mode": "644"
+  },
+  ".githooks/tests/test_pre_commit_allow.py": {
+   "class": "merge",
+   "sha256": "44f00f50c52db14fbf51cee14f85ae39290699d9d753562af427d43141e18f41",
+   "mode": "644"
+  },
+  ".githooks/tests/test_pre_commit_audit.py": {
+   "class": "merge",
+   "sha256": "217667be9d4857eb071810421902ee834dccee2a713afbd42b8afaeaa4a9462c",
+   "mode": "644"
+  },
+  ".githooks/tests/test_pre_push.py": {
+   "class": "merge",
+   "sha256": "b9755c04e5f7bd8ef76805440cdde0509a6377c12032ab2f9ce6db6dd26476ae",
+   "mode": "644"
+  },
+  ".gitignore": {
+   "class": "local",
+   "sha256": "35413b0c9b3a2751bcaa7c499521b12d9093ba8c4af2bd1b5c8884f2a1b266ff",
+   "mode": "644"
+  },
+  "CHANGELOG.md": {
+   "class": "local",
+   "sha256": "fe6e81d0cd3e89d4ea1c866d040e4d4c458ed3d7cf66794d88fe38f93f8de424",
+   "mode": "644"
+  },
+  "CLAUDE.md": {
+   "class": "merge",
+   "sha256": "85d28c47d04dcf9ed53edd354f0d92ce21efb29502a9465e10faade752e34753",
+   "mode": "644"
+  },
+  "CONTEXT.md": {
+   "class": "seed",
+   "sha256": "b86190db9065139b56bb44cbab69de97fffcfe2bf5aa2c98054e13774a2d7feb",
+   "mode": "644"
+  },
+  "START-HERE.md": {
+   "class": "local",
+   "sha256": "c7c16e1af80d4880fbe7f244a72512669bc6bf9f98c281a0898d3322654c3afc",
+   "mode": "644"
+  },
+  "memory/README.md": {
+   "class": "merge",
+   "sha256": "e62c1bbf46ceeb859896e3e1df8fc147c08aaf735d12655fad510c58e4eb4110",
+   "mode": "644"
+  },
+  "memory/TEMPLATES.md": {
+   "class": "merge",
+   "sha256": "808413dd2299e71084e1edd99c5023977c5484c184c6da828d094f6b2b279d17",
+   "mode": "644"
+  },
+  "memory/decisions/.gitkeep": {
+   "class": "merge",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "mode": "644"
+  },
+  "memory/decisions/index.md": {
+   "class": "local",
+   "sha256": "53ece614d8f2e9cff4d8e74b4f3328b56acb2d695be7222b4a7270c93ef7b49f",
+   "mode": "644"
+  },
+  "memory/glossary.md": {
+   "class": "seed",
+   "sha256": "7b724be57f1e81ff5b1cc2782ec047aeff90a69f0aa3f086d14750650d6873a5",
+   "mode": "644"
+  },
+  "memory/index.md": {
+   "class": "local",
+   "sha256": "12f3acb09e629a637ae661e00c0a2582834f11ce6af2418b7ca4d10ea9468b67",
+   "mode": "644"
+  },
+  "memory/preferences/.gitkeep": {
+   "class": "merge",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "mode": "644"
+  },
+  "memory/preferences/document-scaffolding.md": {
+   "class": "seed",
+   "sha256": "7b6a63d35be4b587af1aee7101c3ee7079940f43f9ae61dc9b57c721c50a7bbf",
+   "mode": "644"
+  },
+  "memory/rules.md": {
+   "class": "seed",
+   "sha256": "a52689ebc5499ed0cfbce27f7a13077713f24cc768cff4570f93b37ac428bd89",
+   "mode": "644"
+  },
+  "memory/schema.json": {
+   "class": "seed",
+   "sha256": "5f7a5d5e2b963d30f7a54e13e7b3b4a65945754ad4e53baee74982a9c6e1af2f",
+   "mode": "644"
+  },
+  "memory/workflows/.gitkeep": {
+   "class": "merge",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "mode": "644"
+  },
+  "memory/workflows/index.md": {
+   "class": "local",
+   "sha256": "7c7eed98bcdfa9fc41c5edb44c357c00a8611c2cf42b93aea54a7f79a75f1a24",
+   "mode": "644"
+  }
+ }
+}
