@@ -4,22 +4,22 @@
  "files": {
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
-   "sha256": "28a37aaa2d29fecf8fd60e07a3a2655c8600508a958de2d22a5752226f17b278",
+   "sha256": "b731ff591aba1ea46acec9332e5f11b2e79d30390445eecabea154e5739db4a3",
    "mode": "644"
   },
   ".claude/setup/CHECKLIST.md": {
    "class": "merge",
-   "sha256": "7a0d2bd339d748caea80b50b08ad85a28ea27f095f47d1c0182c08ed4d38d6ae",
+   "sha256": "9f36b563c9d5c956cea590d9057f4e3da350d2057ccee550e97df40a8dd2e969",
    "mode": "644"
   },
   ".claude/setup/INSTALL.md": {
    "class": "merge",
-   "sha256": "971435ee4806af8e89988cfcbcc5aceae7967caf566ce2a2db8c334546237833",
+   "sha256": "bbee781e77f19796a76181ea469b76bff06269274b30a37a1aa3c5fb18d6d5e7",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
    "class": "merge",
-   "sha256": "b765f3f71f8224615b566f156732cc4fe0b647136a10edb44106c0510155151e",
+   "sha256": "eaa14490b9a6c607d5d6ee9f232313e12dc3d5380f7d1d629ef41058989961b9",
    "mode": "644"
   },
   ".claude/setup/MARKERS.md": {
@@ -29,7 +29,7 @@
   },
   ".claude/setup/MIGRATING.md": {
    "class": "merge",
-   "sha256": "c5994e6958cd3be61cd15e545fbc9bdf87d9d8711c2c7368b8d133740d2db943",
+   "sha256": "435881641922baa9cd802cf156f0dc70ec8c47623a88d603bc33f83fbd0fad6d",
    "mode": "644"
   },
   ".claude/setup/README.md": {
@@ -44,7 +44,7 @@
   },
   ".claude/setup/UPDATE.md": {
    "class": "merge",
-   "sha256": "fe98c70814fce4ed3f798ea05bca6eb1ca635ee13c355767fdb74229694163c2",
+   "sha256": "118bd05bb746414d2dd3606a37030dc714f2fa6e561f24b52b64146ee4df1877",
    "mode": "644"
   },
   ".claude/setup/autocommit.sh": {
