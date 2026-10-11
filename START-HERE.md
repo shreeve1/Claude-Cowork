@@ -15,10 +15,10 @@ This is a ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory
 
    > Read `<this folder>/.claude/setup/README.md` and follow `INSTALL.md` exactly. Install into `<new folder>`. Migrate from `<my current setup>` (or "nothing to migrate"). Ask me before anything is dropped.
 
-Your agent copies this workspace into the new folder, moves your content in, and runs the check. It is not done until the check passes.
+Your agent copies this workspace into the new folder, moves your content in, and verifies it. When you have finished adapting it (or skipped that), the agent deletes the setup folder from your new workspace.
 
 ## A newer version arrived
 
-Open your agent with the new version, a new empty folder, and your current workspace, then say: "Follow `.claude/setup/UPDATE.md` in the new version." Your current workspace is left untouched until the new one passes the check.
+Open your agent with the new version, a new empty folder, and your current workspace, then say: "Follow `.claude/setup/UPDATE.md` in the new version." Your current workspace is left untouched until the new one is verified.
 
 Some apps and file browsers hide folders whose names start with a dot; the setup instructions are in `.claude/setup/`.

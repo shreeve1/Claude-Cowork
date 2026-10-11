@@ -31,7 +31,7 @@ Everything is in [`.claude/setup/`](.claude/setup/README.md). Your agent picks t
 | See what a version contains | `MANIFEST.md` |
 | Verify on a test system | `CHECKLIST.md` |
 
-Your old setup is never edited. Nothing is dropped without your approval.
+Your old setup is never edited. Nothing is dropped without your approval. When setup is finished, the agent deletes `.claude/setup/` from your new workspace (not from this repo); updates read it from the newer version.
 
 ## What you get
 

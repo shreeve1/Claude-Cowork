@@ -49,3 +49,7 @@ Show the owner `git status`, then commit everything with the owner's OK, for exa
 ## 9. Tell the owner
 
 Say in plain words: setup is verified, what moved where (one line per group from the ledger), anything dropped and why, and what is switched off on this computer (Git, Python). Then offer `ADAPTING.md`.
+
+## 10. Remove the setup folder (last)
+
+Do this only at the very end: after the owner has finished adapting with `ADAPTING.md` or said they do not want to. Tell the owner you are removing `.claude/setup/` from the workspace, then delete that folder in the workspace only. Never delete it from the Release or touch the old setup. The workspace does not need it: an update reads `UPDATE.md` from the new Release. If Git is present, commit the removal (`git add -A`, `git commit -m "setup: remove setup folder"`); the hooks run, never use `--no-verify`.

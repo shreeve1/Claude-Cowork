@@ -11,4 +11,4 @@ Every Release has `MANIFEST.json` at its root, and it stays in the workspace aft
 - `seed`: a starter file the owner adapts (`CONTEXT.md`, `memory/glossary.md`, `memory/schema.json`, the folder map, `memory/rules.md`). It must be present; its content is the owner's. An update copies the owner's version across.
 - `local`: a starting copy of a file that is the owner's from day one (`memory/index.md`, the generated indexes, `.gitignore`, `START-HERE.md`). Same rules as `seed`.
 
-Never edit `MANIFEST.json` to make verification pass.
+The `.claude/setup/` files are listed too, but a finished workspace does not keep them: `INSTALL.md` step 10 deletes that folder, so they are the one exception to "must be present". Never edit `MANIFEST.json` to make verification pass.

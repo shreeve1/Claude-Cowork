@@ -79,7 +79,7 @@ Back to `INSTALL.md` step 7 (or `UPDATE.md`). Fix every failure. Never weaken th
 
 ## What must be true
 
-- Every file in `MANIFEST.json` is present. Files marked `merge` are byte-for-byte as shipped (line endings aside). Files marked `seed` or `local` are the owner's to edit.
+- Every file in `MANIFEST.json` is present, except `.claude/setup/`, which `INSTALL.md` step 10 removes once setup is finished. Files marked `merge` are byte-for-byte as shipped (line endings aside). Files marked `seed` or `local` are the owner's to edit.
 - Nothing from an old layout remains: `.opencode/`, `opencode.jsonc`.
 - The workspace root holds only shipped files and folders, folders named in the folder map, `.gitignore`, `.mcp.json`, and a short pointer file if the app needs one.
 - Every skill folder has a `SKILL.md`.

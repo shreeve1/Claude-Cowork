@@ -9,17 +9,17 @@
   },
   ".claude/setup/CHECKLIST.md": {
    "class": "merge",
-   "sha256": "98cfd8f1a267660456a5746c324ec17fff5b243e2052a30b69fc75cbf7eabe76",
+   "sha256": "4990e0d1b78a4ea5a64c8068f2123e3ea02d684280ccce4a4b082965050cb811",
    "mode": "644"
   },
   ".claude/setup/INSTALL.md": {
    "class": "merge",
-   "sha256": "fda1be9202750dbb4f3925ea62fa4f432703aec0e2bcc92a3399c52dbe5c7571",
+   "sha256": "0c40991b0ca3bdf947975f4b7b4e381e0f2f7eddf0a21a971fa014244b21009c",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
    "class": "merge",
-   "sha256": "6debada8d0df4b6c8d2724e452a8c1f43165d51c5851b17b9556774c4ad06b28",
+   "sha256": "ca49bd6475d6d21df133ec8a3fe5ce488ada8b6d0411f90436291d2a1ca2e474",
    "mode": "644"
   },
   ".claude/setup/MARKERS.md": {
@@ -29,7 +29,7 @@
   },
   ".claude/setup/MIGRATING.md": {
    "class": "merge",
-   "sha256": "e94c7c38ee5d4bb9408846b1e9ebcb209ce3eb63334f8638506f6415341b4c4c",
+   "sha256": "d1b2b74f70530860b0918d76caf5dd5ed3f8bd9abbda02a8ca756a8e634650bb",
    "mode": "644"
   },
   ".claude/setup/README.md": {
@@ -39,7 +39,7 @@
   },
   ".claude/setup/ROLLBACK.md": {
    "class": "merge",
-   "sha256": "70ec01d1cefb62ab5ae6dc112041a59938b7a32e20b9ffae42dcae659f3506db",
+   "sha256": "c0e47a73aef8ceff38cf15ac41767a751dca334e40384e9083f01473cb1ee491",
    "mode": "644"
   },
   ".claude/setup/UPDATE.md": {
@@ -1894,7 +1894,7 @@
   },
   "START-HERE.md": {
    "class": "local",
-   "sha256": "c7c16e1af80d4880fbe7f244a72512669bc6bf9f98c281a0898d3322654c3afc",
+   "sha256": "d9126547cf74bf5ef02135153b21ffd50d6500865a191ab351de9819ec34887d",
    "mode": "644"
   },
   "memory/README.md": {
