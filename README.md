@@ -41,6 +41,7 @@ Your old setup is never edited. Nothing is dropped without your approval. When s
 - **Build your own** (`workflow-builder`, `startday-spec`): turn a workflow into a reusable skill, or build a start-of-day loop.
 - **Writing and design quality** (`antislop` plus code, copy, UI, mobile and accessibility add-ons): filters out generic AI output.
 - **Working tools**: `excalidraw-diagram`, `youtube` (transcript plus fact-check), `handoff` (continue work in a new session), `troubleshoot-my-pc`.
+- **Video** (HyperFrames, from HeyGen, Apache-2.0): 20+ skills for making videos from a URL, PR, script or music: `hyperframes` is the entry point. Licence in `.claude/third-party/hyperframes/`.
 - **Upgrades** (`convert-release`): converts a new upstream release into this layout.
 - **Safety**: local git history, with hooks that scan for secrets and refuse pushes that include private notes.
 
