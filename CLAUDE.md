@@ -10,7 +10,7 @@ In all interactions and commit messages, be extremely concise and sacrifice gram
 
 On your FIRST response in a session, before you answer, plan, load any skill, or ask any question, you MUST make these tool calls now. This is not background context — execute it as your first actions:
 
-1. Call `Read` on `memory/index.md`, `memory/glossary.md` and `memory/rules.md`. Then read every file the `Always` row of `memory/rules.md` names. If a file does not exist, note it and move on. Do this even if the user's request seems unrelated — memory may change how you answer.
+1. Call `Read` on `memory/index.md`, `memory/glossary.md` and `memory/rules.md`. Then read every file the `Always` row of `memory/rules.md` names. If a file does not exist, note it and move on. Do this even if the user's request seems unrelated — memory may change how you answer. Skip this step only when a "Session-start memory" message already holds these files.
 2. Before each task, load every row of `memory/rules.md` whose When fits it: its Lead skill runs the task, its Also load files add content.
 3. Treat index rows as pointers, not facts. Before relying on or acting on a row, open the file it links to.
 
@@ -22,7 +22,7 @@ This directory is a workspace configuration area, not normal application source 
 
 Primary audience: AI agents. Secondary audience: teammates reading the same operating rules.
 
-Before committing a change to a skill script, have a `reviewer` agent review the diff against `CODING_STANDARDS.md`.
+Before committing a change to a skill script, have a `reviewer` agent review the diff against `CODING_STANDARDS.md`. Same review for an agent-written memory change touching more than 10 notes: the reviewer reads both ends of every new link.
 
 
 ## Core behavior

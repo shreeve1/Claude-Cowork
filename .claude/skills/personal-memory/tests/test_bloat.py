@@ -132,6 +132,23 @@ class BloatWarningTests(unittest.TestCase):
             self.assertEqual((mem / "index.md").read_text(encoding="utf-8"), before)
             self.assertNotIn("table padding", audit(mem).stdout)
 
+    def test_padded_rules_over_limit_points_to_compact_and_compact_fixes_it(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = memory(td)
+            pad = " " * 120
+            rows = "".join(f"| When {i}{pad} | | `memory/glossary.md`{pad} | |\n" for i in range(30))
+            (mem / "rules.md").write_text(f"# Rules\n\n| When{pad} | Lead | Also load | Note |\n|---|---|---|---|\n{rows}",
+                                          encoding="utf-8")
+            before = run_script(GATE, mem, "audit").stdout
+            self.assertIn("memory/rules.md: table padding costs", before)
+            self.assertIn("over 6144; run gate.py compact", before)
+            run_script(GATE, mem, "compact")
+            self.assertEqual((mem / "rules.md").read_text(encoding="utf-8").splitlines()[4],
+                             "| When 0 | | `memory/glossary.md` | |")
+            after = run_script(GATE, mem, "audit").stdout
+            self.assertNotIn("memory/rules.md: table padding", after)
+            self.assertNotIn("memory/rules.md: 8", after)
+
     def test_excluded_folders_are_skipped(self):
         with tempfile.TemporaryDirectory() as td:
             mem = memory(td)

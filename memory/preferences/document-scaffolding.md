@@ -1,5 +1,6 @@
 ---
 title: Documents Go in Folders, Never the Root
+summary: No loose files in the workspace root - folder map, naming, what git tracks vs ignores, formats; ask before new top-level folders.
 type: preference
 status: promoted
 created: 2026-10-05

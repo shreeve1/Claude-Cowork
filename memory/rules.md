@@ -10,7 +10,12 @@ Read at session start. Load every Always row now. Before each task, load every r
 
 | When | Lead | Also load | Note |
 |---|---|---|---|
-| Always | | `memory/preferences/document-scaffolding.md`, `memory/preferences/cowork-environment.md` | |
+| Always | | `memory/preferences/writing.md`, `memory/preferences/diagrams.md`, `memory/preferences/document-scaffolding.md`, `memory/preferences/cowork-environment.md` | |
+| Drafting any email | | skill `antislop`, skill `antislop-copywriting` | Run the antislop Delivery Gate and copywriting checklist silently; mention only a FAIL and fix it before delivering. |
+| A proposal, report or other document someone else will read | | skill `antislop`, skill `antislop-copywriting` | Run the gate silently; mention only a FAIL and fix it before delivering. |
+| Designing a visual output: HTML page, PDF, slide, UI | | skill `antislop`, skill `antislop-ui` | Show the full antislop PASS/FAIL report with the deliverable. |
+| Writing a research file | | `memory/preferences/research-documents.md` | |
+| A question about a website, portal or web app, or a step blocked behind a web sign-in | | `memory/preferences/browser-shared-view.md` | |
 | Work on one client | | `memory/clients/_hubs/<short>.md` | Short name from the glossary. Setup (the Tracking model step in the setup docs) renames this row to the owner's word and folder, or deletes it. |
 | Shorthand name of a client, person or system | | `memory/glossary.md` | |
 | A word that sounds like a defined term | | `CONTEXT.md` | |

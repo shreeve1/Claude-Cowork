@@ -36,8 +36,9 @@ HISTORY_LINE = re.compile(
     r"|^\s*-?\s*\d{4}-\d{2}-\d{2}:?\s+(?:superseded|amended)\b"
     r"|^\s*-\s*\d{4}-\d{2}-\d{2}:")
 CHANGED_LINE = re.compile(r"(?im)^\s*-?\s*changed\s+\d{4}-\d{2}-\d{2}")
-TABLE_PADDING = re.compile(r"[^|\s] {2,}\|")
+TABLE_PADDING = re.compile(r"(?:[^|\s]|\|) {2,}\|")
 SEPARATOR_ROW = re.compile(r"\|[\s:|-]+\|")
+COMPACT_FILES = ("index.md", "rules.md")
 
 
 def indexed_paths(memory_dir):
@@ -168,12 +169,12 @@ def compact_row(row):
         return "|" + "|".join(cells) + "|"
     if row.startswith("|") and TABLE_PADDING.search(row):
         cells = [c.strip() for c in re.split(r"(?<!\\)\|", row.strip())[1:-1]]
-        return "| " + " | ".join(cells) + " |"
+        return "|" + "|".join(f" {c} " if c else " " for c in cells) + "|"
     return row
 
 
-def compact_index(text):
-    """memory/index.md text with table padding removed. Read at every session start, so padding is paid every time."""
+def compact_tables(text):
+    """Note text with table padding removed. COMPACT_FILES are read at every session start, so padding is paid every time."""
     out = []
     for line in text.splitlines(keepends=True):
         body = line.rstrip("\r\n")
@@ -198,8 +199,11 @@ def bloat(memory_dir):
             out.append(f"{rel}: not UTF-8")
         text = hubs.read_note(p).split("\n---\n", 1)[-1]
         fm = hubs.parse_frontmatter(p)
-        if p.stat().st_size > SIZE_LIMIT:
-            out.append(f"{rel}: {p.stat().st_size} bytes, over {SIZE_LIMIT}; trim or split")
+        size = p.stat().st_size
+        if size > SIZE_LIMIT:
+            compactable = p.parent == memory_dir and p.name in COMPACT_FILES
+            fix = "run gate.py compact" if compactable and len(compact_tables(hubs.read_note(p)).encode("utf-8")) <= SIZE_LIMIT else "trim or split"
+            out.append(f"{rel}: {size} bytes, over {SIZE_LIMIT}; {fix}")
         if len(fm.get("summary", "")) > SUMMARY_LIMIT:
             out.append(f"{rel}: summary {len(fm['summary'])} chars, over {SUMMARY_LIMIT}")
         if fm.get("status") == "superseded":
@@ -212,10 +216,11 @@ def bloat(memory_dir):
         cells = row.split("|")
         if row.startswith("| [") and len(cells) > 3 and len(cells[3].strip()) > SUMMARY_LIMIT:
             out.append(f"memory/index.md: row {cells[1].strip()} summary over {SUMMARY_LIMIT} chars")
-    index_text = hubs.read_note(memory_dir / "index.md")
-    saved = len(index_text.encode("utf-8")) - len(compact_index(index_text).encode("utf-8"))
-    if saved:
-        out.append(f"memory/index.md: table padding costs {saved} bytes every session; run gate.py compact")
+    for name in COMPACT_FILES:
+        text = hubs.read_note(memory_dir / name) if (memory_dir / name).exists() else ""
+        saved = len(text.encode("utf-8")) - len(compact_tables(text).encode("utf-8"))
+        if saved:
+            out.append(f"memory/{name}: table padding costs {saved} bytes every session; run gate.py compact")
     return out
 
 
@@ -318,13 +323,17 @@ def main():
         if not path.exists():
             print("Alert: The memory index file (memory/index.md) was not found.")
             sys.exit(1)
-        with open(path, encoding="utf-8", newline="") as f:
-            old = f.read()
-        new = compact_index(old)
-        if new != old:
-            with open(path, "w", encoding="utf-8", newline="") as f:
-                f.write(new)
-        print(f"memory/index.md: {len(old.encode('utf-8')) - len(new.encode('utf-8'))} bytes removed")
+        for name in COMPACT_FILES:
+            path = mem_path / name
+            if not path.exists():
+                continue
+            with open(path, encoding="utf-8", newline="") as f:
+                old = f.read()
+            new = compact_tables(old)
+            if new != old:
+                with open(path, "w", encoding="utf-8", newline="") as f:
+                    f.write(new)
+            print(f"memory/{name}: {len(old.encode('utf-8')) - len(new.encode('utf-8'))} bytes removed")
         sys.exit(0)
     if args.cmd == "links":
         graph = links.build(mem_path)

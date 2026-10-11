@@ -1,6 +1,6 @@
 {
  "edition": "friends",
- "release": 3,
+ "release": 4,
  "files": {
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
@@ -60,6 +60,51 @@
   ".claude/skills/adhd/SKILL.md": {
    "class": "merge",
    "sha256": "06debe68a370206acd93e0b2ee54d6395bc367fdfbc079f2348e3ce2966dac0a",
+   "mode": "644"
+  },
+  ".claude/skills/antislop-code/SKILL.md": {
+   "class": "merge",
+   "sha256": "004933009d352710dcbea7817101d5c188474a442e3ece26a6e0c18d3223898f",
+   "mode": "644"
+  },
+  ".claude/skills/antislop-copywriting/SKILL.md": {
+   "class": "merge",
+   "sha256": "2434a6fb0603dea1e62d4c1968382def47af779bd0e43b2130edd49df41ba444",
+   "mode": "644"
+  },
+  ".claude/skills/antislop-human/SKILL.md": {
+   "class": "merge",
+   "sha256": "5bc7c8e56cc79a5154eabf32469fd9f95621ac0b0faa73acd5816d56aafd5868",
+   "mode": "644"
+  },
+  ".claude/skills/antislop-human/contrast-check.py": {
+   "class": "merge",
+   "sha256": "619cdf3da8b27f87d8e4049b4acecfe1a559b234ab2aa9cf09447c28745c3075",
+   "mode": "644"
+  },
+  ".claude/skills/antislop-human/contrast-mcp.py": {
+   "class": "merge",
+   "sha256": "2dff74f119829d81b28dd593c6fd2289d56d9301cb8e47f1b49d7c6ef03a429f",
+   "mode": "644"
+  },
+  ".claude/skills/antislop-layoutmobile/SKILL.md": {
+   "class": "merge",
+   "sha256": "8613395a5109f637837f5c24f0ce5e58a96df1c2567a9f7666fcaecc47ff39cd",
+   "mode": "644"
+  },
+  ".claude/skills/antislop-ui/SKILL.md": {
+   "class": "merge",
+   "sha256": "47d9892771253f544f7eb2e40af35fd5c31407dcd8c048183bbd1de5a00a4bbe",
+   "mode": "644"
+  },
+  ".claude/skills/antislop/SKILL.md": {
+   "class": "merge",
+   "sha256": "e29139f57ea05cd63c12bf5b3da160a13980a4c72546ddcbe76ff19df23c9c78",
+   "mode": "644"
+  },
+  ".claude/skills/antislop/VERSION": {
+   "class": "merge",
+   "sha256": "ce6ddda39d58fbf68b3810aa75fe22894936f20c1e62c901ae455e0bab5138df",
    "mode": "644"
   },
   ".claude/skills/brainstorm-idea/SKILL.md": {
@@ -124,12 +169,12 @@
   },
   ".claude/skills/personal-memory/SKILL.md": {
    "class": "merge",
-   "sha256": "38d6a25b084667923bac56ae4159d29e18ca39f00534283935181fb1e5fc695a",
+   "sha256": "484e889aba524e6df1f142e440461e239d3c8737b62c5d99f0b11b4f5d9f8464",
    "mode": "644"
   },
   ".claude/skills/personal-memory/gate.py": {
    "class": "merge",
-   "sha256": "2271d00e59ee29a7ef42516eaacf2b48e03fc544d97aaa7c6bcb82d69ffe6d7e",
+   "sha256": "cb8e8b4ed11910a2e52abddf6429dc042b957c4a8c1827ce2e2801e1e80ff3bd",
    "mode": "755"
   },
   ".claude/skills/personal-memory/hubs.py": {
@@ -159,7 +204,7 @@
   },
   ".claude/skills/personal-memory/tests/test_bloat.py": {
    "class": "merge",
-   "sha256": "d0b6ceb68589ba024aae2037486708409bf0b18eb3beff166ce6cf9593f3f34c",
+   "sha256": "720ad9f7f69d9b2cf7be5e16dcc3a2cc6aefe6707bdbc7593a36177a54ef785b",
    "mode": "644"
   },
   ".claude/skills/personal-memory/tests/test_hubs.py": {
@@ -1819,7 +1864,7 @@
   },
   ".githooks/secret-allow.json": {
    "class": "merge",
-   "sha256": "36fe6457b761a371eceaf4f33d52b8efee5bd86ea71d9c6446a75a609fe9f1f4",
+   "sha256": "b5ce151bf729228111405e6517b493ab81542148ab2e0869e7fc34215b32f8bb",
    "mode": "644"
   },
   ".githooks/tests/test_pre_commit_allow.py": {
@@ -1844,12 +1889,12 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "fe6e81d0cd3e89d4ea1c866d040e4d4c458ed3d7cf66794d88fe38f93f8de424",
+   "sha256": "8b248a8d15c46826ff1f5d054e1d6b1db0dbed181fd954f7bf50c001cdf9d5eb",
    "mode": "644"
   },
   "CLAUDE.md": {
    "class": "merge",
-   "sha256": "85d28c47d04dcf9ed53edd354f0d92ce21efb29502a9465e10faade752e34753",
+   "sha256": "818340d285200b81afca27711f92550fd89f5d2f8bbb6fad9c78d86c092cf6c8",
    "mode": "644"
   },
   "CONTEXT.md": {
@@ -1889,7 +1934,7 @@
   },
   "memory/index.md": {
    "class": "local",
-   "sha256": "12f3acb09e629a637ae661e00c0a2582834f11ce6af2418b7ca4d10ea9468b67",
+   "sha256": "44480cf658fc8f6aab234df0365ea87ae85b130231dbdd7c01209f6744818f81",
    "mode": "644"
   },
   "memory/preferences/.gitkeep": {
@@ -1897,14 +1942,34 @@
    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
    "mode": "644"
   },
+  "memory/preferences/browser-shared-view.md": {
+   "class": "seed",
+   "sha256": "95db8ccc08ba6fa49af921bf54a97335f5a67677a2378754a3e0f38c72753884",
+   "mode": "644"
+  },
+  "memory/preferences/diagrams.md": {
+   "class": "seed",
+   "sha256": "85110d55d276fa71c624d39c3038d06356962dd2e1f825b23b20f5be8a36f8b1",
+   "mode": "644"
+  },
   "memory/preferences/document-scaffolding.md": {
    "class": "seed",
-   "sha256": "7b6a63d35be4b587af1aee7101c3ee7079940f43f9ae61dc9b57c721c50a7bbf",
+   "sha256": "e8a6f90725e438053df18e524c98b7f2edca8756f8f4c3293c0b6ad71ff34981",
+   "mode": "644"
+  },
+  "memory/preferences/research-documents.md": {
+   "class": "seed",
+   "sha256": "014039279f4c53b8bd4b13315231a17353dd05612d74bbb722bd7c14c68f72f6",
+   "mode": "644"
+  },
+  "memory/preferences/writing.md": {
+   "class": "seed",
+   "sha256": "28a9e9711535321e5714a84f05692531d059332c6be2bb973ba57646998ac522",
    "mode": "644"
   },
   "memory/rules.md": {
    "class": "seed",
-   "sha256": "a52689ebc5499ed0cfbce27f7a13077713f24cc768cff4570f93b37ac428bd89",
+   "sha256": "3494e1118fc9bbf25f42aa4760bd063c44fd3eeecd58a36202ae8e844cfffb42",
    "mode": "644"
   },
   "memory/schema.json": {

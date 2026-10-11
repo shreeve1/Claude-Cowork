@@ -1,5 +1,11 @@
 # Changelog
 
+## Release 4
+
+- New antislop skills: `antislop` plus `antislop-code`, `antislop-copywriting`, `antislop-human`, `antislop-layoutmobile` and `antislop-ui`. They catch the tell-tale signs of AI-written text and AI-designed pages. `memory/rules.md` loads them when you draft an email, write a document someone else will read, or design a page, PDF or slide.
+- Four starter preferences in `memory/preferences/`: `writing.md` (answer first, plain words, one fact per line), `diagrams.md` (use diagrams to get on the same page), `research-documents.md` (short, sourced findings) and `browser-shared-view.md` (ask once to open a browser you can sign into). The rules file loads them. They are yours to edit or delete.
+- To bring it in, give your agent this version and follow `.claude/setup/UPDATE.md`.
+
 ## Release 3
 
 - Setup works differently. Your agent copies this version into a new folder, moves your own notes, rules and skills in, and runs a check. It is done only when the check passes. `START-HERE.md` at the top has the one message to give your agent.
