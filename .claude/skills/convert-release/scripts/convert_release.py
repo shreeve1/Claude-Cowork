@@ -6,8 +6,8 @@ Usage (from the workspace root, in the Cowork Bash sandbox):
     python3 .claude/skills/convert-release/scripts/convert_release.py <release_dir> <out_dir>
 
 Writes a converted copy to <out_dir> (must not exist) with a fresh MANIFEST.json whose
-sha256 values match the converted files, so `doctor.py --migration` checks the converted
-copy exactly as upstream checks the original. The original Release is never modified.
+sha256 values match the converted files, so the converted copy can be verified
+exactly as upstream verifies the original. The original Release is never modified.
 Only mechanical, repeatable rules live here. Cowork-specific rules are not shipped files:
 they live in memory (`memory/preferences/cowork-environment.md`).
 """
@@ -47,27 +47,8 @@ TEXT_RULES = [
      "then list the `memory/preferences/` directory (Glob `memory/preferences/*.md`)"),
 ]
 
-# Per-file rules, applied after TEXT_RULES and the AGENTS.md rename.
-# doctor: the old Codex layout is now the thing to flag, CLAUDE.md is the shipped
-# instructions file (not a pointer), and the Cowork sandbox ships Python 3.10, on which
-# every shipped test suite passes.
-FILE_RULES = {
-    ".claude/setup/doctor.py": [
-        ('OLD_LAYOUT = {".opencode", "opencode.jsonc"}',
-         'OLD_LAYOUT = {".opencode", "opencode.jsonc", ".agents", "AGENTS.md"}'),
-        ('POINTERS = {"CLAUDE.md", "GEMINI.md"}', 'POINTERS = {"GEMINI.md"}'),
-        ("MIN_PY = (3, 11)", "MIN_PY = (3, 10)"),
-        ("sys.version_info >= (3, 11)", "sys.version_info >= (3, 10)"),
-        ("3.11 or newer is needed", "3.10 or newer is needed"),
-        ("python3 3.11+ not found", "python3 3.10+ not found"),
-    ],
-    ".claude/setup/doctor.ps1": [
-        ("$OldLayout = @('.opencode', 'opencode.jsonc')", "$OldLayout = @('.opencode', 'opencode.jsonc', '.agents', 'AGENTS.md')"),
-        ("$Pointers = @('CLAUDE.md', 'GEMINI.md')", "$Pointers = @('GEMINI.md')"),
-        ("sys.version_info >= (3, 11)", "sys.version_info >= (3, 10)"),
-        ("python3 3.11+ not found", "python3 3.10+ not found"),
-    ],
-}
+# Per-file rules, applied after TEXT_RULES and the AGENTS.md rename. None are needed now.
+FILE_RULES = {}
 
 
 def new_path(rel):

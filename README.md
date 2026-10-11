@@ -16,7 +16,7 @@ notes into it, and adapts it to how you work. You don't copy files by hand.
    > Install into `<new folder>`. Migrate from `<my current setup>` (or "nothing to
    > migrate"). Ask me before anything is dropped.
 
-The agent is done only when `doctor.py --migration` passes.
+The agent is done only when it has verified the result against the rules in `MIGRATING.md`.
 
 ## What the setup folder does
 

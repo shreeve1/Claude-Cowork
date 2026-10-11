@@ -26,7 +26,7 @@ This workspace was written for a terminal coding agent that reads `CLAUDE.md` at
 
 1. Find out which agent app the owner uses and how it loads instructions. Many read `CLAUDE.md`; some read another file name (for example `CLAUDE.md`) or need a setting. If needed, add a short file that points at `CLAUDE.md`; do not copy and fork it.
 2. Find out where that app looks for skills. If it does not read `.claude/skills/`, configure it to, or link that folder to the expected place. Keep `.claude/skills/` as the real copy so updates keep working.
-3. Run the everyday check (`python .claude/setup/doctor.py`, or `doctor.ps1` without Python) and fix what it reports.
+3. Re-verify the shipped structure against "What must be true" in `MIGRATING.md` and fix what fails.
 4. Note anything that does not fit (a command the app lacks, a path that differs) and tell the owner. Shipped files stay as shipped; the fix goes into a pointer file, the app's own settings or a preference note.
 
 ## Part 2: how the owner works

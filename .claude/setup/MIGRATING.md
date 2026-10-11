@@ -2,7 +2,7 @@
 
 The goal: the workspace keeps exactly the shipped structure, and everything useful from the owner's old setup ends up inside it, in the right place. The old setup is read only: never edit, move or delete anything there.
 
-The check (`doctor.py --migration` or `doctor.ps1 -Migration`) enforces the rules at the end of this page. Setup is not done until it passes.
+The rules under "What must be true" at the end of this page must all hold. Setup is not done until you have verified each one.
 
 ## 0. Settle the tracking model first
 
@@ -37,7 +37,7 @@ Source: <full path of each old folder or file, one Source line each>
 - `dropped`: Note says why, and the owner agreed.
 - Nothing to migrate: no `Source:` line and a single row with outcome `none`.
 
-The check fails if any file under a `Source:` path has no row.
+Setup fails if any file under a `Source:` path has no row.
 
 ## 2. Map each item to its destination
 
@@ -73,11 +73,11 @@ Write each destination. After writing memory notes, if Python is present, run `p
 
 Then remove anything in the workspace that is not shipped and not in the folder map: old config files, old folders, extra copies. The workspace root holds only shipped files, folders from the folder map, `.gitignore` and `.mcp.json`. A short pointer file such as `CLAUDE.md` containing only "Read CLAUDE.md" is allowed when the owner's app needs one.
 
-## 5. Run the check
+## 5. Verify
 
-Back to `INSTALL.md` step 7 (or `UPDATE.md`). Fix every `FIX` line. Never weaken the check, the manifest or the ledger to pass.
+Back to `INSTALL.md` step 7 (or `UPDATE.md`). Fix every failure. Never weaken the rules, the manifest or the ledger to pass.
 
-## What the check enforces
+## What must be true
 
 - Every file in `MANIFEST.json` is present. Files marked `merge` are byte-for-byte as shipped (line endings aside). Files marked `seed` or `local` are the owner's to edit.
 - Nothing from an old layout remains: `.opencode/`, `opencode.jsonc`.
@@ -86,4 +86,4 @@ Back to `INSTALL.md` step 7 (or `UPDATE.md`). Fix every `FIX` line. Never weaken
 - `memory/migration-ledger.md` exists; every file under each `Source:` has a row; outcomes are valid; every destination exists, is not a shipped `merge` file and is not old layout; every `dropped` row has a reason.
 - The workspace is not a clone (no remote, not the published Release repo).
 - Git hooks are on: `.githooks` with Python 3.11+, `.githooks/nopython` without (push protection stays on either way).
-- With Python: the memory audit passes.
+- With Python: `python .claude/skills/personal-memory/gate.py --memory memory audit` passes.

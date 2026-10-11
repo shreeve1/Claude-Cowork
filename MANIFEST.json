@@ -4,22 +4,22 @@
  "files": {
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
-   "sha256": "93cf61889c90dd0d74e938f8cefb789b77e2d5f3cc3dc4a28c0adc3e54d106c1",
+   "sha256": "28a37aaa2d29fecf8fd60e07a3a2655c8600508a958de2d22a5752226f17b278",
    "mode": "644"
   },
   ".claude/setup/CHECKLIST.md": {
    "class": "merge",
-   "sha256": "8bcb5153956ef9d64d973ab08466e530ad64523d7939a1b5e89a861e4aed0c3f",
+   "sha256": "98cfd8f1a267660456a5746c324ec17fff5b243e2052a30b69fc75cbf7eabe76",
    "mode": "644"
   },
   ".claude/setup/INSTALL.md": {
    "class": "merge",
-   "sha256": "4174e34a6eb2767e15736798cb237d915cfb32d3edf72323a4a66b0964fb401c",
+   "sha256": "fda1be9202750dbb4f3925ea62fa4f432703aec0e2bcc92a3399c52dbe5c7571",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
    "class": "merge",
-   "sha256": "5b9fed6436fc839f3574b67a683beb90aea98b7a4fae657ccbd932320fb96d36",
+   "sha256": "6debada8d0df4b6c8d2724e452a8c1f43165d51c5851b17b9556774c4ad06b28",
    "mode": "644"
   },
   ".claude/setup/MARKERS.md": {
@@ -29,12 +29,12 @@
   },
   ".claude/setup/MIGRATING.md": {
    "class": "merge",
-   "sha256": "5ac3ff7601143b5a6d8e90b2e973083605d9748a39584d772e6059eaab48be3c",
+   "sha256": "e94c7c38ee5d4bb9408846b1e9ebcb209ce3eb63334f8638506f6415341b4c4c",
    "mode": "644"
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "0f916301e5d6984e494aefe817d6ca6b5973786be0e2de2d83541e199f7a6448",
+   "sha256": "3e7042680d7f36c0b27c5454e91a2f41911e60875bc5fc6ba2bf085f454aae3d",
    "mode": "644"
   },
   ".claude/setup/ROLLBACK.md": {
@@ -44,18 +44,8 @@
   },
   ".claude/setup/UPDATE.md": {
    "class": "merge",
-   "sha256": "8baaf0c180e36b33bf7bf851941f598dc2fe911e99b1e918fd4f95b0a65eff8b",
+   "sha256": "dae15d3f86b897d1d46adb4ddd7946b9c53471c6eea0302012ef10817f8ee966",
    "mode": "644"
-  },
-  ".claude/setup/doctor.ps1": {
-   "class": "merge",
-   "sha256": "496793372b6865c5a6bbcf8a8c4bab8206d99fb6ef0b22db0d888e64735b75e7",
-   "mode": "644"
-  },
-  ".claude/setup/doctor.py": {
-   "class": "merge",
-   "sha256": "bc43e9e0fa8df73cd0196b57eb2d86aadb6b0dc2883f75697831bb22511f4532",
-   "mode": "755"
   },
   ".claude/skills/adhd/SKILL.md": {
    "class": "merge",
@@ -1889,7 +1879,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "8b248a8d15c46826ff1f5d054e1d6b1db0dbed181fd954f7bf50c001cdf9d5eb",
+   "sha256": "4b12afcbf8b9808c533430a89a4bd0a362fd31cb90cd6539b709f57478eedf06",
    "mode": "644"
   },
   "CLAUDE.md": {

@@ -1,6 +1,6 @@
 # First setup
 
-Read `README.md` in this folder first: the result is fixed, and this procedure is not done until the check passes. Do every step in order. Do not skip, reorder or merge steps.
+Read `README.md` in this folder first: the result is fixed, and this procedure is not done until every item under "What must be true" in `MIGRATING.md` is verified. Do every step in order. Do not skip, reorder or merge steps.
 
 Words used: the **Release** is the folder or repo you received (this one). The **workspace** is the new, empty folder the owner chose. The **old setup** is whatever the owner used before (a folder, an instructions file, notes); there may be none.
 
@@ -9,7 +9,7 @@ Words used: the **Release** is the folder or repo you received (this one). The *
 Run `git --version` and `python3 --version` (Windows also try `py -3 --version`). Write down the results; they decide steps 4 and 7.
 
 - Git present: the workspace gets version history and its commits are checked.
-- Python 3.11 or newer present: the commit checks, memory tools and `doctor.py` run.
+- Python 3.11 or newer present: the commit checks and memory tools run.
 - Neither is required. Never install anything without the owner's OK. In an enterprise environment the owner may not be allowed to; that is fine.
 
 ## 2. Copy the Release into the workspace
@@ -38,12 +38,9 @@ First do `ADAPTING.md` "Tracking model": what people or things the owner keeps c
 
 Then follow `MIGRATING.md` from step 1 to the end, including writing `memory/migration-ledger.md`. If the owner has no old setup, the ledger has one row with outcome `none`.
 
-## 7. Run the check
+## 7. Verify
 
-- With Python: `python .claude/setup/doctor.py --migration`
-- Windows without Python: `powershell -ExecutionPolicy Bypass -File .claude\setup\doctor.ps1 -Migration`
-
-Fix every `FIX` line and run it again. Repeat until it prints `All checks passed.` Never edit `MANIFEST.json`, the check scripts or the ledger format to make it pass. If a rule seems wrong for this owner, stop and tell the owner.
+Go through every item under "What must be true" in `MIGRATING.md`. Compare each shipped file with `MANIFEST.json` (class and sha256). Fix every failure and verify again. Never edit `MANIFEST.json` or the ledger format to make it pass. If a rule seems wrong for this owner, stop and tell the owner.
 
 ## 8. Commit (only if Git is present)
 
@@ -51,4 +48,4 @@ Show the owner `git status`, then commit everything with the owner's OK, for exa
 
 ## 9. Tell the owner
 
-Say in plain words: setup passed the check, what moved where (one line per group from the ledger), anything dropped and why, and what is switched off on this computer (Git, Python). Then offer `ADAPTING.md`.
+Say in plain words: setup is verified, what moved where (one line per group from the ledger), anything dropped and why, and what is switched off on this computer (Git, Python). Then offer `ADAPTING.md`.

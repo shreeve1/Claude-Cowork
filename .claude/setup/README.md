@@ -13,7 +13,7 @@ The owner's old setup is a source to read from. It is never a shape to keep. Do 
 - paste personal rules into shipped files (`CLAUDE.md`, a shipped skill); they go to memory;
 - stop halfway and call it done.
 
-The check enforces this: `python .claude/setup/doctor.py --migration`, or on a Windows computer without Python `powershell -ExecutionPolicy Bypass -File .claude\setup\doctor.ps1 -Migration`. Setup is not done until it passes. If you believe a rule is wrong for this owner, stop and tell the owner; do not work around the check.
+Verify this against "What must be true" in `MIGRATING.md`. Setup is not done until every item holds. If you believe a rule is wrong for this owner, stop and tell the owner; do not work around it.
 
 ## Which document to open
 

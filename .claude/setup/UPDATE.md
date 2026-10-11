@@ -1,6 +1,6 @@
 # A newer version arrived
 
-An update is a first setup into a new folder, migrating from the owner's current workspace. The current workspace stays untouched until the new one passes the check; it is the way back (`ROLLBACK.md`).
+An update is a first setup into a new folder, migrating from the owner's current workspace. The current workspace stays untouched until the new one is verified; it is the way back (`ROLLBACK.md`).
 
 Words used: the **new Release** is the version that arrived. The **current workspace** is the one the owner uses today. The **new workspace** is a new, empty folder.
 
@@ -15,6 +15,6 @@ Words used: the **new Release** is the version that arrived. The **current works
    - Do not copy `MANIFEST.json`, `CHANGELOG.md`, `START-HERE.md` or anything under `.claude/setup/`; the new Release's copies win.
    - The old ledger (`memory/migration-ledger.md`) is replaced by the new one; keep the old one as `memory/docs/migration-ledger-<date>.md` if the owner wants it.
    - A folder row is fine for a folder copied across whole (for example `memory/workflows/`).
-4. If the current workspace has git history and the owner wants to keep it, copy its `.git` folder into the new workspace **after** the check passes, then commit. Ask first: without it the new workspace starts a fresh history.
+4. If the current workspace has git history and the owner wants to keep it, copy its `.git` folder into the new workspace **after** it is verified, then commit. Ask first: without it the new workspace starts a fresh history.
 5. Follow `INSTALL.md` steps 7 to 9 in the new workspace.
 6. Tell the owner the current workspace is untouched and can be deleted once they are happy with the new one.

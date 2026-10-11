@@ -14,7 +14,7 @@ Source: artifacts/migration/claude-workspace-r1
 | .claude/release-state.json | | dropped | apply-release state; Release 3 removed apply-release |
 | .claude/snapshots/ | | dropped | apply-release snapshots; Release 3 removed apply-release |
 | .claude/skills/apply-release/ | | dropped | removed in Release 3; its converter moved to the own skill convert-release |
-| .claude/skills/apply-release/scripts/convert_release.py | .claude/skills/convert-release/scripts/convert_release.py | merged | rewritten for Release 3 (keeps git hooks, doctor rules) |
+| .claude/skills/apply-release/scripts/convert_release.py | .claude/skills/convert-release/scripts/convert_release.py | merged | rewritten for Release 3 (keeps git hooks) |
 | .claude/skills/adhd/ | | dropped | shipped skill; new Release copy wins |
 | .claude/skills/brainstorm-idea/ | | dropped | shipped skill; new Release copy wins |
 | .claude/skills/excalidraw-diagram/ | | dropped | shipped skill; new Release copy wins |

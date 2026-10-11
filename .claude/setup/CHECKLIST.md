@@ -5,14 +5,14 @@ Run this once with the owner, on a scratch folder or test machine, before real u
 ## Install
 
 - [ ] First setup into an empty scratch folder by following `INSTALL.md`, migrating from a copy of the owner's real old setup.
-- [ ] The setup gate passes: `python .claude/setup/doctor.py --migration`, or `doctor.ps1 -Migration` without Python.
-- [ ] The gate catches a mistake: delete one shipped skill folder, see it fail, restore it.
+- [ ] Every item under "What must be true" in `MIGRATING.md` is verified.
+- [ ] Verification catches a mistake: delete one shipped skill folder, see it flagged against `MANIFEST.json`, restore it.
 - [ ] If Git and Python are present: a throwaway commit touching a `memory/` note runs the audit; undo it (`git reset --soft HEAD~1` and discard the change).
 
 ## Updates
 
 - [ ] Add a preference note and a document in the scratch workspace.
-- [ ] Set up a newer version into a second scratch folder by following `UPDATE.md`; the gate passes, and the note and document are there.
+- [ ] Set up a newer version into a second scratch folder by following `UPDATE.md`; every item under "What must be true" is verified, and the note and document are there.
 - [ ] The first scratch workspace is unchanged.
 
 ## Tracking model
@@ -25,7 +25,7 @@ Run this once with the owner, on a scratch folder or test machine, before real u
 ## Windows
 
 - [ ] If Git and Python are present: hooks run when committing from PowerShell and from Git Bash.
-- [ ] Without Python: `doctor.ps1 -Migration` runs in Windows PowerShell 5.1 and wants `core.hooksPath .githooks/nopython`; a test push of a `memory/` note to a scratch remote is refused.
+- [ ] Without Python: `core.hooksPath` is `.githooks/nopython`; a test push of a `memory/` note to a scratch remote is refused.
 
 ## Harness
 
