@@ -9,17 +9,17 @@
   },
   ".claude/setup/CHECKLIST.md": {
    "class": "merge",
-   "sha256": "4990e0d1b78a4ea5a64c8068f2123e3ea02d684280ccce4a4b082965050cb811",
+   "sha256": "7a0d2bd339d748caea80b50b08ad85a28ea27f095f47d1c0182c08ed4d38d6ae",
    "mode": "644"
   },
   ".claude/setup/INSTALL.md": {
    "class": "merge",
-   "sha256": "0c40991b0ca3bdf947975f4b7b4e381e0f2f7eddf0a21a971fa014244b21009c",
+   "sha256": "971435ee4806af8e89988cfcbcc5aceae7967caf566ce2a2db8c334546237833",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
    "class": "merge",
-   "sha256": "ca49bd6475d6d21df133ec8a3fe5ce488ada8b6d0411f90436291d2a1ca2e474",
+   "sha256": "b765f3f71f8224615b566f156732cc4fe0b647136a10edb44106c0510155151e",
    "mode": "644"
   },
   ".claude/setup/MARKERS.md": {
@@ -29,7 +29,7 @@
   },
   ".claude/setup/MIGRATING.md": {
    "class": "merge",
-   "sha256": "d1b2b74f70530860b0918d76caf5dd5ed3f8bd9abbda02a8ca756a8e634650bb",
+   "sha256": "c5994e6958cd3be61cd15e545fbc9bdf87d9d8711c2c7368b8d133740d2db943",
    "mode": "644"
   },
   ".claude/setup/README.md": {
@@ -44,8 +44,13 @@
   },
   ".claude/setup/UPDATE.md": {
    "class": "merge",
-   "sha256": "dae15d3f86b897d1d46adb4ddd7946b9c53471c6eea0302012ef10817f8ee966",
+   "sha256": "fe98c70814fce4ed3f798ea05bca6eb1ca635ee13c355767fdb74229694163c2",
    "mode": "644"
+  },
+  ".claude/setup/autocommit.sh": {
+   "class": "merge",
+   "sha256": "d4730722230261379daa62ac38fb5bc398a13a6fc73335437d982f0654bf3e53",
+   "mode": "755"
   },
   ".claude/skills/adhd/SKILL.md": {
    "class": "merge",

@@ -50,6 +50,21 @@ Show the owner `git status`, then commit everything with the owner's OK, for exa
 
 Say in plain words: setup is verified, what moved where (one line per group from the ledger), anything dropped and why, and what is switched off on this computer (Git, Python). Then offer `ADAPTING.md`.
 
-## 10. Remove the setup folder (last)
+## 10. Offer auto-commit (only if Git is present)
+
+Ask the owner: "Commit your changes automatically every time I finish a turn? It never pushes." Only on a yes:
+
+1. Copy `.claude/setup/autocommit.sh` to `.claude/hooks/autocommit.sh` (create the folder). Do this now: step 11 deletes the setup folder.
+2. Register it as a `Stop` hook in the workspace's `.claude/settings.json`, merging with any hooks already there:
+
+   ```json
+   {"hooks": {"Stop": [{"hooks": [{"type": "command", "command": "bash .claude/hooks/autocommit.sh"}]}]}}
+   ```
+
+3. Tell the owner it needs `bash` on the path (Git for Windows includes it), that it commits everything with `auto: <time>` messages, never pushes, and leaves changes uncommitted if a git hook rejects them. Removing the `Stop` entry turns it off.
+
+Only Claude Code supports this. For another agent app, skip it and say so.
+
+## 11. Remove the setup folder (last)
 
 Do this only at the very end: after the owner has finished adapting with `ADAPTING.md` or said they do not want to. Tell the owner you are removing `.claude/setup/` from the workspace, then delete that folder in the workspace only. Never delete it from the Release or touch the old setup. The workspace does not need it: an update reads `UPDATE.md` from the new Release. If Git is present, commit the removal (`git add -A`, `git commit -m "setup: remove setup folder"`); the hooks run, never use `--no-verify`.
