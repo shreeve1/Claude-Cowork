@@ -8,7 +8,8 @@ Run this once with the owner, on a scratch folder or test machine, before real u
 - [ ] Every item under "What must be true" in `MIGRATING.md` is verified.
 - [ ] Verification catches a mistake: delete one shipped skill folder, see it flagged against `MANIFEST.json`, restore it.
 - [ ] In Cowork with a yes: every folder under `.claude/skills/` has a saved loader with the same name and description, and a skill runs from a session with the workspace attached. After an update: new skills have loaders, changed descriptions are re-saved, removed skills' loaders say they are retired.
-- [ ] After adapting (or declining it), `.claude/setup/` is deleted from the workspace (`INSTALL.md` step 11), the Release is unchanged, and with Git the removal is committed.
+- [ ] Before the setup folder is removed, the owner was shown at most 7 suggested rules with the reason for each, only the ones they picked were saved (preference note plus `memory/rules.md` row), and nothing went into `CLAUDE.md`. With little evidence, the agent asked two questions instead of inventing rules.
+- [ ] After adapting (or declining it), `.claude/setup/` is deleted from the workspace (`INSTALL.md` step 12), the Release is unchanged, and with Git the removal is committed.
 - [ ] If Git and Python are present: a throwaway commit touching a `memory/` note runs the audit; undo it (`git reset --soft HEAD~1` and discard the change).
 
 ## Updates

@@ -69,6 +69,18 @@ Say in plain words: setup is verified, what moved where (one line per group from
   Tell the owner the loaders only work in a session with this workspace folder attached, and that the real skill text stays in the folder, so updating the folder updates the skills.
 - **Another app:** follow `ADAPTING.md` Part 1 to point it at `.claude/skills/`, and say what you could not do.
 
-## 11. Remove the setup folder (last)
+## 11. Review the project and suggest rules
+
+Do this after the skills step and before removing the setup folder. Work out what the owner actually uses this workspace for, then suggest rules that fit.
+
+1. **Look.** Read what is there: `memory/` notes (preferences, docs, workflows, decisions, client or subject folders), the folders from the folder map and what is in them, the owner's own skills, `CONTEXT.md`, the migration ledger, and (if Git is present) `git log --stat` for recent activity. Also use what the owner said during setup and in `ADAPTING.md`. Read only; change nothing yet.
+2. **Infer.** Note the main kinds of work (for example client support, writing, research, coding, planning), what repeats, which skills fit, which do not, and any rule the owner keeps having to restate.
+3. **Suggest.** Show the owner a short list, at most 7, in one message. For each: the rule in one sentence, why you think it fits (what you saw), and where it would go. A rule is a preference note in `memory/preferences/` plus a row in `memory/rules.md` that points to it; a skill to leave alone is a `memory/rules.md` row (When: Always, Note: "never use skill `<name>`"). Never put a rule in `CLAUDE.md` or another shipped file.
+4. **Ask once.** "Which of these do you want?" Save only the ones they pick, with the `personal-memory` skill, then run the memory audit if Python is present. Do not save the rest.
+5. **Thin evidence.** If there is little to go on (a fresh start with nothing migrated), do not invent rules. Ask the owner two questions: what they mostly use an agent for, and how answers should read. Suggest from their answers, or skip if they decline.
+
+Never put secrets, client names or other personal details into a suggested rule. Say what you saved, or that nothing was saved.
+
+## 12. Remove the setup folder (last)
 
 Do this only at the very end: after the owner has finished adapting with `ADAPTING.md` or said they do not want to. Tell the owner you are removing `.claude/setup/` from the workspace, then delete that folder in the workspace only. Never delete it from the Release or touch the old setup. The workspace does not need it: an update reads `UPDATE.md` from the new Release. If Git is present, commit the removal (`git add -A`, `git commit -m "setup: remove setup folder"`); the hooks run, never use `--no-verify`.
