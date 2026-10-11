@@ -1,59 +1,52 @@
-# Cowork Skills & Agents
+# Cowork Workspace
 
-Give your AI assistant a team of 150+ specialists and a shelf of ready-made
-workflows — so it handles more of your work, better, without you crafting a
-single prompt.
+A ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory and git hooks.
+Your AI agent (Claude Cowork or Codex) installs it, updates it, migrates your existing
+notes into it, and adapts it to how you work. You don't copy files by hand.
 
 ## Get started
 
-1. **Download the skills.** On the GitHub page, click the green **Code** button →
-   **Download ZIP**, then unzip it.
-2. **Find the bundles.** The seven skills are the `.skill` files in the `cowork/`
-   folder inside the unzipped download.
-3. **Install each one.** In the Claude desktop app, install each `.skill` file
-   (**Save skill**). Each bundle is a complete skill — no extra setup.
-4. **New here?** Run `cowork-onboarding` — it sets up your profile, memory, and
-   connected tools.
+1. Download this repo (**Code → Download ZIP**, unzip) or clone it.
+2. Make a new, empty folder for your workspace.
+3. Open your agent with access to this folder, the new folder, and (if you have one)
+   your current agent setup.
+4. Point your agent at the setup folder:
 
-**Updating:** download the latest ZIP again and re-install (re-save) the `.skill`
-files.
+   > Read `<this folder>/.claude/setup/README.md` and follow `INSTALL.md` exactly.
+   > Install into `<new folder>`. Migrate from `<my current setup>` (or "nothing to
+   > migrate"). Ask me before anything is dropped.
+
+The agent is done only when `doctor.py --migration` passes.
+
+## What the setup folder does
+
+Everything is in [`.claude/setup/`](.claude/setup/README.md). Your agent picks the document:
+
+| You want to | Agent follows |
+|---|---|
+| Install for the first time | `INSTALL.md`, then `MIGRATING.md` |
+| Update to a newer version | `UPDATE.md` |
+| Fit it to your app and way of working | `ADAPTING.md` |
+| Go back to your old setup | `ROLLBACK.md` |
+| See what a version contains | `MANIFEST.md` |
+| Verify on a test system | `CHECKLIST.md` |
+
+Your old setup is never edited. Nothing is dropped without your approval.
 
 ## What you get
 
-- **150+ expert personas** — marketing, sales, finance, design, IT, and more.
-  Describe a problem in plain English and the right specialist takes over.
-- **Ready-made workflows** — planning, prototyping, memory, and a tool to build
-  your own.
+- **Memory** (`personal-memory`): remembers your preferences, rules and client facts so you stop repeating yourself.
+- **100+ expert personas** (`professional-guidance`): describe a problem in plain English and the best-fit specialist takes over.
+- **Thinking tools**: `talk-it-through` (stress-test a plan, record decisions), `brainstorm-idea`, `adhd` (parallel divergent ideation), `teach`.
+- **Build your own** (`workflow-builder`, `startday-spec`): turn a workflow into a reusable skill, or build a start-of-day loop.
+- **Writing and design quality** (`antislop` plus code, copy, UI, mobile and accessibility add-ons): filters out generic AI output.
+- **Working tools**: `excalidraw-diagram`, `youtube` (transcript plus fact-check), `handoff` (continue work in a new session), `troubleshoot-my-pc`.
+- **Upgrades** (`convert-release`): converts a new upstream release into this layout.
+- **Safety**: local git history, with hooks that scan for secrets and refuse pushes that include private notes.
 
-## Want a specialist right now?
+## Requirements
 
-Run `professional-guidance`, describe your problem in plain English, and it
-becomes the best-fit expert from the library — no browsing, no restating.
+Claude Cowork or Codex. Git and Python 3.11+ are optional; setup works without them
+and tells you what's off.
 
-## Want to build your own?
-
-Run `workflow-builder` — it turns a workflow you have in mind into a reusable
-skill, step by step.
-
-## What's in the box
-
-| Skill | What it does for you |
-|---|---|
-| `cowork-onboarding` | Gets you running on day one — profile, memory, and connected tools. |
-| `professional-guidance` | Describe a problem, get the right expert instantly. |
-| `talk-it-through` | Start every conversation here — it sharpens your plan and remembers what you decide. |
-| `prototype` | Mocks up a design or workflow so you can try it before you build it. |
-| `workflow-builder` | Turns a workflow you have in mind into a reusable skill, step by step. |
-| `personal-memory` | Remembers your preferences so you stop repeating yourself. |
-| `questionnaire` | Turns something you can't answer alone into a set of questions for one person — an office colleague or vendor, or a client describing their IT environment — drafted in chat and saved to Word on request. |
-
----
-
-<details>
-<summary>Technical notes (how skills register)</summary>
-
-Skills ship as self-contained `.skill` bundles in the `cowork/` folder. Each
-bundle is a full skill (its `SKILL.md` plus any assets), so installing one is
-just saving the `.skill` file into the Claude desktop app — no cloning, no setup
-script. To update, download the latest ZIP and re-save the bundles that changed.
-</details>
+Some file browsers hide folders starting with a dot. The setup lives in `.claude/setup/`.
