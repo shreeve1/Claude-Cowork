@@ -16,5 +16,5 @@ Words used: the **new Release** is the version that arrived. The **current works
    - The old ledger (`memory/migration-ledger.md`) is replaced by the new one; keep the old one as `memory/docs/migration-ledger-<date>.md` if the owner wants it.
    - A folder row is fine for a folder copied across whole (for example `memory/workflows/`).
 4. If the current workspace has git history and the owner wants to keep it, copy its `.git` folder into the new workspace **after** it is verified, then commit. Ask first: without it the new workspace starts a fresh history.
-5. Follow `INSTALL.md` steps 7 to 12 in the new workspace.
+5. Follow `INSTALL.md` steps 7 to 11 in the new workspace.
 6. Tell the owner the current workspace is untouched and can be deleted once they are happy with the new one.

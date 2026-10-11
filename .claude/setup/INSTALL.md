@@ -50,26 +50,11 @@ Show the owner `git status`, then commit everything with the owner's OK, for exa
 
 Say in plain words: setup is verified, what moved where (one line per group from the ledger), anything dropped and why, and what is switched off on this computer (Git, Python). Then offer `ADAPTING.md`.
 
-## 10. Offer auto-commit (only if Git is present)
-
-Ask the owner: "Commit your changes automatically every time I finish a turn? It never pushes." Only on a yes:
-
-1. Copy `.claude/setup/autocommit.sh` to `.claude/hooks/autocommit.sh` (create the folder). Do this now: step 12 deletes the setup folder.
-2. Register it as a `Stop` hook in the workspace's `.claude/settings.json`, merging with any hooks already there:
-
-   ```json
-   {"hooks": {"Stop": [{"hooks": [{"type": "command", "command": "bash .claude/hooks/autocommit.sh"}]}]}}
-   ```
-
-3. Tell the owner it needs `bash` on the path (Git for Windows includes it), that it commits everything with `auto: <time>` messages, never pushes, and leaves changes uncommitted if a git hook rejects them. Removing the `Stop` entry turns it off.
-
-Only Claude Code supports this. For another agent app, skip it and say so.
-
-## 11. Install or update the skills in the owner's app
+## 10. Install or update the skills in the owner's app
 
 `.claude/skills/<name>/` is the one real copy of every skill. Whether the app finds it depends on the app:
 
-- **Claude Code** (terminal, IDE, or the desktop Code tab): it reads `.claude/skills/` from the workspace itself. Nothing to install. Say so and go to step 12.
+- **Claude Code** (terminal, IDE, or the desktop Code tab): it reads `.claude/skills/` from the workspace itself. Nothing to install. Say so and go to step 11.
 - **Claude Cowork** (and any app that loads skills only from its own saved list): each skill needs a small loader saved to the owner's account. Ask the owner first: "Save a loader for each skill so Cowork can find them?" Only on a yes, for every folder under `.claude/skills/`:
   1. Read its `SKILL.md` and take `name` and `description` from the frontmatter.
   2. Save a skill with the app's skill-saving tool (`save_skill` in Cowork), same `name` and `description`, with this body: "Read `.claude/skills/<name>/SKILL.md` from the attached folder and follow it exactly. If it is not present, say so and stop."
@@ -84,6 +69,6 @@ Only Claude Code supports this. For another agent app, skip it and say so.
   Tell the owner the loaders only work in a session with this workspace folder attached, and that the real skill text stays in the folder, so updating the folder updates the skills.
 - **Another app:** follow `ADAPTING.md` Part 1 to point it at `.claude/skills/`, and say what you could not do.
 
-## 12. Remove the setup folder (last)
+## 11. Remove the setup folder (last)
 
 Do this only at the very end: after the owner has finished adapting with `ADAPTING.md` or said they do not want to. Tell the owner you are removing `.claude/setup/` from the workspace, then delete that folder in the workspace only. Never delete it from the Release or touch the old setup. The workspace does not need it: an update reads `UPDATE.md` from the new Release. If Git is present, commit the removal (`git add -A`, `git commit -m "setup: remove setup folder"`); the hooks run, never use `--no-verify`.
