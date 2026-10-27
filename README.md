@@ -16,7 +16,7 @@ notes into it, and adapts it to how you work. You don't copy files by hand.
    > Bring over what is useful from `<my current setup>` (or "nothing to migrate").
    > Decide where my files and notes go, and ask me before anything is dropped.
 
-Your agent copies the workspace, reads your old setup, decides where things belong and tells you what it did.
+Your agent copies the workspace, reads your old setup, asks you how you work, decides where things belong and tells you what it did. In Claude Cowork it then shows a card for each skill: click **Save skill** on each to install it. Video skills are optional.
 
 ## What the setup folder does
 

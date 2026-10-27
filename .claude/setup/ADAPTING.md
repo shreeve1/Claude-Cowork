@@ -10,9 +10,9 @@ Follow `.claude/skills/memory-setup/tracking-model.md`.
 
 This workspace was written for a terminal coding agent that reads `CLAUDE.md` at the workspace root and loads skills from `.claude/skills/<name>/SKILL.md`. The owner may use a different desktop or terminal agent.
 
-1. Find out which agent app the owner uses and how it loads instructions. Many read `CLAUDE.md`; some read another file name (for example `CLAUDE.md`) or need a setting. If needed, add a short file that points at `CLAUDE.md`; do not copy and fork it.
+1. Find out which agent app the owner uses and how it loads instructions. Many read `CLAUDE.md`; some read another file name (for example `AGENTS.md`) or need a setting. If needed, add a short file that points at `CLAUDE.md`; do not copy and fork it.
 2. Find out where that app looks for skills. If it does not read `.claude/skills/`, configure it to, or link that folder to the expected place. Keep `.claude/skills/` as the real copy so updates keep working.
-   For an app that loads skills only from its own saved list, this is the loader step in `README.md` ("Skills in the owner's app").
+   For an app that loads skills only from its own saved list, this is the install step in `README.md` ("Skills in the owner's app").
 3. Note anything that does not fit (a command the app lacks, a path that differs) and tell the owner. Shipped files stay as shipped; the fix goes into a pointer file, the app's own settings or a preference note.
 
 ## Part 2: how the owner works

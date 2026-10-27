@@ -4,7 +4,7 @@
  "files": {
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
-   "sha256": "a48794400a68d418d99b0d529b211ba8a190bb7134721db145c5ac381755247d",
+   "sha256": "3035be343a98028bb49960d11b20c8356dea725253c1ef5495997e21e3f3690b",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
@@ -19,13 +19,18 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "bdad019c166ebdb0a9de54a198e49e08721d4dfa19393a83ab9bb2b78a503840",
+   "sha256": "24486c1d78182e232d06691920ae9fe7cd0342ab01661f592f368b488b5d7d61",
    "mode": "644"
   },
   ".claude/setup/WEEKLY-SWEEP.md": {
    "class": "merge",
    "sha256": "0da58ea53d5a0b2f3e14a0fb5623ddc597c3e40791f1b671cb659eaf7e4076b3",
    "mode": "644"
+  },
+  ".claude/setup/cowork_skills.py": {
+   "class": "merge",
+   "mode": "755",
+   "sha256": "07274aacfab412b78562d2965dbbe6e057168df2010900b59632465c0a79ca32"
   },
   ".claude/skills/adhd/SKILL.md": {
    "class": "merge",
@@ -1739,7 +1744,7 @@
   },
   ".claude/skills/hyperframes-audio/SKILL.md": {
    "class": "merge",
-   "sha256": "959fdea508f89e77c8e4b000c85c086ea073b826fb07103bbfb936a32dfa29a9",
+   "sha256": "5345e31e732efc28c7fd68961ffb16d629adba3c822b9c9d8271193f3fc3bbd3",
    "mode": "644"
   },
   ".claude/skills/hyperframes-audio/references/attributes.md": {
@@ -3079,7 +3084,7 @@
   },
   ".claude/skills/memory-setup/SKILL.md": {
    "class": "merge",
-   "sha256": "31ce5cbd7138f366db7953248348ce779916d8253dfdbb094efa8ec43ac2d6d9",
+   "sha256": "10034088a901805397afa0ae3d90003e41ecf5f6c3e078683adc814299f5e8d0",
    "mode": "644"
   },
   ".claude/skills/memory-setup/code-repos.md": {
@@ -4129,7 +4134,7 @@
   },
   ".claude/skills/personal-memory/scaffold/AGENTS-memory.md": {
    "class": "merge",
-   "sha256": "36752c4cb0c9b0a649b20ea42a03fe9356367c8be1876b20004af4e6490d0f10",
+   "sha256": "e66d3392a243ba74d977efb2539a18e8c43d92477567a8a60014072c23866b52",
    "mode": "644"
   },
   ".claude/skills/personal-memory/scaffold/README.md": {
@@ -5734,7 +5739,7 @@
   },
   ".claude/skills/teach/SKILL.md": {
    "class": "merge",
-   "sha256": "cf6d1bf8276a7a01fb97a720402f3452eb69ad90b573a2488684808e51091f76",
+   "sha256": "3e4408d7bb31c6c02afc0e0e80dded261cf3a7f419c3179a1bffe266dfcdb136",
    "mode": "644"
   },
   ".claude/skills/troubleshoot-my-pc/CONTEXT-FORMAT.md": {
@@ -6709,13 +6714,18 @@
   },
   ".claude/skills/youtube/SKILL.md": {
    "class": "merge",
-   "sha256": "3ffbe38ba8373606bc08e43cd074bf005aa9f02c1f262423ef9475d84b959c6b",
+   "sha256": "c7e4a9b43e6bcedf79a8db3501e8a56214e071d85d0ee89427b9e4bdccea6842",
    "mode": "644"
   },
   ".claude/third-party/hyperframes/LICENSE": {
    "class": "merge",
    "sha256": "4259155fb06f127687ee7b0a8a3682d45132db0f2da26cbc0b7a2d1e796436b8",
    "mode": "644"
+  },
+  ".gitattributes": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "0e9362f6547155257878d35183bcccb3322c0b0639b1b47827db51a87859ed97"
   },
   ".githooks/commit-msg": {
    "class": "merge",

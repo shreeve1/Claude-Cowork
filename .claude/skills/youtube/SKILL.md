@@ -1,6 +1,6 @@
 ---
 name: youtube
-description: Ingest a YouTube URL, pull subtitles and metadata with yt-dlp, verify claims with web research, and write transcript and research markdown artifacts under youtube/. Use when the user says `/youtube <url>`, "youtube knowledge extract", "pull this youtube and extract", "extract from youtube", or wants video claims captured and cross-checked.
+description: Ingest a YouTube URL, pull subtitles and metadata with yt-dlp, verify claims with web research, and write transcript and research markdown artifacts under youtube/. Use when the user says `/youtube` with a URL, "youtube knowledge extract", "pull this youtube and extract", "extract from youtube", or wants video claims captured and cross-checked.
 ---
 
 

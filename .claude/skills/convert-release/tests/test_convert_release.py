@@ -23,7 +23,7 @@ def release(root, files):
 def workspace(root):
     root.mkdir()
     (root / "CLAUDE.md").write_text("ws", encoding="utf-8")
-    for rel in cr.KEEP_WORKSPACE:
+    for rel in [*cr.KEEP_WORKSPACE, *cr.WORKSPACE_ONLY]:
         p = root / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(f"workspace {rel}", encoding="utf-8")
@@ -86,7 +86,9 @@ class MainTests(unittest.TestCase):
                          "workspace .claude/skills/adhd/SKILL.md")
         self.assertIn("upstream changed .agents/skills/adhd/SKILL.md", log)
         man = json.loads((self.out / "MANIFEST.json").read_text())
-        self.assertEqual(sorted(man["files"]), [".claude/skills/a/SKILL.md", ".claude/skills/adhd/SKILL.md"])
+        self.assertEqual(sorted(man["files"]), sorted([".claude/skills/a/SKILL.md", ".claude/skills/adhd/SKILL.md",
+                                                       *cr.WORKSPACE_ONLY]))
+        self.assertTrue((self.out / ".claude/setup/cowork_skills.py").is_file())
         self.assertNotIn("warning:", log)
 
     def test_unlisted_upstream_file_is_reported(self):

@@ -35,12 +35,13 @@ Neither is required, and neither is a first step. Do not probe for them up front
 `.claude/skills/<name>/` is the one real copy of every skill.
 
 - **Codex, Claude Code** and any app that reads `.claude/skills/` from the workspace: nothing to install. Say so.
-- **Claude Cowork** and any app that loads skills only from its own saved list: ask "Save a loader for each skill so Cowork can find them?" Only on a yes, for every folder under `.claude/skills/`:
-  1. Take `name` and `description` from its `SKILL.md` frontmatter.
-  2. Save a skill with the app's skill-saving tool (`save_skill` in Cowork), same `name` and `description`, body: "Read `.claude/skills/<name>/SKILL.md` from the attached folder and follow it exactly. If it is not present, say so and stop."
-  3. Overwrite a loader that already has that name.
+- **Claude Cowork** loads skills only from the owner's own Cowork, so install them there. Ask once: "Install this workspace's skills into your Cowork? I'll show a card for each skill and you click **Save skill** on each." On a yes:
+  1. First setup only, ask once: "Do you also want the video skills (about 27, some large)?" The core skills are always installed.
+  2. In the Bash sandbox, from the new workspace: `python3 .claude/setup/cowork_skills.py package artifacts/skills` (add `--video` on a yes). It checks each skill against Cowork's upload rules, zips it into `artifacts/skills/<name>.skill` and records what it packaged in `.claude/cowork-skills.json`.
+  3. Show every `.skill` file it lists in one `present_files` call. Tell the owner to click **Save skill** on each card, and that a card without that button means their organisation does not allow adding skills: they ask their admin, then you show the cards again.
+  4. For each `FAILED <name>` line, tell the owner that skill was not installed and why.
 
-  On an update: add loaders for new skills, re-save loaders whose `description` changed, overwrite a removed skill's loader with a body saying it is retired, and leave the owner's own skills alone unless they are in `.claude/skills/`. Tell the owner loaders only work in a session with this folder attached, and updating the folder updates the skills.
+  On an update, add `--previous <old workspace>`, the folder being replaced, never the new one. It keeps the old video choice and packages only skills that are new or changed. For each `removed: <name>` line, tell the owner to delete that skill in Cowork's skill settings. If it prints `loaders: yes`, the old setup used loader skills: saving the new cards replaces them, and any other old loader the owner did not get a card for (for example video skills) should be deleted in Cowork's skill settings. Leave the owner's own skills alone. Tell the owner the skills read and write this workspace, so keep this folder attached in Cowork.
 - **Another app:** point it at `.claude/skills/` (`ADAPTING.md` Part 1) and say what you could not do.
 
 ## Suggest rules
@@ -67,7 +68,8 @@ Only at the very end, after the owner has finished `ADAPTING.md` or declined it.
 4. Content to copy whole: memory notes, `memory/index.md`, the glossary rows the owner added, `memory/rules.md`, `CONTEXT.md`, the folder map, `.gitignore`, their own skills, and every folder from the folder map.
 5. Merge `memory/schema.json` by hand: keep the new Release's topics and keys, add the owner's `client_subjects`, keep their `client_folder`. Without their `client_folder` their notes sit in a folder the new workspace does not look at and the memory audit fails. Run `hubs.py` and `indexes.py` afterwards if Python is present.
 6. Do not copy `MANIFEST.json`, `CHANGELOG.md`, `START-HERE.md` or anything under `.claude/setup/`: the new Release's copies win.
-7. Keep the old `.git` folder only if the owner wants the history; ask first. Tell the owner the old workspace can be deleted when they are happy.
+7. Update the skills in the owner's app ("Skills in the owner's app" above, with `--previous`).
+8. Keep the old `.git` folder only if the owner wants the history; ask first. Tell the owner the old workspace can be deleted when they are happy.
 
 ### Older Releases
 

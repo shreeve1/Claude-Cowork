@@ -9,6 +9,12 @@ This repo is Release 5 plus the upstream local changes below, converted to the C
 
 Kept from the earlier Cowork edition: `convert-release` (now handles Release 5), `memory/preferences/cowork-environment.md` and `README.md`.
 
+Cowork-only changes:
+
+- Skills are installed into Cowork, not loaded through loader skills. Setup packages the core skills (video optional) with `.claude/setup/cowork_skills.py` and shows a **Save skill** card for each; an update shows cards only for new or changed skills.
+- `teach`, `youtube` and `hyperframes-audio` now pass Cowork's skill upload checks (no Claude Code-only frontmatter keys, no angle brackets in a description).
+- `.gitattributes` keeps text files LF so scripts and git hooks run in Cowork's Linux sandbox.
+
 ## Local changes
 
 On top of Release 5, in the upstream workspace:

@@ -49,6 +49,12 @@ KEEP_WORKSPACE = {
     ".claude/skills/teach/SKILL.md": "cf6d1bf8276a7a01fb97a720402f3452eb69ad90b573a2488684808e51091f76",
 }
 
+# Shipped files that exist only in this edition; copied from the workspace into every conversion.
+WORKSPACE_ONLY = {
+    ".gitattributes": {"class": "merge", "mode": "644"},
+    ".claude/setup/cowork_skills.py": {"class": "merge", "mode": "755"},
+}
+
 TEXT_EXT = (".md", ".py", ".json", ".txt", ".html", ".toml", ".yaml", ".ps1", ".sh", ".gitignore")
 
 # Files where AGENTS.md is a real web standard, not this workspace's instructions file.
@@ -77,6 +83,17 @@ TEXT_RULES = [
      "then list the `memory/preferences/` directory (Glob `memory/preferences/*.md`)"),
 ]
 
+# Replaces upstream's Cowork loader step in setup/README.md: Cowork gets real skills.
+COWORK_SKILLS_STEP = """\
+- **Claude Cowork** loads skills only from the owner's own Cowork, so install them there. Ask once: "Install this workspace's skills into your Cowork? I'll show a card for each skill and you click **Save skill** on each." On a yes:
+  1. First setup only, ask once: "Do you also want the video skills (about 27, some large)?" The core skills are always installed.
+  2. In the Bash sandbox, from the new workspace: `python3 .claude/setup/cowork_skills.py package artifacts/skills` (add `--video` on a yes). It checks each skill against Cowork's upload rules, zips it into `artifacts/skills/<name>.skill` and records what it packaged in `.claude/cowork-skills.json`.
+  3. Show every `.skill` file it lists in one `present_files` call. Tell the owner to click **Save skill** on each card, and that a card without that button means their organisation does not allow adding skills: they ask their admin, then you show the cards again.
+  4. For each `FAILED <name>` line, tell the owner that skill was not installed and why.
+
+  On an update, add `--previous <old workspace>`, the folder being replaced, never the new one. It keeps the old video choice and packages only skills that are new or changed. For each `removed: <name>` line, tell the owner to delete that skill in Cowork's skill settings. If it prints `loaders: yes`, the old setup used loader skills: saving the new cards replaces them, and any other old loader the owner did not get a card for (for example video skills) should be deleted in Cowork's skill settings. Leave the owner's own skills alone. Tell the owner the skills read and write this workspace, so keep this folder attached in Cowork.
+"""
+
 # Per-file rules, applied after TEXT_RULES and the AGENTS.md rename. Each strips upstream's
 # Codex adaptation; a rule that stops matching means upstream changed that text.
 FILE_RULES = {
@@ -87,17 +104,39 @@ FILE_RULES = {
         (re.compile(r"## Codex runtime\n.*?\n\n+(?=## )", re.S), ""),
         (" They are not enabled in this Codex workspace; run those checks directly before commits.", ""),
     ],
-    ".claude/setup/ADAPTING.md": [
-        (re.compile(r"Codex reads `CLAUDE\.md` and `\.claude/skills/` directly\..*?\n\n", re.S), ""),
-    ],
     ".claude/setup/README.md": [
         (" A short `CLAUDE.md` that only says \"Read CLAUDE.md\" is fine when the owner's app needs one.", ""),
         ("Using Codex on Windows, with hooks skipped: `CODEX.md`.\n\n", ""),
+        (re.compile(r"- \*\*Claude Cowork\*\* and any app that loads skills only from its own saved list:.*?\n(?=- \*\*Another app:\*\*)",
+                    re.S), COWORK_SKILLS_STEP),
+        ("7. Keep the old `.git` folder only if the owner wants the history;",
+         "7. Update the skills in the owner's app (\"Skills in the owner's app\" above, with `--previous`).\n"
+         "8. Keep the old `.git` folder only if the owner wants the history;"),
+    ],
+    ".claude/setup/ADAPTING.md": [
+        (re.compile(r"Codex reads `CLAUDE\.md` and `\.claude/skills/` directly\..*?\n\n", re.S), ""),
+        ("some read another file name (for example `CLAUDE.md`)", "some read another file name (for example `AGENTS.md`)"),
+        ("this is the loader step in `README.md`", "this is the install step in `README.md`"),
+    ],
+    ".claude/skills/memory-setup/SKILL.md": [
+        ("In Claude Cowork, an existing `personal-memory` skill loader works when this folder is attached, "
+         "so save one only if none exists.",
+         "In Claude Cowork, use the `personal-memory` skill installed in the owner's Cowork; if it is missing, "
+         "zip `<skills>/personal-memory/` into `personal-memory.skill` (the folder at the zip root) and present "
+         "it with `present_files` so the owner can click Save skill."),
+    ],
+    ".claude/skills/personal-memory/scaffold/AGENTS-memory.md": [
+        ("into the project's CLAUDE.md or CLAUDE.md,", "into the project's CLAUDE.md,"),
+    ],
+    # Cowork's skill upload rejects angle brackets in a description.
+    ".claude/skills/hyperframes-audio/SKILL.md": [
+        ("for several tracks at once (`<hf-audio-group>`).", "for several tracks at once (an `hf-audio-group` element)."),
     ],
     ".claude/skills/startday-spec/references/adaptation-list.md": [
         (re.compile(r"   In Codex, use the available automation tools.*?shell loop\.\n\n", re.S), ""),
     ],
     ".claude/skills/youtube/SKILL.md": [
+        ("Use when the user says `/youtube <url>`,", "Use when the user says `/youtube` with a URL,"),
         (re.compile(r"In Codex, use the supplied OS and shell context first\..*?into shell code\.\n\n", re.S), ""),
         ("   - Prefer built-in web search for background research; use a connected read-only search tool if needed.\n"
          "   - Use the available web page-open tool for known, reachable URLs.",
@@ -193,7 +232,7 @@ def main(argv):
     if out.exists():
         print(f"{out} already exists; pick a new folder", file=sys.stderr)
         return 2
-    missing = [rel for rel in ("CLAUDE.md", *KEEP_WORKSPACE) if not (ws / rel).is_file()]
+    missing = [rel for rel in ("CLAUDE.md", *KEEP_WORKSPACE, *WORKSPACE_ONLY) if not (ws / rel).is_file()]
     if missing:
         print(f"{ws} is not this workspace (missing {', '.join(missing)})", file=sys.stderr)
         return 2
@@ -249,6 +288,15 @@ def convert(src, mpath, out, ws):
         if mode:
             dest.chmod(int(mode, 8))
         files[nrel] = dict(meta, sha256=sha(data))
+    for rel, meta in WORKSPACE_ONLY.items():
+        if rel in files:
+            raise SystemExit(f"{rel} now ships upstream; remove it from WORKSPACE_ONLY")
+        data = (ws / rel).read_bytes()
+        dest = out / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(data)
+        dest.chmod(int(meta["mode"], 8))
+        files[rel] = dict(meta, sha256=sha(data))
     man["files"] = dict(sorted(files.items()))
     (out / "MANIFEST.json").write_text(json.dumps(man, indent=1) + "\n", encoding="utf-8")
     print(f"converted {len(files)} files")

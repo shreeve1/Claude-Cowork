@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file MD041 -->
-<!-- Paste the sections below into the project's CLAUDE.md or CLAUDE.md, in place of any wiki section. Replace the skills-folder placeholder in the sections below with the path chosen in memory-setup step 2. -->
+<!-- Paste the sections below into the project's CLAUDE.md, in place of any wiki section. Replace the skills-folder placeholder in the sections below with the path chosen in memory-setup step 2. -->
 
 ## DO THIS FIRST: read memory before your first reply
 

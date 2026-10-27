@@ -9,7 +9,7 @@
 | [Shared Browser View for Web Questions](memory/preferences/browser-shared-view.md) | preference | For website questions or web sign-in walls, ask once to open a visible browser the owner can sign into; after a yes, open it automatically every time. | 2026-10-10 |
 | [Diagrams for Shared Understanding](memory/preferences/diagrams.md) | preference | Use flowcharts and diagrams as much as reasonably possible in every chat to reach shared understanding with the owner. | 2026-10-10 |
 | [Documents Go in Folders, Never the Root](memory/preferences/document-scaffolding.md) | preference | No loose files in the workspace root - folder map, naming, what git tracks vs ignores, formats; ask before new top-level folders. | 2026-10-20 |
-| [Claude Cowork Environment](memory/preferences/cowork-environment.md) | preference | Cowork paths, sandbox Python, git, skill loaders, update flow. | 2026-10-27 |
+| [Claude Cowork Environment](memory/preferences/cowork-environment.md) | preference | Cowork paths, sandbox Python, git, installing skills as .skill packages, update flow. | 2026-10-27 |
 | [Migration Ledger 2026-10-10](memory/docs/migration-ledger-2026-10-10.md) | doc | Release 1 Claude workspace -> Release 3 migration record. | 2026-10-10 |
 | [Research Document Guideline - Findings, Path to Close, Questions](memory/preferences/research-documents.md) | preference | Research files - answer-first Findings, max 7 sourced bullets, one-line Path to Close steps, one-sentence Questions. | 2026-10-10 |
 | [Meetings - Where Transcripts Land and How They Are Filed](memory/preferences/meetings.md) | preference | Settings the meeting skill reads first; transcripts folder, archive, record folder, work items, always/never rules. Setup fills it in. | 2026-10-22 |
