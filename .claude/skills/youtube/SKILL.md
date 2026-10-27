@@ -59,7 +59,7 @@ Do **not** mix transcript-derived claims into `web-research.md`. Do **not** mix 
 
 1. Pre-flight: detect OS, then confirm `yt-dlp` exists before creating temp or artifact directories.
 
-   Detect platform first:
+   If session context does not establish the OS, detect it with the active shell. macOS/Linux:
 
    ```bash
    uname -s
@@ -107,7 +107,7 @@ Do **not** mix transcript-derived claims into `web-research.md`. Do **not** mix 
 
    Options:
    1. Install with winget: winget install --id yt-dlp.yt-dlp -e
-   2. Install with pipx: py -m pip install --user pipx && py -m pipx ensurepath && pipx install yt-dlp
+   2. Install with pipx: run python -m pip install --user pipx, then python -m pipx ensurepath, then pipx install yt-dlp; stop if any command fails
    3. Stop here; you will install it manually.
 
    Reply with 1, 2, or 3.
@@ -148,7 +148,7 @@ Do **not** mix transcript-derived claims into `web-research.md`. Do **not** mix 
 
    ```bash
    URL="<youtube-url>"
-   TMPDIR="$(mktemp -d -t yt-extract-XXXXXX)"
+   YT_TEMP_DIR="$(mktemp -d -t yt-extract-XXXXXX)"
    yt-dlp \
      --skip-download \
      --write-auto-sub \
@@ -156,7 +156,7 @@ Do **not** mix transcript-derived claims into `web-research.md`. Do **not** mix 
      --sub-lang en \
      --sub-format vtt \
      --write-info-json \
-     -o "${TMPDIR}/%(title)s [%(id)s].%(ext)s" \
+     -o "${YT_TEMP_DIR}/%(title)s [%(id)s].%(ext)s" \
      "$URL"
    ```
 
@@ -164,7 +164,9 @@ Do **not** mix transcript-derived claims into `web-research.md`. Do **not** mix 
 
    ```powershell
    $Url = "<youtube-url>"
-   $TmpDir = New-Item -ItemType Directory -Path ([System.IO.Path]::Combine($env:TEMP, "yt-extract-$([guid]::NewGuid())"))
+   $YtTempRoot = Join-Path (Get-Location) 'tmp'
+   New-Item -ItemType Directory -Force -Path $YtTempRoot | Out-Null
+   $TmpDir = New-Item -ItemType Directory -Path (Join-Path $YtTempRoot "yt-extract-$([guid]::NewGuid())")
    yt-dlp `
      --skip-download `
      --write-auto-sub `
@@ -174,6 +176,7 @@ Do **not** mix transcript-derived claims into `web-research.md`. Do **not** mix 
      --write-info-json `
      -o "$($TmpDir.FullName)\%(title)s [%(id)s].%(ext)s" `
      "$Url"
+   if ($LASTEXITCODE -ne 0) { throw 'Subtitle pull failed; inspect the error and clean up the checked staging directory' }
    ```
 
    Mandatory exact flags:
@@ -187,6 +190,11 @@ Do **not** mix transcript-derived claims into `web-research.md`. Do **not** mix 
    - `--sub-lang en --sub-format vtt` constrains to English VTT.
 
 5. Handle pull failures:
+
+   Before any Windows cleanup or move, resolve full paths and verify staging
+   is a child of the workspace's `tmp/` and output is a child of its
+   `youtube/`. Use native PowerShell with `-LiteralPath` for actual files
+   (video titles can contain brackets); never pass paths to another shell.
 
    - Age-restricted, region-blocked, or private: messages like `ERROR: Sign in to confirm`, `Video unavailable`, `is not available`. Delete the temp directory, report reason, stop.
    - No English subtitles: if no `.en.vtt` exists in the temp directory after successful pull, delete the temp directory, report unavailable, stop. Audio transcription fallback is out of scope unless user explicitly asks.
@@ -204,7 +212,7 @@ Run Python over `.info.json` and hold fixed fields for both docs. Description is
 macOS/Linux shell:
 
 ```bash
-python3 - <<'PY' "${TMPDIR}"/*.info.json
+python3 - <<'PY' "${YT_TEMP_DIR}"/*.info.json
 import json, sys
 m = json.load(open(sys.argv[1]))
 desc = (m.get("description") or "")[:500]
@@ -222,20 +230,12 @@ PY
 Windows PowerShell:
 
 ```powershell
-$InfoJson = Get-ChildItem -Path $TmpDir.FullName -Filter *.info.json | Select-Object -First 1
-@'
-import json, sys
-m = json.load(open(sys.argv[1], encoding="utf-8"))
-desc = (m.get("description") or "")[:500]
-print(f"title:        {m.get('title')}")
-print(f"uploader:     {m.get('uploader')}")
-print(f"channel:      {m.get('channel')}")
-print(f"upload_date:  {m.get('upload_date')}")
-print(f"duration:     {m.get('duration')}")
-print(f"view_count:   {m.get('view_count')}")
-print(f"like_count:   {m.get('like_count')}")
-print(f"description:  {desc}")
-'@ | py - $InfoJson.FullName
+$InfoJson = Get-ChildItem -LiteralPath $TmpDir.FullName -Filter *.info.json | Select-Object -First 1
+if (-not $InfoJson) { throw 'Metadata file missing' }
+$VideoMetadata = Get-Content -LiteralPath $InfoJson.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
+$VideoDescription = [string]$VideoMetadata.description
+$VideoMetadata | Select-Object title,uploader,channel,upload_date,duration,view_count,like_count
+$VideoDescription.Substring(0, [Math]::Min(500, $VideoDescription.Length))
 ```
 
 ## Step 4: Create Artifact Directory
@@ -267,9 +267,9 @@ After pull and metadata parse succeed, compute final output path and move temp f
    ```bash
    OUT_DIR="youtube/<slug>-<VIDEO_ID>"
    mkdir -p "${OUT_DIR}/raw"
-   mv "${TMPDIR}"/*.en.vtt    "${OUT_DIR}/raw/"
-   mv "${TMPDIR}"/*.info.json "${OUT_DIR}/raw/"
-   rm -rf "${TMPDIR}"
+   mv "${YT_TEMP_DIR}"/*.en.vtt    "${OUT_DIR}/raw/"
+   mv "${YT_TEMP_DIR}"/*.info.json "${OUT_DIR}/raw/"
+   rm -rf "${YT_TEMP_DIR}"
    ```
 
    Windows PowerShell:
@@ -277,9 +277,16 @@ After pull and metadata parse succeed, compute final output path and move temp f
    ```powershell
    $OutDir = "youtube\<slug>-<VIDEO_ID>"
    New-Item -ItemType Directory -Force -Path "$OutDir\raw" | Out-Null
-   Move-Item -Path (Join-Path $TmpDir.FullName "*.en.vtt") -Destination "$OutDir\raw"
-   Move-Item -Path (Join-Path $TmpDir.FullName "*.info.json") -Destination "$OutDir\raw"
-   Remove-Item -Recurse -Force $TmpDir.FullName
+   $YtStaging = (Resolve-Path -LiteralPath $TmpDir.FullName).Path
+   $YtTempBase = (Resolve-Path -LiteralPath $YtTempRoot).Path.TrimEnd('\') + '\'
+   $YtRaw = (Resolve-Path -LiteralPath "$OutDir\raw").Path
+   $YtOutputBase = (Resolve-Path -LiteralPath youtube).Path.TrimEnd('\') + '\'
+   if (-not $YtStaging.StartsWith($YtTempBase, [StringComparison]::OrdinalIgnoreCase)) { throw 'Staging path outside workspace tmp' }
+   if (-not $YtRaw.StartsWith($YtOutputBase, [StringComparison]::OrdinalIgnoreCase)) { throw 'Output path outside workspace youtube' }
+   Get-ChildItem -LiteralPath $YtStaging -File | Where-Object { $_.Name -like '*.en.vtt' -or $_.Name -like '*.info.json' } | ForEach-Object {
+       Move-Item -LiteralPath $_.FullName -Destination $YtRaw -ErrorAction Stop
+   }
+   Remove-Item -LiteralPath $YtStaging -Recurse -Force
    ```
 
 ## Step 5: Write `transcript-extract.md`
@@ -446,15 +453,15 @@ Primary sources unreachable: {N} (see web-research.md → Primary Sources Attemp
 
 - Two artifacts, hard separation. Transcript-derived claims only in `transcript-extract.md`; web-derived claims only in `web-research.md`.
 - Read-only network posture. Never upload, post, authenticate, or download video media. `yt-dlp` uses `--skip-download`.
-- Create `youtube/` if missing; only writes go under `youtube/` at workspace root.
-- Stage pull in an OS temp directory (`mktemp -d` on macOS/Linux, `$env:TEMP` with a GUID folder on Windows); never write directly into `youtube/` before pull succeeds.
+- Create `youtube/` if missing; deliverables go there, while temporary staging uses the paths below.
+- Stage pull in an OS temp directory on macOS/Linux (`mktemp -d`), or a unique workspace `tmp/yt-extract-<guid>/` folder on Windows; never write directly into `youtube/` before pull succeeds.
 - Idempotent reruns use `<slug>-<VIDEO_ID>` suffix.
 - English only, v1. Cross-language subtitle support and audio transcription fallback are out of scope unless user asks.
 - Critical ordering:
   - Always detect OS and check `yt-dlp` exists before staging pull.
   - If missing, always ask before installing `yt-dlp` or dependencies.
   - Offer only OS-appropriate install commands.
-  - Always stage into an OS temp directory first.
+  - Always stage into the platform-appropriate temporary directory first.
   - Always write `transcript-extract.md` with no external citations.
   - Always write `web-research.md` with cited external claims.
   - Never mix transcript-only and web-verified claims in same file.

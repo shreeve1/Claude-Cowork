@@ -1,9 +1,44 @@
+# Python and tool caches
 __pycache__/
-*.pyc
+*.py[cod]
 .venv/
-.env
-.mcp.json
+.pytest_cache/
 .DS_Store
+Thumbs.db
+
+# Credentials and local connector configuration
+.env
+.env.*
+!.env.example
+.mcp.json
+
+# Generated working documents
+artifacts/
+tmp/
+.handoff/
+.teaching/
+brainstorming/
+
+# Private raw material and binary outputs; Markdown memory/research stay tracked
+memory/raw/
+youtube/**/raw/
+*.vtt
+*.srt
+*.info.json
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+*.mp3
+*.mp4
+*.wav
 *.zip
+
+# Skill state
 .claude/startday.state.json
-artifacts/migration/
+.pi/

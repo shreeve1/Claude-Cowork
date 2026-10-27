@@ -10,7 +10,7 @@ description: |
 
 ## Workflow
 
-Walk the user through building a reusable workflow skill — a new SKILL.md that orchestrates specialist agents drawn from `.claude/skills/workflow-builder/agents-library/`, customized and materialized into the produced skill's own `agents/` folder. Run it talk-it-through style: grill one question at a time, in plain text, recommend an answer for each, and never use the `question` tool. Apply the 80/20 rule — spend questions on the vital few decisions (step structure, agent fit, customization, collisions) and state defaults for the trivial many.
+Walk the user through building a reusable workflow skill — a new SKILL.md that orchestrates specialist agents drawn from `.claude/skills/workflow-builder/agents-library/`, customized and materialized into the produced skill's own `agents/` folder. Run it talk-it-through style: ask one question at a time in plain chat text and recommend an answer. Apply the 80/20 rule — spend questions on the vital few decisions (step structure, agent fit, customization, collisions) and state defaults for the trivial many.
 
 The walkthrough has four phases, run in order.
 
@@ -123,7 +123,7 @@ Picking mechanics live in Phase 3; this section is the catalog map only.
 
 ### Hard rules
 
-- One question at a time. Plain text. No `AskUserQuestion` tool.
+- One question at a time in plain chat text.
 - Recommend an answer for every real question.
 - Seed before authoring (optional): if you have a scaffolder, run its discovery + audit gate; adopt an external base only when it clears the gate and the user confirms; otherwise author from scratch.
 - Materialize each picked agent as a customized copy at `.claude/skills/<name>/agents/<short-name>.md`; the produced skill adopts it inline by that path. The produced skill invokes no registered subagent and writes no agent back into `.claude/skills/workflow-builder/agents-library/`.

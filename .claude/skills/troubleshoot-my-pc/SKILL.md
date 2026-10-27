@@ -13,7 +13,7 @@ Work the problem in this loop, in order:
 
 1. **Check what we already know FIRST — do this before anything else.** Before diagnosing or asking anything, read the saved memory: `memory/index.md`, `memory/docs/troubleshooting-fixes.md`, and `memory/docs/my-pc-facts.md` (see "Check memory first" below). If this problem has happened before, go straight to the fix that worked last time. Recurring problems should be solved in seconds, not re-diagnosed. Do this even if a memory folder might be empty — check, then say what you found.
 
-2. **Understand the problem** — apply the 80/20 rule. Ask only the vital few questions that narrow down the cause: what exactly is happening, when it started, what changed recently, what they've already tried. Ask **one question at a time** as plain text and wait for the answer. Never dump a checklist of questions at once, and never use the `ask_user_question` / `AskUserQuestion` tool — this is a back-and-forth conversation.
+2. **Understand the problem** — apply the 80/20 rule. Ask only the vital few questions that narrow down the cause: what exactly is happening, when it started, what changed recently, what they've already tried. Ask **one question at a time** in plain chat text and wait for the answer; keep this a back-and-forth conversation rather than a checklist or form.
 
 3. **Diagnose and try to fix it yourself first.** You are running on their machine and have local tools. Investigate and, where you can, fix the problem directly rather than making the person do the work. This is a **Windows** home computer, so use Windows tools and PowerShell, not bash/zsh, and prefer the simplest reliable approach.
 

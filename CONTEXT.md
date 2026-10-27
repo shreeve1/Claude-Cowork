@@ -13,12 +13,8 @@ A numbered version of one Edition. The owner's agent copies it into a new folder
 _Avoid_: update, sync, pull
 
 **Manifest**:
-The file shipped in every Release that lists each shipped file: shared files that must stay exactly as shipped, and starter files that are the owner's to edit.
+The file shipped in every Release that lists each shipped file: shared files that stay as shipped, and starter files that are the owner's to edit. Nothing checks it.
 _Avoid_: file list, lockfile
-
-**Migration Ledger**:
-The table in `memory/migration-ledger.md` that lists every item of the owner's old setup with its destination and outcome (moved, merged, dropped). Setup is not done until the check finds every old file in it.
-_Avoid_: migration log, inventory
 
 **Schema**:
 The one list of valid Client Subjects, memory topics, per-client document folders and the name of the client folder (`client_folder`, default `clients`) for a workspace. Each Edition ships its own, and the owner may change it.
@@ -52,8 +48,8 @@ _Avoid_: next steps, resolution plan
 
 - An **Edition** is built one-way from its source workspace: changes an owner makes never flow back, and each **Release** is set up by the owner's agent into a new folder, migrating the owner's content in.
 - An **Edition**'s skill list is chosen on its own, so a skill left out of one **Edition** is never restored because the other includes it.
-- An update is a fresh copy of the new **Release** with the owner's content migrated in by a **Migration Ledger**; shared files arrive as shipped, and personal rules live in memory, never in shared files.
-- The audit keeps failing any note whose subject is not in the **Schema**; migration moves such notes to a valid subject first.
+- An update is a fresh copy of the new **Release** with the owner's content brought across by their agent; shared files arrive as shipped, and personal rules live in memory, never in shared files.
+- The audit keeps failing any note whose subject is not in the **Schema**; the owner's agent moves such notes to a valid subject first.
 - **Client Subject** and topic values come from the **Schema**; an agent adds one only with the owner's approval.
 - **Client Memory** is the single home for lasting client facts; other memory topics hold tool quirks, not client facts.
 - A **Client Memory** note belongs to exactly one client and one **Client Subject**; a fact spanning subjects is filed under the subject a future task would look in first and linked from the other.

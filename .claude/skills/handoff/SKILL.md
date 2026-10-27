@@ -31,10 +31,11 @@ Preserve current session context so a fresh session or agent in this workspace c
    Windows PowerShell:
 
    ```powershell
-   $Folder = Join-Path (Get-Location) ".handoff"
-   New-Item -ItemType Directory -Force -Path $Folder | Out-Null
-   $Path = Join-Path $Folder "handoff-$(Get-Date -Format 'yyyyMMdd-HHmmss').md"
-   New-Item -ItemType File -Force -Path $Path | Select-Object -ExpandProperty FullName
+   $HandoffFolder = Join-Path (Get-Location) '.handoff'
+   New-Item -ItemType Directory -Force -Path $HandoffFolder | Out-Null
+   $HandoffName = 'handoff-{0}-{1}.md' -f (Get-Date -Format 'yyyyMMdd-HHmmss'), ([guid]::NewGuid().ToString('N').Substring(0,8))
+   $HandoffPath = Join-Path $HandoffFolder $HandoffName
+   New-Item -ItemType File -Path $HandoffPath | Select-Object -ExpandProperty FullName
    ```
 
    Read the newly created file before writing to it. Handoff files are local workspace artifacts and must remain gitignored. Valid handoff paths look like `.handoff/handoff-20260616-143022-12345.md`; invalid paths look like `.handoff/handoff-XXXXXX.md.dS3GV3BRyU` because they do not end exactly in `.md`.

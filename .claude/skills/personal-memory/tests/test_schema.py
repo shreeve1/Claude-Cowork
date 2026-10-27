@@ -1,4 +1,5 @@
 """Unit tests for schema.py: the memory Schema loader (contract 3)."""
+
 import json
 import sys
 import tempfile
@@ -45,7 +46,8 @@ class SchemaLoadTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             mem = Path(td)
             (mem / "schema.json").write_text(
-                json.dumps({"client_subjects": ["halo"]}), encoding="utf-8")
+                json.dumps({"client_subjects": ["halo"]}), encoding="utf-8"
+            )
             with self.assertRaises(SystemExit) as cm:
                 schema.load(mem)
             msg = str(cm.exception)
@@ -81,7 +83,6 @@ class SchemaLoadTests(unittest.TestCase):
                 with self.assertRaises(SystemExit) as cm:
                     schema.load(mem)
                 self.assertIn("client_folder", str(cm.exception))
-
 
 
 if __name__ == "__main__":

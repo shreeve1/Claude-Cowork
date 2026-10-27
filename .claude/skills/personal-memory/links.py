@@ -1,4 +1,5 @@
 """Memory note link graph: outgoing links, and backlinks computed by reversing it on demand."""
+
 import re
 from pathlib import Path, PurePosixPath
 
@@ -10,8 +11,11 @@ UNLINKABLE = re.compile(r"[<>*]|(^|/)\.\.(/|$)")
 
 
 def _sources(memory_dir):
-    return [p for p in memory_dir.rglob("*.md")
-            if p.name not in EXCLUDE_NAMES and not EXCLUDE_PARTS & set(p.parts)]
+    return [
+        p
+        for p in memory_dir.rglob("*.md")
+        if p.name not in EXCLUDE_NAMES and not EXCLUDE_PARTS & set(p.parts)
+    ]
 
 
 def _rel(p, memory_dir):

@@ -1,3 +1,0 @@
-#!/bin/sh
-# Used as core.hooksPath on computers without Python 3.11+ (INSTALL.md step 4): keeps the push protection.
-exec sh .githooks/pre-push "$@"

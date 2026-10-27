@@ -9,6 +9,7 @@ memory/candidates/ is not audited. When memory/rules.md exists, every skill and
 path a row names must exist, and every preference/email file must be reachable
 from it (named in a row, or in a memory file a row names).
 """
+
 import argparse
 import re
 import sys
@@ -34,11 +35,14 @@ SCAFFOLD = {"README.md", "TEMPLATES.md", "index.md"}
 HISTORY_LINE = re.compile(
     r"(?im)^\s*-?\s*(?:superseded|amended|updated)\s+\d{4}-\d{2}-\d{2}\b"
     r"|^\s*-?\s*\d{4}-\d{2}-\d{2}:?\s+(?:superseded|amended)\b"
-    r"|^\s*-\s*\d{4}-\d{2}-\d{2}:")
+    r"|^\s*-\s*\d{4}-\d{2}-\d{2}:"
+)
 CHANGED_LINE = re.compile(r"(?im)^\s*-?\s*changed\s+\d{4}-\d{2}-\d{2}")
 TABLE_PADDING = re.compile(r"(?:[^|\s]|\|) {2,}\|")
 SEPARATOR_ROW = re.compile(r"\|[\s:|-]+\|")
-COMPACT_FILES = ("index.md", "rules.md")
+COMPACT_FILES = ("index.md", "rules.md", "glossary.md")
+INDEX_LIMIT = 10240
+ROOT_LIMITS = {"CLAUDE.md": 16384, "CONTEXT.md": 24576}
 
 
 def indexed_paths(memory_dir):
@@ -64,8 +68,9 @@ def audit_index(memory_dir, indexed):
             actual_files.extend(f"memory/{d}/{f.name}" for f in sorted(p_dir.glob("*.md")))
     missing = [f for f in actual_files if f not in indexed]
     stale = sorted(
-        p for p in indexed
-        if p.startswith("memory/") and not (memory_dir / p[len("memory/"):]).exists()
+        p
+        for p in indexed
+        if p.startswith("memory/") and not (memory_dir / p[len("memory/") :]).exists()
     )
     return missing, stale
 
@@ -84,7 +89,8 @@ def audit_topic_dirs(memory_dir, indexed):
             if child.is_file():
                 if child.name not in ("index.md", ".gitkeep"):
                     problems.append(
-                        f"memory/{d}/{child.name}: promoted file directly in {d}/ (move it into a topic folder)")
+                        f"memory/{d}/{child.name}: promoted file directly in {d}/ (move it into a topic folder)"
+                    )
             elif child.is_dir() and child.name not in topics:
                 problems.append(f"memory/{d}/{child.name}: topic folder not in {topics}")
         for topic in topics:
@@ -103,16 +109,22 @@ def audit_index_links(memory_dir):
     """memory/index.md must link each sub-index."""
     content = hubs.read_note(memory_dir / "index.md")
     topic_dirs = schema.load(memory_dir)["topic_dirs"]
-    return [f"memory/index.md: missing link to memory/{d}/index.md"
-            for d in topic_dirs if f"memory/{d}/index.md" not in content]
+    return [
+        f"memory/index.md: missing link to memory/{d}/index.md"
+        for d in topic_dirs
+        if f"memory/{d}/index.md" not in content
+    ]
 
 
 def rule_rows(memory_dir):
     """Body rows of the memory/rules.md table (header and separator dropped)."""
     text = hubs.read_note(memory_dir / "rules.md")
-    rows = [l for l in text.splitlines() if l.startswith("|")]
-    return [r for r in rows if not re.fullmatch(r"\|[\s:|-]+\|", r)
-            and r.split("|")[1].strip() != "When"]
+    rows = [line for line in text.splitlines() if line.startswith("|")]
+    return [
+        r
+        for r in rows
+        if not re.fullmatch(r"\|[\s:|-]+\|", r) and r.split("|")[1].strip() != "When"
+    ]
 
 
 def audit_rules(memory_dir):
@@ -123,11 +135,22 @@ def audit_rules(memory_dir):
     skills, paths = set(), set()
     for row in rule_rows(memory_dir):
         skills |= set(RULE_SKILL.findall(row))
-        paths |= {t for t in TICK.findall(row)
-                  if ("/" in t or t.endswith(".md")) and not any(c in t for c in "<*")}
-    problems = [f"memory/rules.md: skill {s} not found" for s in sorted(skills)
-                if not (root / ".claude" / "skills" / s / "SKILL.md").exists()]
-    problems += [f"memory/rules.md: {p} not found" for p in sorted(paths) if not (root / p).exists()]
+        paths |= {
+            t
+            for t in TICK.findall(row)
+            if ("/" in t or t.endswith(".md")) and not any(c in t for c in "<*")
+        }
+    problems = [
+        f"memory/rules.md: skill {s} not found"
+        for s in sorted(skills)
+        if not any(
+            (base / ".claude" / "skills" / s / "SKILL.md").exists() for base in (root, Path.home())
+        )
+        and not (Path(__file__).resolve().parents[1] / s / "SKILL.md").exists()
+    ]
+    problems += [
+        f"memory/rules.md: {p} not found" for p in sorted(paths) if not (root / p).exists()
+    ]
     reached = set(paths)
     for p in paths:
         if p.startswith("memory/") and p.endswith(".md") and (root / p).exists():
@@ -156,8 +179,11 @@ def crowded(memory_dir):
 
 def note_files(memory_dir):
     """Hand-written memory notes: generated indexes, hubs, scaffold and raw/candidates excluded."""
-    return sorted(p for p in memory_dir.rglob("*.md")
-                  if p.name not in SCAFFOLD and not {"_hubs", "raw", "candidates"} & set(p.parts))
+    return sorted(
+        p
+        for p in memory_dir.rglob("*.md")
+        if p.name not in SCAFFOLD and not {"_hubs", "raw", "candidates"} & set(p.parts)
+    )
 
 
 def compact_row(row):
@@ -178,16 +204,25 @@ def compact_tables(text):
     out = []
     for line in text.splitlines(keepends=True):
         body = line.rstrip("\r\n")
-        out.append(compact_row(body) + line[len(body):])
+        out.append(compact_row(body) + line[len(body) :])
     return "".join(out)
+
+
+def in_git_repo(root: Path) -> bool:
+    return any((base / ".git").exists() for base in (root, *root.parents))
 
 
 def bloat(memory_dir):
     """Warning lines for oversize notes, long summaries, history lines, retired files and the retired log."""
     out = []
+    git = in_git_repo(memory_dir.resolve().parent)
     if (memory_dir / "log.md").exists():
-        out.append("memory/log.md is retired: put the entry in the commit message and delete the file")
-    if not (memory_dir / "rules.md").exists() and any(any((memory_dir / d).glob("*.md")) for d in RULE_REACHED_DIRS):
+        out.append(
+            "memory/log.md is retired: put the entry in the commit message and delete the file"
+        )
+    if not (memory_dir / "rules.md").exists() and any(
+        any((memory_dir / d).glob("*.md")) for d in RULE_REACHED_DIRS
+    ):
         out.append("memory/rules.md is missing: preference and email files are not routed")
     for p in note_files(memory_dir):
         if p.name == "log.md" and p.parent == memory_dir:
@@ -202,25 +237,62 @@ def bloat(memory_dir):
         size = p.stat().st_size
         if size > SIZE_LIMIT:
             compactable = p.parent == memory_dir and p.name in COMPACT_FILES
-            fix = "run gate.py compact" if compactable and len(compact_tables(hubs.read_note(p)).encode("utf-8")) <= SIZE_LIMIT else "trim or split"
+            fix = (
+                "run gate.py compact"
+                if compactable
+                and len(compact_tables(hubs.read_note(p)).encode("utf-8")) <= SIZE_LIMIT
+                else "trim or split"
+            )
             out.append(f"{rel}: {size} bytes, over {SIZE_LIMIT}; {fix}")
         if len(fm.get("summary", "")) > SUMMARY_LIMIT:
             out.append(f"{rel}: summary {len(fm['summary'])} chars, over {SUMMARY_LIMIT}")
         if fm.get("status") == "superseded":
-            out.append(f"{rel}: status superseded; delete the file, git keeps it")
+            out.append(
+                f"{rel}: status superseded; delete the file" + (", git keeps it" if git else "")
+            )
         elif HISTORY_LINE.search(text):
-            out.append(f"{rel}: history line; overwrite in place, git keeps the old text")
+            out.append(
+                f"{rel}: history line; overwrite in place"
+                + (", git keeps the old text" if git else "")
+            )
         elif len(CHANGED_LINE.findall(text)) > 1:
-            out.append(f"{rel}: more than one Changed line; keep only the reason that still matters")
+            out.append(
+                f"{rel}: more than one Changed line; keep only the reason that still matters"
+            )
     for row in hubs.read_note(memory_dir / "index.md").splitlines():
         cells = row.split("|")
         if row.startswith("| [") and len(cells) > 3 and len(cells[3].strip()) > SUMMARY_LIMIT:
-            out.append(f"memory/index.md: row {cells[1].strip()} summary over {SUMMARY_LIMIT} chars")
+            out.append(
+                f"memory/index.md: row {cells[1].strip()} summary over {SUMMARY_LIMIT} chars"
+            )
     for name in COMPACT_FILES:
         text = hubs.read_note(memory_dir / name) if (memory_dir / name).exists() else ""
         saved = len(text.encode("utf-8")) - len(compact_tables(text).encode("utf-8"))
         if saved:
-            out.append(f"memory/{name}: table padding costs {saved} bytes every session; run gate.py compact")
+            out.append(
+                f"memory/{name}: table padding costs {saved} bytes every session; run gate.py compact"
+            )
+    return out
+
+
+def budgets(memory_dir, root=None):
+    """Warning lines for the generated indexes and the workspace-root context files, which the per-note limit skips."""
+    out = []
+    for p in sorted(memory_dir.rglob("index.md")):
+        if {"_hubs", "raw", "candidates"} & set(p.parts):
+            continue
+        size = p.stat().st_size
+        if size > INDEX_LIMIT:
+            out.append(
+                f"memory/{p.relative_to(memory_dir).as_posix()}: {size} bytes, over {INDEX_LIMIT}; prune or merge the notes it lists"
+            )
+    root = Path(root) if root else memory_dir.resolve().parent
+    for name, limit in ROOT_LIMITS.items():
+        p = root / name
+        if p.is_file() and p.stat().st_size > limit:
+            out.append(
+                f"{name}: {p.stat().st_size} bytes, over {limit}; move detail into memory or split it by area"
+            )
     return out
 
 
@@ -255,10 +327,19 @@ def audit_clients(memory_dir, indexed):
     problems = []
     known = set(PROMOTED_DIRS) | set(data["topic_dirs"]) | {"candidates", "raw", folder}
     for d in sorted(p for p in memory_dir.iterdir() if p.is_dir() and p.name not in known):
-        stray = next((n for n in sorted(d.rglob("*.md")) if hubs.parse_frontmatter(n).get("type") == "client-memory"), None)
+        stray = next(
+            (
+                n
+                for n in sorted(d.rglob("*.md"))
+                if hubs.parse_frontmatter(n).get("type") == "client-memory"
+            ),
+            None,
+        )
         if stray:
-            problems.append(f"memory/{d.name}/: holds Client Memory notes (e.g. {stray.name}) but client_folder is "
-                            f"'{folder}'; set client_folder to '{d.name}' in memory/schema.json or move the notes")
+            problems.append(
+                f"memory/{d.name}/: holds Client Memory notes (e.g. {stray.name}) but client_folder is "
+                f"'{folder}'; set client_folder to '{d.name}' in memory/schema.json or move the notes"
+            )
     for p in hubs.note_paths(memory_dir):
         rel = "memory/" + p.relative_to(memory_dir).as_posix()
         parts = p.relative_to(root).parts
@@ -298,6 +379,11 @@ def audit_clients(memory_dir, indexed):
 def main():
     ap = argparse.ArgumentParser(description="Audit personal memory index and Client Memory.")
     ap.add_argument("--memory", default="memory", help="Memory directory root (default: memory)")
+    ap.add_argument(
+        "--root",
+        default=None,
+        help="Workspace root holding CLAUDE.md and CONTEXT.md (default: parent of --memory)",
+    )
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("audit", help="Audit index alignment and Client Memory")
     sub.add_parser("crowded", help="Report memory folders holding more than 15 direct .md files")
@@ -333,7 +419,9 @@ def main():
             if new != old:
                 with open(path, "w", encoding="utf-8", newline="") as f:
                     f.write(new)
-            print(f"memory/{name}: {len(old.encode('utf-8')) - len(new.encode('utf-8'))} bytes removed")
+            print(
+                f"memory/{name}: {len(old.encode('utf-8')) - len(new.encode('utf-8'))} bytes removed"
+            )
         sys.exit(0)
     if args.cmd == "links":
         graph = links.build(mem_path)
@@ -352,7 +440,9 @@ def main():
             print("No inbound links:")
             for p in inc:
                 print(f"- {p}")
-        print(f"links: {len(links.notes(graph))} notes, {len(brk)} broken, {len(out)} no outgoing, {len(inc)} no inbound")
+        print(
+            f"links: {len(links.notes(graph))} notes, {len(brk)} broken, {len(out)} no outgoing, {len(inc)} no inbound"
+        )
         sys.exit(0)
     if args.cmd == "backlinks":
         found = links.backlinks(links.build(mem_path), args.path)
@@ -362,7 +452,6 @@ def main():
         else:
             print("none")
         sys.exit(0)
-
 
     if args.cmd != "audit":
         ap.error(f"unknown command: {args.cmd}")
@@ -378,7 +467,9 @@ def main():
     rule_problems = audit_rules(mem_path)
     failed = False
     if missing or stale:
-        print("Memory index out of sync: missing_from_index=%s stale_in_index=%s" % (missing, stale))
+        print(
+            "Memory index out of sync: missing_from_index=%s stale_in_index=%s" % (missing, stale)
+        )
         failed = True
     if topic_problems:
         print("Topic folder problems:")
@@ -401,7 +492,7 @@ def main():
             print(f"- {line}")
         failed = True
     graph = links.build(mem_path)
-    warnings = crowded(mem_path) + bloat(mem_path)
+    warnings = crowded(mem_path) + bloat(mem_path) + budgets(mem_path, args.root)
     warnings.extend(f"{src}: broken link {target}" for src, target in links.broken(graph, mem_path))
     for line in warnings:
         print(f"Warning: {line}")

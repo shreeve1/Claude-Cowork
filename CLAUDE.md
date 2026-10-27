@@ -4,7 +4,7 @@ Instructions for AI agents working in this workspace.
 
 ## Hard rule: Keep responses concise
 
-In all interactions and commit messages, be extremely concise and sacrifice grammar for the sake of concision.
+In all interactions and commit messages, be extremely concise, in plain full sentences.
 
 ## DO THIS FIRST: run these tool calls before your first reply
 
@@ -23,7 +23,6 @@ This directory is a workspace configuration area, not normal application source 
 Primary audience: AI agents. Secondary audience: teammates reading the same operating rules.
 
 Before committing a change to a skill script, have a `reviewer` agent review the diff against `CODING_STANDARDS.md`. Same review for an agent-written memory change touching more than 10 notes: the reviewer reads both ends of every new link.
-
 
 ## Core behavior
 
@@ -119,7 +118,7 @@ Strong success criteria allow independent progress. Weak goals like “make it b
 
 ## Personal workspace memory
 
-This workspace uses `memory/` for local, personal, non-code memory. Git here is local only (no remote), and populated memory `.md` files are tracked so they have version history. Hooks live in `.githooks/` (`core.hooksPath`): pre-commit scans for secrets, runs `gate.py audit` and the skill tests; commit-msg caps the subject at 72 characters; pre-push refuses every push.
+This workspace uses `memory/` for local, personal, non-code memory. Populated memory `.md` files are tracked in git so they have version history. Hooks live in `.githooks/`: pre-commit scans for secrets, runs `gate.py audit` and the skill tests; commit-msg caps the subject at 72 characters.
 
 Use the `personal-memory` skill when capturing, checking, promoting, pruning, or using memory under `memory/`.
 
@@ -167,7 +166,7 @@ Keep suggestions lightweight. Do not turn every response into a workflow checkli
 
 ## Documents and folder scaffolding
 
-Never save a document to the workspace root. The root holds only `CLAUDE.md`, `CONTEXT.md`, `CODING_STANDARDS.md`, `.gitignore`, and `.mcp.json`.
+Never save a document to the workspace root. The root holds only `CLAUDE.md`, `CONTEXT.md`, `CODING_STANDARDS.md`, `.gitignore`, `.mcp.json`, and the Release records `MANIFEST.json`, `CHANGELOG.md` and `START-HERE.md`.
 
 The folder map, naming, precedence, git-ignore status and file formats are in `memory/preferences/document-scaffolding.md`, read at session start. Default folder when nothing fits: `artifacts/<topic>/`.
 

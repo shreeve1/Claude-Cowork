@@ -10,7 +10,6 @@ The owner must verify the loop on a test system (or a test list of items that ca
 
 2. **Local reach.** The runner must see this workspace and the owner's MCP config. Python is needed only for `watch.py`, the change detection for Meetings and Watch. Without Python those two modules use the by-hand method in `modules.md` "Watching without Python": less exact, more tokens per run, so tell the owner. Look-back and memory notes need no script (`personal-memory` has a no-Python path). Test a run writes a file here before anything else.
 
-
 3. **Notification mechanism.** How a message reaches the owner on this machine: desktop notification, chat, email to self, or only the approvals page. Test that one arrives. Keep private details out of it.
 
 4. **Timezone.** The machine's clock and the owner's working timezone may differ. Find both and use the owner's for Hours. Scheduled tasks use the machine's local time.
@@ -27,7 +26,8 @@ The owner must verify the loop on a test system (or a test list of items that ca
 
 - Run one full day on the test system: gather, research, draft, tick one approval, execute it, reject one, wrap up.
 - Check rule 5 directly: type a note and an answer in a research file, run a turn, and confirm both are untouched.
-- With Meetings picked: drop a test transcript into the folder, wait two minutes and one run, and confirm a meeting record appears.
+- With Calendar picked: book a test event with another attendee inside the brief lead time, run a turn, and confirm the day plan lists it as fixed and its brief appears. Move it and confirm the next run updates the day plan once. Book one for tomorrow morning and confirm the wrap-up lists it.
+- With Meetings picked: drop a test transcript into the folder, wait two minutes and one run, and confirm a meeting record appears and the transcript moved to the archive folder. Run once more and confirm nothing is reprocessed.
 - With Watch picked: change a watched file, confirm the next run reports it once and the run after reports nothing.
 - With Look-back picked: plant three rejections on three different items, each with the same reason in the owner's words. Run it and confirm one memory note is written, listing those three items as its source, with a `memory/rules.md` row that reaches it. Then plant five agent-written voids from one cause (for example `superseded: tone rule`) with no owner feedback, run it again, and confirm it writes only a candidate line in the activity log.
 - With Look-back picked, also check the window: plant one rejection on one item, run it (a candidate line, no note). Run it again a week later with the same rejection still there and confirm it is not counted twice, then add two more on other items and confirm the note is written.

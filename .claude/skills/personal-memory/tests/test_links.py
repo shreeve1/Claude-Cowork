@@ -1,9 +1,10 @@
 """gate.py links/backlinks over the memory note link graph: broken links and orphans."""
+
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from test_indexes import GATE, INDEXES, make_index, make_schema, run_script  # noqa: E402
 
@@ -44,16 +45,20 @@ class LinksTests(unittest.TestCase):
             ("guides/a.md", "see ](memory/guides/b.md#section)\n"),
             ("guides/b.md", "b\n"),
         )
-        self.assertEqual(run_script(GATE, mem, "backlinks", "memory/guides/b.md").stdout,
-                         "- memory/guides/a.md\n- memory/index.md\n")
+        self.assertEqual(
+            run_script(GATE, mem, "backlinks", "memory/guides/b.md").stdout,
+            "- memory/guides/a.md\n- memory/index.md\n",
+        )
 
     def test_backticked_path_counts(self):
         mem = memory_with(
             ("rules.md", "load `memory/preferences/tone.md`\n"),
             ("preferences/tone.md", "tone\n"),
         )
-        self.assertEqual(run_script(GATE, mem, "backlinks", "memory/preferences/tone.md").stdout,
-                         "- memory/index.md\n- memory/rules.md\n")
+        self.assertEqual(
+            run_script(GATE, mem, "backlinks", "memory/preferences/tone.md").stdout,
+            "- memory/index.md\n- memory/rules.md\n",
+        )
 
     def test_index_and_hub_links_do_not_count(self):
         mem = memory_with(
@@ -72,7 +77,9 @@ class LinksTests(unittest.TestCase):
             ("_hubs/acme.md", "see ](memory/guides/x.md)\n"),
         )
         out = run_script(GATE, mem, "backlinks", "memory/guides/x.md").stdout
-        self.assertEqual(out, "- memory/_hubs/acme.md\n- memory/guides/index.md\n- memory/index.md\n")
+        self.assertEqual(
+            out, "- memory/_hubs/acme.md\n- memory/guides/index.md\n- memory/index.md\n"
+        )
         links_out = run_script(GATE, mem, "links").stdout
         self.assertIn("No inbound links:\n- memory/guides/x.md\n", links_out)
 
@@ -85,7 +92,9 @@ class LinksTests(unittest.TestCase):
         self.assertIn("Broken links:\n- memory/guides/a.md -> memory/guides/missing.md\n", out)
         proc = run_script(GATE, mem, "audit")
         self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
-        self.assertIn("Warning: memory/guides/a.md: broken link memory/guides/missing.md", proc.stdout)
+        self.assertIn(
+            "Warning: memory/guides/a.md: broken link memory/guides/missing.md", proc.stdout
+        )
 
     def test_no_outgoing_and_self_link_ignored(self):
         mem = memory_with(
@@ -97,7 +106,10 @@ class LinksTests(unittest.TestCase):
 
     def test_placeholder_and_glob_paths_are_not_links(self):
         mem = memory_with(
-            ("guides/a.md", "shape `memory/workflows/<topic>/<slug>.md` and ](memory/preferences/*.md)\n"),
+            (
+                "guides/a.md",
+                "shape `memory/workflows/<topic>/<slug>.md` and ](memory/preferences/*.md)\n",
+            ),
             ("guides/b.md", "b\n"),
         )
         out = run_script(GATE, mem, "links").stdout
@@ -106,7 +118,10 @@ class LinksTests(unittest.TestCase):
 
     def test_parent_dir_and_non_note_targets_are_not_links(self):
         mem = memory_with(
-            ("guides/a.md", "](memory/../../outside.md) `memory/../x.md` ](memory/workflows) ](memory/logo.png)\n"),
+            (
+                "guides/a.md",
+                "](memory/../../outside.md) `memory/../x.md` ](memory/workflows) ](memory/logo.png)\n",
+            ),
             ("guides/b.md", "b\n"),
         )
         out = run_script(GATE, mem, "links").stdout

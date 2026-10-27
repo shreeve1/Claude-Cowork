@@ -20,7 +20,10 @@ Read at session start. Load every Always row now. Before each task, load every r
 | Shorthand name of a client, person or system | | `memory/glossary.md` | |
 | A word that sounds like a defined term | | `CONTEXT.md` | |
 | Using a tool, connector or workstation setup | | `memory/workflows/index.md` | Open the entries that fit. |
+| The owner starts defining a procedure ("let's define a procedure for …") | | `memory/README.md`, `memory/TEMPLATES.md`, `memory/workflows/index.md` | Saves only with owner approval; README "Capture" has the flow, TEMPLATES "Procedure File" the shape. |
+| Processing a meeting transcript, or the owner names who a meeting was with | skill `meeting` | `memory/preferences/meetings.md` | Settings first; ask the skill's First use questions when they are not set. |
+| A task a saved procedure covers | | `memory/workflows/index.md` | Open and follow the matching procedure file. |
 | A choice that may already be decided | | `memory/decisions/index.md` | |
 | A hard-to-reverse choice only the owner can make | skill `talk-it-through` | | Routine choices get a stated default instead. |
 | Problem outside the owner's usual work, or the owner asks for an expert view | skill `professional-guidance` | | |
-| Saving, pruning or checking memory | skill `personal-memory` | | |
+| Saving, pruning or checking memory | skill `personal-memory` | `memory/preferences/memory-maintenance.md` | Replace or merge in place before appending; sweep references after. |

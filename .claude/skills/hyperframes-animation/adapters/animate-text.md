@@ -9,7 +9,7 @@ For deterministic text-animation specs (e.g., `typewriter` at exact `240ms / 46m
 When a beat needs a deterministic text animation, load the upstream skill alongside this one:
 
 ```bash
-# In your project root, install the upstream skill into .agents/skills/
+# In your project root, install the upstream skill into .claude/skills/
 npx skills add pixel-point/animate-text
 ```
 
@@ -22,8 +22,8 @@ Or in a skill-aware agent runtime, the skill is invoked by name:
 Once installed, the specs live at:
 
 ```
-.agents/skills/animate-text/assets/effects/<id>.json   # per-library implementation recipe
-.agents/skills/animate-text/assets/specs/<id>.json     # portable motion contract
+.claude/skills/animate-text/assets/effects/<id>.json   # per-library implementation recipe
+.claude/skills/animate-text/assets/specs/<id>.json     # portable motion contract
 ```
 
 Sub-agents reading those files get exact GSAP timings, easing strings, DOM split rules, and stagger algorithms — no creative invention needed.

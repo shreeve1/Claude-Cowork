@@ -2,7 +2,7 @@
 
 This directory is a local, personal memory area for sessions in this workspace.
 
-Populated memory `.md` files are tracked in this workspace's local git repo. The repo has no remote and a pre-push hook refuses pushes, so memory never leaves the machine. Never store credentials. Binaries and `raw/` stay git-ignored.
+Populated memory `.md` files are tracked in this workspace's git repo. History travels with any push or offload, so never store credentials. Binaries and `raw/` stay git-ignored.
 
 
 ## Purpose
@@ -24,7 +24,7 @@ Use `memory/` to preserve durable non-code preferences and useful working contex
 - Client and third-party information (names, environments, contacts, config facts) is allowed in summaries. Exception: Ticket Guides in `guides/` stay redacted.
 - Prefer summaries over raw content.
 - Store raw snippets only when explicitly requested, with credentials stripped.
-- Keep memory local: commit to the local repo only; never add a remote or push it.
+- Keep memory local: commit to the local repo only. Add a remote or push only when a decision note allows it.
 
 ## Data Classes
 

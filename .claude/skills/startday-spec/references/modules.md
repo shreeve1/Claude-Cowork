@@ -2,23 +2,36 @@
 
 The core (the six rules, research files, approvals, questions, wrap-up) is always on. Modules are what feeds it. The owner picks any mix; each picked module adds its section from the skeleton. A module left out leaves no trace in the finished skill.
 
-Work items, Meetings and Watch write only research files, the approvals page and questions (Meetings also saves facts to memory with `personal-memory`). Look-back is not a feed: it reviews what the owner's feedback taught across many days, and writes memory only through `personal-memory`. The six rules cover all four unchanged.
+Calendar, Work items, Meetings and Watch write only research files, the approvals page and questions (Meetings also saves facts to memory with `personal-memory`). Look-back is not a feed: it reviews what the owner's feedback taught across many days, and writes memory only through `personal-memory`. The six rules cover all five unchanged.
+
+## Calendar
+
+The shape of the day. Most owners start from their calendar, so the interview asks about it first and the other modules plan around it. Interview questions 1 to 5 define it.
+
+- **Source:** the owner's calendar through a connector or CLI the agent can already read (Google Calendar, Microsoft 365, CalDAV, a published calendar link). Reading is never a change; accepting, declining, booking, moving or cancelling an event is, and is drafted as an approval.
+- **Kinds:** each event is **fixed** (a time the owner must be there: other attendees, a call, a site visit), **flexible** (the owner's own blocks and placeholders: work them whenever fits, never wait for the slot) or **ignored** (declined, all-day reminders, personal, anything the owner named). The interview sets the rule; an event it does not cover counts as fixed.
+- **Day plan:** on the first run, write today's events at the top of the activity log, fixed ones with their times, flexible ones as "any time", plus the free gaps between fixed events so the owner sees when they are free.
+- **Order:** items linked to today's fixed events are researched first, by start time; then items linked to flexible events; then everything else.
+- **Brief:** before each fixed event the Brief rule names (lead time from the interview), write a brief in the research folder: time, attendees, purpose from the invite, linked work items with their Path to Close, notes from the last meeting with the same people, open questions and the owner's open promises. Link it from the day plan. Write or refresh a brief only after the run has researched its linked work items, so an imminent meeting's items are researched first and its brief is never built on empty research files. A brief is research, never a change.
+- **Passed events:** a fixed event whose end time has passed is not "upcoming" any more; never write "at today's <time> meeting" for it. With Meetings picked, its transcript produces the follow-ups. Without Meetings, at its end add one question to the linked work item's research file, or to the activity log when no item is linked: "Anything to follow up from <event>?" A flexible event whose time has passed stays open work until it is done, or until the wrap-up drops it and says so.
+- **Changes during the day:** every run, read today's events again. A new, moved or cancelled fixed event updates the day plan and gets one activity log line; a new fixed event inside the lead time gets its items researched and its brief written in the same run.
+- **Linking:** an event belongs to a work item only when the invite names the item, its client or a person tied to it. A guess from the time alone is a question, never a link.
+- **Tomorrow:** in the wrap-up, list tomorrow's fixed events before midday, so the owner sees an early start the evening before.
 
 ## Work items
 
-Things the owner drives to completion: tickets, tasks, email threads, projects. Interview questions 1 to 3 define them. Each gets a research file with a Path to Close.
+Things the owner drives to completion: tickets, tasks, email threads, projects. Interview questions 6 to 8 define them. Each gets a research file with a Path to Close.
 
 
 ## Meetings
 
-Turns finished meeting transcripts into facts, decisions and drafted follow-ups.
+Turns finished meeting transcripts into facts, decisions and drafted follow-ups. The `meeting` skill does the work; this module decides when it runs.
 
-- **Source:** a folder the owner's transcription tool saves to (Teams, Zoom, Otter, Granola and others can export or sync to a folder). Watched with `scripts/watch.py`, or by hand when Python is missing (see "Watching without Python"), as a `path` target with `"use": "meetings"`. A tool that only keeps transcripts online needs a connector the agent can read; otherwise this module is not available.
-- **Per transcript, write a meeting record** in the research folder: date, who attended, a short summary, decisions, the owner's own commitments, other people's action items, and open questions.
-- **Facts** worth keeping go to memory with the `personal-memory` skill, each with the meeting as its source.
-- **Follow-ups** (an email to send, a task to create, time to book) are drafted as approvals on the matching work item's research file, or on the meeting record when no item matches.
-- **Who it belongs to** is only a guess until the transcript itself names the person, company or item. When unsure, add a question ("Is the meeting on <date> about <item>?") and keep the facts in the record until it is answered.
-- A transcript still being written is not read: `watch.py` waits until the file has not changed for two minutes.
+- **Source:** the transcripts folder in `memory/preferences/meetings.md` (the `meeting` skill's settings), which the owner's transcription tool saves to (Teams, Zoom, Otter, Granola and others can export or sync to a folder). Watched with `scripts/watch.py`, or by hand when Python is missing (see "Watching without Python"), as a `path` target with `"use": "meetings"`. A tool that only keeps transcripts online needs a connector the agent can read; otherwise this module is not available.
+- **Per new or changed transcript, run the `meeting` skill** on that file. It writes the meeting record, saves lasting facts with `personal-memory`, adds progress to the matching work item's research file, drafts follow-ups as approvals there (or on the record when no item matches), asks when it is unsure who the meeting was with, and moves the transcript to the archive folder.
+- **Who it belongs to:** with Calendar picked, pass the fixed event overlapping the transcript's start time to the skill as its first guess. It is still only a guess until the transcript itself names the person, company or item.
+- **Archive:** a transcript the skill archived shows up in the next `watch.py` run as `gone` when the archive sits inside the watched folder. That is expected: ignore `gone` changes for the meetings target. Files under the archive folder are already processed: ignore their `new` changes too.
+- A transcript still being written is not read: `watch.py` and the skill both wait until it has not changed for two minutes.
 
 ## Watch
 
