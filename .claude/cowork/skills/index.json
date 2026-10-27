@@ -43,6 +43,10 @@
   "set": "video",
   "sha256": "3b35f2238b506dc21a46c1e7ddc56eb5c52650cf14218397fc5e9901518a9b13"
  },
+ "drawio": {
+  "set": "core",
+  "sha256": "ada065fff91f0a3d2e84b812695878a505117a89eb9dda064128a8381e0d011a"
+ },
  "embedded-captions": {
   "set": "video",
   "sha256": "692d56467d6b01a56a811ef9902ae5dd6095a6810c183677d9dea5c62aad8358"

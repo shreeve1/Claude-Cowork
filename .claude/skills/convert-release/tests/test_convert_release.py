@@ -63,6 +63,16 @@ class ConvertTextTests(unittest.TestCase):
         self.assertEqual(out, "# Decision Index\n\nGenerated.\n\n## projects\n\n- [Keep me](b.md) y\n")
 
 
+class TreeShaTests(unittest.TestCase):
+    def test_line_endings_do_not_change_the_hash(self):
+        with tempfile.TemporaryDirectory() as td:
+            a, b = Path(td, "a"), Path(td, "b")
+            for root, text in ((a, b"x\ny\n"), (b, b"x\r\ny\r\n")):
+                (root / "d").mkdir(parents=True)
+                (root / "d/f.md").write_bytes(text)
+            self.assertEqual(cr.tree_sha(a, {"d/f.md"}), cr.tree_sha(b, {"d/f.md"}))
+
+
 class MainTests(unittest.TestCase):
     def setUp(self):
         self.td = Path(tempfile.mkdtemp())
@@ -97,6 +107,18 @@ class MainTests(unittest.TestCase):
         code, log = run(self.src, self.out, self.ws)
         self.assertEqual(code, 0, log)
         self.assertIn("warning: stray.md", log)
+
+    def test_replaced_upstream_skill_is_swapped_for_workspace_version(self):
+        release(self.src, {"a.md": "x", ".agents/skills/drawio/SKILL.md": "upstream"})
+        (self.src / ".agents/skills/drawio/scripts").mkdir(parents=True)
+        (self.src / ".agents/skills/drawio/scripts/server.mjs").write_text("x")
+        code, log = run(self.src, self.out, self.ws)
+        self.assertEqual(code, 0, log)
+        self.assertNotIn("warning:", log)
+        self.assertIn("check: upstream changed .agents/skills/drawio/", log)
+        self.assertEqual((self.out / ".claude/skills/drawio/SKILL.md").read_text(),
+                         "workspace .claude/skills/drawio/SKILL.md")
+        self.assertFalse((self.out / ".claude/skills/drawio/scripts").exists())
 
     def test_wrong_workspace_writes_nothing(self):
         release(self.src, {"a.md": "x"})

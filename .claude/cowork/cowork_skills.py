@@ -29,7 +29,7 @@ CORE = (
     "personal-memory", "memory-setup", "meeting", "professional-guidance", "talk-it-through",
     "brainstorm-idea", "adhd", "teach", "handoff", "startday-spec", "workflow-builder",
     "antislop", "antislop-code", "antislop-copywriting", "antislop-human", "antislop-layoutmobile",
-    "antislop-ui", "excalidraw-diagram", "youtube", "troubleshoot-my-pc",
+    "antislop-ui", "excalidraw-diagram", "drawio", "youtube", "troubleshoot-my-pc",
 )
 # The workspace maintainer's own skill; never packaged.
 NEVER = ("convert-release",)

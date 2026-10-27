@@ -49,10 +49,18 @@ KEEP_WORKSPACE = {
     ".claude/skills/teach/SKILL.md": "cf6d1bf8276a7a01fb97a720402f3452eb69ad90b573a2488684808e51091f76",
 }
 
+# Upstream skill folders replaced by this edition's own version (its files are in WORKSPACE_ONLY),
+# pinned to a hash of the upstream folder that was reviewed; a different upstream folder is reported.
+REPLACED_DIRS = {
+    ".agents/skills/drawio/": "f944a6a6ec01ff55a07fdc9f12cee0e4c1bb9eefd8328056a96326690783d3ac",
+}
+
 # Shipped files that exist only in this edition; copied from the workspace into every conversion.
 WORKSPACE_ONLY = {
     ".gitattributes": {"class": "merge", "mode": "644"},
     ".claude/cowork/cowork_skills.py": {"class": "merge", "mode": "755"},
+    ".claude/skills/drawio/SKILL.md": {"class": "merge", "mode": "644"},
+    ".claude/skills/drawio/reference/format.md": {"class": "merge", "mode": "644"},
 }
 
 TEXT_EXT = (".md", ".py", ".json", ".txt", ".html", ".toml", ".yaml", ".ps1", ".sh", ".gitignore")
@@ -245,6 +253,13 @@ def sha(data):
     return hashlib.sha256(data.replace(b"\r\n", b"\n")).hexdigest()
 
 
+def tree_sha(src, rels):
+    h = hashlib.sha256()
+    for rel in sorted(rels):
+        h.update(rel.encode() + b"\0" + sha((src / rel).read_bytes()).encode() + b"\0")
+    return h.hexdigest()
+
+
 def upstream_files(src):
     return {p.relative_to(src).as_posix() for p in src.rglob("*")
             if p.is_file() and not {".git", "__pycache__"} & set(p.relative_to(src).parts)}
@@ -289,7 +304,18 @@ def convert(src, mpath, out, ws):
             entries[rel] = {"class": cls, "mode": "755" if rel.endswith(".py") and "/tests/" not in rel else "644"}
         else:
             print(f"note: EXTRA_FILES entry {rel} not in this Release")
-    unlisted = upstream_files(src) - set(entries) - set(DROP_FILES) - {"MANIFEST.json"}
+    present = upstream_files(src)
+    replaced = set()
+    for folder, pinned in REPLACED_DIRS.items():
+        rels = {rel for rel in present if rel.startswith(folder)}
+        if rels and tree_sha(src, rels) != pinned:
+            print(f"check: upstream changed {folder}, which this workspace replaces; port what applies "
+                  f"to its WORKSPACE_ONLY files, then update its REPLACED_DIRS hash")
+        elif not rels:
+            print(f"note: {folder} not in this Release; remove it from REPLACED_DIRS if upstream dropped it")
+        replaced |= rels
+    entries = {rel: meta for rel, meta in entries.items() if rel not in replaced}
+    unlisted = present - replaced - set(entries) - set(DROP_FILES) - {"MANIFEST.json"}
     for rel in sorted(unlisted):
         print(f"warning: {rel} is in the Release but not in MANIFEST.json or EXTRA_FILES; not copied")
 
