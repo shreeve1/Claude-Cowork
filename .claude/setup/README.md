@@ -78,7 +78,7 @@ Skipping Releases is fine: the steps above work from any earlier Release. Read e
 
 - **No `memory/rules.md`** (before Release 3): turn each rule the old `CLAUDE.md` or preference notes held into a row in `memory/rules.md` (`personal-memory` "Rules"); every preference note needs a row that loads it.
 - **`memory/log.md`** (before Release 3): do not copy it; git keeps the history. Notes marked superseded, or a `Retired` index section: copy only what is still true, rewritten in place.
-- **Edited shipped files**, such as an `CLAUDE.md` adapted for one app or edited skills: list each difference, then keep what the owner relies on as a preference note or a decision note, never as an edit to a shipped file. A whole adaptation the owner keeps (for example for Codex) becomes a decision note listing what to re-apply after each update.
+- **Edited shipped files**, such as a `CLAUDE.md` adapted for one app or edited skills: list each difference, then keep what the owner relies on as a preference note or a decision note, never as an edit to a shipped file. A whole adaptation the owner keeps (for example for Codex) becomes a decision note listing what to re-apply after each update.
 - **Gone tools** (`apply-release`, `doctor.py`, the `pre-push` hook, `release-state.json`, a migration ledger): leave them behind and say so. A remote the old workspace pushed to stays only with the owner's yes, recorded as a decision note.
 
 Then run `python .claude/skills/personal-memory/gate.py --memory memory audit` (with Python 3.10+). It also flags leftovers from older Releases: a `memory/log.md`, superseded notes and history lines.

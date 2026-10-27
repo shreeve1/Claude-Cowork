@@ -123,6 +123,7 @@ FILE_RULES = {
         (" They are not enabled in this Codex workspace; run those checks directly before commits.", ""),
     ],
     ".claude/setup/README.md": [
+        ("such as an `CLAUDE.md` adapted", "such as a `CLAUDE.md` adapted"),
         (" A short `CLAUDE.md` that only says \"Read CLAUDE.md\" is fine when the owner's app needs one.", ""),
         ("Using Codex on Windows, with hooks skipped: `CODEX.md`.\n\n", ""),
         (re.compile(r"- \*\*Claude Cowork\*\* and any app that loads skills only from its own saved list:.*?\n(?=- \*\*Another app:\*\*)",
@@ -160,6 +161,11 @@ FILE_RULES = {
     ],
     "START-HERE.md": [
         ("Git and Python 3.11+ add version history", "Git and Python 3.10+ add version history"),
+        ("Your AI agent (Claude Cowork or Codex) sets it up", "Your AI agent in Claude Cowork sets it up"),
+        ("- Claude Cowork or Codex.", "- Claude Cowork on Windows."),
+        ("decides where things belong and tells you what it did.\n",
+         "decides where things belong and tells you what it did. Then it shows a card for each skill: "
+         "click **Save skill** on each to install it. Video skills are optional.\n"),
     ],
     ".claude/setup/WEEKLY-SWEEP.md": [
         ("Python 3.11 or newer must be present", "Python 3.10 or newer must be present"),

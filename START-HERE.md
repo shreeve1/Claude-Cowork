@@ -1,10 +1,10 @@
 # Start here
 
-This is a ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory and git hooks. Your AI agent (Claude Cowork or Codex) sets it up with you and moves your own notes and rules into it. You don't copy files by hand.
+This is a ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory and git hooks. Your AI agent in Claude Cowork sets it up with you and moves your own notes and rules into it. You don't copy files by hand.
 
 ## What you need
 
-- Claude Cowork or Codex.
+- Claude Cowork on Windows.
 - Nothing else is required. Git and Python 3.10+ add version history and the commit checks; the setup works without them and your agent tells you what is off.
 
 ## First setup
@@ -15,7 +15,7 @@ This is a ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory
 
    > Read `<this folder>/.claude/setup/README.md` and set me up in `<new folder>`. Bring over what is useful from `<my current setup>` (or "nothing to migrate"). Decide where my files and notes go, and ask me before anything is dropped.
 
-Your agent copies this workspace into the new folder, reads your old setup, decides where things belong and tells you what it did.
+Your agent copies this workspace into the new folder, reads your old setup, decides where things belong and tells you what it did. Then it shows a card for each skill: click **Save skill** on each to install it. Video skills are optional.
 
 Later, ask your agent "set up memory in `<folder>`" for any other project, or "bring my old notes from `<place>` into memory".
 
