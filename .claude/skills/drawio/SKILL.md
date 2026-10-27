@@ -1,11 +1,11 @@
 ---
-name: drawio
-description: Draw and edit draw.io diagrams (.drawio files) with the owner, taking turns. You edit the file in the workspace and give them a link that opens it in draw.io in their browser; they change it and save it back. Use when the owner asks for a diagram or flowchart they can edit themselves, wants to sketch or brainstorm a flow, workflow, process, agent or bot design, or system structure, mentions draw.io or drawio, or when reading or editing any .drawio file. Use excalidraw-diagram instead when they ask for Excalidraw.
+name: "drawio"
+description: "Draw and edit draw.io diagrams (.drawio files) with the owner, taking turns. You edit the file in the workspace and open it in draw.io in the app's built-in browser pane (with a link as backup); they change it and save it back. Use when the owner asks for a diagram or flowchart they can edit themselves, wants to sketch or brainstorm a flow, workflow, process, agent or bot design, or system structure, mentions draw.io or drawio, or when reading or editing any .drawio file. Use excalidraw-diagram instead when they ask for Excalidraw."
 ---
 
 # drawio
 
-The owner drags shapes in draw.io in their browser; you read and edit the same `.drawio` file in the workspace. You take turns. The file is the shared state. Nothing runs in the background and nothing needs installing: each of your turns ends with a link that opens the current file in draw.io, and the owner saves it back to the file when they are done.
+The owner drags shapes in draw.io in the app's built-in browser pane; you read and edit the same `.drawio` file in the workspace. You take turns. The file is the shared state. Nothing runs in the background and nothing needs installing: each of your turns ends with the current file open in draw.io (plus a link to it), and the owner saves it back to the file when they are done.
 
 ## Where diagrams go
 
@@ -37,13 +37,17 @@ python3 <skill-dir>/scripts/link.py <sandbox path of the .drawio file> --html <w
 
 Then, in this order:
 
-1. **Show the preview page** with `present_files` (or however your app shows a file). It shows a drawing of the diagram's first page, with an **Open in draw.io to edit** link on top. The drawing is built into the page (nothing loads from the internet), so it shows in Cowork's viewer; it is a close sketch, and draw.io shows the real thing. If `link.py` says it can't draw a preview, the XML is broken: fix it before you hand over the link.
-2. **Open the link in the owner's browser** if you have a browser tool (for example Claude in Chrome). The first time, open a new tab at the link; on later turns, point the draw.io tab you opened before at the new link instead of opening another, so no old tab is left to save over your changes. Say that it's open.
+1. **Open the link in the built-in browser pane, and make it the last thing you show.** The side panel shows one thing at a time, so whatever you open last is what the owner sees. Use the built-in browser tools (`mcp__Claude_Browser__*`; load them via ToolSearch if deferred):
+   - **First time this session:** `preview_start` with the link as `url`. Remember the `tabId` it returns.
+   - **Later turns:** `navigate` that same `tabId` to the new link (pass `force: true` only if the owner has said they saved, since it discards unsaved draw.io edits). Don't open a second tab: an old tab left open can save over your changes.
+   - Call `tabs_context` afterwards. If it says the pane is hidden, ask the owner to bring it back (Ctrl+Shift+B on Windows, Cmd+Shift+B on Mac, or the globe icon).
+   - If the built-in browser is unavailable, use Claude in Chrome the same way (new tab the first time, same tab after). If neither is available, rely on the link in step 3.
+2. **Don't put the preview page in the side panel.** Write it with `--html` as a fallback, but don't call `present_files` on it (that would cover the draw.io tab). Mention its path only if the browser couldn't open the link.
 3. **Give the link** in your message as well, as a clickable link, and the file's full Windows path (the workspace folder plus the relative path), which they need to save it back.
 
 If `link.py` says the link is too long (a very large diagram), give the Windows path instead: they open app.diagrams.net in a new tab, choose **Open Existing Diagram** and pick the file.
 
-**Saving it back.** In draw.io the owner presses **Ctrl+S**, sets **Where** to **Device**, clicks **Save**, picks the file at that Windows path and agrees to replace it. Each new link needs this once, because its tab isn't connected to the file yet; after that, Ctrl+S in the same tab saves straight to the file (Edge or Chrome). Spell the steps out until they've done it a few times. If Save downloaded a copy instead, ask them to save it over the file at that path, or tell you where the copy is.
+**Saving it back.** In draw.io the owner presses **Ctrl+S**, sets **Where** to **Device**, clicks **Save**, picks the file at that Windows path and agrees to replace it. Each new link needs this once, because its tab isn't connected to the file yet; after that, Ctrl+S in the same tab saves straight to the file. Spell the steps out until they've done it a few times. If Save downloaded a copy instead, ask them to save it over the file at that path, or tell you where the copy is.
 
 The owner can also use the draw.io desktop app if they have it: double-click the file in File Explorer. If its **File > Autosave** is ticked, a window left open can write over your changes; suggest unticking it.
 
@@ -52,7 +56,7 @@ The owner can also use the draw.io desktop app if they have it: double-click the
 1. **Their turn ends when they save.** When the owner says they updated, changed or edited the diagram, take that as saved: read the file at once and don't ask again. If you need to edit an existing diagram and they haven't said, ask them to save first. A new diagram has nothing to save.
 2. **Say what they changed** since your last turn, in a line or two (added, moved, relabelled, deleted), because that is their half of the conversation. If the file hasn't changed since your last turn, their save didn't reach it: walk them through **Saving it back**.
 3. **Edit**, following `reference/format.md`.
-4. **Tell them** what you changed, and open the new version as **Opening a diagram** says. Any other draw.io tab they still have open on this diagram, they close: saving from it would overwrite your changes. (Desktop app: close the window and reopen the file instead of using the link.)
+4. **Tell them** what you changed, and open the new version as **Opening a diagram** says. Reuse the same browser-pane tab; any other draw.io tab they still have open on this diagram, they close: saving from it would overwrite your changes. (Desktop app: close the window and reopen the file instead of using the link.)
 5. If they did save over your changes, read the file, tell them which of your changes are gone, and redo them on top of theirs. Diagrams under `artifacts/` have no git history, so keep your own changes in mind until the owner has the new version open.
 
 Before writing or editing any `.drawio` XML, read [`reference/format.md`](reference/format.md).
