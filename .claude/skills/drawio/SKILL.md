@@ -37,7 +37,7 @@ python3 <skill-dir>/scripts/link.py <sandbox path of the .drawio file> --html <w
 
 Then, in this order:
 
-1. **Show the preview page** with `present_files` (or however your app shows a file). It shows the diagram, with an **Open in draw.io to edit** link on top. If the diagram doesn't show in it, say so and rely on the next steps.
+1. **Show the preview page** with `present_files` (or however your app shows a file). It shows a drawing of the diagram's first page, with an **Open in draw.io to edit** link on top. The drawing is built into the page (nothing loads from the internet), so it shows in Cowork's viewer; it is a close sketch, and draw.io shows the real thing. If `link.py` says it can't draw a preview, the XML is broken: fix it before you hand over the link.
 2. **Open the link in the owner's browser** if you have a browser tool (for example Claude in Chrome). The first time, open a new tab at the link; on later turns, point the draw.io tab you opened before at the new link instead of opening another, so no old tab is left to save over your changes. Say that it's open.
 3. **Give the link** in your message as well, as a clickable link, and the file's full Windows path (the workspace folder plus the relative path), which they need to save it back.
 

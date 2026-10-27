@@ -63,6 +63,8 @@ WORKSPACE_ONLY = {
     ".claude/skills/drawio/reference/format.md": {"class": "merge", "mode": "644"},
     ".claude/skills/drawio/scripts/link.py": {"class": "merge", "mode": "755"},
     ".claude/skills/drawio/scripts/tests/test_link.py": {"class": "merge", "mode": "644"},
+    ".claude/skills/drawio/scripts/svg.py": {"class": "merge", "mode": "644"},
+    ".claude/skills/drawio/scripts/tests/test_svg.py": {"class": "merge", "mode": "644"},
 }
 
 TEXT_EXT = (".md", ".py", ".json", ".txt", ".html", ".toml", ".yaml", ".ps1", ".sh", ".gitignore")

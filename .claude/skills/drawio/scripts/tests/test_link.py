@@ -12,7 +12,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import link  # noqa: E402
 
 XML = '<mxfile><diagram id="p" name="Page-1"><mxGraphModel><root><mxCell id="0"/>' \
-      '<mxCell id="a" value="Ünïcode &amp; spaces" vertex="1" parent="0"/></root></mxGraphModel></diagram></mxfile>\n'
+      '<mxCell id="a" value="Ünïcode &amp; spaces" vertex="1" parent="0"><mxGeometry width="160" height="60" as="geometry"/>' \
+      '</mxCell></root></mxGraphModel></diagram></mxfile>\n'
 
 
 def decode(url):
@@ -47,24 +48,35 @@ class LinkTests(unittest.TestCase):
         link.MAX_LINK = 10
         self.assertEqual(link.main([str(p)]), 1)
 
-    def test_html_preview_embeds_viewer_and_edit_link(self):
+    def test_html_preview_draws_the_diagram_offline_with_the_edit_link(self):
         p, out = self.td / "a.drawio", self.td / "previews" / "a.html"
         p.write_text(XML, encoding="utf-8")
         self.assertEqual(link.main([str(p), "--html", str(out)]), 0)
-        page = html.unescape(out.read_text(encoding="utf-8"))
-        view = re.search(r'<iframe src="([^"]+)"', page).group(1)
-        edit = re.search(r'<a href="([^"]+)"', page).group(1)
-        self.assertTrue(view.startswith("https://viewer.diagrams.net/?lightbox=1&nav=1&edit=_blank&title=a.drawio#R"))
-        self.assertEqual(edit, link.link(p))
-        self.assertEqual(decode(view), XML)
+        page = out.read_text(encoding="utf-8")
+        self.assertEqual(html.unescape(re.search(r'<a href="([^"]+)"', page).group(1)), link.link(p))
+        self.assertIn("<svg", page)
+        self.assertIn("Ünïcode &amp; spaces", page)
+        self.assertEqual(re.findall(r'(?:src|href)="(https?:[^"]+)"', page), [link.link(p).replace("&", "&amp;")])
+
+    def test_unparseable_diagram_still_gets_its_link(self):
+        p, out = self.td / "bad.drawio", self.td / "bad.html"
+        p.write_text("<mxfile><diagram>", encoding="utf-8")
+        self.assertEqual(link.main([str(p), "--html", str(out)]), 1)
+        self.assertFalse(out.exists())
 
     def test_preview_escapes_the_file_name(self):
-        p, out = self.td / "a&<b>.drawio", self.td / "a.html"
+        p, out = self.td / "a&b'c.drawio", self.td / "a.html"  # < and > aren't allowed in Windows names
         p.write_text(XML, encoding="utf-8")
         self.assertEqual(link.main([str(p), "--html", str(out)]), 0)
         page = out.read_text(encoding="utf-8")
-        self.assertIn("a&amp;&lt;b&gt;.drawio", page)
-        self.assertNotIn("<b>", page)
+        self.assertIn("<title>a&amp;b&#x27;c.drawio</title>", page)
+        self.assertNotIn("a&b'c", page)
+
+    def test_compressed_page_that_is_not_utf8_still_previews(self):
+        bad = base64.b64encode(zlib.compress(b"\xff\xfe", 9)[2:-4]).decode()
+        p, out = self.td / "c.drawio", self.td / "c.html"
+        p.write_text(f'<mxfile><diagram name="x">{bad}</diagram></mxfile>', encoding="utf-8")
+        self.assertIn(link.main([str(p), "--html", str(out)]), (0, 1))
 
     def test_preview_never_overwrites_the_diagram_or_follows_a_too_long_link(self):
         p = self.td / "keep.drawio"

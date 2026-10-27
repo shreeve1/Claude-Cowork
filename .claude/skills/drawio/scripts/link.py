@@ -6,18 +6,21 @@ Usage:
 
 The whole diagram travels in the link after "#", which the browser keeps to itself;
 nothing is uploaded. Saving from that page is up to the owner (Save, Where: Device).
---html also writes a preview page: the diagram in draw.io's viewer, with the edit link on top.
+--html also writes a preview page: a drawing of the first page, with the edit link on top.
+The drawing is built in, so the page loads nothing from the internet.
 """
 import argparse
 import base64
 import html
 import sys
 import urllib.parse
+import xml.etree.ElementTree as ET
 import zlib
 from pathlib import Path
 
+import svg
+
 APP = "https://app.diagrams.net/"
-VIEWER = "https://viewer.diagrams.net/"
 # Longer links may not open from a chat; give the file path instead.
 MAX_LINK = 100_000
 
@@ -29,11 +32,13 @@ PAGE = """<!doctype html>
   body {{ display: flex; flex-direction: column; }}
   p {{ margin: 0; padding: .6rem .75rem; border-bottom: 1px solid #ddd; }}
   a {{ color: #0b57d0; font-weight: 600; }}
-  iframe {{ flex: 1; border: 0; width: 100%; }}
+  main {{ flex: 1; overflow: auto; padding: 1rem; }}
+  main svg {{ max-width: 100%; height: auto; }}
+  .note {{ color: #555; }}
 </style></head>
 <body>
-<p><a href="{edit}" target="_blank" rel="noopener">Open in draw.io to edit</a> {title}</p>
-<iframe src="{view}" title="{title}"></iframe>
+<p><a href="{edit}" target="_blank" rel="noopener">Open in draw.io to edit</a> {title} <span class="note">{note}</span></p>
+<main>{drawing}</main>
 </body></html>
 """
 
@@ -45,17 +50,17 @@ def payload(path):
     return urllib.parse.quote(base64.b64encode(data).decode("ascii"), safe="")
 
 
-def link(path, app=APP, extra=""):
-    title = urllib.parse.quote(Path(path).name)
-    return f"{app}?{extra}title={title}#R{payload(path)}"
+def link(path):
+    return f"{APP}?title={urllib.parse.quote(Path(path).name)}#R{payload(path)}"
 
 
 def preview(path, out):
-    edit, view = link(path), link(path, VIEWER, "lightbox=1&nav=1&edit=_blank&")
-    title = html.escape(Path(path).name)
+    found = svg.pages(Path(path).read_text(encoding="utf-8-sig"))
+    drawing = svg.svg(found[0][1]) if found else "<p>This diagram has no pages yet.</p>"
+    note = f"(page {html.escape(found[0][0])}; {len(found) - 1} more in draw.io)" if len(found) > 1 else ""
     Path(out).parent.mkdir(parents=True, exist_ok=True)
-    Path(out).write_text(PAGE.format(title=title, edit=html.escape(edit), view=html.escape(view)),
-                         encoding="utf-8", newline="\n")
+    Path(out).write_text(PAGE.format(title=html.escape(Path(path).name), edit=html.escape(link(path)),
+                                     note=note, drawing=drawing), encoding="utf-8", newline="\n")
 
 
 def main(argv=None):
@@ -79,6 +84,10 @@ def main(argv=None):
     except (OSError, UnicodeDecodeError) as e:
         print(f"cannot read {args.file}: {e}", file=sys.stderr)
         return 2
+    except (ET.ParseError, zlib.error, ValueError) as e:
+        print(f"cannot draw a preview of {args.file} (is it valid .drawio XML?): {e}", file=sys.stderr)
+        print(url)
+        return 1
     print(url)
     return 0
 
