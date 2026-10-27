@@ -2,6 +2,11 @@
  "edition": "friends",
  "release": 5,
  "files": {
+  ".claude/cowork/cowork_skills.py": {
+   "class": "merge",
+   "mode": "755",
+   "sha256": "00563770ca324468b262d06fc21cfe2663ea6d29bebc99481678bde36b12f5e5"
+  },
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
    "sha256": "3035be343a98028bb49960d11b20c8356dea725253c1ef5495997e21e3f3690b",
@@ -19,18 +24,13 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "24486c1d78182e232d06691920ae9fe7cd0342ab01661f592f368b488b5d7d61",
+   "sha256": "c3173a1e033aee2e519e5e70c3b86009faa5ae6078b969c649ca9429fbf213a3",
    "mode": "644"
   },
   ".claude/setup/WEEKLY-SWEEP.md": {
    "class": "merge",
-   "sha256": "0da58ea53d5a0b2f3e14a0fb5623ddc597c3e40791f1b671cb659eaf7e4076b3",
+   "sha256": "92e14d061047f3b8071af0b975c01a5db98d31b89db4c8fc778749e07c52a131",
    "mode": "644"
-  },
-  ".claude/setup/cowork_skills.py": {
-   "class": "merge",
-   "mode": "755",
-   "sha256": "07274aacfab412b78562d2965dbbe6e057168df2010900b59632465c0a79ca32"
   },
   ".claude/skills/adhd/SKILL.md": {
    "class": "merge",
@@ -3084,7 +3084,7 @@
   },
   ".claude/skills/memory-setup/SKILL.md": {
    "class": "merge",
-   "sha256": "10034088a901805397afa0ae3d90003e41ecf5f6c3e078683adc814299f5e8d0",
+   "sha256": "0eae21558802f4ae59fdfe7a4c89008fe1a502ce3910a9e1b7139a895583fd5c",
    "mode": "644"
   },
   ".claude/skills/memory-setup/code-repos.md": {
@@ -6725,7 +6725,7 @@
   ".gitattributes": {
    "class": "merge",
    "mode": "644",
-   "sha256": "0e9362f6547155257878d35183bcccb3322c0b0639b1b47827db51a87859ed97"
+   "sha256": "8b0cad58962205b9ba1033890f305f572fb0093267acb4fde6cea77aee1e27e0"
   },
   ".githooks/commit-msg": {
    "class": "merge",
@@ -6734,7 +6734,7 @@
   },
   ".githooks/nopython/commit-msg": {
    "class": "merge",
-   "sha256": "38286a6db8cbe449ff825667a5f9b08aa3ab9ed4f5d6924d7e459f7b30c15c04",
+   "sha256": "5c5862ca9dc4c4c92aecbed8a8b32dda20936357bf1dafc899dfc95ca69d7b07",
    "mode": "755"
   },
   ".githooks/pre-commit": {
@@ -6784,7 +6784,7 @@
   },
   "START-HERE.md": {
    "class": "local",
-   "sha256": "5d0464643c5f6c9cf8e0cf8195710db1cbe6992bb5d50e69edef955d4a4f9f09",
+   "sha256": "0ab2d92ebc08832150e183074ffbfdb7f72c7bd5e196b9547d4114919163e6b6",
    "mode": "644"
   },
   "memory/README.md": {

@@ -1,0 +1,190 @@
+{
+ "adhd": {
+  "set": "core",
+  "sha256": "cdb6d2fb59dcbe58e9697cfe31e5f08eaeb588fbf39a36ef52cdec8dd540cfd7"
+ },
+ "antislop": {
+  "set": "core",
+  "sha256": "69fc97e26b8172a43e77d0713c9fd2c2d9c4c626dc7f404d5d80617f05787f8c"
+ },
+ "antislop-code": {
+  "set": "core",
+  "sha256": "122e9b3c269edae618bd80d54fb11a472b2aaca9d61b42178b5db7263adb9c07"
+ },
+ "antislop-copywriting": {
+  "set": "core",
+  "sha256": "9b936c8fa8bdc3387e27372dbaf1c59770d842f55ba02437e756454d782af64a"
+ },
+ "antislop-human": {
+  "set": "core",
+  "sha256": "60fffdb574aeabb45cea977d88028791837e6c0c6673a0e49291c2f996329d9a"
+ },
+ "antislop-layoutmobile": {
+  "set": "core",
+  "sha256": "7ebcf9ce163952266b5a24d47197a61247ce4af107e7b2d61904f04587f2887f"
+ },
+ "antislop-ui": {
+  "set": "core",
+  "sha256": "0787a369eca81e6f1bd086f1aadd1757e60b8261b30cd377d3b32c0cb17d5ef1"
+ },
+ "brainstorm-idea": {
+  "set": "core",
+  "sha256": "e16c74188405d1e21073dabdb12e8bdd5c1e2f31505f391b5d34085fe60390e4"
+ },
+ "captions-overlay": {
+  "set": "video",
+  "sha256": "bfae96c6bf80e83e7bfe68c6934db557d920855e605d08a529be74330a2f07ce"
+ },
+ "changelog-video": {
+  "set": "video",
+  "sha256": "6a52fa9c987def583956d8ac6f5413dcfc839f852484fc352bb20e414e0f0d27"
+ },
+ "cut-the-curve": {
+  "set": "video",
+  "sha256": "3b35f2238b506dc21a46c1e7ddc56eb5c52650cf14218397fc5e9901518a9b13"
+ },
+ "embedded-captions": {
+  "set": "video",
+  "sha256": "692d56467d6b01a56a811ef9902ae5dd6095a6810c183677d9dea5c62aad8358"
+ },
+ "excalidraw-diagram": {
+  "set": "core",
+  "sha256": "56882b664302fa67b5cef85abb32449a74f486e98badbe6d76d57cc7fb585643"
+ },
+ "faceless-explainer": {
+  "set": "video",
+  "sha256": "fe5ac45ac43dee42a15a0575211f5478cf405f54a209d534ee3c8a75aa4ae6df"
+ },
+ "figma": {
+  "set": "video",
+  "sha256": "f8cf9f2c78ea8374a137554d63c09e8ee640b83c98e7e52278547171a69a8950"
+ },
+ "general-video": {
+  "set": "video",
+  "sha256": "d654955cbceaf3c73bf99240e450b5bbe1fd2da58bc07f562b1c0a7de41053c4"
+ },
+ "handoff": {
+  "set": "core",
+  "sha256": "3518f4cd3d30c937a982d8999d44d4720cba7c2024494a7a46d234ced10720aa"
+ },
+ "hyperframes": {
+  "set": "video",
+  "sha256": "e9ac27dc4bdf4afb9c084240f7bea37403a426c1a66002d25aeb5f29b081ef4c"
+ },
+ "hyperframes-animation": {
+  "set": "video",
+  "sha256": "22166cefae86b317b3c74a005d17c2f68ca42335315f4e36791c11309bfa9244"
+ },
+ "hyperframes-audio": {
+  "set": "video",
+  "sha256": "fcac0a39f77e606ed9b632580ea53fa4ab1f0409f5413aac628e3a3c4a431c51"
+ },
+ "hyperframes-cli": {
+  "set": "video",
+  "sha256": "5a0f95b33cc1e8ad391a3c4ed7caa684346698e0f3b5796d6f27549db3cb463f"
+ },
+ "hyperframes-core": {
+  "set": "video",
+  "sha256": "010a65915fc7b45e4ecfac492c50acd4d2e85b3ba36ff5338f1526f8e1cb42e2"
+ },
+ "hyperframes-creative": {
+  "set": "video",
+  "sha256": "8d0601ce26adc5608765a6dde4678c05e199b25e68b08fac380d9a30f3969580"
+ },
+ "hyperframes-keyframes": {
+  "set": "video",
+  "sha256": "8891c27aa7303235d2951643b03c115c1ce8b617c9cbf21b9c190d44bfdc978d"
+ },
+ "hyperframes-registry": {
+  "set": "video",
+  "sha256": "d7c1885fb4cce2cf01d219bd0b16e7305db24761ff1ad0d27b1b5f4aed677588"
+ },
+ "hyperframes-studio": {
+  "set": "video",
+  "sha256": "f5e0b44d68152c124c694f42ae0a1a6df7e0973ec8f0445f752d30046dfab698"
+ },
+ "media-use": {
+  "set": "video",
+  "sha256": "1a841e4288d862afc7f9f5aa09bb02a64d2fc19873121b1131688ebe4c264cdd"
+ },
+ "meeting": {
+  "set": "core",
+  "sha256": "33e1f92f7ca6669e90dc7f5ac32a1a5c6539bee180454721ef81af80dd51045c"
+ },
+ "memory-setup": {
+  "set": "core",
+  "sha256": "69fadcce350fa8cec857ca24972b256155c8634bbbf4768d0b3731bf63cdfa35"
+ },
+ "motion-doctrine": {
+  "set": "video",
+  "sha256": "b5ba8ab63ca700977c56bd6739175fdefe4887084b5287cce47078ced909fc04"
+ },
+ "motion-graphics": {
+  "set": "video",
+  "sha256": "6db77031ad839f6a9f67a5407b5391f53e8ab83096c535299dc17a623de8c976"
+ },
+ "music-to-video": {
+  "set": "video",
+  "sha256": "b775f27b16efb1f23050d54a28c922a705ba11d9c898e7b8fe6f6b82e09c1a06"
+ },
+ "oversized-cursor": {
+  "set": "video",
+  "sha256": "20eb66854b54de22535bfe0e3b16a8fba483f96b28826e7a971dbbfdfc40d97d"
+ },
+ "personal-memory": {
+  "set": "core",
+  "sha256": "498f066f0517ad3dd6cae29f2fe904791aa097721c282066062547c86f699da8"
+ },
+ "pr-to-video": {
+  "set": "video",
+  "sha256": "49dfd8081dfb3417f8f6b214e0e363afc5451b64341dd82fc7c601ddf0b9f844"
+ },
+ "product-launch-video": {
+  "set": "video",
+  "sha256": "39c46bb51002d67cbfdb28eea2bd49c2830520dfba32d621caf0f25bc1369ff0"
+ },
+ "professional-guidance": {
+  "set": "core",
+  "sha256": "51e9266aaa0482f36f9ddb664b2fc71929a71d7081136e50b0dd47991a6da2dd"
+ },
+ "remotion-to-hyperframes": {
+  "set": "video",
+  "sha256": "d02be65b7f3f4a63803327cc6011486da008317f94c612b20566a80d07a9ef23"
+ },
+ "seam-craft": {
+  "set": "video",
+  "sha256": "c926511e2ea22a40d102f89e18464ff1fe15b953461f294c0e8ba48f98fab0da"
+ },
+ "slideshow": {
+  "set": "video",
+  "sha256": "efc3c0be622fa9a17cff40a6e4d0a8336a1c691cac84ba9cc9279c389153531b"
+ },
+ "startday-spec": {
+  "set": "core",
+  "sha256": "771706bbb6d0a07b7fa1cf15658a6063558181fe77ebc88631aac3b4e386e8fe"
+ },
+ "talk-it-through": {
+  "set": "core",
+  "sha256": "013d4181617b3d4f8dc9e89e011f1bc2e73f2d338528569dd0780343b69d289b"
+ },
+ "talking-head-recut": {
+  "set": "video",
+  "sha256": "9aac076ceddd249938f9f17fd9256310fe5bcabdcdcc0dd67d2f393442d5f48c"
+ },
+ "teach": {
+  "set": "core",
+  "sha256": "f938297314dca4b194c6baeda1472bb30d2c85e808616284701e01ee8692db51"
+ },
+ "troubleshoot-my-pc": {
+  "set": "core",
+  "sha256": "e833f523fa792fc22bd83f503fe983f6f6a61fa144e2dc017e8bb7ba68aff8a1"
+ },
+ "workflow-builder": {
+  "set": "core",
+  "sha256": "a191b1a87db930be645c604e373c71fe778759dd2755ca397f4a9d1e414316bd"
+ },
+ "youtube": {
+  "set": "core",
+  "sha256": "a825501ac21d26cbfd8910eafc0f177202f7e508c529c8bfd0a46bf809cae994"
+ }
+}

@@ -7,7 +7,7 @@ Set it up once, after first setup is finished and the owner has used the workspa
 ## 1. Check it is safe here
 
 - Git must be present, the workspace folder must be the top of its own repository, and its files committed. The sweep deletes a file only when its bytes equal the copy git last committed, so every deletion can be undone with `git checkout <commit> -- <path>`. In a folder that is not a repository top, or without Git, it deletes nothing; tell the owner and stop.
-- Python 3.11 or newer must be present (`sweep.py`, `gate.py`).
+- Python 3.10 or newer must be present (`sweep.py`, `gate.py`).
 - Run `python3 .claude/skills/personal-memory/sweep.py` (no flag). It lists what it would delete and deletes nothing. Show the owner the list.
 
 ## 2. Decide with the owner

@@ -52,7 +52,7 @@ KEEP_WORKSPACE = {
 # Shipped files that exist only in this edition; copied from the workspace into every conversion.
 WORKSPACE_ONLY = {
     ".gitattributes": {"class": "merge", "mode": "644"},
-    ".claude/setup/cowork_skills.py": {"class": "merge", "mode": "755"},
+    ".claude/cowork/cowork_skills.py": {"class": "merge", "mode": "755"},
 }
 
 TEXT_EXT = (".md", ".py", ".json", ".txt", ".html", ".toml", ".yaml", ".ps1", ".sh", ".gitignore")
@@ -85,14 +85,20 @@ TEXT_RULES = [
 
 # Replaces upstream's Cowork loader step in setup/README.md: Cowork gets real skills.
 COWORK_SKILLS_STEP = """\
-- **Claude Cowork** loads skills only from the owner's own Cowork, so install them there. Ask once: "Install this workspace's skills into your Cowork? I'll show a card for each skill and you click **Save skill** on each." On a yes:
-  1. First setup only, ask once: "Do you also want the video skills (about 27, some large)?" The core skills are always installed.
-  2. In the Bash sandbox, from the new workspace: `python3 .claude/setup/cowork_skills.py package artifacts/skills` (add `--video` on a yes). It checks each skill against Cowork's upload rules, zips it into `artifacts/skills/<name>.skill` and records what it packaged in `.claude/cowork-skills.json`.
-  3. Show every `.skill` file it lists in one `present_files` call. Tell the owner to click **Save skill** on each card, and that a card without that button means their organisation does not allow adding skills: they ask their admin, then you show the cards again.
-  4. For each `FAILED <name>` line, tell the owner that skill was not installed and why.
+- **Claude Cowork** loads skills only from the owner's own Cowork, so install them there. They are ready-made: `.claude/cowork/skills/core/` holds a `.skill` file for every core skill, `.claude/cowork/skills/video/` the optional video skills. Install these files as they are; do not build or zip skills yourself. Ask once: "Install this workspace's skills into your Cowork? I'll show a card for each skill and you click **Save skill** on each." On a yes:
+  1. First setup: ask once, "Do you also want the video skills (about 27, some large)?", and change the "Video skills installed" line in `memory/preferences/cowork-environment.md` to yes or no. Show every `.skill` file in `.claude/cowork/skills/core/` (and in `video/` on a yes) with `present_files`, in one call or a few batches.
+  2. Update: `memory/preferences/cowork-environment.md` comes from the new version; copy across only the "Video skills installed" answer from the old workspace's copy. If the old copy has no such line or says "not asked yet", the owner has no installed skills to update: do step 1 as for a first setup. Otherwise, in the Bash sandbox, from the new workspace, run `python3 .claude/cowork/cowork_skills.py changed <old workspace>` (the folder being replaced, never the new one; add `--video` if the answer is yes). Show only the `.skill` files it lists. For each `removed: <name>` line, tell the owner to delete that skill in Cowork's skill settings. For each `moved to video: <name>` line, tell the owner that skill is now an optional video skill: they can keep it, but it will no longer be updated unless they add the video skills. If it prints `loaders: yes`, the old setup used loader skills: saving the new cards replaces them, and any other old loader the owner did not get a card for (for example video skills) should be deleted the same way.
+  3. Tell the owner to click **Save skill** on each card. A card without that button means their organisation does not allow adding skills: they ask their admin, then you show the cards again.
 
-  On an update, add `--previous <old workspace>`, the folder being replaced, never the new one. It keeps the old video choice and packages only skills that are new or changed. For each `removed: <name>` line, tell the owner to delete that skill in Cowork's skill settings. If it prints `loaders: yes`, the old setup used loader skills: saving the new cards replaces them, and any other old loader the owner did not get a card for (for example video skills) should be deleted in Cowork's skill settings. Leave the owner's own skills alone. Tell the owner the skills read and write this workspace, so keep this folder attached in Cowork.
+  Leave the owner's own skills alone. Tell the owner the skills read and write this workspace, so keep this folder attached in Cowork.
 """
+
+# Setup reads skills from their folders; Cowork installs come later (the skills step).
+SETUP_SKILLS_NOTE = (
+    "During setup, \"run the `<name>` skill\" means open `.claude/skills/<name>/SKILL.md` in the new "
+    "workspace and follow it. No skill needs to be installed in the owner's app first; in Claude Cowork the "
+    "installs happen at step 5.\n\n1. Copy every file and folder of the Release"
+)
 
 # Per-file rules, applied after TEXT_RULES and the AGENTS.md rename. Each strips upstream's
 # Codex adaptation; a rule that stops matching means upstream changed that text.
@@ -109,8 +115,21 @@ FILE_RULES = {
         ("Using Codex on Windows, with hooks skipped: `CODEX.md`.\n\n", ""),
         (re.compile(r"- \*\*Claude Cowork\*\* and any app that loads skills only from its own saved list:.*?\n(?=- \*\*Another app:\*\*)",
                     re.S), COWORK_SKILLS_STEP),
+        ("1. Copy every file and folder of the Release", SETUP_SKILLS_NOTE),
+        ("`rsync -a --exclude .git \"<release>/\" \"<workspace>/\"` elsewhere.)",
+         "`rsync -a --exclude .git \"<release>/\" \"<workspace>/\"` elsewhere; in Claude Cowork's Bash sandbox "
+         "`cp -a \"<release>/.\" \"<workspace>/\"`, then delete `<workspace>/.git`.)"),
+        ("3. Run the `memory-setup` skill for this workspace,",
+         "3. Read and follow `.claude/skills/memory-setup/SKILL.md` for this workspace,"),
+        ("If Python 3.11+ is missing,", "If Python 3.10+ is missing,"),
+        ("- With Python 3.11+: the `personal-memory` tools run.",
+         "- With Python 3.10+ (Claude Cowork's Bash sandbox has it): the `personal-memory` tools run."),
+        ("(with Python 3.11+)", "(with Python 3.10+)"),
+        ("4. Content to copy whole: memory notes,",
+         "4. Content to copy whole: memory notes (except `memory/preferences/cowork-environment.md`: keep the new "
+         "version's copy and carry over only its \"Video skills installed\" answer),"),
         ("7. Keep the old `.git` folder only if the owner wants the history;",
-         "7. Update the skills in the owner's app (\"Skills in the owner's app\" above, with `--previous`).\n"
+         "7. Update the skills in the owner's app (\"Skills in the owner's app\" above, its Update step).\n"
          "8. Keep the old `.git` folder only if the owner wants the history;"),
     ],
     ".claude/setup/ADAPTING.md": [
@@ -121,9 +140,20 @@ FILE_RULES = {
     ".claude/skills/memory-setup/SKILL.md": [
         ("In Claude Cowork, an existing `personal-memory` skill loader works when this folder is attached, "
          "so save one only if none exists.",
-         "In Claude Cowork, use the `personal-memory` skill installed in the owner's Cowork; if it is missing, "
-         "zip `<skills>/personal-memory/` into `personal-memory.skill` (the folder at the zip root) and present "
-         "it with `present_files` so the owner can click Save skill."),
+         "In Claude Cowork, a starter workspace's own setup reads `personal-memory` from `.claude/skills/` "
+         "and installs nothing here. For another project, use the `personal-memory` skill installed in the "
+         "owner's Cowork; if it is missing, show the ready-made "
+         "`.claude/cowork/skills/core/personal-memory.skill` from the owner's starter workspace with "
+         "`present_files` so they can click Save skill."),
+    ],
+    "START-HERE.md": [
+        ("Git and Python 3.11+ add version history", "Git and Python 3.10+ add version history"),
+    ],
+    ".claude/setup/WEEKLY-SWEEP.md": [
+        ("Python 3.11 or newer must be present", "Python 3.10 or newer must be present"),
+    ],
+    ".githooks/nopython/commit-msg": [
+        ("without Python 3.11+", "without Python 3.10+"),
     ],
     ".claude/skills/personal-memory/scaffold/AGENTS-memory.md": [
         ("into the project's CLAUDE.md or CLAUDE.md,", "into the project's CLAUDE.md,"),

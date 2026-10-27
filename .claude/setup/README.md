@@ -8,9 +8,11 @@ This Release is a ready workspace: `CLAUDE.md`, skills, memory structure and hoo
 
 ## First setup
 
-1. Copy every file and folder of the Release, dot folders included, into the owner's new folder. Leave out `.git`. (`robocopy "<release>" "<workspace>" /E /XD .git` on Windows, `rsync -a --exclude .git "<release>/" "<workspace>/"` elsewhere.) Never edit the Release or the old setup.
+During setup, "run the `<name>` skill" means open `.claude/skills/<name>/SKILL.md` in the new workspace and follow it. No skill needs to be installed in the owner's app first; in Claude Cowork the installs happen at step 5.
+
+1. Copy every file and folder of the Release, dot folders included, into the owner's new folder. Leave out `.git`. (`robocopy "<release>" "<workspace>" /E /XD .git` on Windows, `rsync -a --exclude .git "<release>/" "<workspace>/"` elsewhere; in Claude Cowork's Bash sandbox `cp -a "<release>/." "<workspace>/"`, then delete `<workspace>/.git`.) Never edit the Release or the old setup.
 2. Read `CHANGELOG.md`. Tell the owner in two or three lines what this workspace is.
-3. Run the `memory-setup` skill for this workspace, with the old setup as the source (or none). It settles the tracking model, sorts, shows the owner the plan and moves the content.
+3. Read and follow `.claude/skills/memory-setup/SKILL.md` for this workspace, with the old setup as the source (or none). It settles the tracking model, sorts, shows the owner the plan and moves the content.
 4. Fit it to the owner (`ADAPTING.md`), then tell the owner in plain words what moved where, what was left behind and why.
 5. Make the skills reachable in the owner's app ("Skills in the owner's app" below).
 6. Suggest rules ("Suggest rules" below).
@@ -26,8 +28,8 @@ Keep personal content out of shipped files (`CLAUDE.md`, shipped skills, this fo
 
 Neither is required, and neither is a first step. Do not probe for them up front and never install anything without the owner's OK; an enterprise computer may not allow it.
 
-- With Git: offer `git init` in the workspace, then `git config core.hooksPath .githooks` (secret scan, memory check, message length). If Python 3.11+ is missing, use `.githooks/nopython` instead, which keeps the message length check. Never use `--no-verify`.
-- With Python 3.11+: the `personal-memory` tools run.
+- With Git: offer `git init` in the workspace, then `git config core.hooksPath .githooks` (secret scan, memory check, message length). If Python 3.10+ is missing, use `.githooks/nopython` instead, which keeps the message length check. Never use `--no-verify`.
+- With Python 3.10+ (Claude Cowork's Bash sandbox has it): the `personal-memory` tools run.
 - Without either: the workspace still works. Tell the owner what is switched off.
 
 ## Skills in the owner's app
@@ -35,13 +37,12 @@ Neither is required, and neither is a first step. Do not probe for them up front
 `.claude/skills/<name>/` is the one real copy of every skill.
 
 - **Codex, Claude Code** and any app that reads `.claude/skills/` from the workspace: nothing to install. Say so.
-- **Claude Cowork** loads skills only from the owner's own Cowork, so install them there. Ask once: "Install this workspace's skills into your Cowork? I'll show a card for each skill and you click **Save skill** on each." On a yes:
-  1. First setup only, ask once: "Do you also want the video skills (about 27, some large)?" The core skills are always installed.
-  2. In the Bash sandbox, from the new workspace: `python3 .claude/setup/cowork_skills.py package artifacts/skills` (add `--video` on a yes). It checks each skill against Cowork's upload rules, zips it into `artifacts/skills/<name>.skill` and records what it packaged in `.claude/cowork-skills.json`.
-  3. Show every `.skill` file it lists in one `present_files` call. Tell the owner to click **Save skill** on each card, and that a card without that button means their organisation does not allow adding skills: they ask their admin, then you show the cards again.
-  4. For each `FAILED <name>` line, tell the owner that skill was not installed and why.
+- **Claude Cowork** loads skills only from the owner's own Cowork, so install them there. They are ready-made: `.claude/cowork/skills/core/` holds a `.skill` file for every core skill, `.claude/cowork/skills/video/` the optional video skills. Install these files as they are; do not build or zip skills yourself. Ask once: "Install this workspace's skills into your Cowork? I'll show a card for each skill and you click **Save skill** on each." On a yes:
+  1. First setup: ask once, "Do you also want the video skills (about 27, some large)?", and change the "Video skills installed" line in `memory/preferences/cowork-environment.md` to yes or no. Show every `.skill` file in `.claude/cowork/skills/core/` (and in `video/` on a yes) with `present_files`, in one call or a few batches.
+  2. Update: `memory/preferences/cowork-environment.md` comes from the new version; copy across only the "Video skills installed" answer from the old workspace's copy. If the old copy has no such line or says "not asked yet", the owner has no installed skills to update: do step 1 as for a first setup. Otherwise, in the Bash sandbox, from the new workspace, run `python3 .claude/cowork/cowork_skills.py changed <old workspace>` (the folder being replaced, never the new one; add `--video` if the answer is yes). Show only the `.skill` files it lists. For each `removed: <name>` line, tell the owner to delete that skill in Cowork's skill settings. For each `moved to video: <name>` line, tell the owner that skill is now an optional video skill: they can keep it, but it will no longer be updated unless they add the video skills. If it prints `loaders: yes`, the old setup used loader skills: saving the new cards replaces them, and any other old loader the owner did not get a card for (for example video skills) should be deleted the same way.
+  3. Tell the owner to click **Save skill** on each card. A card without that button means their organisation does not allow adding skills: they ask their admin, then you show the cards again.
 
-  On an update, add `--previous <old workspace>`, the folder being replaced, never the new one. It keeps the old video choice and packages only skills that are new or changed. For each `removed: <name>` line, tell the owner to delete that skill in Cowork's skill settings. If it prints `loaders: yes`, the old setup used loader skills: saving the new cards replaces them, and any other old loader the owner did not get a card for (for example video skills) should be deleted in Cowork's skill settings. Leave the owner's own skills alone. Tell the owner the skills read and write this workspace, so keep this folder attached in Cowork.
+  Leave the owner's own skills alone. Tell the owner the skills read and write this workspace, so keep this folder attached in Cowork.
 - **Another app:** point it at `.claude/skills/` (`ADAPTING.md` Part 1) and say what you could not do.
 
 ## Suggest rules
@@ -65,10 +66,10 @@ Only at the very end, after the owner has finished `ADAPTING.md` or declined it.
 1. Read the new Release's `CHANGELOG.md` and tell the owner in a few lines what changed.
 2. Copy the new Release into a new folder as in step 1 above. The current workspace stays untouched; it is the way back.
 3. Bring the owner's content across from the current workspace and judge the rest: shipped files come from the new Release. If the owner or their agent edited a shipped file, keep what the owner relies on as a preference note.
-4. Content to copy whole: memory notes, `memory/index.md`, the glossary rows the owner added, `memory/rules.md`, `CONTEXT.md`, the folder map, `.gitignore`, their own skills, and every folder from the folder map.
+4. Content to copy whole: memory notes (except `memory/preferences/cowork-environment.md`: keep the new version's copy and carry over only its "Video skills installed" answer), `memory/index.md`, the glossary rows the owner added, `memory/rules.md`, `CONTEXT.md`, the folder map, `.gitignore`, their own skills, and every folder from the folder map.
 5. Merge `memory/schema.json` by hand: keep the new Release's topics and keys, add the owner's `client_subjects`, keep their `client_folder`. Without their `client_folder` their notes sit in a folder the new workspace does not look at and the memory audit fails. Run `hubs.py` and `indexes.py` afterwards if Python is present.
 6. Do not copy `MANIFEST.json`, `CHANGELOG.md`, `START-HERE.md` or anything under `.claude/setup/`: the new Release's copies win.
-7. Update the skills in the owner's app ("Skills in the owner's app" above, with `--previous`).
+7. Update the skills in the owner's app ("Skills in the owner's app" above, its Update step).
 8. Keep the old `.git` folder only if the owner wants the history; ask first. Tell the owner the old workspace can be deleted when they are happy.
 
 ### Older Releases
@@ -80,7 +81,7 @@ Skipping Releases is fine: the steps above work from any earlier Release. Read e
 - **Edited shipped files**, such as an `CLAUDE.md` adapted for one app or edited skills: list each difference, then keep what the owner relies on as a preference note or a decision note, never as an edit to a shipped file. A whole adaptation the owner keeps (for example for Codex) becomes a decision note listing what to re-apply after each update.
 - **Gone tools** (`apply-release`, `doctor.py`, the `pre-push` hook, `release-state.json`, a migration ledger): leave them behind and say so. A remote the old workspace pushed to stays only with the owner's yes, recorded as a decision note.
 
-Then run `python .claude/skills/personal-memory/gate.py --memory memory audit` (with Python 3.11+). It also flags leftovers from older Releases: a `memory/log.md`, superseded notes and history lines.
+Then run `python .claude/skills/personal-memory/gate.py --memory memory audit` (with Python 3.10+). It also flags leftovers from older Releases: a `memory/log.md`, superseded notes and history lines.
 
 ## Going back
 

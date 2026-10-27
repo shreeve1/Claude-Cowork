@@ -1,3 +1,3 @@
 #!/bin/sh
-# Used as core.hooksPath on computers without Python 3.11+ (setup README, "Git and Python"): keeps the subject length check.
+# Used as core.hooksPath on computers without Python 3.10+ (setup README, "Git and Python"): keeps the subject length check.
 exec sh .githooks/commit-msg "$@"

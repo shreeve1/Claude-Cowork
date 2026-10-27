@@ -5,7 +5,7 @@ This is a ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory
 ## What you need
 
 - Claude Cowork or Codex.
-- Nothing else is required. Git and Python 3.11+ add version history and the commit checks; the setup works without them and your agent tells you what is off.
+- Nothing else is required. Git and Python 3.10+ add version history and the commit checks; the setup works without them and your agent tells you what is off.
 
 ## First setup
 

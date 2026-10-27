@@ -88,7 +88,7 @@ class MainTests(unittest.TestCase):
         man = json.loads((self.out / "MANIFEST.json").read_text())
         self.assertEqual(sorted(man["files"]), sorted([".claude/skills/a/SKILL.md", ".claude/skills/adhd/SKILL.md",
                                                        *cr.WORKSPACE_ONLY]))
-        self.assertTrue((self.out / ".claude/setup/cowork_skills.py").is_file())
+        self.assertTrue((self.out / ".claude/cowork/cowork_skills.py").is_file())
         self.assertNotIn("warning:", log)
 
     def test_unlisted_upstream_file_is_reported(self):
