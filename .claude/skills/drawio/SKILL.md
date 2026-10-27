@@ -27,13 +27,19 @@ Reuse the relevant diagram instead of creating a second one:
 
 ## Opening a diagram
 
-After every change, make the link and give it to the owner as a clickable link:
+After every change, open the diagram for the owner yourself; don't leave them only a link to click. Make the link and a preview page:
 
 ```bash
-python3 <skill-dir>/scripts/link.py <sandbox path of the .drawio file>
+python3 <skill-dir>/scripts/link.py <sandbox path of the .drawio file> --html <workspace>/artifacts/diagrams/previews/<preview name>.html
 ```
 
-`<skill-dir>` is the folder this SKILL.md was loaded from; if you don't know it, use `.claude/skills/drawio` in the workspace. The link opens app.diagrams.net in their browser with the diagram in it, named after the file. The whole diagram is inside the link after `#`, which the browser keeps to itself, so nothing is uploaded. It needs internet. Also give the file's full Windows path (the workspace folder plus the relative path), which they need to save it back.
+`<skill-dir>` is the folder this SKILL.md was loaded from; if you don't know it, use `.claude/skills/drawio` in the workspace. `<workspace>` is the workspace's sandbox path. `<preview name>` is the diagram's workspace-relative path without `.drawio`, with `/` turned into `-`: `memory/docs/topic.drawio` gives `memory-docs-topic.html`. Previews never go in `memory/`. It prints the link, which opens app.diagrams.net with the diagram in it, named after the file. The whole diagram is inside the link after `#`, which the browser keeps to itself, so nothing is uploaded. It needs internet.
+
+Then, in this order:
+
+1. **Show the preview page** with `present_files` (or however your app shows a file). It shows the diagram, with an **Open in draw.io to edit** link on top. If the diagram doesn't show in it, say so and rely on the next steps.
+2. **Open the link in the owner's browser** if you have a browser tool (for example Claude in Chrome). The first time, open a new tab at the link; on later turns, point the draw.io tab you opened before at the new link instead of opening another, so no old tab is left to save over your changes. Say that it's open.
+3. **Give the link** in your message as well, as a clickable link, and the file's full Windows path (the workspace folder plus the relative path), which they need to save it back.
 
 If `link.py` says the link is too long (a very large diagram), give the Windows path instead: they open app.diagrams.net in a new tab, choose **Open Existing Diagram** and pick the file.
 
@@ -46,7 +52,7 @@ The owner can also use the draw.io desktop app if they have it: double-click the
 1. **Their turn ends when they save.** When the owner says they updated, changed or edited the diagram, take that as saved: read the file at once and don't ask again. If you need to edit an existing diagram and they haven't said, ask them to save first. A new diagram has nothing to save.
 2. **Say what they changed** since your last turn, in a line or two (added, moved, relabelled, deleted), because that is their half of the conversation. If the file hasn't changed since your last turn, their save didn't reach it: walk them through **Saving it back**.
 3. **Edit**, following `reference/format.md`.
-4. **Tell them** what you changed and give the new link. They close their old draw.io tab first: saving from it would overwrite your changes. (Desktop app: close the window and reopen the file instead of using the link.)
+4. **Tell them** what you changed, and open the new version as **Opening a diagram** says. Any other draw.io tab they still have open on this diagram, they close: saving from it would overwrite your changes. (Desktop app: close the window and reopen the file instead of using the link.)
 5. If they did save over your changes, read the file, tell them which of your changes are gone, and redo them on top of theirs. Diagrams under `artifacts/` have no git history, so keep your own changes in mind until the owner has the new version open.
 
 Before writing or editing any `.drawio` XML, read [`reference/format.md`](reference/format.md).

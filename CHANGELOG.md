@@ -14,7 +14,7 @@ Cowork-only changes:
 - Skills are installed into Cowork, not loaded through loader skills. Ready-made `.skill` packages ship in `.claude/cowork/skills/` (`core/`, optional `video/`); setup shows a **Save skill** card for each, and an update shows cards only for new or changed skills. Nothing is built on the owner's computer.
 - Setup reads skills from their folders (no install needed first), copies with `cp -a` in Cowork's sandbox, and accepts the sandbox's Python 3.10.
 - `teach`, `youtube` and `hyperframes-audio` now pass Cowork's skill upload checks (no Claude Code-only frontmatter keys, no angle brackets in a description).
-- `drawio` (core): a Cowork version of the upstream skill. The agent writes the `.drawio` file and gives a link (`scripts/link.py`) that opens it in draw.io in the browser, with the diagram inside the link; the owner saves it back to the file (Save, Where: Device). No server, no fixed machine addresses. The converter replaces the upstream `drawio` folder with this one and reports when upstream changes it.
+- `drawio` (core): a Cowork version of the upstream skill. The agent writes the `.drawio` file and opens it for the owner: a preview page shown in Cowork (draw.io's viewer, with an edit link) and, with a browser tool such as Claude in Chrome, the draw.io editor in their browser (`scripts/link.py`; the diagram is inside the link); the owner saves it back to the file (Save, Where: Device). No server, no fixed machine addresses. The converter replaces the upstream `drawio` folder with this one and reports when upstream changes it.
 - `.gitattributes` keeps text files LF so scripts and git hooks run in Cowork's Linux sandbox.
 
 ## Local changes

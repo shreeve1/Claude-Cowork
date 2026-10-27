@@ -1,4 +1,6 @@
 import base64
+import html
+import re
 import sys
 import tempfile
 import unittest
@@ -44,6 +46,35 @@ class LinkTests(unittest.TestCase):
         self.addCleanup(setattr, link, "MAX_LINK", link.MAX_LINK)
         link.MAX_LINK = 10
         self.assertEqual(link.main([str(p)]), 1)
+
+    def test_html_preview_embeds_viewer_and_edit_link(self):
+        p, out = self.td / "a.drawio", self.td / "previews" / "a.html"
+        p.write_text(XML, encoding="utf-8")
+        self.assertEqual(link.main([str(p), "--html", str(out)]), 0)
+        page = html.unescape(out.read_text(encoding="utf-8"))
+        view = re.search(r'<iframe src="([^"]+)"', page).group(1)
+        edit = re.search(r'<a href="([^"]+)"', page).group(1)
+        self.assertTrue(view.startswith("https://viewer.diagrams.net/?lightbox=1&nav=1&edit=_blank&title=a.drawio#R"))
+        self.assertEqual(edit, link.link(p))
+        self.assertEqual(decode(view), XML)
+
+    def test_preview_escapes_the_file_name(self):
+        p, out = self.td / "a&<b>.drawio", self.td / "a.html"
+        p.write_text(XML, encoding="utf-8")
+        self.assertEqual(link.main([str(p), "--html", str(out)]), 0)
+        page = out.read_text(encoding="utf-8")
+        self.assertIn("a&amp;&lt;b&gt;.drawio", page)
+        self.assertNotIn("<b>", page)
+
+    def test_preview_never_overwrites_the_diagram_or_follows_a_too_long_link(self):
+        p = self.td / "keep.drawio"
+        p.write_text(XML, encoding="utf-8")
+        self.assertEqual(link.main([str(p), "--html", str(p)]), 2)
+        self.assertEqual(p.read_text(encoding="utf-8"), XML)
+        self.addCleanup(setattr, link, "MAX_LINK", link.MAX_LINK)
+        link.MAX_LINK = 10
+        self.assertEqual(link.main([str(p), "--html", str(self.td / "long.html")]), 1)
+        self.assertFalse((self.td / "long.html").exists())
 
     def test_missing_file_is_a_usage_error(self):
         self.assertEqual(link.main([str(self.td / "nope.drawio")]), 2)
