@@ -118,7 +118,7 @@ class MainTests(unittest.TestCase):
         self.assertIn("check: upstream changed .agents/skills/drawio/", log)
         self.assertEqual((self.out / ".claude/skills/drawio/SKILL.md").read_text(),
                          "workspace .claude/skills/drawio/SKILL.md")
-        self.assertFalse((self.out / ".claude/skills/drawio/scripts").exists())
+        self.assertFalse((self.out / ".claude/skills/drawio/scripts/server.mjs").exists())
 
     def test_wrong_workspace_writes_nothing(self):
         release(self.src, {"a.md": "x"})

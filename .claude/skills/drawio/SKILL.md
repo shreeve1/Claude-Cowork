@@ -1,20 +1,11 @@
 ---
 name: drawio
-description: Draw and edit draw.io diagrams (.drawio files) with the owner, taking turns. You edit the file in the workspace; they open it in draw.io on their computer, change it and save. Use when the owner asks for a diagram or flowchart they can edit themselves, wants to sketch or brainstorm a flow, workflow, process, agent or bot design, or system structure, mentions draw.io or drawio, or when reading or editing any .drawio file. Use excalidraw-diagram instead when they ask for Excalidraw.
+description: Draw and edit draw.io diagrams (.drawio files) with the owner, taking turns. You edit the file in the workspace and give them a link that opens it in draw.io in their browser; they change it and save it back. Use when the owner asks for a diagram or flowchart they can edit themselves, wants to sketch or brainstorm a flow, workflow, process, agent or bot design, or system structure, mentions draw.io or drawio, or when reading or editing any .drawio file. Use excalidraw-diagram instead when they ask for Excalidraw.
 ---
 
 # drawio
 
-The owner drags shapes in draw.io on their own computer; you read and edit the same `.drawio` file in the workspace. You take turns. Nothing runs in the background: the file is the shared state, and the owner opens and saves it themselves.
-
-## What the owner needs
-
-draw.io, free, either of:
-
-- **The draw.io desktop app** (drawio.com, or the Microsoft Store). Once installed, double-clicking a `.drawio` file in File Explorer opens it. If **File > Autosave** is ticked, it saves as they work, so a window left open can write over your changes; suggest unticking it.
-- **app.diagrams.net** in Edge or Chrome, if they can't install apps: **Open Existing Diagram**, then **Device**, and pick the file. The first Save asks permission to save to the file; allow it. If Save downloads a copy instead, ask where it went and read that copy.
-
-The first time, ask which they have and help them get one. Don't ask again once they've used it.
+The owner drags shapes in draw.io in their browser; you read and edit the same `.drawio` file in the workspace. You take turns. The file is the shared state. Nothing runs in the background and nothing needs installing: each of your turns ends with a link that opens the current file in draw.io, and the owner saves it back to the file when they are done.
 
 ## Where diagrams go
 
@@ -36,16 +27,26 @@ Reuse the relevant diagram instead of creating a second one:
 
 ## Opening a diagram
 
-Give the owner the file's full Windows path (the workspace folder plus the relative path) and tell them to open it in draw.io: double-click it in File Explorer, or **File > Open** in draw.io. Name its workspace-relative path too. Your own commands (Bash, `python3`) use the sandbox path of the same file.
+After every change, make the link and give it to the owner as a clickable link:
+
+```bash
+python3 <skill-dir>/scripts/link.py <sandbox path of the .drawio file>
+```
+
+`<skill-dir>` is the folder this SKILL.md was loaded from; if you don't know it, use `.claude/skills/drawio` in the workspace. The link opens app.diagrams.net in their browser with the diagram in it, named after the file. The whole diagram is inside the link after `#`, which the browser keeps to itself, so nothing is uploaded. It needs internet. Also give the file's full Windows path (the workspace folder plus the relative path), which they need to save it back.
+
+If `link.py` says the link is too long (a very large diagram), give the Windows path instead: they open app.diagrams.net in a new tab, choose **Open Existing Diagram** and pick the file.
+
+**Saving it back.** In draw.io the owner presses **Ctrl+S**, sets **Where** to **Device**, clicks **Save**, picks the file at that Windows path and agrees to replace it. Each new link needs this once, because its tab isn't connected to the file yet; after that, Ctrl+S in the same tab saves straight to the file (Edge or Chrome). Spell the steps out until they've done it a few times. If Save downloaded a copy instead, ask them to save it over the file at that path, or tell you where the copy is.
+
+The owner can also use the draw.io desktop app if they have it: double-click the file in File Explorer. If its **File > Autosave** is ticked, a window left open can write over your changes; suggest unticking it.
 
 ## Taking turns
 
-Don't count on draw.io noticing when you change the file: the owner reopens it after each of your turns. If draw.io warns that the file changed on disk, they should not overwrite it; they reopen it instead.
-
 1. **Their turn ends when they save.** When the owner says they updated, changed or edited the diagram, take that as saved: read the file at once and don't ask again. If you need to edit an existing diagram and they haven't said, ask them to save first. A new diagram has nothing to save.
-2. **Say what they changed** since your last turn, in a line or two (added, moved, relabelled, deleted), because that is their half of the conversation.
+2. **Say what they changed** since your last turn, in a line or two (added, moved, relabelled, deleted), because that is their half of the conversation. If the file hasn't changed since your last turn, their save didn't reach it: walk them through **Saving it back**.
 3. **Edit**, following `reference/format.md`.
-4. **Tell them** what you changed, and to reopen the file (close it without saving, then open it again, or **File > Open Recent**) before they change anything. Saving from the window they already had open would overwrite your changes.
+4. **Tell them** what you changed and give the new link. They close their old draw.io tab first: saving from it would overwrite your changes. (Desktop app: close the window and reopen the file instead of using the link.)
 5. If they did save over your changes, read the file, tell them which of your changes are gone, and redo them on top of theirs. Diagrams under `artifacts/` have no git history, so keep your own changes in mind until the owner has the new version open.
 
 Before writing or editing any `.drawio` XML, read [`reference/format.md`](reference/format.md).
@@ -69,7 +70,7 @@ When the owner asks for this skill with a subject to talk about, that is a yes t
    - **Structure** (a system, its parts and how they connect): boxes for the parts, arrows for the connections.
    - **Topic map** (anything still fuzzy: an idea, a decision, a problem): the subject in the centre, branches for the parts, goals, constraints and options.
 4. **Seed it:** 5 to 12 main shapes, labelled in the owner's words. Anything you filled in yourself ends its label with a space and a question mark ("Agent triages ?"). Add 2 to 4 yellow notes (200×80) in the question column for the open questions whose answers would change the diagram most. Save it where **Where diagrams go** says, named after the subject, and check the XML.
-5. **First message:** the path to open (see **Opening a diagram**); a line or two on what you drew and what you based it on; then one question, which the owner can answer in chat or on the diagram, whichever is quicker.
+5. **First message:** the link and the path (see **Opening a diagram**); a line or two on what you drew and what you based it on; then one question, which the owner can answer in chat or on the diagram, whichever is quicker.
 
 From then on, follow **Taking turns**.
 
