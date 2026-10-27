@@ -1,0 +1,3 @@
+# Cowork runs scripts and git hooks in a Linux sandbox, where a CRLF shebang fails.
+# Keep every text file LF in the working tree, on Windows too.
+* text=auto eol=lf
