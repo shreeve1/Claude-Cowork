@@ -116,6 +116,18 @@ For multi-step office tasks, state a brief plan using numbered bullets, with eac
 
 Strong success criteria allow independent progress. Weak goals like “make it better” require clarification before broad rewrites.
 
+### Check your answer before you send it
+
+Before a final answer that states facts, such as what a file or memory note says, what you changed, client details, or what a source says:
+
+1. List the claims the user will rely on.
+2. Check each claim against its source again now: reopen the file, the note or the page. Don't rely on what you read earlier or remember.
+3. Fix anything wrong. Mark anything you couldn't check as unverified, and say plainly what you didn't do (for example "I didn't open the link" or "I didn't test it").
+
+For a report, a message to a client, or a long answer, have a subagent do step 2. Give it only the claims, not your reasoning. Tell it to read without changing anything, and to answer each claim with **correct**, **wrong** (with the correction) or **can't tell**. Then fix your answer and give the user the final version. Without subagents, do step 2 yourself.
+
+Skip this for short replies, opinions and questions.
+
 ## Personal workspace memory
 
 This workspace uses `memory/` for local, personal, non-code memory. Populated memory `.md` files are tracked in git so they have version history. Hooks live in `.githooks/`: pre-commit scans for secrets, runs `gate.py audit` and the skill tests; commit-msg caps the subject at 72 characters.

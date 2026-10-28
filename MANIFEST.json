@@ -6794,12 +6794,12 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "7594d9f7f94e01aa1227809d2a7e191e8c3f4daf8105c9a8c2ff31652eb9ad01",
+   "sha256": "f328b7c3d6a86e1208a0da85bbccbb89b966d27c140d3243badebe85edd270e1",
    "mode": "644"
   },
   "CLAUDE.md": {
    "class": "merge",
-   "sha256": "cfb4aa4e4342eb02f726da29f4b84f861893072fc0379f8e7aced9ba9e5b0994",
+   "sha256": "d6b0dc5a107444a76e7468cea1b09ee11f327f9afa96cd7014a3fe130055da86",
    "mode": "644"
   },
   "CODING_STANDARDS.md": {
