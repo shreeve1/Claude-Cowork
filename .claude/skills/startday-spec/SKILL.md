@@ -17,12 +17,11 @@ This is not a working loop. It is the recipe your agent follows, together with y
 - You already have `startday` and your tools changed. Rerun the interview; keep what still fits.
 - You want a weekly look-back that turns feedback you gave more than once into memory (`references/modules.md`, "Look-back").
 
-
 ## How to run
 
 1. Read `references/core.md`. Its six rules are fixed. The interview may shape everything else, never these.
-2. Start the `talk-it-through` skill with this spec as the plan under discussion. Ask the questions in `references/interview.md` one at a time, each with a recommended answer. Skip any the owner already answered.
-3. Fill in `references/skeleton-SKILL.md` with the answers, keeping only the modules the owner picked (`references/modules.md`). Replace every `<fill in>` marker; leave the rest of the wording alone unless an answer forces a change. A blank or "not sure" answer counts as not answered: ask again or use the recommended default and say so.
+2. Start the `talk-it-through` skill with this spec as the plan under discussion. Use its opening for any underspecified request, then state the current understanding and recommendation. Use `references/interview.md` as territory and ask only questions whose answers change the design. Skip any the owner already answered.
+3. Prepare the proposed contents of `references/skeleton-SKILL.md` from the answers, keeping only the modules the owner picked (`references/modules.md`). Replace every `<fill in>` marker; leave the rest of the wording alone unless an answer forces a change. A blank or "not sure" answer counts as not answered: ask again or use the recommended default and say so. Do not write the file yet.
 4. Pick the runner with the owner from `references/runners.md`, then work through `references/adaptation-list.md` for the owner's harness and machine. Write down what you found and what you chose.
 5. Show the owner the finished skill and `.claude/startday.json` in full. Ask before writing anything. Only after a clear yes, write the skill to `.claude/skills/startday/SKILL.md` and the settings file. Never overwrite an existing `startday` without showing the differences and getting a second yes.
 6. Tell the owner the next step plainly: try it on a test system or a test day before a first real day, and only then turn on the runner.

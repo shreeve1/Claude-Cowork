@@ -45,7 +45,7 @@
  },
  "drawio": {
   "set": "core",
-  "sha256": "d9ef4314ea7c2da15289f977dbc0c869e2ebd37a072876ef8f8bb141d8814204"
+  "sha256": "9d03bcede9c3bbc61cdd63fb98f2370742f343f7d76124f1d74887c5e3ba1539"
  },
  "embedded-captions": {
   "set": "video",
@@ -117,7 +117,7 @@
  },
  "memory-setup": {
   "set": "core",
-  "sha256": "69fadcce350fa8cec857ca24972b256155c8634bbbf4768d0b3731bf63cdfa35"
+  "sha256": "844cf446547387f8dff060aea512f7bdb5600b593b2114379d9a7137e0477a58"
  },
  "motion-doctrine": {
   "set": "video",
@@ -137,7 +137,7 @@
  },
  "personal-memory": {
   "set": "core",
-  "sha256": "498f066f0517ad3dd6cae29f2fe904791aa097721c282066062547c86f699da8"
+  "sha256": "1cab69c4a3aa44ee88fba662e647131857184183f8a388bd0b96320bce915670"
  },
  "pr-to-video": {
   "set": "video",
@@ -165,11 +165,11 @@
  },
  "startday-spec": {
   "set": "core",
-  "sha256": "771706bbb6d0a07b7fa1cf15658a6063558181fe77ebc88631aac3b4e386e8fe"
+  "sha256": "85a686e912fa71559dc0c2b85063518b2f75418797dc856a57d2d8c68d21ec45"
  },
  "talk-it-through": {
   "set": "core",
-  "sha256": "013d4181617b3d4f8dc9e89e011f1bc2e73f2d338528569dd0780343b69d289b"
+  "sha256": "128e332218e62a28e36dd7ed873c1c8c4da0bc4c9756ff3aab339223d830e94d"
  },
  "talking-head-recut": {
   "set": "video",
@@ -185,7 +185,7 @@
  },
  "workflow-builder": {
   "set": "core",
-  "sha256": "a191b1a87db930be645c604e373c71fe778759dd2755ca397f4a9d1e414316bd"
+  "sha256": "9c24d5747d1ea8f992d9090732504de210fef56cc7fbfc3c10613d50171cbc9f"
  },
  "youtube": {
   "set": "core",

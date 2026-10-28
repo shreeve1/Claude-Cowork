@@ -24,6 +24,6 @@ Read at session start. Load every Always row now. Before each task, load every r
 | Processing a meeting transcript, or the owner names who a meeting was with | skill `meeting` | `memory/preferences/meetings.md` | Settings first; ask the skill's First use questions when they are not set. |
 | A task a saved procedure covers | | `memory/workflows/index.md` | Open and follow the matching procedure file. |
 | A choice that may already be decided | | `memory/decisions/index.md` | |
-| A hard-to-reverse choice only the owner can make | skill `talk-it-through` | | Routine choices get a stated default instead. |
+| A plan, process, document, or ambiguous direction needs thinking through | skill `talk-it-through` | `memory/preferences/talk-it-through.md` | Recommendation first; ask only decision-changing questions. |
 | Problem outside the owner's usual work, or the owner asks for an expert view | skill `professional-guidance` | | |
 | Saving, pruning or checking memory | skill `personal-memory` | `memory/preferences/memory-maintenance.md` | Replace or merge in place before appending; sweep references after. |

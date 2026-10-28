@@ -73,14 +73,14 @@ Use notes for the whole life of a diagram, not only while brainstorming:
 
 When the owner asks for this skill with a subject to talk about, that is a yes to the diagram. First run **Find before create**. Your first message either asks them to confirm an existing diagram or gives them a new seed diagram to react to:
 
-1. **Follow the `brainstorm-idea` skill** for the conversation; the diagram is its visual side.
+1. **Follow the `talk-it-through` skill** for the conversation. The diagram is its visual companion: this replaces that skill's visual companion offer and its Mermaid diagram, because the canvas is the diagram. Everything else in that skill still applies.
 2. **Look before you draw.** Read what the subject points at: the notes, documents or earlier conversation it names or that obviously relate to it. Stop once you can sketch how it works today, or what they seem to want. With little or nothing to read, seed from the subject alone: a topic map of the usual parts of such a thing, mostly `?` labels, beats a blank page.
 3. **Pick the shape** that fits:
    - **Flow** (steps, a process, a bot or agent loop, a request path): a rough flowchart of what you know.
    - **Structure** (a system, its parts and how they connect): boxes for the parts, arrows for the connections.
    - **Topic map** (anything still fuzzy: an idea, a decision, a problem): the subject in the centre, branches for the parts, goals, constraints and options.
 4. **Seed it:** 5 to 12 main shapes, labelled in the owner's words. Anything you filled in yourself ends its label with a space and a question mark ("Agent triages ?"). Add 2 to 4 yellow notes (200×80) in the question column for the open questions whose answers would change the diagram most. Save it where **Where diagrams go** says, named after the subject, and check the XML.
-5. **First message:** the link and the path (see **Opening a diagram**); a line or two on what you drew and what you based it on; then one question, which the owner can answer in chat or on the diagram, whichever is quicker.
+5. **First message:** the link and the path (see **Opening a diagram**); a line or two on what you drew and what you based it on; then the `talk-it-through` first message (a one-line subject counts as underspecified, even when the files you read fill in a lot), ending with its single question, which the owner can answer in chat or on the diagram, whichever is quicker.
 
 From then on, follow **Taking turns**.
 

@@ -1,6 +1,6 @@
 # Making it fit the owner
 
-Three steps: settle the tracking model (what the owner needs remembered), make it run under the owner's agent app and machine, then make it fit how the owner works. The tracking model comes first and before filing old notes, so migrated facts have a home. Do part 1 before part 2. Run the tracking model and part 2 through the `talk-it-through` skill: one question at a time, each with a recommended answer, and the owner decides.
+Three steps: settle the tracking model (what the owner needs remembered), make it run under the owner's agent app and machine, then make it fit how the owner works. The tracking model comes first and before filing old notes, so migrated facts have a home. Do part 1 before part 2. Run the tracking model and part 2 through the `talk-it-through` skill. For an underspecified opening, use its one open question; then state the understanding and recommendation, make routine defaults, and ask only a question whose answer changes the direction.
 
 ## Tracking model (before filing old notes)
 
@@ -17,7 +17,7 @@ This workspace was written for a terminal coding agent that reads `CLAUDE.md` at
 
 ## Part 2: how the owner works
 
-Ask these in order. Skip any the owner already answered. Stop early when the rest have obvious defaults, and say which default you used.
+Start by recommending a setup from what the owner has already said. Use these questions as territory, not a checklist: ask only the next question whose answer changes the setup, skip answered points, and state obvious defaults.
 
 1. **What do you mostly use an agent for?** Writing, research, IT support, coding, planning, something else. This decides which skills matter.
 2. **Which skills will you not use?** List the skills under `.claude/skills/` with one line each. Do not delete shipped skills; the check fails without them. Instead add a row to `memory/rules.md` (When: Always, Note: "never use skill `<name>`") so the agent leaves it alone.

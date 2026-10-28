@@ -38,6 +38,7 @@ EXTRA_FILES = {
     ".agents/skills/meeting/scripts/tests/test_meetings.py": "merge",
     "memory/preferences/meetings.md": "seed",
     "memory/preferences/memory-maintenance.md": "seed",
+    "memory/preferences/talk-it-through.md": "seed",
 }
 
 # Upstream rewrote these for Codex only. Keep this workspace's copy (converted path), pinned to
@@ -52,7 +53,7 @@ KEEP_WORKSPACE = {
 # Upstream skill folders replaced by this edition's own version (its files are in WORKSPACE_ONLY),
 # pinned to a hash of the upstream folder that was reviewed; a different upstream folder is reported.
 REPLACED_DIRS = {
-    ".agents/skills/drawio/": "f944a6a6ec01ff55a07fdc9f12cee0e4c1bb9eefd8328056a96326690783d3ac",
+    ".agents/skills/drawio/": "5343e9e34ae9ee2981968600c142bae192fd78397cc4cc2d0fd2717e864b3c70",
 }
 
 # Shipped files that exist only in this edition; copied from the workspace into every conversion.
@@ -182,6 +183,29 @@ FILE_RULES = {
     ],
     ".claude/skills/startday-spec/references/adaptation-list.md": [
         (re.compile(r"   In Codex, use the available automation tools.*?shell loop\.\n\n", re.S), ""),
+    ],
+    # The upstream author's own skill paths; in Cowork the draw.io canvas is the visual companion.
+    ".claude/skills/talk-it-through/SKILL.md": [
+        ("If accepted, read `visual-companion.md` from the installed superpowers brainstorming skill directory. "
+         "In this workspace that is `/home/james/.pi/agent/git/github.com/obra/superpowers/skills/brainstorming/visual-companion.md`. "
+         "If it is unavailable,",
+         "If accepted and the picture is a flow, structure or map, use the `drawio` skill. Otherwise read "
+         "`visual-companion.md` from the installed superpowers brainstorming skill, if there is one. If it is unavailable,"),
+        (" In this workspace that is `/home/james/.pi/agent/git/github.com/obra/superpowers/skills/brainstorming/builder-check-prompt.md`.",
+         ""),
+        # The packaged skill may be installed globally, outside any git repo.
+        ("write it, commit it, and then run the builder check.",
+         "write it, commit it if the project is a git repo, and then run the builder check."),
+        ("after approval, write and commit the design, then run the builder check",
+         "after approval, write the design (and commit it in a git repo), then run the builder check"),
+        ("2. Run `python3 .claude/skills/personal-memory/indexes.py` when",
+         "2. Run `python3 <skills>/personal-memory/indexes.py` when"),
+        ("3. Run `python3 .claude/skills/personal-memory/gate.py --memory memory audit`.",
+         "3. Run `python3 <skills>/personal-memory/gate.py --memory memory audit`. `<skills>` is the folder "
+         "that holds the skill folders (`.claude/skills` in a workspace, `~/.claude/skills` for a global "
+         "install); `python3` means `python` where that is the working command."),
+        ("5. Commit the memory files written during this task,",
+         "5. If the project is a git repo, commit the memory files written during this task,"),
     ],
     ".claude/skills/youtube/SKILL.md": [
         ("Use when the user says `/youtube <url>`,", "Use when the user says `/youtube` with a URL,"),

@@ -1,6 +1,6 @@
 # Interview
 
-Ask these through `talk-it-through`, one at a time, each with your recommended answer. Skip any the owner already answered, and skip a module's questions when the owner did not pick it. Stop early when the rest have obvious defaults, and state the default you used.
+Run this through `talk-it-through`. For an underspecified opening, use its one open question; then state the current understanding and recommendation. Use these questions as territory, not a checklist: ask only the next question whose answer changes the design, skip answered or unselected points, and state obvious defaults.
 
 A blank or vague answer counts as not answered (core rule 6). Ask again once, then use the recommended default and say so.
 
@@ -67,7 +67,7 @@ Calendar is included unless the owner says no or no calendar can be read here; t
 
 ## After the interview
 
-Restate the answers as a short list. Ask "Is anything here wrong?" Fix it, then fill in `skeleton-SKILL.md` and write `.claude/startday.json`:
+Restate the answers as a short list. Ask "Is anything here wrong?" Fix it, then prepare the proposed contents of `skeleton-SKILL.md` and `.claude/startday.json` without writing them. Show both in full and ask for clear approval. Only after approval, write the files:
 
 ```json
 {

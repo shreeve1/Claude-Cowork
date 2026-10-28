@@ -10,14 +10,14 @@ description: |
 
 ## Workflow
 
-Walk the user through building a reusable workflow skill — a new SKILL.md that orchestrates specialist agents drawn from `.claude/skills/workflow-builder/agents-library/`, customized and materialized into the produced skill's own `agents/` folder. Run it talk-it-through style: ask one question at a time in plain chat text and recommend an answer. Apply the 80/20 rule — spend questions on the vital few decisions (step structure, agent fit, customization, collisions) and state defaults for the trivial many.
+Walk the user through building a reusable workflow skill — a new SKILL.md that orchestrates specialist agents drawn from `.claude/skills/workflow-builder/agents-library/`, customized and materialized into the produced skill's own `agents/` folder. Run it through `talk-it-through`: use its opening for an underspecified request, then state your understanding and recommendation in plain chat text, and ask only a question whose answer changes the workflow. Apply the 80/20 rule — spend questions on the vital few decisions (step structure, agent fit, customization, collisions) and state defaults for the trivial many.
 
 The walkthrough has four phases, run in order.
 
 ### Phase 1 — Goal, name, description, and seed
 
 1. Read `CONTEXT.md` and `memory/decisions/index.md` (decisions sit in `memory/decisions/<topic>/`) so you build on agreed language and prior conventions. Create both lazily — only when you have something to write (a resolved term or a settled decision).
-2. Ask the user to state the workflow goal in plain language: what business process should this skill run, and what are they automating or scaffolding?
+2. If the goal is still underspecified after the `talk-it-through` opening, ask one concrete question about the business process, the people using it, or what they are automating. Otherwise, state the goal you understand and recommend the initial workflow shape.
 3. Propose a short name for the skill, derived from the goal, in all lowercase with hyphens between words (e.g. `launch-newsletter`, `onboard-client`). Recommend one; user confirms or overrides.
 4. Draft the produced skill's `description` frontmatter to the writing-great-skills bar (see "Authoring bar for the produced skill" below; if you have a skill-writing guide, apply it): front-load the skill's leading word, give one trigger per branch (collapse synonyms that rename a single branch), and cut identity the body already carries. Recommend it; user confirms or edits. Completion criterion: the description front-loads a leading word and carries one distinct trigger per branch, with no duplicated triggers.
 5. **Optional: seed from a published skill (don't reinvent).** Before authoring from scratch, check whether a comparable published skill can serve as a starting point — if you have a published-skill directory and a scaffolder available, load and follow them. Run the scaffolder's discovery, audit gate, and fetch/review against this goal; only skills that clear its security-audit gate are eligible. If a good base clears the gate and the user confirms it, use its customized SKILL.md as the **skeleton** for the produced skill and carry it into Phase 2. When run as a seed, the scaffolder hands back the customized skeleton without writing a file — this skill performs the single write in Phase 4. If nothing clears the gate or fits, say so in one line and author from scratch. This is a seed, not a requirement — the produced skill is still written to this skill's authoring bar and wired to local agents (Phases 2–4) regardless of whether a base was found.
@@ -25,7 +25,7 @@ The walkthrough has four phases, run in order.
 ### Phase 2 — Step list (what, not who)
 
 1. From the stated goal (or the seeded skeleton, if one was found), propose an ordered list of steps. Each step is a unit of work with a single deliverable. Name what happens and what each step produces; agents come in Phase 3.
-2. Grill the step list like talk-it-through grills a plan: one question at a time, recommend an answer, prune low-stakes branches. Common challenges:
+2. Stress-test the step list like talk-it-through stresses a plan: state the recommended order, prune low-stakes branches, and ask only a question whose answer changes the workflow. Common challenges:
    - Missing steps (was review, handoff, QA, or sign-off skipped?)
    - Fused steps (should "research and draft" be two steps with different agents?)
    - Order errors (does step 3 actually depend on step 5's output?)
@@ -40,7 +40,7 @@ For each step in the locked list, in order:
 3. Recommend one agent for the step, with a one-line rationale tying the agent's specialty to the step's deliverable.
 4. User confirms or overrides. When the user names an agent outside your candidates, verify it exists in `.claude/skills/workflow-builder/agents-library/index.json` before accepting — typos happen.
 5. **Customize** the picked agent: read the source `.claude/skills/workflow-builder/agents-library/<division>/<short-name>.md`, then propose edits that scope its persona to this step's deliverable and this workflow. Confirm the customizations with the user.
-6. **Materialize** it: create `.claude/skills/<name>/agents/` if missing, then write the customized copy to `.claude/skills/<name>/agents/<short-name>.md`. Use the library short name (the `slug` field in `index.json`) as the filename base; the materialized file is a self-contained persona doc (its own frontmatter `name`/`description`), not a subagent registration. When one base agent serves more than one step, give each a per-purpose short name (e.g. `researcher-intake`, `researcher-qa`) so the copies stay distinct. If the target file already exists, refuse and ask (overwrite / save-as-new-slug / cancel) — leave existing files intact until the user chooses.
+6. **Prepare** the customized copy for the step, but do not write it yet. Use the library short name (the `slug` field in `index.json`) as the filename base; the materialized file will be a self-contained persona doc (its own frontmatter `name`/`description`), not a subagent registration. When one base agent serves more than one step, give each a per-purpose short name (e.g. `researcher-intake`, `researcher-qa`) so the copies stay distinct. If the target file already exists, surface the collision and wait for the user to choose overwrite, save-as-new-slug, or cancel.
 7. Lock the agent for that step and note the deliverable. Move to the next step.
 
 Return to Phase 2 at any time to add, remove, reorder, or rephrase steps; on return, re-confirm the step list before resuming Phase 3. Agents already locked for unchanged steps stay locked.
@@ -57,7 +57,7 @@ Default to one agent per step; descend into "two agents for one step" only when 
      - For an agent-less step, write a plain instruction with no persona line.
    - Inline what every run needs; disclose branch-specific detail to a pointer file only when the produced skill branches.
    - Prompt the target behaviour positively; keep a prohibition only as a guardrail you cannot phrase positively, paired with what to do instead. Note the inputs, outputs, and permissions the skill needs, and confirm before any destructive action.
-3. Write the file to `.claude/skills/<name>/SKILL.md` with a file-write tool (never paste the whole skill into chat) so the skill is on disk and activateable immediately.
+3. Show the complete proposed skill and its materialized agents to the user and obtain approval of the full description. Do not write files before that approval. After approval, write the files to `.claude/skills/<name>/SKILL.md` and its `agents/` paths with file-write tools (never paste whole skills or agents into chat) so the skill is on disk and activateable immediately.
 4. Validate to the bar before reporting done: frontmatter `name`/`description` present; the description front-loads its leading word and carries one trigger per branch; every step ends on a checkable completion criterion; every `agents/<short-name>.md` the skill references exists on disk; no obvious no-ops or duplication. If the skill was seeded from a published skill, carry through the provenance line the scaffolder added. Fix any miss before finishing.
 5. Tell the user the exact workspace-relative path(s): the produced skill and every materialized agent.
 
@@ -97,7 +97,7 @@ These are referenced by relative path. If `talk-it-through` is renamed or moved,
 
 ### Maintaining CONTEXT.md inline
 
-When a term is resolved during the walkthrough (e.g. the user gives a precise name for a role, document, or status specific to this workflow), update `CONTEXT.md` right there using the format above. Do not batch. Keep `CONTEXT.md` a glossary only — no procedure, no task lists, no rationale.
+When a term is resolved during the walkthrough (e.g. the user gives a precise name for a role, document, or status specific to this workflow), prepare the proposed `CONTEXT.md` update. Write it only after the user explicitly approves the complete produced skill. Keep `CONTEXT.md` a glossary only — no procedure, no task lists, no rationale.
 
 ### Wrapping up — record conventions (not skill content)
 
@@ -123,10 +123,10 @@ Picking mechanics live in Phase 3; this section is the catalog map only.
 
 ### Hard rules
 
-- One question at a time in plain chat text.
-- Recommend an answer for every real question.
+- Lead with understanding and a recommendation in plain chat text.
+- Ask only decision-changing questions and state defaults for low-stakes choices.
 - Seed before authoring (optional): if you have a scaffolder, run its discovery + audit gate; adopt an external base only when it clears the gate and the user confirms; otherwise author from scratch.
-- Materialize each picked agent as a customized copy at `.claude/skills/<name>/agents/<short-name>.md`; the produced skill adopts it inline by that path. The produced skill invokes no registered subagent and writes no agent back into `.claude/skills/workflow-builder/agents-library/`.
+- Prepare each picked agent as a customized copy at `.claude/skills/<name>/agents/<short-name>.md`, then write it only after approval of the complete produced skill; the produced skill adopts it inline by that path. The produced skill invokes no registered subagent and writes no agent back into `.claude/skills/workflow-builder/agents-library/`.
 - Create `.claude/skills/<name>/agents/` if missing.
 - On an existing skill or agent file, refuse and ask — leave it intact until the user chooses.
 - Write real files (never paste whole skills/agents into chat) so the skill is on disk immediately.

@@ -20,7 +20,7 @@ If the owner has no such things: leave `client_subjects` empty, delete that row 
 
 ## Applying this outside a full workspace
 
-The section above is the workspace's tracking model. In a separate project, use the `<skills>` path chosen in setup step 2. Ask one question at a time with a recommended answer; if `talk-it-through` is absent, do that in this session. A hub is a small page linking the notes about one person or thing; call it that when speaking to the owner.
+The section above is the workspace's tracking model. In a separate project, use the `<skills>` path chosen in setup step 2. Use the `talk-it-through` opening for an underspecified request, then state the understanding and recommendation and ask only questions whose answers change the model; if `talk-it-through` is absent, do that in this session. A hub is a small page linking the notes about one person or thing; call it that when speaking to the owner.
 
 Settle the model before sorting, but wait for step 6 approval before writing facts or the proof note. An existing `memory/` keeps its content: propose any rename or schema change separately and get the owner's OK before applying it. If this scaffold has no client-loading row, add the row described above when tracking is used; otherwise there is nothing to delete. Change a folder map only if one exists.
 
