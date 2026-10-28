@@ -16,6 +16,7 @@ Cowork-only changes:
 - `teach`, `youtube` and `hyperframes-audio` now pass Cowork's skill upload checks (no Claude Code-only frontmatter keys, no angle brackets in a description).
 - `drawio` (core): a Cowork version of the upstream skill. The agent writes the `.drawio` file and opens it in draw.io in the app's built-in browser pane (Claude in Chrome as a backup), reusing the same tab each turn, with the link as a further backup and a preview page (a built-in drawing that loads nothing from the internet) as a last resort (`scripts/link.py`; the diagram is inside the link); the owner saves it back to the file (Save, Where: Device). No server, no fixed machine addresses. The converter replaces the upstream `drawio` folder with this one and reports when upstream changes it.
 - `.gitattributes` keeps text files LF so scripts and git hooks run in Cowork's Linux sandbox.
+- `MANIFEST.json` lists the `drawio` files and the talk-it-through preference, and its hashes match the shipped files again; `cowork_skills.py build` now keeps it up to date.
 
 ## Local changes
 

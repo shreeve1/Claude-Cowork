@@ -1,7 +1,7 @@
 # Cowork Workspace
 
 A ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory and git hooks.
-Your AI agent (Claude Cowork or Claude Code) sets it up, updates it, brings your existing
+Your AI agent in Claude Cowork sets it up, updates it, brings your existing
 notes into it, and adapts it to how you work. You don't copy files by hand.
 
 ## Get started
@@ -43,12 +43,16 @@ Your old setup is never edited. Nothing is dropped without your approval. When s
 - **Writing and design quality** (`antislop` plus code, copy, UI, mobile and accessibility add-ons): filters out generic AI output.
 - **Working tools**: `excalidraw-diagram`, `drawio` (diagrams you edit yourself in draw.io in your browser), `youtube` (transcript plus fact-check), `handoff` (continue work in a new session), `troubleshoot-my-pc`.
 - **Video** (HyperFrames, from HeyGen, Apache-2.0): 20+ skills for making videos from a URL, PR, script or music: `hyperframes` is the entry point. Licence in `.claude/third-party/hyperframes/`.
-- **Upgrades** (`convert-release`): converts a new upstream release into this layout.
 - **Safety**: git history, with a commit hook that scans for secrets and checks memory.
 
 ## Requirements
 
-Claude Cowork or Claude Code. Git and Python 3.11+ are optional; setup works without them
-and your agent tells you what's off.
+Claude Cowork on Windows. Git and Python 3.10+ are optional (Cowork's sandbox has Python);
+setup works without them and your agent tells you what's off.
 
 Some file browsers hide folders starting with a dot. The setup lives in `.claude/setup/`.
+
+## For the maintainer
+
+`convert-release` turns a new upstream starter-agent Release into this edition. It is
+never installed as a Cowork skill; owners get the converted version from this repo.

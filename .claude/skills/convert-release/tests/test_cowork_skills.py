@@ -1,4 +1,5 @@
 import contextlib
+import hashlib
 import io
 import json
 import shutil
@@ -94,6 +95,30 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("FAILED youtube", log)
         self.assertFalse((self.pk / "video/hyperframes.skill").exists())
+
+    def test_build_refreshes_manifest(self):
+        (self.ws / "START-HERE.md").write_bytes(b"new\r\n")
+        (self.ws / cs.MANIFEST).write_text(json.dumps({"release": 5, "files": {
+            "START-HERE.md": {"class": "merge", "mode": "644", "sha256": "old"},
+            ".claude/skills/convert-release/SKILL.md": {"class": "merge", "mode": "644", "sha256": "old"},
+        }}))
+        code, log = run("build", "--workspace", self.ws)
+        self.assertEqual(code, 0, log)
+        man = json.loads((self.ws / cs.MANIFEST).read_text())
+        files = man["files"]
+        self.assertEqual(man["release"], 5)
+        self.assertEqual(files["START-HERE.md"]["sha256"], hashlib.sha256(b"new\n").hexdigest())
+        self.assertNotEqual(files[".claude/skills/convert-release/SKILL.md"]["sha256"], "old")
+        self.assertEqual(files[".claude/skills/personal-memory/gate.py"]["mode"], "755")
+        self.assertEqual(files[".claude/skills/hyperframes/SKILL.md"]["class"], "merge")
+        self.assertNotIn(".claude/skills/personal-memory/__pycache__/g.pyc", files)
+        self.assertEqual(list(files), sorted(files))
+
+    def test_build_fails_when_a_listed_file_is_missing(self):
+        (self.ws / cs.MANIFEST).write_text(json.dumps({"files": {"gone.md": {"class": "merge", "mode": "644"}}}))
+        code, log = run("build", "--workspace", self.ws)
+        self.assertEqual(code, 1)
+        self.assertIn("gone.md is listed but missing", log)
 
 
 class ChangedTests(unittest.TestCase):

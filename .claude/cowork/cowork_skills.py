@@ -6,7 +6,10 @@ Maintainer, once per Release (after convert-release):
 Checks every skill in .claude/skills/ against Cowork's upload rules and writes
 .claude/cowork/skills/core/<name>.skill, .claude/cowork/skills/video/<name>.skill and
 .claude/cowork/skills/index.json. Builds are byte-identical when a skill is unchanged.
-Exits 1 if any skill fails the checks (it is left out).
+It also re-hashes every file MANIFEST.json lists and adds packaged skill files it lacks
+(class merge, mode 755 if the file starts with #!, else 644: check the mode of each one
+it prints); a new file outside a skill needs its manifest entry added by hand.
+Exits 1 if any skill fails the checks (it is left out) or a listed file is missing.
 
 Owner's agent, on an update only:
     python3 .claude/cowork/cowork_skills.py changed <old_workspace> [--video]
@@ -35,6 +38,7 @@ CORE = (
 NEVER = ("convert-release",)
 PACKAGES = Path(".claude") / "cowork" / "skills"
 INDEX = PACKAGES / "index.json"
+MANIFEST = Path("MANIFEST.json")
 ZIP_DATE = (1980, 1, 1, 0, 0, 0)
 
 ALLOWED_KEYS = {"name", "description", "license", "allowed-tools", "metadata", "compatibility"}
@@ -132,6 +136,34 @@ def package(folder, dest):
             z.writestr(info, data)
 
 
+def refresh_manifest(ws, names):
+    """Re-hash MANIFEST.json's files the way convert_release does (line endings as LF) and
+    list any packaged skill file it lacks. Returns the number of listed files that are missing."""
+    path = ws / MANIFEST
+    if not path.is_file():
+        print("note: no MANIFEST.json to refresh")
+        return 0
+    man = json.loads(path.read_text(encoding="utf-8"))
+    files = man["files"]
+    for n in names:
+        for p in skill_files(ws / ".claude" / "skills" / n):
+            rel = p.relative_to(ws).as_posix()
+            if rel not in files:
+                files[rel] = {"class": "merge", "mode": "755" if p.read_bytes().startswith(b"#!") else "644"}
+                print(f"manifest: added {rel}")
+    missing = 0
+    for rel, meta in files.items():
+        p = ws / rel
+        if not p.is_file():
+            missing += 1
+            print(f"manifest: {rel} is listed but missing")
+            continue
+        meta["sha256"] = hashlib.sha256(p.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+    man["files"] = dict(sorted(files.items()))
+    path.write_text(json.dumps(man, indent=1) + "\n", encoding="utf-8", newline="\n")
+    return missing
+
+
 def build(ws):
     skills_dir, out = ws / ".claude" / "skills", ws / PACKAGES
     names = sorted(p.name for p in skills_dir.iterdir() if (p / "SKILL.md").is_file() and p.name not in NEVER)
@@ -158,7 +190,8 @@ def build(ws):
     (ws / INDEX).write_text(json.dumps(index, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     sizes = {k: sum(p.stat().st_size for p in (out / k).glob("*.skill")) // 1024 for k in ("core", "video")}
     print(f"built {len(index)} skills: core {sizes['core']} KB, video {sizes['video']} KB")
-    return 1 if failed else 0
+    missing = refresh_manifest(ws, names)
+    return 1 if failed or missing else 0
 
 
 def changed(ws, prev, video):

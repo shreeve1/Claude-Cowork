@@ -5,11 +5,11 @@
   ".claude/cowork/cowork_skills.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "00563770ca324468b262d06fc21cfe2663ea6d29bebc99481678bde36b12f5e5"
+   "sha256": "08188daea5d0074a51e6cb6d8432d1d4d60c68391792299696d19642c6f89ce6"
   },
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
-   "sha256": "3035be343a98028bb49960d11b20c8356dea725253c1ef5495997e21e3f3690b",
+   "sha256": "745e1575c11b3a4160b420fe4259a5d7beae13de69ecdde4df0c9a36b7ed81bf",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
@@ -24,7 +24,7 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "c3173a1e033aee2e519e5e70c3b86009faa5ae6078b969c649ca9429fbf213a3",
+   "sha256": "42b12c775a3374b06871f5b2bfc1e359c37eb7edcb84ea681507f16e839fb7f0",
    "mode": "644"
   },
   ".claude/setup/WEEKLY-SWEEP.md": {
@@ -176,6 +176,36 @@
    "class": "merge",
    "sha256": "c5e523bf1404eff2ffe903bc756006fd21894e1f6c10e630485afc570a2ad72b",
    "mode": "644"
+  },
+  ".claude/skills/drawio/SKILL.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "ae86b4556264b7c4e2a051acb83c5e31d3c49ee85e4e949d66dc4c4e8241c037"
+  },
+  ".claude/skills/drawio/reference/format.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "bef0afcd9f20579748e620ac99e7d37c7d5e13c9d7bec66960000b97fe41fe6e"
+  },
+  ".claude/skills/drawio/scripts/link.py": {
+   "class": "merge",
+   "mode": "755",
+   "sha256": "9732e5cfafef4743a77867b86c963db74858a8a7ef3dbff56287492977557054"
+  },
+  ".claude/skills/drawio/scripts/svg.py": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "73d3f6fea7ed356b40c3f35ffab4234a95ea9f60f7ebee97c681d3b384e340ee"
+  },
+  ".claude/skills/drawio/scripts/tests/test_link.py": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "dfa2c26a59d4e3fee4c1449a0c521ce0e064eb7975deb94123a1388900ec213f"
+  },
+  ".claude/skills/drawio/scripts/tests/test_svg.py": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "ad450f2b7739eeb3287382e00e6d260fa9dec92fe18a83ad65f19f42ea077be3"
   },
   ".claude/skills/embedded-captions/.gitignore": {
    "class": "merge",
@@ -3109,7 +3139,7 @@
   },
   ".claude/skills/memory-setup/tracking-model.md": {
    "class": "merge",
-   "sha256": "ccdff61b6d787f26e8c4388da078e9b905ad973072d59c7e0aff4d608dfb7764",
+   "sha256": "13a9315ca9ae4d4f031cf998e74c66e38e191f175b453203eb17714d6978362e",
    "mode": "644"
   },
   ".claude/skills/memory-setup/where-things-go.md": {
@@ -4129,7 +4159,7 @@
   },
   ".claude/skills/personal-memory/reference.md": {
    "class": "merge",
-   "sha256": "d9e00939b65c584db5ff47a035b195a49475b98c47e6d167e26df59890f59bf6",
+   "sha256": "634183cb4776368c8c76326419d7ed12c9f73e50e08ddac237d09d24f67a41b6",
    "mode": "644"
   },
   ".claude/skills/personal-memory/scaffold/AGENTS-memory.md": {
@@ -5514,7 +5544,7 @@
   },
   ".claude/skills/startday-spec/SKILL.md": {
    "class": "merge",
-   "sha256": "99747130bd11c40a44e84f393551fbf819038febaeeb0ad8da01a284406e2488",
+   "sha256": "5e5eb4c498a337cbe2c4c3ae8f5ea651b753783e28bc0e99ed2d218849d591e3",
    "mode": "644"
   },
   ".claude/skills/startday-spec/references/adaptation-list.md": {
@@ -5529,7 +5559,7 @@
   },
   ".claude/skills/startday-spec/references/interview.md": {
    "class": "merge",
-   "sha256": "90657d1ed3b1caafb96adece21a1ee00ac4283b0884f00d5ddb07131b3cdf8eb",
+   "sha256": "bfdcafbed9ceaf74e42fa1c7ad7c8ddfcfe8433a6b9b002a3f53669be2e00f1f",
    "mode": "644"
   },
   ".claude/skills/startday-spec/references/modules.md": {
@@ -5574,7 +5604,7 @@
   },
   ".claude/skills/talk-it-through/SKILL.md": {
    "class": "merge",
-   "sha256": "5e6fe0fb88907f0eb489e3fc46cb3fcef44a6887824412841f1d5d0a146c9a18",
+   "sha256": "721f9d8be51268f237cc4d8d15a526009eca77f9b8122b232b796e7f64adb8be",
    "mode": "644"
   },
   ".claude/skills/talking-head-recut/NOTICE.md": {
@@ -5764,7 +5794,7 @@
   },
   ".claude/skills/workflow-builder/SKILL.md": {
    "class": "merge",
-   "sha256": "09ca044070371c8a1e69418a0a3b5e48e3fdeb7c8fb0cec2051c8fd956a95d14",
+   "sha256": "7e73cbceed74ddb3207d4d48556ef08bc6ac23fc1e4057eab34fa45ad300f92d",
    "mode": "644"
   },
   ".claude/skills/workflow-builder/agents-library/README.md": {
@@ -6764,7 +6794,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "46c88ff4f498fb0e1687b2630a68e6303464e3c7b60fb477a893b96b7adf2815",
+   "sha256": "7594d9f7f94e01aa1227809d2a7e191e8c3f4daf8105c9a8c2ff31652eb9ad01",
    "mode": "644"
   },
   "CLAUDE.md": {
@@ -6784,7 +6814,7 @@
   },
   "START-HERE.md": {
    "class": "local",
-   "sha256": "0ab2d92ebc08832150e183074ffbfdb7f72c7bd5e196b9547d4114919163e6b6",
+   "sha256": "890fdeb30fdb66616362902bf7ac635789f2acfa3b4539f56837bfd2cb8c33ae",
    "mode": "644"
   },
   "memory/README.md": {
@@ -6814,7 +6844,7 @@
   },
   "memory/index.md": {
    "class": "local",
-   "sha256": "ad76c406d9f09d6cb779d2353472f387ac0cf2afe018d341b80fb5614dc5d372",
+   "sha256": "33033a235be86b574d2e53253ca24d185356e9fea217cd767c29e6e390dba753",
    "mode": "644"
   },
   "memory/preferences/.gitkeep": {
@@ -6852,6 +6882,11 @@
    "sha256": "014039279f4c53b8bd4b13315231a17353dd05612d74bbb722bd7c14c68f72f6",
    "mode": "644"
   },
+  "memory/preferences/talk-it-through.md": {
+   "class": "seed",
+   "mode": "644",
+   "sha256": "54b6023a05f806b4fe10e6c3278c9d93e3988e6131a1d70c63937fc8c41d9d63"
+  },
   "memory/preferences/writing.md": {
    "class": "seed",
    "sha256": "28a9e9711535321e5714a84f05692531d059332c6be2bb973ba57646998ac522",
@@ -6859,7 +6894,7 @@
   },
   "memory/rules.md": {
    "class": "seed",
-   "sha256": "2d5bb59e62d83b6d68b7979ea72c293daf8054995fc8a7bff802495853619bc9",
+   "sha256": "af0f320cb7178912e085fbe4ed414280aeeaad0cbbd48f8ae5bed835f6adbe28",
    "mode": "644"
   },
   "memory/schema.json": {
