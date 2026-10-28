@@ -193,19 +193,6 @@ FILE_RULES = {
          "`visual-companion.md` from the installed superpowers brainstorming skill, if there is one. If it is unavailable,"),
         (" In this workspace that is `/home/james/.pi/agent/git/github.com/obra/superpowers/skills/brainstorming/builder-check-prompt.md`.",
          ""),
-        # The packaged skill may be installed globally, outside any git repo.
-        ("write it, commit it, and then run the builder check.",
-         "write it, commit it if the project is a git repo, and then run the builder check."),
-        ("after approval, write and commit the design, then run the builder check",
-         "after approval, write the design (and commit it in a git repo), then run the builder check"),
-        ("2. Run `python3 .claude/skills/personal-memory/indexes.py` when",
-         "2. Run `python3 <skills>/personal-memory/indexes.py` when"),
-        ("3. Run `python3 .claude/skills/personal-memory/gate.py --memory memory audit`.",
-         "3. Run `python3 <skills>/personal-memory/gate.py --memory memory audit`. `<skills>` is the folder "
-         "that holds the skill folders (`.claude/skills` in a workspace, `~/.claude/skills` for a global "
-         "install); `python3` means `python` where that is the working command."),
-        ("5. Commit the memory files written during this task,",
-         "5. If the project is a git repo, commit the memory files written during this task,"),
     ],
     ".claude/skills/youtube/SKILL.md": [
         ("Use when the user says `/youtube <url>`,", "Use when the user says `/youtube` with a URL,"),
