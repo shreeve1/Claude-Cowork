@@ -20,6 +20,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hubs  # noqa: E402
 import indexes  # noqa: E402
 import links  # noqa: E402
+import procedures  # noqa: E402
+import recovery  # noqa: E402
 import schema  # noqa: E402
 
 PROMOTED_DIRS = ["preferences", "docs", "voice", "email", "guides"]
@@ -133,14 +135,43 @@ def audit_rules(memory_dir):
         return []
     root = memory_dir.resolve().parent
     skills, paths = set(), set()
+    problems = []
+    data = schema.load(memory_dir)
     for row in rule_rows(memory_dir):
+        cells = row.split("|")
+        lead = cells[2].strip() if len(cells) > 2 else ""
+        match = re.fullmatch(r"(skill|procedure) `([^`]+)`", lead)
+        if lead and not match:
+            problems.append("memory/rules.md: Lead must be one skill or procedure")
+            row = "|".join(cells[:2] + [""] + cells[3:])
+        elif match and match[1] == "procedure":
+            target = match[2]
+            parts = target.split("/")
+            path = root / target
+            try:
+                contained = path.resolve().is_relative_to(memory_dir.resolve() / "workflows")
+            except (OSError, RuntimeError):
+                contained = False
+            valid = (
+                len(parts) == 4 and parts[:2] == ["memory", "workflows"]
+                and parts[2] in data["topics"] and parts[3].endswith(".md")
+                and not any(p in ("", ".", "..") for p in parts)
+                and "\\" not in target and ":" not in target
+                and contained
+                and path.is_file()
+            )
+            if not valid:
+                problems.append(f"memory/rules.md: invalid procedure target {target}")
+                row = "|".join(cells[:2] + [""] + cells[3:])
+            elif hubs.parse_frontmatter(path).get("type") != "procedure":
+                problems.append(f"memory/rules.md: {target} must have type: procedure")
         skills |= set(RULE_SKILL.findall(row))
         paths |= {
             t
             for t in TICK.findall(row)
             if ("/" in t or t.endswith(".md")) and not any(c in t for c in "<*")
         }
-    problems = [
+    problems += [
         f"memory/rules.md: skill {s} not found"
         for s in sorted(skills)
         if not any(
@@ -148,9 +179,23 @@ def audit_rules(memory_dir):
         )
         and not (Path(__file__).resolve().parents[1] / s / "SKILL.md").exists()
     ]
-    problems += [
-        f"memory/rules.md: {p} not found" for p in sorted(paths) if not (root / p).exists()
-    ]
+    for p in sorted(paths):
+        path = root / p
+        if p == "tasks/index.md":
+            try:
+                contained = path.resolve().is_relative_to(root)
+                parent_valid = path.parent.is_dir() or (
+                    not path.parent.exists() and not path.parent.is_symlink()
+                )
+                valid = contained and parent_valid and (
+                    path.is_file() or (not path.exists() and not path.is_symlink())
+                )
+                if not valid:
+                    problems.append("memory/rules.md: unsafe task index tasks/index.md")
+            except (OSError, RuntimeError):
+                problems.append("memory/rules.md: unsafe task index tasks/index.md")
+        elif not path.exists():
+            problems.append(f"memory/rules.md: {p} not found")
     reached = set(paths)
     for p in paths:
         if p.startswith("memory/") and p.endswith(".md") and (root / p).exists():
@@ -386,15 +431,32 @@ def main():
     )
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("audit", help="Audit index alignment and Client Memory")
+    pc = sub.add_parser("procedures", help="Check selected or all shared procedures, not authorization")
+    pc.add_argument("path", nargs="?", help="Selected workspace-relative memory/workflows/<topic>/<file>.md")
     sub.add_parser("crowded", help="Report memory folders holding more than 15 direct .md files")
     sub.add_parser("stale", help=f"List notes not updated or verified in over {STALE_DAYS} days")
-    sub.add_parser("compact", help="Rewrite memory/index.md without table padding")
+    sub.add_parser("compact", help="Snapshot and remove padding from memory/index.md, rules.md and glossary.md")
     sub.add_parser("links", help="Report broken links and notes with no outgoing or inbound links")
     bl = sub.add_parser("backlinks", help="List notes linking to a note")
     bl.add_argument("path", help="Note path in memory/<rel> form")
 
     args = ap.parse_args()
     mem_path = Path(args.memory)
+
+    if args.cmd in ("procedures", "audit"):
+        procedure_problems = (
+            procedures.selected(mem_path, args.path)
+            if args.cmd == "procedures" and args.path else procedures.audit(mem_path)
+        )
+        if procedure_problems:
+            print("Procedure problems:")
+            for line in procedure_problems:
+                print(f"- {line}")
+            if args.cmd == "procedures" or any("symlink" in p or "invalid workflow topic" in p for p in procedure_problems):
+                sys.exit(1)
+        if args.cmd == "procedures":
+            print("Success: Procedures are structurally valid.")
+            sys.exit(0)
 
     if args.cmd == "crowded":
         for line in crowded(mem_path):
@@ -413,10 +475,17 @@ def main():
             path = mem_path / name
             if not path.exists():
                 continue
-            with open(path, encoding="utf-8", newline="") as f:
-                old = f.read()
+            previous = path.read_bytes()
+            old = previous.decode("utf-8")
             new = compact_tables(old)
             if new != old:
+                try:
+                    saved = recovery.snapshot_memory(mem_path, name)
+                    if saved.read_bytes() != previous or path.read_bytes() != previous:
+                        raise OSError("source changed after snapshot")
+                except (OSError, ValueError):
+                    print(f"Compaction stopped: memory/{name} preservation failed or source changed.")
+                    sys.exit(1)
                 with open(path, "w", encoding="utf-8", newline="") as f:
                     f.write(new)
             print(
@@ -459,13 +528,18 @@ def main():
     if not (mem_path / "index.md").exists():
         print("Alert: The memory index file (memory/index.md) was not found.")
         sys.exit(1)
+    rule_problems = audit_rules(mem_path)
+    if any("invalid procedure target" in line for line in rule_problems):
+        print("Rules problems:")
+        for line in rule_problems:
+            print(f"- {line}")
+        sys.exit(1)
     indexed = indexed_paths(mem_path)
     missing, stale = audit_index(mem_path, indexed)
     topic_problems = audit_topic_dirs(mem_path, indexed)
     index_link_problems = audit_index_links(mem_path)
     client_problems = audit_clients(mem_path, indexed)
-    rule_problems = audit_rules(mem_path)
-    failed = False
+    failed = bool(procedure_problems)
     if missing or stale:
         print(
             "Memory index out of sync: missing_from_index=%s stale_in_index=%s" % (missing, stale)

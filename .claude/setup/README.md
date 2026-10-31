@@ -10,13 +10,17 @@ This Release is a ready workspace: `CLAUDE.md`, skills, memory structure and hoo
 
 During setup, "run the `<name>` skill" means open `.claude/skills/<name>/SKILL.md` in the new workspace and follow it. No skill needs to be installed in the owner's app first; in Claude Cowork the installs happen at step 5.
 
-1. Copy every file and folder of the Release, dot folders included, into the owner's new folder. Leave out `.git`. (`robocopy "<release>" "<workspace>" /E /XD .git` on Windows, `rsync -a --exclude .git "<release>/" "<workspace>/"` elsewhere; in Claude Cowork's Bash sandbox `cp -a "<release>/." "<workspace>/"`, then delete `<workspace>/.git`.) Never edit the Release or the old setup.
+1. Copy every file and folder of the Release, dot folders included, into the owner's new folder. Leave out `.git`, `.memory-recovery/` and `.task-recovery/`. (`robocopy "<release>" "<workspace>" /E /XD .git .memory-recovery .task-recovery` on Windows, `rsync -a --exclude .git --exclude .memory-recovery --exclude .task-recovery "<release>/" "<workspace>/"` elsewhere; in Claude Cowork's Bash sandbox use `tar -C "<release>" --exclude=./.git --exclude=./.memory-recovery --exclude=./.task-recovery -cf - . | tar -C "<workspace>" -xf -`, with a new empty destination and Bash pipefail enabled.) Never edit the Release or the old setup.
 2. Read `CHANGELOG.md`. Tell the owner in two or three lines what this workspace is.
 3. Read and follow `.claude/skills/memory-setup/SKILL.md` for this workspace, with the old setup as the source (or none). It settles the tracking model, sorts, shows the owner the plan and moves the content.
 4. Fit it to the owner (`ADAPTING.md`), then tell the owner in plain words what moved where, what was left behind and why.
 5. Make the skills reachable in the owner's app ("Skills in the owner's app" below).
 6. Suggest rules ("Suggest rules" below).
 7. Remove the setup folder ("Remove the setup folder" below). Always last.
+
+## Saved tasks
+
+The selected personal-memory install provides tasks.md and its adjacent record/index and supporting templates. Setup creates only an absent `tasks/index.md`, using the empty index format, and leaves existing tasks/index/archive/proposals intact. Startup reads the compact index; individual records load on demand. First creation or explicit pickup authorizes bookkeeping, not consequential actions. Complete archives the file before removing its row. All lookup stays in the current workspace; templates require neither an external authoring skill nor these setup/spec docs.
 
 ## Where things go
 
@@ -66,11 +70,13 @@ Only at the very end, after the owner has finished `ADAPTING.md` or declined it.
 1. Read the new Release's `CHANGELOG.md` and tell the owner in a few lines what changed.
 2. Copy the new Release into a new folder as in step 1 above. The current workspace stays untouched; it is the way back.
 3. Bring the owner's content across from the current workspace and judge the rest: shipped files come from the new Release. If the owner or their agent edited a shipped file, keep what the owner relies on as a preference note.
-4. Content to copy whole: memory notes (except `memory/preferences/cowork-environment.md`: keep the new version's copy and carry over only its "Video skills installed" answer), `memory/index.md`, the glossary rows the owner added, `memory/rules.md`, `CONTEXT.md`, the folder map, `.gitignore`, their own skills, and every folder from the folder map.
-5. Merge `memory/schema.json` by hand: keep the new Release's topics and keys, add the owner's `client_subjects`, keep their `client_folder`. Without their `client_folder` their notes sit in a folder the new workspace does not look at and the memory audit fails. Run `hubs.py` and `indexes.py` afterwards if Python is present.
-6. Do not copy `MANIFEST.json`, `CHANGELOG.md`, `START-HERE.md` or anything under `.claude/setup/`: the new Release's copies win.
-7. Update the skills in the owner's app ("Skills in the owner's app" above, its Update step).
-8. Keep the old `.git` folder only if the owner wants the history; ask first. Tell the owner the old workspace can be deleted when they are happy.
+4. Content to copy whole: memory notes (except `memory/preferences/cowork-environment.md`: keep the new version's copy and carry over only its "Video skills installed" answer), `memory/index.md`, the glossary rows the owner added, `memory/rules.md`, `CONTEXT.md`, the folder map, `.gitignore`, their own skills, complete `tasks/` (active index and archive), pending proposals, and every folder from the folder map. Preserve existing task IDs, index rows and work history; never reset tasks to the Release's empty index.
+4a. Reconcile the copied rules for this Release's saved-task startup behavior using `memory-setup` step 3b, with owner approval of that upgrade. Copying `memory/rules.md` whole preserves owner content but does not apply new routing. Preserve the prior rules with the established recovery protocol; retain unrelated Always entries, make the task index optional and move only the starter's three detailed preference pointers to their relevant triggers. Reconcile new startup instructions with owner adaptations; preserve task records and index rows.
+5. Check legacy procedures with `python3 .claude/skills/personal-memory/gate.py --memory memory procedures` (or the manual Procedure File checks without Python). Report missing risk, approval/verification dates or sections and ask for owner-assisted repair based on real events. Never invent dates or delete notes to clear the audit. If repair cannot happen now, stop and report the blocked upgrade check, leaving the old workspace usable. Full audit still fails on incomplete legacy files; selected valid leads use `procedures memory/workflows/<topic>/<slug>.md`.
+6. Merge `memory/schema.json` by hand: keep the new Release's topics and keys, add the owner's `client_subjects`, keep their `client_folder`. Without their `client_folder` their notes sit in a folder the new workspace does not look at and the memory audit fails. Run `hubs.py` and `indexes.py` afterwards if Python is present.
+7. Do not copy `MANIFEST.json`, `CHANGELOG.md`, `START-HERE.md` or anything under `.claude/setup/`: the new Release's copies win.
+8. Update the skills in the owner's app ("Skills in the owner's app" above, its Update step).
+9. Keep the old workspace and its `.memory-recovery/` intact. Copy recovery separately only if the owner wants it; verify the copy. Keep old `.task-recovery/` intact too, copying it separately only with owner approval. Retain `/.memory-recovery/` and `/.task-recovery/` in the new `.gitignore` even when bringing the old ignore file across. Keep the old `.git` folder only if the owner wants the history; ask first. Tell the owner the old workspace can be deleted when they are happy.
 
 ### Older Releases
 

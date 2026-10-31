@@ -27,7 +27,15 @@ DROP_FILES = (
     "memory/decisions/projects/decision-github-repository.md",
     "memory/decisions/workstation/decision-codex-workspace.md",
     "memory/docs/it-client-subjects.md",
+    "docs/superpowers/plans/2026-10-30-procedure-first-memory.md",
+    "docs/superpowers/plans/2026-10-31-workspace-tasks.md",
+    "docs/superpowers/specs/2026-10-30-procedure-first-memory-design.md",
+    "docs/superpowers/specs/2026-10-31-workspace-supporting-templates.md",
+    "docs/superpowers/specs/2026-10-31-workspace-tasks-design.md",
+    "docs/superpowers/specs/2026-10-31-workspace-tasks-templates.md",
 )
+DROP_DIRS = {".git", "__pycache__", ".memory-recovery", ".task-recovery",
+             ".pi", ".pytest_cache", ".ruff_cache"}
 
 # Upstream files shipped but missing from upstream MANIFEST.json, with their class.
 # Any other unlisted upstream file is reported so a rule can be added here.
@@ -39,15 +47,27 @@ EXTRA_FILES = {
     "memory/preferences/meetings.md": "seed",
     "memory/preferences/memory-maintenance.md": "seed",
     "memory/preferences/talk-it-through.md": "seed",
+    ".agents/skills/personal-memory/procedures.py": "merge",
+    ".agents/skills/personal-memory/recovery.py": "merge",
+    ".agents/skills/personal-memory/supporting-templates.md": "merge",
+    ".agents/skills/personal-memory/task-templates.md": "merge",
+    ".agents/skills/personal-memory/tasks.md": "merge",
+    ".agents/skills/personal-memory/tests/test_policy.py": "merge",
+    ".agents/skills/personal-memory/tests/test_procedures.py": "merge",
+    ".agents/skills/personal-memory/tests/test_recovery.py": "merge",
+    ".agents/skills/personal-memory/tests/test_tasks_policy.py": "merge",
+    "docs/testing/procedure-first-memory-cases.md": "merge",
+    "docs/testing/workspace-tasks-cases.md": "merge",
+    "tasks/index.md": "seed",
 }
 
-# Upstream rewrote these for Codex only. Keep this workspace's copy (converted path), pinned to
-# the upstream MANIFEST sha256 that was reviewed; a different upstream sha is reported.
+# Keep this workspace's Claude versions, pinned to reviewed upstream source bytes.
+# The upstream manifest may predate local changes, so it cannot detect drift here.
 KEEP_WORKSPACE = {
-    ".claude/skills/adhd/SKILL.md": "06debe68a370206acd93e0b2ee54d6395bc367fdfbc079f2348e3ce2966dac0a",
-    ".claude/skills/brainstorm-idea/SKILL.md": "c7ef5024075d4a48c56f034b810370ef38294b8677700f7b778d48efaaab4f2e",
-    ".claude/skills/excalidraw-diagram/SKILL.md": "13ab4e81bac89f5651374cb5f3413cab8dcd5d5667e990391418d8fb888989da",
-    ".claude/skills/teach/SKILL.md": "cf6d1bf8276a7a01fb97a720402f3452eb69ad90b573a2488684808e51091f76",
+    ".claude/skills/adhd/SKILL.md": "2f8bd439ba0ad1a3c470dc68431ec5b4c7f8d4ba226110e4b409f14579316a03",
+    ".claude/skills/brainstorm-idea/SKILL.md": "140ffb06d0136d762c8183e6e09e19c994dd185433c32dedcfe4e3d38d3cce49",
+    ".claude/skills/excalidraw-diagram/SKILL.md": "440ccc5be5a9beb83586374f79755ddee6c42f2c3814ad95e9c3ac4eb7feace1",
+    ".claude/skills/teach/SKILL.md": "ef48fefe3bf0315ec615f7a3d3a36e4d41f67eb3d52d5a8fbd1ee8316013f602",
 }
 
 # Upstream skill folders replaced by this edition's own version (its files are in WORKSPACE_ONLY),
@@ -58,6 +78,8 @@ REPLACED_DIRS = {
 
 # Shipped files that exist only in this edition; copied from the workspace into every conversion.
 WORKSPACE_ONLY = {
+    "README.md": {"class": "merge", "mode": "644"},
+    "memory/preferences/cowork-environment.md": {"class": "seed", "mode": "644"},
     ".gitattributes": {"class": "merge", "mode": "644"},
     ".claude/cowork/cowork_skills.py": {"class": "merge", "mode": "755"},
     ".claude/skills/drawio/SKILL.md": {"class": "merge", "mode": "644"},
@@ -117,9 +139,6 @@ SETUP_SKILLS_NOTE = (
 # Codex adaptation; a rule that stops matching means upstream changed that text.
 FILE_RULES = {
     "CLAUDE.md": [
-        ("1. Read `memory/index.md`, `memory/glossary.md` and `memory/rules.md` with the available file or "
-         "shell tools (in Codex on Windows, `Get-Content -LiteralPath`; a tool named `read` is not required).",
-         "1. Call `Read` on `memory/index.md`, `memory/glossary.md` and `memory/rules.md`."),
         (re.compile(r"## Codex runtime\n.*?\n\n+(?=## )", re.S), ""),
         (" They are not enabled in this Codex workspace; run those checks directly before commits.", ""),
     ],
@@ -130,9 +149,12 @@ FILE_RULES = {
         (re.compile(r"- \*\*Claude Cowork\*\* and any app that loads skills only from its own saved list:.*?\n(?=- \*\*Another app:\*\*)",
                     re.S), COWORK_SKILLS_STEP),
         ("1. Copy every file and folder of the Release", SETUP_SKILLS_NOTE),
-        ("`rsync -a --exclude .git \"<release>/\" \"<workspace>/\"` elsewhere.)",
-         "`rsync -a --exclude .git \"<release>/\" \"<workspace>/\"` elsewhere; in Claude Cowork's Bash sandbox "
-         "`cp -a \"<release>/.\" \"<workspace>/\"`, then delete `<workspace>/.git`.)"),
+        ("`rsync -a --exclude .git --exclude .memory-recovery --exclude .task-recovery "
+         "\"<release>/\" \"<workspace>/\"` elsewhere.)",
+         "`rsync -a --exclude .git --exclude .memory-recovery --exclude .task-recovery "
+         "\"<release>/\" \"<workspace>/\"` elsewhere; in Claude Cowork's Bash sandbox use "
+         "`tar -C \"<release>\" --exclude=./.git --exclude=./.memory-recovery --exclude=./.task-recovery -cf - . "
+         "| tar -C \"<workspace>\" -xf -`, with a new empty destination and Bash pipefail enabled.)"),
         ("3. Run the `memory-setup` skill for this workspace,",
          "3. Read and follow `.claude/skills/memory-setup/SKILL.md` for this workspace,"),
         ("If Python 3.11+ is missing,", "If Python 3.10+ is missing,"),
@@ -142,9 +164,9 @@ FILE_RULES = {
         ("4. Content to copy whole: memory notes,",
          "4. Content to copy whole: memory notes (except `memory/preferences/cowork-environment.md`: keep the new "
          "version's copy and carry over only its \"Video skills installed\" answer),"),
-        ("7. Keep the old `.git` folder only if the owner wants the history;",
-         "7. Update the skills in the owner's app (\"Skills in the owner's app\" above, its Update step).\n"
-         "8. Keep the old `.git` folder only if the owner wants the history;"),
+        ("8. Keep the old workspace and its `.memory-recovery/` intact.",
+         "8. Update the skills in the owner's app (\"Skills in the owner's app\" above, its Update step).\n"
+         "9. Keep the old workspace and its `.memory-recovery/` intact."),
     ],
     ".claude/setup/ADAPTING.md": [
         (re.compile(r"Codex reads `CLAUDE\.md` and `\.claude/skills/` directly\..*?\n\n", re.S), ""),
@@ -152,6 +174,7 @@ FILE_RULES = {
         ("this is the loader step in `README.md`", "this is the install step in `README.md`"),
     ],
     ".claude/skills/memory-setup/SKILL.md": [
+        ("Codex and Claude Code find it there.", "Claude Code finds it there."),
         ("In Claude Cowork, an existing `personal-memory` skill loader works when this folder is attached, "
          "so save one only if none exists.",
          "In Claude Cowork, a starter workspace's own setup reads `personal-memory` from `.claude/skills/` "
@@ -173,6 +196,13 @@ FILE_RULES = {
     ],
     ".githooks/nopython/commit-msg": [
         ("without Python 3.11+", "without Python 3.10+"),
+    ],
+    ".claude/skills/personal-memory/SKILL.md": [
+        ("saved workspace tasks: create, look up, continue, review, complete or archive a task.",
+         "saved workspace tasks (create, look up, continue, review, complete or archive a task)."),
+    ],
+    ".claude/skills/personal-memory/task-templates.md": [
+        (re.compile(r"\n+\Z"), "\n"),
     ],
     ".claude/skills/personal-memory/scaffold/AGENTS-memory.md": [
         ("into the project's CLAUDE.md or CLAUDE.md,", "into the project's CLAUDE.md,"),
@@ -207,10 +237,17 @@ FILE_RULES = {
         ("; this workspace's does: [GitHub repository](memory/decisions/projects/decision-github-repository.md).", "."),
     ],
     "memory/rules.md": [
+        ("| Always | | `tasks/index.md` | Optional; skip absence without creating files. |",
+         "| Always | | `tasks/index.md` | Optional; skip absence without creating files. |\n"
+         "| Always | | `memory/preferences/cowork-environment.md` | |"),
         (re.compile(r"\| Updating this workspace to a new Release \| \| `memory/decisions/workstation/"
                     r"decision-codex-workspace\.md` \|[^\n]*\n"), ""),
     ],
     "memory/index.md": [
+        ("| [Workflows Index](memory/workflows/index.md) | index | Workflows by topic; generated by `indexes.py`. | |",
+         "| [Workflows Index](memory/workflows/index.md) | index | Workflows by topic; generated by `indexes.py`. | |\n"
+         "| [Claude Cowork Environment](memory/preferences/cowork-environment.md) | preference | "
+         "Cowork paths, sandbox Python, git, installing skills as .skill packages, update flow. | 2026-10-27 |"),
         (re.compile(r"\| \[IT Client Subjects\]\(memory/docs/it-client-subjects\.md\) \|[^\n]*\n"), ""),
     ],
     "memory/decisions/index.md": [
@@ -225,7 +262,7 @@ DROP_EMPTY_SECTIONS = ("memory/decisions/index.md",)
 # Codex wording that should not survive conversion outside third-party skills.
 CODEX_MARKERS = ("Codex collaboration", "fork_turns", "In Codex,", "Codex workspace",
                  "in Codex on Windows", "CODEX.md", "decision-codex-workspace")
-CODEX_OK = (".claude/skills/hyperframes", "CHANGELOG.md")
+CODEX_OK = (".claude/skills/hyperframes", "CHANGELOG.md", "docs/testing/")
 
 
 def new_path(rel):
@@ -244,6 +281,9 @@ def is_text(rel, data):
 
 
 def convert_text(rel, text):
+    # Historical test receipts must retain the paths and clients actually tested.
+    if rel.startswith("docs/testing/"):
+        return text
     crlf = "\r\n" in text
     text = text.replace("\r\n", "\n")
     for a, b in TEXT_RULES:
@@ -283,7 +323,7 @@ def tree_sha(src, rels):
 
 def upstream_files(src):
     return {p.relative_to(src).as_posix() for p in src.rglob("*")
-            if p.is_file() and not {".git", "__pycache__"} & set(p.relative_to(src).parts)}
+            if p.is_file() and not DROP_DIRS & set(p.relative_to(src).parts)}
 
 
 def main(argv):
@@ -342,11 +382,11 @@ def convert(src, mpath, out, ws):
 
     files, flagged = {}, []
     for rel, meta in entries.items():
-        if rel.endswith(DROP_SUFFIXES) or rel in DROP_FILES:
+        if rel.endswith(DROP_SUFFIXES) or rel in DROP_FILES or DROP_DIRS & set(Path(rel).parts):
             continue
         nrel = new_path(rel)
         if nrel in KEEP_WORKSPACE:
-            if "sha256" in meta and meta["sha256"] != KEEP_WORKSPACE[nrel]:
+            if sha((src / rel).read_bytes()) != KEEP_WORKSPACE[nrel]:
                 print(f"check: upstream changed {rel}, which is kept from the workspace; "
                       f"review the upstream change, then update its KEEP_WORKSPACE sha256")
             data = (ws / nrel).read_bytes()

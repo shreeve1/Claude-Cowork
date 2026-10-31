@@ -1,7 +1,7 @@
 {
  "adhd": {
   "set": "core",
-  "sha256": "cdb6d2fb59dcbe58e9697cfe31e5f08eaeb588fbf39a36ef52cdec8dd540cfd7"
+  "sha256": "89bac047ff6ec289d1df32367951befde35f1c1cc6d473da5157587ed7b089db"
  },
  "antislop": {
   "set": "core",
@@ -29,7 +29,7 @@
  },
  "brainstorm-idea": {
   "set": "core",
-  "sha256": "e16c74188405d1e21073dabdb12e8bdd5c1e2f31505f391b5d34085fe60390e4"
+  "sha256": "ae54b1eea2ad86651d7bbb487c93c133ad82910e79ca96e61bfbe5330b497256"
  },
  "captions-overlay": {
   "set": "video",
@@ -117,7 +117,7 @@
  },
  "memory-setup": {
   "set": "core",
-  "sha256": "844cf446547387f8dff060aea512f7bdb5600b593b2114379d9a7137e0477a58"
+  "sha256": "44e19ffff5cc126072d37c13220ea43bb6e493eff7bb562fc20fd9981a604a83"
  },
  "motion-doctrine": {
   "set": "video",
@@ -137,7 +137,7 @@
  },
  "personal-memory": {
   "set": "core",
-  "sha256": "1cab69c4a3aa44ee88fba662e647131857184183f8a388bd0b96320bce915670"
+  "sha256": "48ceddd22cca7bf62495b863a457a73d19630fa4b5d43e8d6c4fc7d44aa37d4c"
  },
  "pr-to-video": {
   "set": "video",
@@ -165,7 +165,7 @@
  },
  "startday-spec": {
   "set": "core",
-  "sha256": "85a686e912fa71559dc0c2b85063518b2f75418797dc856a57d2d8c68d21ec45"
+  "sha256": "ffc8681b7b8da691b817ffa3ff2369e0b215d2c49b86d1ddf6db9feb7b0f9a39"
  },
  "talk-it-through": {
   "set": "core",

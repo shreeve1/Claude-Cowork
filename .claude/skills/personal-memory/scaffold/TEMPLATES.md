@@ -56,53 +56,103 @@ What was decided and why, in a few sentences.
 
 ## Procedure File
 
-A Shared Procedure in `memory/workflows/<topic>/<slug>.md`, saved only with the owner's approval and made only of steps that were run and verified. `type: procedure` marks it: no agent writes or changes it without the owner's approval. Show the owner the full file and save only after a clear yes. Trigger, Steps, Related and Notes are required; add an optional section only when the procedure needs it. Over the 6144-byte limit: move failures and tuning into a sibling `<slug>-troubleshooting.md` and link it, rather than cutting steps.
+A shared procedure at `memory/workflows/<topic>/<slug>.md` contains only owner-approved, actually verified steps. Record real approval and verification dates, never dates invented to pass lint. Keep it within 6144 bytes and its summary within 160 characters; link optional troubleshooting separately.
 
 ```markdown
 ---
 title: Verb Phrase - What It Does
-summary: Trigger to outcome in one line, at most 160 characters
+summary: Trigger to outcome in at most 160 characters
 type: procedure
 status: promoted
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 topics: [<topic>]
+risk: read-only
+approved: YYYY-MM-DD
+verified: YYYY-MM-DD
 ---
 
 ## Active memory
 
-Trigger: what the owner says or what happens that starts this procedure.
+Trigger: what starts this procedure.
 
-### Where everything is (optional)
+### Prerequisites
 
-- Tools, hosts, file paths and where credentials live (never the credentials).
-
-### Defaults (optional)
-
-- Values the owner set once and should not be asked again.
+Tools, inputs and access that must already be available.
 
 ### Steps
 
-1. **Short name.** One action, with the exact command or click.
-2. **Ready check (hard stop).** The question to ask; continue only after the owner says yes in this conversation.
+1. One verified action, with its exact command or click.
 
-### When something goes wrong (optional)
+### Verify
 
-- Known failures and fixes, or a link to `<slug>-troubleshooting.md`.
-
-### Do not (optional)
-
-- Actions that are never allowed while running this procedure.
+Observable evidence that the intended result was reached.
 
 ## Related
 
-- [Other procedure or note](memory/workflows/<topic>/other.md) - how it relates.
+None.
 
 ## Notes
 
-- Last reviewed: YYYY-MM-DD
-- Defined YYYY-MM-DD with the owner; verified by a real run on YYYY-MM-DD.
+Defined and tested with the owner; record the source of verification.
 ```
+
+Use exactly `risk: read-only` or `risk: changes-state`. Changes-state procedures also require nonempty `### Approval` (the current-conversation ready check before action) and `### Recovery` (rollback, or explicit irreversibility and safe escalation), within Active memory. `approved` and `verified` are valid YYYY-MM-DD dates, not future dates. All shown sections and Trigger are required; Steps needs a numbered action. Fenced examples and empty sections do not count. Extra metadata and troubleshooting sections are allowed. `gate.py procedures` and `gate.py audit` check structure only, not truth, actual approval or permission to act.
+
+
+## Changes-state Procedure File
+
+Use this shape when a verified procedure changes state. Fill with real owner-approved steps and actual approval/verification dates; this unfilled template is not an executable or promoted procedure. Approval is a current-run stop, not a claim that saved metadata grants permission.
+
+```markdown
+---
+title: Verified State-changing Workflow
+summary: Trigger and intended change in at most 160 characters
+type: procedure
+status: promoted
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+topics: [<topic>]
+risk: changes-state
+approved: YYYY-MM-DD
+verified: YYYY-MM-DD
+---
+
+## Active memory
+
+Trigger: the owner requests this specific state-changing workflow.
+
+### Prerequisites
+
+Describe the verified tools, access, inputs and original state needed.
+
+### Approval
+
+Show the exact proposed change and target; obtain permission in this conversation before the state-changing step. Stop if permission or prerequisites are missing.
+
+### Steps
+
+1. Inspect the target and capture its relevant current state.
+2. After the Approval check, perform the owner-authorized verified change.
+3. Stop on failure or changed conditions rather than improvising another change.
+
+### Verify
+
+Describe the observed evidence that confirms the intended outcome and detects unintended changes.
+
+### Recovery
+
+Describe the verified rollback and when to stop for approval; if irreversible, name the irreversible effect and safe escalation instead of promising undo.
+
+## Related
+
+None.
+
+## Notes
+
+Record real verification evidence and approval source; never invent dates to pass checking.
+```
+
 
 ## Client Memory Note
 

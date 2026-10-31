@@ -1,3 +1,7 @@
+# Exact previous-content snapshots; may contain sensitive summaries
+/.memory-recovery/
+/.task-recovery/
+
 # Python and tool caches
 __pycache__/
 *.py[cod]

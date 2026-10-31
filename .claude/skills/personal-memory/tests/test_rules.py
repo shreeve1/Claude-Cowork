@@ -89,6 +89,171 @@ def index_row(path):
     return f"| [X]({path}) | preference | x | 2026-10-10 |\n"
 
 
+class TaskIndexPointerTests(unittest.TestCase):
+    def test_optional_task_index_absent_passes_without_writes(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = workspace(td, ["| Always | | `tasks/index.md` | |"])
+            proc = audit(mem)
+            self.assertEqual(proc.returncode, 0, proc.stdout)
+            self.assertFalse((mem.parent / "tasks").exists())
+
+    def test_task_index_existing_passes(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = workspace(td, ["| Always | | `tasks/index.md` | |"], files=[("tasks/index.md", "# Active tasks\n")])
+            self.assertEqual(audit(mem).returncode, 0)
+
+    def test_task_index_symlink_escape_fails(self):
+        with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as outside:
+            mem = workspace(td, ["| Always | | `tasks/index.md` | |"])
+            external = Path(outside) / "index.md"
+            external.write_text("outside", encoding="utf-8")
+            (mem.parent / "tasks").mkdir()
+            try:
+                (mem.parent / "tasks/index.md").symlink_to(external)
+            except OSError:
+                self.skipTest("Symlinks unavailable")
+            proc = audit(mem)
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("unsafe task index", proc.stdout)
+            self.assertEqual(external.read_text(), "outside")
+
+    def test_dangling_task_directory_escape_fails(self):
+        with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as outside:
+            mem = workspace(td, ["| Always | | `tasks/index.md` | |"])
+            try:
+                (mem.parent / "tasks").symlink_to(outside, target_is_directory=True)
+            except OSError:
+                self.skipTest("Symlinks unavailable")
+            proc = audit(mem)
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("unsafe task index", proc.stdout)
+
+    def test_task_parent_file_fails_without_changes(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = workspace(td, ["| Always | | `tasks/index.md` | |"])
+            parent = mem.parent / "tasks"
+            parent.write_bytes(b"Owner content, not a directory.\n")
+            proc = audit(mem)
+            self.assertNotEqual(proc.returncode, 0, proc.stdout)
+            self.assertIn("unsafe task index", proc.stdout)
+            self.assertEqual(parent.read_bytes(), b"Owner content, not a directory.\n")
+
+    def test_dangling_contained_task_parent_fails(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = workspace(td, ["| Always | | `tasks/index.md` | |"])
+            parent = mem.parent / "tasks"
+            try:
+                parent.symlink_to(mem.parent / "missing", target_is_directory=True)
+            except OSError:
+                self.skipTest("Symlinks unavailable")
+            proc = audit(mem)
+            self.assertNotEqual(proc.returncode, 0, proc.stdout)
+            self.assertIn("unsafe task index", proc.stdout)
+            self.assertTrue(parent.is_symlink())
+            self.assertFalse((mem.parent / "missing").exists())
+
+    def test_existing_task_directory_without_index_passes(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = workspace(td, ["| Always | | `tasks/index.md` | |"])
+            (mem.parent / "tasks").mkdir()
+            proc = audit(mem)
+            self.assertEqual(proc.returncode, 0, proc.stdout)
+            self.assertFalse((mem.parent / "tasks/index.md").exists())
+
+    def test_task_index_directory_fails(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = workspace(td, ["| Always | | `tasks/index.md` | |"])
+            (mem.parent / "tasks/index.md").mkdir(parents=True)
+            self.assertNotEqual(audit(mem).returncode, 0)
+
+    def test_other_missing_pointer_still_fails(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem = workspace(td, ["| Always | | `tasks/other.md` | |"])
+            proc = audit(mem)
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("tasks/other.md not found", proc.stdout)
+
+
+class ProcedureLeadTests(unittest.TestCase):
+    def fixture(self, td, lead, kind="procedure", name="review.md"):
+        rel = f"memory/workflows/projects/{name}"
+        mem = workspace(td, [f"| Review | {lead} | | |"])
+        path = mem.parent / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            f"---\ntitle: Review\ntype: {kind}\nrisk: read-only\napproved: 2026-10-01\nverified: 2026-10-01\n---\n"
+            "## Active memory\nTrigger: review\n### Prerequisites\nChange available.\n"
+            "### Steps\n1. Read change.\n### Verify\nReport findings.\n## Related\nNone.\n## Notes\nTested.\n",
+            encoding="utf-8",
+        )
+        run_script(INDEXES, mem)
+        return mem, path
+
+    def test_procedure_lead_passes(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem, _ = self.fixture(td, 'procedure `memory/workflows/projects/review.md`')
+            result = audit(mem)
+            self.assertEqual(result.returncode, 0, result.stdout)
+
+    def test_multiple_leads_fail(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem, _ = self.fixture(td, 'procedure `memory/workflows/projects/review.md`, procedure `memory/workflows/projects/review.md`')
+            result = audit(mem)
+            self.assertEqual(result.returncode, 1, result.stdout)
+            self.assertIn('memory/rules.md:', result.stdout)
+
+    def test_procedure_lead_rejects_nonprocedure(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem, _ = self.fixture(td, 'procedure `memory/workflows/projects/review.md`', kind="workflow")
+            self.assertEqual(audit(mem).returncode, 1)
+
+    def test_procedure_lead_rejects_escape(self):
+        for target in ('/tmp/outside.md', 'C:/outside.md', 'memory/../outside.md',
+                       'memory\\workflows\\projects\\review.md', 'memory/docs/review.md',
+                       'memory/workflows/unknown/review.md'):
+            with self.subTest(target=target), tempfile.TemporaryDirectory() as td:
+                mem, _ = self.fixture(td, f'procedure `{target}`')
+                result = audit(mem)
+                self.assertEqual(result.returncode, 1, result.stdout)
+                self.assertIn('memory/rules.md:', result.stdout)
+
+    def test_procedure_lead_rejects_symlink_escape(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem, path = self.fixture(td, 'procedure `memory/workflows/projects/review.md`')
+            outside = Path(td) / 'outside.md'
+            outside.write_bytes(path.read_bytes())
+            path.unlink()
+            try:
+                path.symlink_to(outside)
+            except OSError as exc:
+                self.skipTest(str(exc))
+            self.assertEqual(audit(mem).returncode, 1)
+
+    def test_procedure_lead_rejects_symlink_loop(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem, path = self.fixture(td, 'procedure `memory/workflows/projects/review.md`')
+            path.unlink()
+            try:
+                path.symlink_to(path.name)
+            except OSError as exc:
+                self.skipTest(str(exc))
+            result = audit(mem)
+            self.assertEqual(result.returncode, 1)
+            self.assertTrue('invalid procedure target' in result.stdout or 'symlink' in result.stdout)
+            self.assertNotIn('Traceback', result.stderr)
+
+    def test_procedure_lead_accepts_unicode_path(self):
+        with tempfile.TemporaryDirectory(prefix='memory space ') as td:
+            mem, _ = self.fixture(td, 'procedure `memory/workflows/projects/café.md`', name='café.md')
+            result = audit(mem)
+            self.assertEqual(result.returncode, 0, result.stdout)
+
+    def test_unsupported_lead_fails(self):
+        with tempfile.TemporaryDirectory() as td:
+            mem, _ = self.fixture(td, 'run `memory/workflows/projects/review.md`')
+            self.assertEqual(audit(mem).returncode, 1)
+
+
 class RulesAuditTests(unittest.TestCase):
     def test_global_skill_passes(self):
         with tempfile.TemporaryDirectory() as td:

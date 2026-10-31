@@ -10,6 +10,8 @@ topics: [preference, writing, research]
 
 ## Active memory
 
+For a general research record without a skill-specific format, open `supporting-templates.md` beside the installed personal-memory skill (project or global location).
+
 Applies to research files agents write (`research/`, and ticket or project research files where a skill keeps them), and to what a subagent returns for them.
 
 - Each Findings block leads with the answer in one line.

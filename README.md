@@ -35,7 +35,8 @@ Your old setup is never edited. Nothing is dropped without your approval. When s
 
 ## What you get
 
-- **Memory** (`personal-memory`, `memory-setup`): remembers your preferences, rules, procedures and client facts so you stop repeating yourself. `memory-setup` sets memory up in this or any other project.
+- **Memory** (`personal-memory`, `memory-setup`): remembers preferences, rules, procedures and client facts. Checks saved procedures before use and preserves previous memory content before edits. `memory-setup` sets memory up in this or another project.
+- **Saved tasks** (part of `personal-memory`): records unfinished work in this workspace, resumes it on request, and archives completed work. The compact active/waiting index loads at startup; task records are not permission to act, and nothing runs in the background.
 - **Meetings** (`meeting`): processes transcripts from a folder, files lasting facts, drafts follow-ups for approval and archives the transcript.
 - **100+ expert personas** (`professional-guidance`): describe a problem in plain English and the best-fit specialist takes over.
 - **Thinking tools**: `talk-it-through` (stress-test a plan, record decisions), `brainstorm-idea`, `adhd` (parallel divergent ideation), `teach`.

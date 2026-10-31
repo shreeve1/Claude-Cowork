@@ -34,7 +34,7 @@ Do not use it when the user already wants a concrete implementation plan, code c
 - Respond in normal chat, or use `AskUserQuestion` when multiple-choice input helps.
 - Use `Read`, `Glob`, `Grep`, and limited `Bash` for repo inspection.
 - Use `Agent` subagents for parallel research or codebase exploration.
-- Use `web_fetch` for known URLs, and background-only search through this workspace's browser extensions when available.
+- Use `web_fetch` for known URLs and `WebSearch` for background research; a browser extension is not required.
 
 ## Workflow
 
@@ -129,10 +129,9 @@ Research safety:
 - Do not send client-identifying details, private tickets, user emails, internal hostnames, private logs, or secrets to public search/pages.
 - Search generic terms, product names, errors, and public concepts.
 - Use `web_fetch` for known URLs.
-- Use background-only search through this workspace's browser extensions when available.
+- Use `WebSearch` for background research; a browser extension is not required.
 - Do not open visible browser UI during this skill's research phase.
-- If search is needed and no background search extension exists, ask user for URLs or continue without web research.
-- If needed search capability is unavailable, check for a background-search extension before saying unavailable.
+- If web tools are unavailable, check already-connected read-only search tools; ask for source URLs or continue with the limitation stated when no route works.
 
 For parallel research, use `Agent` subagents. Assign one angle per subagent:
 

@@ -121,6 +121,21 @@ class BuildTests(unittest.TestCase):
         self.assertIn("gone.md is listed but missing", log)
 
 
+class ShippedPackageTests(unittest.TestCase):
+    def test_personal_memory_package_is_complete_and_matches_source(self):
+        root = Path(__file__).resolve().parents[4]
+        folder = root / ".claude/skills/personal-memory"
+        required = ("tasks.md", "task-templates.md", "supporting-templates.md",
+                    "procedures.py", "recovery.py", "gate.py", "hubs.py", "schema.py",
+                    "scaffold/AGENTS-memory.md", "scaffold/rules.md", "scaffold/TEMPLATES.md")
+        with zipfile.ZipFile(root / cs.PACKAGES / "core/personal-memory.skill") as archive:
+            for rel in required:
+                with self.subTest(file=rel):
+                    self.assertEqual(archive.read(f"personal-memory/{rel}"), cs.file_bytes(folder / rel))
+            self.assertEqual(set(archive.namelist()),
+                             {f"personal-memory/{p.relative_to(folder).as_posix()}" for p in cs.skill_files(folder)})
+
+
 class ChangedTests(unittest.TestCase):
     def setUp(self):
         self.td = Path(tempfile.mkdtemp())

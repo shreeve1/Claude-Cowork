@@ -2,6 +2,10 @@
 
 Rare operations for the `personal-memory` skill: recovering missing scaffold, linting memory health, Client Memory, the weekly sweep and procedures. `SKILL.md` covers everyday capture and reads; open this file only for one of these. `<skills>` is defined in `SKILL.md`.
 
+## Task and document formats
+
+Saved workspace task operations are in [tasks.md](tasks.md); read it on create, lookup, continue, review, complete or archive requests. Copyable records/indexes are in [task-templates.md](task-templates.md). Pending proposal and general research formats are in [supporting-templates.md](supporting-templates.md), reached when producing those records. They ship beside this reference, including in global or copied installs.
+
 ## Setup Workflow
 
 For setup and migration, use the `memory-setup` skill.
@@ -23,6 +27,20 @@ exists first, then recover the personal files:
   templates embedded in this skill and the format docs, and recreate
   `TEMPLATES.md` from them.
 - Missing personal files are normal, not an error.
+
+## Recovery before editing
+
+Before editing any existing hand-written memory (replacing, deleting or adding to it, including adding a row), preserve its exact previous bytes, including uncommitted notes and memory/index.md, rules.md and glossary.md. New files need no snapshot; only generated topic indexes and hubs are rebuildable exceptions. Use the same protocol with or without Git.
+
+1. Read the source, check authority and confirm this task owns the intended edit.
+2. Run `python3 <skills>/personal-memory/recovery.py --root <workspace> snapshot memory/<path>.md`. Quote paths containing spaces for the shell. Success returns a verified unique copy under `<workspace>/.memory-recovery/<id>/memory/...`; failure means stop before editing. If the source changed after a verified copy, the helper retains that copy and reports its path; it still grants no permission to edit. Absolute, drive, backslash, parent-traversal and symlink paths are rejected.
+3. Re-read the source immediately before editing and compare it with the snapshot. A changed source means stop, re-read and re-ground; preserve the intervening change. Only then replace or delete the intended content.
+
+Without Python, use file tools to copy into a unique `.memory-recovery/` location, re-read both and verify exact previous content before editing. Text-only tools cannot guarantee unknown encodings or binary bytes; if exact preservation cannot be verified, stop and ask for suitable tools. Disclose that automated audit and byte checks were unavailable; manually check links, rules, templates and size limits.
+
+This is a single-writer protocol, not a race-proof transaction or lock. The helper only makes backups; it never restores, replaces or deletes the source. Keep snapshots outside routine recall, ignored with `/.memory-recovery/` at the workspace root; never automatically prune. They may contain sensitive summaries: ignore rules are not encryption or access control, and secrets remain forbidden.
+
+To restore, show the selected snapshot and target, obtain owner approval, preserve the current target first with this protocol, verify the selected content, then restore and check indexes/hubs and audit (or disclosed manual equivalents). Retain the old workspace and recovery during upgrades; copy recovery separately only with owner approval, never as part of a release copy.
 
 ## Lint Workflow
 
@@ -66,7 +84,7 @@ Only where a scheduled sweep is set up (`WEEKLY-SWEEP.md` in a starter workspace
 
 1. `python3 <skills>/personal-memory/sweep.py --apply`. It deletes `.sessions/` and `artifacts/` files older than 90 days, except `artifacts/startday/` (where used) and any file a note, skill or context file names. `reports/`, `memory/` and `clients/` are never aged out. Keep its output for the commit body.
 2. Run `gate.py audit`, `stale`, `crowded` and `links`.
-3. Act on what they show:
+3. Apply Memory authority before maintenance: automatic content changes are limited to resolved ordinary facts. Changing, merging away or deleting standing rules, preferences, decisions or procedures needs explicit owner direction or approval, regardless of stale/superseded status. Report proposed authority changes and unresolved conflicts without editing them. Before permitted hand-written replacement, deletion, merge or trim, apply Recovery before editing. `gate.py compact` snapshots each changed root file and rechecks it before writing, including with a custom --memory directory. Generated topic indexes and hubs are exempt, not memory/index.md, rules.md or glossary.md. Within those limits, act on what they show:
    - `status: superseded`, or a note whose only content is history: delete it and its index row.
    - Stale (over 90 days): re-ground it against current files or tool output. Still true: set `updated`. False: delete it. Needs a live system you cannot reach: leave it and name it in the report. Never delete a note for age alone.
    - Two notes on the same subject: merge into one, delete the other, repoint links (`gate.py backlinks <path>` lists them).
@@ -78,14 +96,18 @@ Only where a scheduled sweep is set up (`WEEKLY-SWEEP.md` in a starter workspace
 
 ## Procedures
 
+Stored procedure approval does not authorize the current action. Obtain current-conversation permission under workspace safety rules. Stop at approval checks, failed steps or changed conditions and propose changes to the owner; never silently revise the recipe.
+
 A procedure is a verified set of steps the agent follows whenever its trigger comes up: a `type: procedure` file in `memory/workflows/<topic>/<slug>.md`, shaped by "Procedure File" in `memory/TEMPLATES.md`. A runbook a person follows belongs in the project's `docs/` instead.
+
+**Readiness before execution:** `python3 <skills>/personal-memory/gate.py --memory memory procedures memory/workflows/<topic>/<slug>.md` checks only the selected lead without writing, so unrelated legacy files do not block it. Omit the path to check all procedures; full audit remains collection-wide and fails for incomplete legacy files. Without Python, compare against the Procedure File template: risk read-only/changes-state, real nonfuture approved/verified dates, Active memory with Trigger, Prerequisites, numbered Steps, Verify, Related and Notes; changes-state also needs Approval and Recovery. Empty sections and fenced examples do not count. Structure does not prove truth, owner approval, success or permission. Read incomplete legacy procedures as evidence only; ask the owner to repair and verify before executing.
 
 **Defining one** ("let's define a procedure for X"):
 
 1. Read `memory/workflows/index.md`. If a procedure or workflow already covers X, propose changes to that file instead of a new one.
 2. State the current understanding and recommended procedure first. Ask only questions whose answers change the procedure: the trigger, where things are, defaults, then each step with its exact command or click. Mark each point where the owner must say yes as a ready check.
 3. Run the steps for real with the owner. A procedure holds only steps that were run and verified; when the run has to wait, say so, and save after that run.
-4. Pick a topic from `memory/schema.json` (a new topic only with the owner's OK). Show the owner the full file and save only after a clear yes.
-5. Add a `memory/rules.md` row whose When is the trigger and whose Also load is the file. Run `indexes.py`, then `gate.py audit` until it exits 0, and commit in a git repo.
+4. Before changing an existing procedure, apply Recovery before editing. Pick a topic from `memory/schema.json` (a new topic only with the owner's OK). Show the owner the full file and save only after a clear yes.
+5. Add a `memory/rules.md` row whose When is the trigger and whose Lead is procedure `memory/workflows/<topic>/<slug>.md`. Run `indexes.py`, then `gate.py audit`; stop and report any owner-repair-only findings instead of inventing dates or looping. Commit in a git repo only after required checks pass.
 
 **Following one:** open the matching file and run its steps in order, stopping at each ready check until the owner says yes. When a step fails or no longer matches the system, stop and propose the change; edit the file only after the owner's yes.

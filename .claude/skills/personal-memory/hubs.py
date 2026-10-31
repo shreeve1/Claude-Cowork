@@ -41,7 +41,7 @@ def parse_frontmatter(path):
         if not m:
             continue
         value = m.group(2).strip()
-        if value[:1] in "\"'":
+        if value and value[:1] in "\"'":
             q = value[0]
             close = value.find(q, 1)
             value = value[1:close] if close != -1 else value[1:]

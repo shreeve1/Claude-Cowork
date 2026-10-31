@@ -7,6 +7,14 @@ This is a ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory
 - Claude Cowork on Windows.
 - Nothing else is required. Git and Python 3.10+ add version history and the commit checks; the setup works without them and your agent tells you what is off.
 
+Memory edits preserve verified previous content in `.memory-recovery/` even without Git. Without Python, the agent must copy and verify with file tools and disclose manual-only checks; if verification is unavailable, it stops. Recovery may contain sensitive summaries; it is ignored, not encrypted. Release copies exclude it; upgrades retain the old workspace and copy recovery separately only with owner approval.
+
+## Saved tasks
+
+Say “create a task”, “look up task X”, “continue task X”, “what needs attention?”, or “complete task X”. Tasks stay in this workspace; agents maintain progress after explicit pickup. Completion archives the record and removes its active-index row. Pending proposals stay separate and never prevent cleanup. Detailed formats ship with personal-memory; no external writing skill is required.
+
+Task updates preserve previous content in `.task-recovery/` with or without Git. It is sensitive plaintext, excluded from release copies, retained through upgrades, and copied separately only with owner approval. File-only tools must verify preservation; unavailable safeguards block the affected operation rather than silently discard content.
+
 ## First setup
 
 1. Make a new, empty folder for your workspace.

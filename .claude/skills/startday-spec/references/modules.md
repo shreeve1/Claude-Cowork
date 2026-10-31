@@ -54,7 +54,7 @@ Saves a lesson only when the owner taught it more than once. It reads the resear
 - **Independent signals:** two signals are independent when they are different owner actions on different approvals or items, each with its own reason. Redrafts that follow one owner statement are one signal.
 - **3 or more independent signals with the same lesson:**
   1. Look for a memory note that already states it. If one does, write nothing and log `rule exists, drafts still missed it: <note path>`.
-  2. If none does, write the note with the `personal-memory` skill. List the item ids and dates as its source. A note that contradicts an older one replaces it in place, as `personal-memory` says.
+  2. If none does, write the note with the `personal-memory` skill. List the item ids and dates as its source. For contradictions, follow personal-memory Memory authority: standing rules, preferences, decisions and procedures change only with explicit owner direction or approval; unresolved factual conflicts are reported without edits. Before replacing existing hand-written memory, follow its reference.md Recovery before editing.
   3. Make sure something loads the note: add or update the row in `memory/rules.md` that reaches it (`personal-memory` "Rules"). A note nothing loads changes nothing.
 - **1 or 2 signals:** a candidate. One line in the activity log, no note. The signals stay in the research files, so the next pass counts them again together with any new ones.
 - **Log:** `Look-back done <date>: wrote <n>, candidates <n>`, then one line per candidate.
