@@ -1,6 +1,7 @@
 # Exact previous-content snapshots; may contain sensitive summaries
 /.memory-recovery/
 /.task-recovery/
+/.workspace-backups/
 
 # Python and tool caches
 __pycache__/

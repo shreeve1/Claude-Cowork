@@ -75,6 +75,10 @@ Update the existing workspace in place; keep the same user folder. Do not run Fi
 
 Skipping Releases is allowed; read every intervening changelog section. Missing `memory/rules.md` needs approved routing for existing owner rules, not a reset. Preserve task records and restore active/waiting index rows only through installed personal-memory’s task protocol. Preserve old `memory/log.md`, superseded notes and retired tools in the verified backup; propose cleanup with approval, never delete to clear an audit. Check approved procedures for real risk/approval/verification metadata; unresolved gaps stop affected execution. Confirmed obsolete hooks or sources may be removed only after approval, without discarding custom files. Existing remotes stay unchanged; a push needs current approval.
 
+## Controlled update helper (experimental)
+
+Read `UPDATE-RECOVERY.md` to enforce an exact approved file plan and retain restartable content recovery. This supplements the complete-backup requirement above; it does not yet replace it. Ordinary attached-ZIP update acceptance is still required before changing the default. Use read-only inspection first; no manifest entry or command flag substitutes for owner approval.
+
 ## Going back
 
 The verified pre-update backup is the way back. Before restoring, identify later work, agree what to preserve, obtain explicit approval and verify a separate copy of the current state. Restore only the approved files/snapshot, then check content, task/memory consistency and installed skill compatibility. Restoring workspace files does not undo Cowork Save skill changes; explain those separately. Keep both backups and never automatically delete newer work or reset Git destructively. A migration can return to its untouched old setup.
@@ -84,3 +88,4 @@ The verified pre-update backup is the way back. Before restoring, identify later
 - `ADAPTING.md`: owner preferences, projects and installed helper checks.
 - `WEEKLY-SWEEP.md`: optional memory maintenance inside Cowork.
 - `MANIFEST.md`: maintainer versus projected user manifests.
+- `UPDATE-RECOVERY.md`: exact-plan helper, persistent restore and current acceptance limits.

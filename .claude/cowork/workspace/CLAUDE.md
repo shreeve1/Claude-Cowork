@@ -22,6 +22,8 @@ At task end, check for corrections, preferences, settled decisions and useful la
 
 Run installed personal-memory’s indexes/hubs helpers when needed and its memory audit from this workspace root. Resolve script paths from the installed package each session. If automated checks are unavailable, disclose permitted manual checks; never silently claim an audit passed. Report one line per saved item: `Memory saved: <path> - <summary>`, or `Memory check: nothing worth capturing.`
 
+Exclude `.workspace-backups/` from routine search and recall. It holds retained update/recovery data, not current workspace instructions. Never prune it automatically.
+
 ## Git, when available
 
 Git is optional. Commit only this session’s verified changes by exact path; preserve unrelated staged work. Never commit the owner’s existing staged documents to prepare an update. Never bypass enabled hooks. For the standalone memory-audit hook, verify the installed personal-memory helper folder and configure the machine-local `cowork.personalMemoryPath` setting as described in the environment note. A stale path blocks a memory commit until repaired. Push only with current approval.

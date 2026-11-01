@@ -4,7 +4,15 @@
 **Architecture:** Read-only comparison -> exact approved plan -> bounded persistent transaction -> separate selected skill confirmation -> linked bookkeeping transaction.
 **Stack:** Python 3.10+, standard library, unittest, existing projection/package tools, native Cowork acceptance.
 **Spec:** `docs/superpowers/specs/2026-11-01-cowork-update-recovery-design.md`.
-**Status:** Independent design questions resolved in the spec; awaiting owner plan review. Product code unchanged.
+**Status:** Owner approved the minimal Cowork-proven build. Baseline: 50 release tests pass. Implement inline with a final independent risk review.
+
+## Implementation rulings after Cowork feasibility
+
+- Use content bytes and presence/absence only: the mount ignores chmod. Remove mode preservation from this build; report Windows metadata limits explicitly.
+- Keep one exact operation document and one small stdlib transaction engine. Link only successive approved transactions for newest-first restore, not a general workflow framework.
+- Use the existing checkout for this tightly scoped local build, with exact-path commits and a clean baseline; no external branch/worktree lifecycle.
+- No hidden production crash flags. Tests terminate subprocesses through an injected Python callback. Native Cowork tests invoke the same shipped code.
+- Frozen restore code and bytes persist inside the attached folder; derive the workspace from that location so session mount-prefix changes do not break recovery.
 
 ## Global constraints
 
@@ -26,7 +34,7 @@ python3 <transaction>/restore.py rollback --approved-plan <id>
 
 Inspect/status never write. Prepare returns id, exact operations, byte counts and persistent location after verification. Matching ids assert consent already obtained, never grant consent. JSON errors provide stable code, affected path and next safe action without private contents. Status distinguishes prepared, failed, applied, rolling-back and restored.
 
-Operation document v1: workspace identity, optional predecessor id, explicit entries `{path, action, before_sha256|null, payload_path|null, after_sha256|null, mode}`. Payloads are separate-staging regular files frozen by preparation. Write requires payload/hash; retained removal requires existing before hash. Reject unknown keys/actions and identity mismatch.
+Operation document v1: workspace identity, optional predecessor id, explicit entries `{path, action, before_sha256|null, payload_path|null, after_sha256|null}`. Payloads are separate-staging regular files frozen by preparation. Write requires payload/hash; retained removal requires existing before hash. Reject unknown keys/actions and identity mismatch.
 
 ## Task 1: Inspection and scope validation
 
@@ -42,7 +50,7 @@ Operation document v1: workspace identity, optional predecessor id, explicit ent
 
 **Consumes:** validated operations. **Produces:** `prepare_transaction(workspace: Path, document: dict) -> Path`, `apply_transaction(transaction: Path, approved_plan: str) -> dict`, `transaction_status(transaction: Path) -> dict` in `update_recovery.py`; CLI prepare/apply/status.
 
-- [ ] Add failing tests: exact bytes/modes, absent files/parents, sealed-copy verification, drift, unexpected payloads, insufficient space and competing writers.
+- [ ] Add failing tests: exact bytes/absence, absent files/parents, sealed-copy verification, drift, unexpected payloads, insufficient space and competing writers.
 - [ ] Add copy/write/fsync/replace/journal failure tests; assert no later operation runs, preparation failures never alter target bytes and mutation failures retain recoverable state.
 - [ ] Implement unique persistent transactions, supported private permissions, frozen payload/originals, integrity records and copied stdlib restore launcher/code. Retain old package index at its original relative path for existing comparison compatibility.
 - [ ] Implement durable intent, verified temp writes, retained removal and explicit lifecycle/intermediate states. Reject unresolved transactions and mismatched approval ids.
@@ -69,6 +77,15 @@ Operation document v1: workspace identity, optional predecessor id, explicit ent
 - [ ] Register new maintainer files/refresh release hashes; regenerate packages only if sources change. Run release tests, hook tests, memory audit and manifest checks. Inspect failures instead of repeating passing checks unchanged.
 - [ ] Commit verified code before desktop work. Drive Cowork in unique synthetic child inside `itastack - Copy`, revised ZIP and ordinary option-3 prompt. Record commands, actual package bytes/timings, interrupted apply/rollback and later-edit refusal. No Save skill clicks.
 - [ ] Switch normal guidance only after acceptance; otherwise retain experimental gate and report blocker. Run cleanup, fresh standards/risk review, final focused tests, memory capture/audit and exact-path commits. No push.
+
+## Verified build ledger
+
+- Baseline: 50 release tests passed before edits. Initial 12 core contract tests failed for the missing engine; interruption tests failed before implementation.
+- Core/CLI/integration: 35 updater tests and 85 total release tests passed. Hook suite: 11 passed. Memory audit passed. Active Python diagnostics have no reported errors.
+- Risk review found partial-restore-write and interrupted-preparation gaps. Added regression tests (failed first), then staged original temps before displacement and published prepared directories only after sealing. All updater tests passed afterward.
+- Final risk review found no important unsafe-restore defect. Its suggestion to enumerate every unknown document conflicts with the scoped no-tree-scan goal; retained scoped inspection and explicitly documented unlisted-content preservation instead.
+- Style tooling skipped Python/Markdown because no repo formatter/linter config is declared. No tool installation or baseline formatting was added.
+- Next gate: native Cowork tests of these actual shipped sources, not the earlier throwaway prototype. Ordinary ZIP-flow acceptance and default-policy switch remain pending.
 
 ## Review focus
 
