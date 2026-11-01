@@ -125,6 +125,34 @@ class MainTests(unittest.TestCase):
         self.assertTrue((self.out / ".claude/cowork/cowork_skills.py").is_file())
         self.assertNotIn("warning:", log)
 
+    def test_cowork_setup_stays_edition_owned_when_upstream_has_it(self):
+        release(self.src, {'.agents/setup/README.md': 'upstream multi-app setup',
+                           '.agents/skills/memory-setup/SKILL.md': 'upstream multi-app skill'})
+        code, log = run(self.src, self.out, self.ws)
+        self.assertEqual(code, 0, log)
+        self.assertEqual((self.out / '.claude/setup/README.md').read_text(),
+                         'workspace .claude/setup/README.md')
+        self.assertEqual((self.out / '.claude/skills/memory-setup/SKILL.md').read_text(),
+                         'workspace .claude/skills/memory-setup/SKILL.md')
+
+    def test_existing_partial_path_is_preserved(self):
+        release(self.src, {'a.md': 'source'})
+        partial = self.out.with_name(self.out.name + '.partial')
+        partial.mkdir()
+        (partial / 'owner.md').write_text('keep')
+        code, log = run(self.src, self.out, self.ws)
+        self.assertEqual(code, 2, log)
+        self.assertEqual((partial / 'owner.md').read_text(), 'keep')
+
+    def test_output_inside_source_or_workspace_is_rejected(self):
+        release(self.src, {'a.md': 'source'})
+        for parent in (self.src, self.ws):
+            with self.subTest(parent=parent):
+                output = parent / 'nested-conversion'
+                code, log = run(self.src, output, self.ws)
+                self.assertEqual(code, 2, log)
+                self.assertFalse(output.exists())
+
     def test_unlisted_upstream_file_is_reported(self):
         release(self.src, {"a.md": "x"})
         (self.src / "stray.md").write_text("x")
@@ -159,7 +187,7 @@ class MainTests(unittest.TestCase):
     def test_project_scaffold_and_historical_evidence_are_included(self):
         release(self.src, {"a.md": "x"})
         files = {
-            "projects/README.md": "Use .agents/skills/personal-memory/supporting-templates.md\n",
+            "projects/README.md": "Use `.agents/skills/personal-memory/supporting-templates.md`\n",
             "docs/testing/flexible-workspace-setup-cases.md": "Upstream .agents/ receipt; native Cowork NOT RUN.\n",
         }
         for rel, text in files.items():
@@ -171,7 +199,7 @@ class MainTests(unittest.TestCase):
         self.assertNotIn("warning:", log)
         self.assertEqual(
             (self.out / "projects/README.md").read_text(),
-            "Use .claude/skills/personal-memory/supporting-templates.md\n",
+            "Use `supporting-templates.md` beside the verified Cowork-installed personal-memory skill\n",
         )
         receipt = "docs/testing/flexible-workspace-setup-cases.md"
         self.assertEqual((self.out / receipt).read_text(), files[receipt])

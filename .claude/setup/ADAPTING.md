@@ -1,54 +1,27 @@
-# Making it fit the owner
+# Fit the Cowork workspace to its owner
 
-Three steps: settle the tracking model (what the owner needs remembered), make it run under the owner's agent app and machine, then make it fit how the owner works. The tracking model comes first and before filing old notes, so migrated facts have a home. Do part 1 before part 2. Run the tracking model and part 2 through the `talk-it-through` skill. For an underspecified opening, use its one open question; then state the understanding and recommendation, make routine defaults, and ask only a question whose answer changes the direction.
+Claude Cowork is the sole supported end-user app. Read installed memory-setup’s tracking-model instructions before filing old notes. The staged Release is setup material, not a skill-source tree to copy into the workspace.
 
-## Tracking model (before filing old notes)
+## 1. Verify installation and access
 
-Follow `.claude/skills/memory-setup/tracking-model.md`. Settle the agent or bot's purpose, tracked things, project layout and procedure topics together before filing notes. Recommend from what the owner already said; do not assume client work or merely rename `clients/` while retaining its folders.
+Confirm the owner saved the selected ready-made `.skill` cards into Cowork and attached the workspace. Locate the actual installed personal-memory package in this session; verify its task templates, supporting templates, scaffold and helper scripts. Do not assume a path, create a workspace source copy or claim installation from the presence of source files. If access is missing, explain the blocked operation and use only documented manual checks where permitted.
 
-Memory edits preserve verified previous content in `.memory-recovery/` even without Git. Without Python, the agent must copy and verify with file tools and disclose manual-only checks; if verification is unavailable, it stops. Recovery may contain sensitive summaries; it is ignored, not encrypted. Release copies exclude it; in-place updates keep recovery in place and include it in the verified pre-update backup. Migration copies recovery separately only with owner approval.
+For an optional Git repository with Python, verify the installed helpers before configuring local `cowork.personalMemoryPath` and `.githooks`. The machine-local path can change across sessions; missing helpers must be reported, never silently skip an audit. Without Python, disclose that only the message-length hook is available.
 
-## Part 1: harness and machine
+## 2. Settle the owner’s organization
 
-This workspace was written for a terminal coding agent that reads `CLAUDE.md` at the workspace root and loads skills from `.claude/skills/<name>/SKILL.md`. The owner may use a different desktop or terminal agent.
+Use installed memory-setup and personal-memory to recommend a layout from the work the owner actually does. Ask only decision-changing questions. Independent work uses `projects/<short>/README.md` and useful folders; client work can retain `clients/` alongside projects. No fictional projects, facts or verified procedures are needed to complete an empty scaffold.
 
-1. Find out which agent app the owner uses and how it loads instructions. Many read `CLAUDE.md`; some read another file name (for example `AGENTS.md`) or need a setting. If needed, add a short file that points at `CLAUDE.md`; do not copy and fork it.
-2. Find out where that app looks for skills. If it does not read `.claude/skills/`, configure it to, or link that folder to the expected place. Keep `.claude/skills/` as the real copy so updates keep working.
-   For an app that loads skills only from its own saved list, this is the install step in `README.md` ("Skills in the owner's app").
-3. Note anything that does not fit (a command the app lacks, a path that differs) and tell the owner. Shipped files stay as shipped; the fix goes into a pointer file, the app's own settings or a preference note.
+Set the folder map and schema together with approval. Preserve existing `client_folder`, subjects, `client_dirs` including an empty list, topics and topic directories during updates; proposed additions need approval. Verify real project/file links when available. Use installed personal-memory’s supporting templates; saved tasks hold individual unfinished work and memory holds lasting facts.
 
-## Part 2: how the owner works
+## 3. Personalize behavior
 
-Start by recommending a setup from what the owner has already said. Use these questions as territory, not a checklist: ask only the next question whose answer changes the setup, skip answered points, and state obvious defaults.
+Discuss answer length/tone, document destinations, recurring work, shorthand names, meetings and actions that always need approval. Save approved preferences through installed personal-memory, with rule rows pointing to the relevant notes. Preserve previous handwritten memory before edits. Do not put personal rules into shipped `CLAUDE.md` or edit packaged skills as a substitute for a preference.
 
-1. **What do you mostly use an agent for?** Writing, research, IT support, coding, planning, something else. This decides which skills matter.
-2. **Which skills will you not use?** List the skills under `.claude/skills/` with one line each. Do not delete shipped skills; the check fails without them. Instead add a row to `memory/rules.md` (When: Always, Note: "never use skill `<name>`") so the agent leaves it alone.
-3. **How should answers read?** Length, tone, bullets or prose, language. Save the answer as a preference note with `personal-memory` and add a row to `memory/rules.md`. Do not edit `CLAUDE.md` for this: a preference note never conflicts with an update.
-4. **Where should files go?** Apply the layout agreed in the tracking model to `memory/preferences/document-scaffolding.md`. Project work gets a README and only useful document folders; tasks and durable memory retain their separate homes. It is the owner's file and updates leave it alone.
-5. **Who and what do you refer to by short names?** People, companies, systems. Add each to `memory/glossary.md`. The things settled in "Tracking model" are already there.
-6. **Which words do you use in a specific way?** Add them to `CONTEXT.md` through `talk-it-through`.
-7. **Which rules in `CLAUDE.md` do not fit?** Read the headings with the owner. Never edit `CLAUDE.md`: write a preference note that overrides the rule, with a row in `memory/rules.md` (When: Always). The note wins because it is loaded for every task.
-8. **Do you want a start-of-day routine?** See "Start-of-day loop" below.
-9. **Do you have meeting transcripts?** If a transcription tool (Teams, Zoom, Otter, Granola, a recorder app) saves transcripts to a folder, personalize the `meeting` skill now: ask its "First use" questions (`.claude/skills/meeting/SKILL.md`) and save the answers in `memory/preferences/meetings.md`. Run it once on a real transcript with the owner. If there are no transcripts, leave the note as shipped and say the skill is there when they start recording.
-10. **What must the agent never do?** Systems never to touch, people never to contact, actions that always need asking. Save as a preference note with a row in `memory/rules.md` (When: Always).
+Optional video skills and any start-of-day routine are separate choices. For meetings, use the installed meeting skill’s first-use instructions and verify a real run. For a routine or memory sweep, use Cowork only; do not prescribe another app, external headless command or a scheduler that cannot reach this workspace. Report untested scheduling as untested.
 
-After the interview, restate the answers as a short list, ask "Is anything here wrong?", then make the changes and commit with the owner's OK.
+## Updates preserve owner content
 
-## What survives an update
+Updates use an attached ZIP and a verified backup, retain the same workspace path, and replace only approved projected user files. Skill cards are presented from staging and saved into Cowork, not copied as source or archives into the workspace. Keep the package index for future comparisons. Existing custom skills and legacy source trees stay untouched unless the owner explicitly approves a scoped cleanup. Plain CRLF/LF differences are not personal edits or separate approval decisions.
 
-An update refreshes shipped files in the existing workspace after a verified backup (`README.md`, "A newer version arrived"). The owner downloads the latest workspace ZIP and adds it to the conversation. The agent uses that attached source; no new workspace folder or agent-side GitHub access is needed.
-
-| What | On an update |
-|---|---|
-| Memory notes, `memory/index.md`, `memory/rules.md`, the glossary, `CONTEXT.md`, the folder map, the owner's own skills, documents | Kept in place; only approved compatibility edits are applied. The environment note follows the update guide’s exception. |
-| Schema choices (`client_folder`, `client_subjects`, `client_dirs`, `topics`), project READMEs and project files | Preserved; reconcile schema additions as described in README.md, never reset to client defaults. |
-| Shipped files (`CLAUDE.md`, shipped skills, these docs) | Replaced by the new version. Never put personal content in them. |
-| A rule that overrides a shipped one | Kept: it lives in a preference note. |
-
-## Start-of-day loop
-
-Run the `startday-spec` skill with the owner through `talk-it-through`. It picks the modules (work items, meeting transcripts, watched files or pages), the runner (none, a local scheduled task in Claude Desktop or Codex, Claude Code `/loop`, omp `/loop`) and writes `.claude/startday.json`. Cowork and other cloud schedulers run remotely by default and cannot see this folder; `startday-spec` explains when a local run works.
-
-The loop is optional. With no runner the owner types `startday` when they want a run, and nothing else changes.
-
-Do not treat a routine or integration as working until the owner has run it once. An empty project/procedure scaffold can be complete without a saved fact or verified procedure; report what remains untested.
+Verify installed helpers, memory/tasks/project links, preservation of owner content and the optional Git hook before reporting completion. Separate checked behavior from native Cowork actions still needing the owner.

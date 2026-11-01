@@ -201,6 +201,13 @@ class ChangedTests(unittest.TestCase):
         self.assertFalse(any(line.startswith("loaders") for line in out))
         self.assertEqual(len(out), 3)
 
+    def test_changed_uses_packages_without_a_workspace_source_tree(self):
+        run("build", "--workspace", self.new)
+        shutil.rmtree(self.new / ".claude/skills")
+        code, log = run("changed", self.old, "--workspace", self.new)
+        self.assertEqual(code, 0, log)
+        self.assertIn("nothing to install", log)
+
     def test_old_workspace_must_differ(self):
         code, log = run("changed", self.new, "--workspace", self.new)
         self.assertEqual(code, 2)

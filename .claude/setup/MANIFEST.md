@@ -1,14 +1,14 @@
-# MANIFEST.json
+# Maintainer and user manifests
 
-Every Release has `MANIFEST.json` at its root, and it stays in the workspace after setup. It lists every shipped file:
+The attached Release’s `MANIFEST.json` lists maintainer source files as well as user material. It is not an instruction to copy the whole repo into an owner workspace.
 
-- `edition`: `friends` or `team`. `release`: the version number (higher is newer).
-- For each file: its `class`, its `sha256` (taken with line endings turned into LF, so Windows CRLF copies still match) and its `mode`.
+For setup and updates, run staged `.claude/cowork/workspace.py plan "<Release>"`. Its projected manifest lists only user workspace files, their source inside staging, normalized `sha256` and mode. Cowork-specific instructions and environment seed replace maintainer variants; the memory layout comes from the personal-memory project scaffold. Fresh creation writes that projected manifest without staging-only `source` fields into the workspace.
 
-## What each class means
+The user manifest excludes maintainer `.claude/skills/`, persona libraries, tests, setup/build scripts and `.skill` archives. Packages remain in staging for Cowork Save skill cards; `.claude/cowork/skills/index.json` is retained for future comparisons. A projected file must never overwrite owner content merely because it appears in a manifest.
 
-- `merge`: a shared file (`CLAUDE.md`, skills, hooks, these setup docs). Keep it as shipped. Personal content never goes into it. An update replaces it with the new version's copy.
-- `seed`: a starter file the owner adapts (`CONTEXT.md`, `memory/glossary.md`, `memory/schema.json`, the folder map, `memory/rules.md`). Its content is the owner's. An update copies the owner's version across.
-- `local`: a starting copy of a file that is the owner's from day one (`memory/index.md`, the generated indexes, `.gitignore`, `START-HERE.md`). Same rules as `seed`.
+- `merge`: shared user files, replaced only under the approved update plan.
+- `seed` and `local`: starter material owned by the user; preserve and reconcile it rather than resetting it.
+- `sha256`: text hashes normalize CRLF to LF. Line-ending-only differences are not personal modifications; compare binary files without rewriting their bytes.
+- `mode`: expected file mode where the filesystem supports it.
 
-MANIFEST.json is a record of what shipped. Nothing checks it; an agent may use it to see which files the owner has changed.
+For old workspaces, their installed manifest helps identify shipped versus owner content. It may include old skill sources; that does not make those sources part of the new user-file plan or authorize deletion. Preserve custom skills, edited files and unknown paths, and ask about real conflicts. Keep the verified full backup and owner recovery protocols even when hashes match.

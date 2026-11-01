@@ -16,7 +16,7 @@ For a project README, pending proposal or general research record without a skil
 
 ## Scope
 
-`<skills>` below is the folder that holds this skill's folder: `.claude/skills` in a workspace or a project copy, `~/.claude/skills` for a global install. In the commands below, `python3` means `python` where that is the working command (often on Windows).
+In Claude Cowork, `<skills>` is the verified parent of this skill’s actual installed folder for the current session. Verify the adjacent task/templates, scaffold and helpers; do not assume `~/.claude/skills`, a fixed mount or the maintainer source tree. Do not copy skill sources into the user workspace. Missing installed access blocks affected operations except where this skill explicitly permits manual checks. The maintainer repository may run its own source helpers for development. In the commands below, `python3` means `python` where that is the working command (often on Windows).
 
 Memory lives in `memory/` at the folder root. Scripts live in this skill's folder; run them from the folder root as `python3 <skills>/personal-memory/<script>.py`. Git is optional. When the folder is a git repo, memory `.md` files are tracked so they have history, and binaries and `memory/raw/` are git-ignored; never store credentials, since history keeps them and travels with any push. Without Git, verified recovery copies still preserve previous content; there is no commit history. Hooks run only where the workspace enables them; otherwise run `gate.py audit` directly.
 

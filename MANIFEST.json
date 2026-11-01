@@ -5,16 +5,276 @@
   ".claude/cowork/cowork_skills.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "08188daea5d0074a51e6cb6d8432d1d4d60c68391792299696d19642c6f89ce6"
+   "sha256": "4e3f715272b4db0accc21f84ef378ae7ef6f253eb995a01e0a4d7301ac12cfb0"
+  },
+  ".claude/cowork/skills/core/adhd.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "c12895beb45b42dc71b9439762456f35825ef2453ef23226af14702f4294fab3"
+  },
+  ".claude/cowork/skills/core/antislop-code.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "bc97413ff73b68a1fe8ab09aedae5af5f3f3c5ab4aa6974d9bdbc5089afa519d"
+  },
+  ".claude/cowork/skills/core/antislop-copywriting.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "feac1889eac005ee4959d6234b119884cc6702acd0a9c90921e4bcb2b55da73f"
+  },
+  ".claude/cowork/skills/core/antislop-human.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "666c625904a023e5e34584235c1bcb1bdee793c938a0b91c14782aa583a7a364"
+  },
+  ".claude/cowork/skills/core/antislop-layoutmobile.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "f01ae56d4c8ee8148bcf7cb5420d7a1c7be1c7c50259daf8556aeec69d842593"
+  },
+  ".claude/cowork/skills/core/antislop-ui.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "d7638431f9c22b1f1126bc86bef28b0f61de8c97371052cc8e0e06e1f0bf47d0"
+  },
+  ".claude/cowork/skills/core/antislop.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "1c377061391cc8c46b6238357c5ec194971158e71338225bb9baf82a144b5a65"
+  },
+  ".claude/cowork/skills/core/brainstorm-idea.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "c7fac1586e5cdccd8c437d5961b5ae25b1e02a64a2707ebb881ca21fe6c610b0"
+  },
+  ".claude/cowork/skills/core/drawio.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "6578aa802f9895a056b56030137b9073a79522694aa18c0bfb65c9cd351ac0d2"
+  },
+  ".claude/cowork/skills/core/excalidraw-diagram.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "b085c13c8451eeac35360f3ed048c03ea85e199c2d3d3b1316a425b7c32d85f1"
+  },
+  ".claude/cowork/skills/core/handoff.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "1f4bef88d59c57b6b396e1866590d4629455a9193e39d2261492e322dbe4e74a"
+  },
+  ".claude/cowork/skills/core/meeting.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "ecfbe6d93a6214d42d289724f5ad4320ad29a6fd192488da3afaf37d2c50fbba"
+  },
+  ".claude/cowork/skills/core/memory-setup.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "079e83024531ddda61f3c7ef4b345a9e0bd683dc9261bf3bb1a0c8de71258e49"
+  },
+  ".claude/cowork/skills/core/personal-memory.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "84f25b025ca6346a9320f973c0b0a15c7b8db763b46a1a335a4f0ae8fabab8ed"
+  },
+  ".claude/cowork/skills/core/professional-guidance.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "7e7e319b54881161155eb5b70ce6ccd3bdf9f988715f880ab8a7b015a039ca37"
+  },
+  ".claude/cowork/skills/core/startday-spec.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "69b947bd909b51232b487c5954b5e48fb40645b31e1c5f39db410e2115b32a70"
+  },
+  ".claude/cowork/skills/core/talk-it-through.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "5ae8f5a6225fb9d5f09783a170b2d274b5d22e912df3aee5a947b4568d1170c0"
+  },
+  ".claude/cowork/skills/core/teach.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "5cca003611d1d24183a4e907a233e3376685f980a8713d655dd571542590ac52"
+  },
+  ".claude/cowork/skills/core/troubleshoot-my-pc.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "1f343de7cfe002a7f2219ec8031c9dad3f7f4d51c3381167de942cb58597962e"
+  },
+  ".claude/cowork/skills/core/workflow-builder.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "b94a20721cd90ab72187371a97c6a77a2c2bd1582700128b31f9655cd4d9bd13"
+  },
+  ".claude/cowork/skills/core/youtube.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "1df27992e599a33742729e58c6974c58638c68d82cec25224665d5c3df80d5a7"
+  },
+  ".claude/cowork/skills/index.json": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "fadc3fda9abe98a9f78e9401f6d38c769406cb23e0cbcff79ffd1d4c23a227a4"
+  },
+  ".claude/cowork/skills/video/captions-overlay.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "13e5289e803949e3cefe0cbfccbad114fcf9496325edbebdc35de605d58bbf30"
+  },
+  ".claude/cowork/skills/video/changelog-video.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "1ccd531421ea3248d2c9c58e614641ebaac9028b4b1afc33079a24661157c750"
+  },
+  ".claude/cowork/skills/video/cut-the-curve.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "d852765e1aefa4911ec5f58578503f4bde3e50ceee51d6cc316d949fc17ca566"
+  },
+  ".claude/cowork/skills/video/embedded-captions.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "334a9ac50eab100efc92e64b167b924ac84c504b90a3acfb9b33f525f03c5955"
+  },
+  ".claude/cowork/skills/video/faceless-explainer.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "07911502f0b6b960fcdee72e0554b6fe83be3016e02f26d4d8817b3f7bbc9e2e"
+  },
+  ".claude/cowork/skills/video/figma.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "b34a79c60186e0b8e70382a85eb2270f426ad09dcd0f592e6567a1c109b2fc4e"
+  },
+  ".claude/cowork/skills/video/general-video.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "a4bcb78d058a64b111f603ccfe582ea6a2ca0b67d364484348ece1ed8fe621a3"
+  },
+  ".claude/cowork/skills/video/hyperframes-animation.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "f5a89e12e9ac72c44a2c1359d15251608d8d965ae8857bff3970b091427c1068"
+  },
+  ".claude/cowork/skills/video/hyperframes-audio.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "13b53d090eed4160710893a035470b76a5a99b85d02df72bbf1e7cf9db6e68c9"
+  },
+  ".claude/cowork/skills/video/hyperframes-cli.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "40b5ad3f6490670d7f265a65b05129f15604ae7eaa46d2f5d8663242486717d8"
+  },
+  ".claude/cowork/skills/video/hyperframes-core.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "8a59e9b860f0b58a441d62aab3a48a8802c50a897a9f4fc948f8fc21aac3fdca"
+  },
+  ".claude/cowork/skills/video/hyperframes-creative.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "f9fc98783224bcdcd7475882c9328651abc36030d2aaa44b094a74df1ab9d7b3"
+  },
+  ".claude/cowork/skills/video/hyperframes-keyframes.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "0193285a02e36fbf9082ce10f546f0659ef71fac4a93b3a3886a21fc5c5d88d2"
+  },
+  ".claude/cowork/skills/video/hyperframes-registry.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "5afdb99462575e45637f986edcddad80724e9defe231e4c830f86c110675aced"
+  },
+  ".claude/cowork/skills/video/hyperframes-studio.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "d0e8ac7d5337453eb7bd3a3abf69f0a6c9f229e30567207414e258c1019494c6"
+  },
+  ".claude/cowork/skills/video/hyperframes.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "a3c13f9817b6fac140429ac9ffb39e3db82067b97e0f62ed004a7e82c7743b1d"
+  },
+  ".claude/cowork/skills/video/media-use.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "6a032fda1079d359ef4ee0d6a33470e136012fc0bc695af6a7bf99de4662165a"
+  },
+  ".claude/cowork/skills/video/motion-doctrine.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "8cf4ad5c79515117c291d09840cdf552551ce9391a25e15e8108afb22f0160b8"
+  },
+  ".claude/cowork/skills/video/motion-graphics.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "a642ba44a71f2ba3fbdc35039938831fad126e2add2b6e85f84ad1c4996b0306"
+  },
+  ".claude/cowork/skills/video/music-to-video.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "de2c0d33980281f54ac41f1bb33e0ace8fe77997b27bde96956a1442251b016a"
+  },
+  ".claude/cowork/skills/video/oversized-cursor.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "f87ed3e0d25c7114dd99fe07a307d6195e7c9068916148b1f9f2a9399ab3ab6a"
+  },
+  ".claude/cowork/skills/video/pr-to-video.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "33a99bdcb8cf059936279795c956c32d99719ab74405d5e73e557cdca379f028"
+  },
+  ".claude/cowork/skills/video/product-launch-video.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "187351869f2455ffbe4139a1673babf5ea2be7a6db19b42423332957c2512e81"
+  },
+  ".claude/cowork/skills/video/remotion-to-hyperframes.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "cfeea5baada844d2a4abe9e0a82238750fc92f140bb87ee9ef553ee94ce12327"
+  },
+  ".claude/cowork/skills/video/seam-craft.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "993339adc5c379ec1604b71d929ae82b2bc7855b547caa748ee54f0560bf8b9c"
+  },
+  ".claude/cowork/skills/video/slideshow.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "0edb377c8ceae7353d107b690059193ec473826cc160785d19d4bb55ac2c126b"
+  },
+  ".claude/cowork/skills/video/talking-head-recut.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "b67912474c35c2c90919fe08fd17dafac3073e7c2c92670b07ec8276be8172be"
+  },
+  ".claude/cowork/workspace.py": {
+   "class": "merge",
+   "mode": "755",
+   "sha256": "7b99dab796b3448f84f3c349f99a6d8243b700987e6950d847af9fd4310fb1ee"
+  },
+  ".claude/cowork/workspace/CLAUDE.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "9b7ea13a1dd1f538debe5b9b7e128fbb971e6ab9b7a8a12389de8665e4b7325e"
+  },
+  ".claude/cowork/workspace/cowork-environment.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "1ba4c44e92e65a364761e4716890ab1135cae8a52d767da4e05114645477f003"
   },
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
-   "sha256": "822f273eb3d6ea67493de1ad600f0fa7707576d0ad9c0d03db0a3a630206c125",
+   "sha256": "4afd81225a92bb9f187ca9c46e34e8d58138ed0179c0880defa571b64e4b1dc1",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
    "class": "merge",
-   "sha256": "78d1fe62da2fc29d3035ee965bf9d3870070e44b9d9e0fb62f741d20dc0526bd",
+   "sha256": "04e78e357e82bca2872404f43538dba0eef5ed190e8ac2c5b899786ed6e3fdde",
    "mode": "644"
   },
   ".claude/setup/MARKERS.md": {
@@ -24,12 +284,12 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "1fe775cf55d2a45c7472c0fe770736b2a4e4a5dc8feb26fd70dcd5b83e3c00e0",
+   "sha256": "f00a73e144024c12f850f7f591e974e00505a76b025371b705bcdaea48d9822e",
    "mode": "644"
   },
   ".claude/setup/WEEKLY-SWEEP.md": {
    "class": "merge",
-   "sha256": "92e14d061047f3b8071af0b975c01a5db98d31b89db4c8fc778749e07c52a131",
+   "sha256": "22fa9b066209f3824d782e7ac5f861bb16b2caef2e68dc83915875a6d1ac7fe4",
    "mode": "644"
   },
   ".claude/skills/adhd/SKILL.md": {
@@ -3114,7 +3374,7 @@
   },
   ".claude/skills/memory-setup/SKILL.md": {
    "class": "merge",
-   "sha256": "90045ff1d86e8809c5593863ab2ffdafd321ed75bd48f2e3acb6939c410121b3",
+   "sha256": "08e1682734a5e693f3e7f8b568a5354586b5bf2ceca88ab8e96332e25ee44ff5",
    "mode": "644"
   },
   ".claude/skills/memory-setup/code-repos.md": {
@@ -4134,7 +4394,7 @@
   },
   ".claude/skills/personal-memory/SKILL.md": {
    "class": "merge",
-   "sha256": "3b8f511476bfd1bf1cefe9c6f0e7055921caed03230ccd265037f164ddb264cb",
+   "sha256": "66711df506326edf59222507842f0a81fcbaec5ac960f6f016922701560d79ff",
    "mode": "644"
   },
   ".claude/skills/personal-memory/gate.py": {
@@ -6814,7 +7074,7 @@
   },
   ".githooks/pre-commit": {
    "class": "merge",
-   "sha256": "145d0cf655f919e71690007397d507183b3e3644ebca9e19064ba5673b7fb63b",
+   "sha256": "46019a99a4e5d8d74665a17106658558a9f5232781885633260176cac2ddc6c8",
    "mode": "755"
   },
   ".githooks/secret-allow.json": {
@@ -6829,7 +7089,7 @@
   },
   ".githooks/tests/test_pre_commit_audit.py": {
    "class": "merge",
-   "sha256": "217667be9d4857eb071810421902ee834dccee2a713afbd42b8afaeaa4a9462c",
+   "sha256": "9d511bad392affe98d72de247a2fa00fc0e9404af0e94e595ec5d7c28670a217",
    "mode": "644"
   },
   ".gitignore": {
@@ -6839,7 +7099,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "0e9081eddb500ecf7892bf2df79b7f8c40ad3efd60d11ba4c91e58a84b34a163",
+   "sha256": "88be844dc557d0ff40db9702c12d49e07eebea198b726dd27ede9f35076706ba",
    "mode": "644"
   },
   "CLAUDE.md": {
@@ -6854,17 +7114,17 @@
   },
   "CONTEXT.md": {
    "class": "seed",
-   "sha256": "b726aaa5b7fa5b0f4d06a002c1088f165647f88c3bae7e385b7580d4da74b071",
+   "sha256": "a828edb24374d74226535bd670475d0e701698697474ddb333b79fb965fe5f06",
    "mode": "644"
   },
   "README.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "0bbe352f70df7536136ee9b29d48af9fb3e3093a4df41f692cdb65df64b855e4"
+   "sha256": "9226dd0bf958d946ebb88840474538dff5d740681a01a5902bbf03000a5d0d26"
   },
   "START-HERE.md": {
    "class": "local",
-   "sha256": "9d377f5af03a28b07022a322f567143bca295d1780cdf6736c2eebe790f03800",
+   "sha256": "60eff8a9a5871341a2cd67c39de889158ca3acb3a610ce10d3144faa27469120",
    "mode": "644"
   },
   "docs/testing/cowork-project-scaffolding-cases.md": {
@@ -6929,7 +7189,7 @@
   },
   "memory/index.md": {
    "class": "local",
-   "sha256": "f268ec34b750d9ed84961d7a597ef1a2efebb8614301b92e1fee9725b461ae03",
+   "sha256": "32d73154ce1636082bb36b17355161978545480e0ea65ba5181da7974b9744ff",
    "mode": "644"
   },
   "memory/preferences/.gitkeep": {
@@ -6945,7 +7205,7 @@
   "memory/preferences/cowork-environment.md": {
    "class": "seed",
    "mode": "644",
-   "sha256": "67d3256d3de29043d2a120d30d4432b383bea42cc4e4702739d6a9ee2b383043"
+   "sha256": "5f74ed29286f976597e02e13b553f446ef54b2fe496182fa14e849b516b8c770"
   },
   "memory/preferences/diagrams.md": {
    "class": "seed",
@@ -6954,7 +7214,7 @@
   },
   "memory/preferences/document-scaffolding.md": {
    "class": "seed",
-   "sha256": "a882afbab1b54b9199ddc8d2117d2f798e1d9f3670992de05dcd12d04770b1e6",
+   "sha256": "009631f1a9f57d79dd68ddd84f7fb51a283226382a7b99f7ce8a72e9dee996f2",
    "mode": "644"
   },
   "memory/preferences/meetings.md": {
@@ -7005,7 +7265,7 @@
   "projects/README.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "7d8a8e441fae3a950da2cf162bc0d0b7198c08912097aff3ad25ffbbda8250fe"
+   "sha256": "0700f12c818abf81b1e78ea9fc166cf0d1cc9c6cdd7a22ea868f38da4d772c46"
   },
   "tasks/index.md": {
    "class": "seed",

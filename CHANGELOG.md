@@ -10,6 +10,8 @@ Kept from the earlier Cowork edition: `convert-release`, `memory/preferences/cow
 
 Cowork-only changes:
 
+- Separated the maintainer Release from the end-user workspace. Setup copies only user files and presents ready-made Cowork skill cards; skill sources, persona libraries and builders stay in staging. Installed personal-memory supplies templates and audit/recovery helpers. Same-folder updates preserve owner content and require a verified backup. Native Save skill and installed-file access still need a Cowork test.
+
 - Ported starter-agent `8d248ad` project scaffolding: purpose-led client/project/other tracking, project README format, selected document folders and procedure topics, honest empty setup, and upgrade preservation. Kept Claude paths, sandbox Python 3.10 compatibility and Save skill cards; rebuilt personal-memory and memory-setup packages. Converter recognizes project scaffolding and upstream evidence while excluding the internal upstream plan. Local checks and native-Cowork limits are recorded in `docs/testing/cowork-project-scaffolding-cases.md`.
 
 - Ported saved-task operations and templates, procedure readiness/authority checks, exact-content memory recovery and the new startup routing. The Cowork environment still loads on every session; detailed writing, diagram and folder guidance loads only when relevant.

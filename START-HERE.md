@@ -1,6 +1,6 @@
 # Start here
 
-This is a ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory and git hooks. Your AI agent in Claude Cowork sets it up with you and moves your own notes and rules into it. You don't copy files by hand.
+This is a ready-made Claude Cowork workspace: instructions (`CLAUDE.md`), memory, saved tasks, optional Git hooks and skills installed in Cowork. Your AI agent in Claude Cowork sets it up with you and moves your own notes and rules into it. You don't copy files by hand.
 
 ## What you need
 
@@ -29,7 +29,7 @@ For a fresh setup, make a new, empty workspace folder and give the agent access 
 
 > Use the attached workspace ZIP. Extract it into separate staging, read `.claude/setup/README.md` inside the extracted repo folder, and follow “First setup” to set me up in `<new folder>`. I have nothing to migrate. Help me choose where files and notes go and adapt the workspace to how I work. Do not fetch the source from GitHub.
 
-Your agent copies this workspace into the new folder, reads your old setup, decides where things belong and tells you what it did. Then it shows a card for each skill: click **Save skill** on each to install it. Video skills are optional.
+Your agent creates only the user workspace files and presents ready-made `.skill` cards from the attached ZIP. Click **Save skill** to install them in Cowork. Maintainer sources, persona libraries, tests and package archives stay out of your workspace. Installed personal-memory supplies the task templates, recovery helpers and memory checks. Video skills are optional.
 
 Later, ask your agent "set up memory in `<folder>`" for any other project, or "bring my old notes from `<place>` into memory".
 

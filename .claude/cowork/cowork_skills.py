@@ -151,6 +151,9 @@ def refresh_manifest(ws, names):
             if rel not in files:
                 files[rel] = {"class": "merge", "mode": "755" if p.read_bytes().startswith(b"#!") else "644"}
                 print(f"manifest: added {rel}")
+    for package_path in (ws / PACKAGES).rglob("*"):
+        if package_path.is_file():
+            files[package_path.relative_to(ws).as_posix()] = {"class": "merge", "mode": "644"}
     missing = 0
     for rel, meta in files.items():
         p = ws / rel
@@ -224,7 +227,7 @@ def changed(ws, prev, video):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(description=(__doc__ or "Cowork skill packages").splitlines()[0])
     sub = ap.add_subparsers(dest="command", required=True)
     b = sub.add_parser("build", help="maintainer: rebuild the .skill packages and index")
     b.add_argument("--workspace", default=".")
@@ -234,8 +237,9 @@ def main(argv=None):
     c.add_argument("--workspace", default=".")
     args = ap.parse_args(argv)
     ws = Path(args.workspace).resolve()
-    if not (ws / ".claude" / "skills").is_dir():
-        print(f"{ws} has no .claude/skills; run from the workspace root", file=sys.stderr)
+    required = ws / (".claude/skills" if args.command == "build" else INDEX)
+    if not required.exists():
+        print(f"{ws} has no {required.relative_to(ws)}; use the extracted Release", file=sys.stderr)
         return 2
     if args.command == "build":
         return build(ws)

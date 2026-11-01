@@ -16,7 +16,7 @@ topics: [preference, documents, workspace-layout]
   - `research/`: research notes and investigations, `<topic>-YYYY-MM-DD.md`.
   - `notes/`: quick personal notes, scratch lists and pending proposals.
   - `tasks/`: saved work in progress, `index.md` for active/waiting work, `archive/` for closed records.
-  - `projects/<short>/`: independent project work, starting with `README.md` (Project README format in `.claude/skills/personal-memory/supporting-templates.md`). It links the goal, scope, completion check, tasks, files and authoritative memory. Create only useful subfolders; setup may choose `research`, `design` and `procedures`, never ticket folders by default.
+  - `projects/<short>/`: independent project work, starting with `README.md` (Project README format in `supporting-templates.md` beside the verified Cowork-installed personal-memory skill). It links the goal, scope, completion check, tasks, files and authoritative memory. Create only useful subfolders; setup may choose `research`, `design` and `procedures`, never ticket folders by default.
   - `clients/<short>/`: client documents when client work applies; `client_dirs` in `memory/schema.json` lists their document folders. Client-owned projects can stay under `clients/<short>/projects/`.
   - `<client_folder>/<short>/`: when the owner tracks projects, devices or another kind of thing, setup replaces the client entry with that home and chooses suitable `client_dirs`. If the folder is `projects`, use the project entry above, not a duplicate or nested `projects/` default. With clients plus independent projects, keep both distinct homes.
   - `artifacts/<topic>/`: generated working files (diagrams, spreadsheets, drafts). The default when nothing else fits.

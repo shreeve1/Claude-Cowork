@@ -1,6 +1,6 @@
 # Cowork Workspace
 
-A ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory and git hooks.
+A ready-made Claude Cowork workspace: instructions (`CLAUDE.md`), memory, saved tasks and optional Git hooks, plus ready-made skills to install in Cowork.
 Your AI agent in Claude Cowork sets it up, updates it, brings your existing
 notes into it, and adapts it to how you work. You don't copy files by hand.
 
@@ -88,22 +88,22 @@ Inspect my existing setup at [existing folder]. Tell me whether I need
 a migration or an update, and explain why. Do not change my existing files.
 ```
 
-In Claude Cowork, the agent shows a card for each skill to install: click **Save skill** on each. Video skills are optional. Keep your workspace folder attached when using its skills.
+The agent creates only the user workspace files and shows ready-made skill cards from the attached ZIP. Click **Save skill** on each to install it in Cowork. Skill sources, persona libraries and maintainer tools are not copied into your workspace. Video skills are optional. Keep your workspace folder attached when using its installed skills.
 
 ## What the setup folder does
 
-Everything is in [`.claude/setup/`](.claude/setup/README.md). `README.md` there is the one setup guide:
+In the attached Release, `.claude/setup/README.md` is the one setup guide. These files stay in staging, not the user workspace:
 
 | You want to | Agent follows |
 |---|---|
 | Set up for the first time | `README.md`, "First setup" |
 | Update to a newer version | `README.md`, "A newer version arrived" (and "Older Releases" if you skipped some) |
 | Go back to your old setup | `README.md`, "Going back" |
-| Fit it to your app and way of working | `ADAPTING.md` |
+| Fit it to your way of working | `ADAPTING.md` |
 | Run the weekly memory sweep | `WEEKLY-SWEEP.md` |
 | See what a version contains | `MANIFEST.md` |
 
-Migration leaves your old setup untouched. Updates change your existing workspace only after a verified backup, preserving your personal content. Nothing is dropped without your approval. When first setup or migration is finished, the agent deletes `.claude/setup/` from your new workspace (not from this repo); updates read the guide from the attached ZIP.
+Migration leaves your old setup untouched. Updates change your existing workspace only after a verified backup, preserving your personal content. Nothing is dropped without your approval. Setup instructions stay in the attached ZIP’s extracted folder, not your workspace. Updates read them there too. Existing custom skills and old source folders are preserved unless you approve a specific cleanup.
 
 ## Projects or clients: fit the workspace to your work
 

@@ -71,6 +71,22 @@ def needs_memory_audit(paths):
     return any(p.startswith(("memory/", "clients/", client_folder() + "/", ".claude/skills/")) for p in paths)
 
 
+def memory_gate():
+    local = pathlib.Path('.claude/skills/personal-memory/gate.py')
+    if local.is_file():
+        return local
+    configured = subprocess.run(['git', 'config', '--local', '--get', 'cowork.personalMemoryPath'],
+                                capture_output=True, encoding='utf-8', errors='replace')
+    if configured.returncode != 0 or not configured.stdout.strip():
+        return None
+    folder = pathlib.Path(configured.stdout.strip())
+    if not folder.is_absolute():
+        return None
+    if all((folder / name).is_file() for name in ('gate.py', 'hubs.py', 'schema.py', 'procedures.py')):
+        return folder / 'gate.py'
+    return None
+
+
 def main():
     hits = []
     reviewed = reviewed_lines()
@@ -84,8 +100,11 @@ def main():
             print("  " + hit, file=sys.stderr)
         return 1
     staged = staged_paths()
-    gate = pathlib.Path(".claude/skills/personal-memory/gate.py")
-    if gate.exists() and needs_memory_audit(staged):
+    gate = memory_gate()
+    if needs_memory_audit(staged):
+        if gate is None:
+            print("pre-commit: personal-memory audit unavailable. Open this workspace in Cowork, verify its installed personal-memory package, and set local cowork.personalMemoryPath to that folder.", file=sys.stderr)
+            return 1
         audit = subprocess.run([sys.executable, str(gate), "--memory", "memory", "audit"], capture_output=True, encoding="utf-8", errors="replace")
         if audit.returncode != 0:
             print("pre-commit: memory audit failed. Run hubs.py and fix the issues below.", file=sys.stderr)

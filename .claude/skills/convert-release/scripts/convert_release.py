@@ -85,6 +85,15 @@ WORKSPACE_ONLY = {
     "memory/preferences/cowork-environment.md": {"class": "seed", "mode": "644"},
     ".gitattributes": {"class": "merge", "mode": "644"},
     ".claude/cowork/cowork_skills.py": {"class": "merge", "mode": "755"},
+    ".claude/cowork/workspace.py": {"class": "merge", "mode": "755"},
+    ".claude/cowork/workspace/CLAUDE.md": {"class": "merge", "mode": "644"},
+    ".claude/cowork/workspace/cowork-environment.md": {"class": "merge", "mode": "644"},
+    ".claude/setup/README.md": {"class": "merge", "mode": "644"},
+    ".claude/setup/ADAPTING.md": {"class": "merge", "mode": "644"},
+    ".claude/setup/WEEKLY-SWEEP.md": {"class": "merge", "mode": "644"},
+    ".claude/setup/MANIFEST.md": {"class": "merge", "mode": "644"},
+    ".claude/skills/memory-setup/SKILL.md": {"class": "merge", "mode": "644"},
+    ".claude/skills/personal-memory/SKILL.md": {"class": "merge", "mode": "644"},
     ".claude/skills/drawio/SKILL.md": {"class": "merge", "mode": "644"},
     ".claude/skills/drawio/reference/format.md": {"class": "merge", "mode": "644"},
     ".claude/skills/drawio/scripts/link.py": {"class": "merge", "mode": "755"},
@@ -92,6 +101,10 @@ WORKSPACE_ONLY = {
     ".claude/skills/drawio/scripts/svg.py": {"class": "merge", "mode": "644"},
     ".claude/skills/drawio/scripts/tests/test_svg.py": {"class": "merge", "mode": "644"},
 }
+
+EDITION_OWNED = {".claude/skills/memory-setup/SKILL.md", ".claude/skills/personal-memory/SKILL.md",
+                 ".claude/setup/README.md", ".claude/setup/ADAPTING.md",
+                 ".claude/setup/WEEKLY-SWEEP.md", ".claude/setup/MANIFEST.md"}
 
 TEXT_EXT = (".md", ".py", ".json", ".txt", ".html", ".toml", ".yaml", ".ps1", ".sh", ".gitignore")
 
@@ -121,70 +134,12 @@ TEXT_RULES = [
      "then list the `memory/preferences/` directory (Glob `memory/preferences/*.md`)"),
 ]
 
-# Replaces upstream's Cowork loader step in setup/README.md: Cowork gets real skills.
-COWORK_SKILLS_STEP = """\
-- **Claude Cowork** loads skills only from the owner's own Cowork, so install them there. They are ready-made: `.claude/cowork/skills/core/` holds a `.skill` file for every core skill, `.claude/cowork/skills/video/` the optional video skills. Install these files as they are; do not build or zip skills yourself. Ask once: "Install this workspace's skills into your Cowork? I'll show a card for each skill and you click **Save skill** on each." On a yes:
-  1. First setup: ask once, "Do you also want the video skills (about 27, some large)?", and change the "Video skills installed" line in `memory/preferences/cowork-environment.md` to yes or no. Show every `.skill` file in `.claude/cowork/skills/core/` (and in `video/` on a yes) with `present_files`, in one call or a few batches.
-  2. Update: `memory/preferences/cowork-environment.md` comes from the new version; copy across only the "Video skills installed" answer from the old workspace's copy. If the old copy has no such line or says "not asked yet", the owner has no installed skills to update: do step 1 as for a first setup. Otherwise, in the Bash sandbox, from the new workspace, run `python3 .claude/cowork/cowork_skills.py changed <old workspace>` (the folder being replaced, never the new one; add `--video` if the answer is yes). Show only the `.skill` files it lists. For each `removed: <name>` line, tell the owner to delete that skill in Cowork's skill settings. For each `moved to video: <name>` line, tell the owner that skill is now an optional video skill: they can keep it, but it will no longer be updated unless they add the video skills. If it prints `loaders: yes`, the old setup used loader skills: saving the new cards replaces them, and any other old loader the owner did not get a card for (for example video skills) should be deleted the same way.
-  3. Tell the owner to click **Save skill** on each card. A card without that button means their organisation does not allow adding skills: they ask their admin, then you show the cards again.
-
-  Leave the owner's own skills alone. Tell the owner the skills read and write this workspace, so keep this folder attached in Cowork.
-"""
-
-# Setup reads skills from their folders; Cowork installs come later (the skills step).
-SETUP_SKILLS_NOTE = (
-    "During setup, \"run the `<name>` skill\" means open `.claude/skills/<name>/SKILL.md` in the new "
-    "workspace and follow it. No skill needs to be installed in the owner's app first; in Claude Cowork the "
-    "installs happen at step 5.\n\n1. Copy every file and folder of the Release"
-)
-
 # Per-file rules, applied after TEXT_RULES and the AGENTS.md rename. Each strips upstream's
 # Codex adaptation; a rule that stops matching means upstream changed that text.
 FILE_RULES = {
     "CLAUDE.md": [
         (re.compile(r"## Codex runtime\n.*?\n\n+(?=## )", re.S), ""),
         (" They are not enabled in this Codex workspace; run those checks directly before commits.", ""),
-    ],
-    ".claude/setup/README.md": [
-        ("such as an `CLAUDE.md` adapted", "such as a `CLAUDE.md` adapted"),
-        (" A short `CLAUDE.md` that only says \"Read CLAUDE.md\" is fine when the owner's app needs one.", ""),
-        ("Using Codex on Windows, with hooks skipped: `CODEX.md`.\n\n", ""),
-        (re.compile(r"- \*\*Claude Cowork\*\* and any app that loads skills only from its own saved list:.*?\n(?=- \*\*Another app:\*\*)",
-                    re.S), COWORK_SKILLS_STEP),
-        ("1. Copy every file and folder of the Release", SETUP_SKILLS_NOTE),
-        ("`rsync -a --exclude .git --exclude .memory-recovery --exclude .task-recovery "
-         "\"<release>/\" \"<workspace>/\"` elsewhere.)",
-         "`rsync -a --exclude .git --exclude .memory-recovery --exclude .task-recovery "
-         "\"<release>/\" \"<workspace>/\"` elsewhere; in Claude Cowork's Bash sandbox use "
-         "`tar -C \"<release>\" --exclude=./.git --exclude=./.memory-recovery --exclude=./.task-recovery -cf - . "
-         "| tar -C \"<workspace>\" -xf -`, with a new empty destination and Bash pipefail enabled.)"),
-        ("3. Run the `memory-setup` skill for this workspace,",
-         "3. Read and follow `.claude/skills/memory-setup/SKILL.md` for this workspace,"),
-        ("If Python 3.11+ is missing,", "If Python 3.10+ is missing,"),
-        ("- With Python 3.11+: the `personal-memory` tools run.",
-         "- With Python 3.10+ (Claude Cowork's Bash sandbox has it): the `personal-memory` tools run."),
-        ("(with Python 3.11+)", "(with Python 3.10+)"),
-        ("4. Content to copy whole: memory notes,",
-         "4. Content to copy whole: memory notes (except `memory/preferences/cowork-environment.md`: keep the new "
-         "version's copy and carry over only its \"Video skills installed\" answer),"),
-        ("8. Keep the old workspace and its `.memory-recovery/` intact.",
-         "8. Update the skills in the owner's app (\"Skills in the owner's app\" above, its Update step).\n"
-         "9. Keep the old workspace and its `.memory-recovery/` intact."),
-    ],
-    ".claude/setup/ADAPTING.md": [
-        (re.compile(r"Codex reads `CLAUDE\.md` and `\.claude/skills/` directly\..*?\n\n", re.S), ""),
-        ("some read another file name (for example `CLAUDE.md`)", "some read another file name (for example `AGENTS.md`)"),
-        ("this is the loader step in `README.md`", "this is the install step in `README.md`"),
-    ],
-    ".claude/skills/memory-setup/SKILL.md": [
-        ("Codex and Claude Code find it there.", "Claude Code finds it there."),
-        ("In Claude Cowork, an existing `personal-memory` skill loader works when this folder is attached, "
-         "so save one only if none exists.",
-         "In Claude Cowork, a starter workspace's own setup reads `personal-memory` from `.claude/skills/` "
-         "and installs nothing here. For another project, use the `personal-memory` skill installed in the "
-         "owner's Cowork; if it is missing, show the ready-made "
-         "`.claude/cowork/skills/core/personal-memory.skill` from the owner's starter workspace with "
-         "`present_files` so they can click Save skill."),
     ],
     "START-HERE.md": [
         ("Git and Python 3.11+ add version history", "Git and Python 3.10+ add version history"),
@@ -193,9 +148,6 @@ FILE_RULES = {
         ("decides where things belong and tells you what it did.\n",
          "decides where things belong and tells you what it did. Then it shows a card for each skill: "
          "click **Save skill** on each to install it. Video skills are optional.\n"),
-    ],
-    ".claude/setup/WEEKLY-SWEEP.md": [
-        ("Python 3.11 or newer must be present", "Python 3.10 or newer must be present"),
     ],
     ".githooks/nopython/commit-msg": [
         ("without Python 3.11+", "without Python 3.10+"),
@@ -234,6 +186,14 @@ FILE_RULES = {
          "   - Use the available web page-open tool for known, reachable URLs.",
          "   - Prefer this workspace's browser search when search results are needed.\n"
          "   - Use `web_fetch` for direct URL fetches when URL is known and reachable."),
+    ],
+    "projects/README.md": [
+        ("`.claude/skills/personal-memory/supporting-templates.md`",
+         "`supporting-templates.md` beside the verified Cowork-installed personal-memory skill"),
+    ],
+    "memory/preferences/document-scaffolding.md": [
+        ("`.claude/skills/personal-memory/supporting-templates.md`",
+         "`supporting-templates.md` beside the verified Cowork-installed personal-memory skill"),
     ],
     "memory/README.md": [
         (" Shipped hooks are disabled in this Codex workspace; run the memory audit directly before committing.", ""),
@@ -338,6 +298,9 @@ def main(argv):
     if not mpath.is_file():
         print(f"{src} has no MANIFEST.json", file=sys.stderr)
         return 2
+    if out.is_relative_to(src) or out.is_relative_to(ws):
+        print("output must be outside the source and workspace", file=sys.stderr)
+        return 2
     if out.exists():
         print(f"{out} already exists; pick a new folder", file=sys.stderr)
         return 2
@@ -346,8 +309,9 @@ def main(argv):
         print(f"{ws} is not this workspace (missing {', '.join(missing)})", file=sys.stderr)
         return 2
     tmp = out.with_name(out.name + ".partial")
-    if tmp.exists():
-        shutil.rmtree(tmp)
+    if tmp.exists() or tmp.is_symlink():
+        print(f"{tmp} already exists; preserve it and pick a new output", file=sys.stderr)
+        return 2
     try:
         convert(src, mpath, tmp, ws)
     except BaseException:
@@ -388,6 +352,9 @@ def convert(src, mpath, out, ws):
         if rel.endswith(DROP_SUFFIXES) or rel in DROP_FILES or DROP_DIRS & set(Path(rel).parts):
             continue
         nrel = new_path(rel)
+        if nrel in EDITION_OWNED:
+            print(f"check: review upstream changes to {rel}; using the Cowork-owned version")
+            continue
         if nrel in KEEP_WORKSPACE:
             if sha((src / rel).read_bytes()) != KEEP_WORKSPACE[nrel]:
                 print(f"check: upstream changed {rel}, which is kept from the workspace; "

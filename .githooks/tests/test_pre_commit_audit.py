@@ -6,16 +6,47 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from unittest import mock
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[2]
 HOOK = Path(__file__).resolve().parents[1] / "pre-commit"
 GATE_DIR = ROOT / ".claude/skills/personal-memory"
 _loader = importlib.machinery.SourceFileLoader("pre_commit_audit", str(HOOK))
 _spec = importlib.util.spec_from_loader("pre_commit_audit", _loader)
+assert _spec is not None
 hook = importlib.util.module_from_spec(_spec)
 _loader.exec_module(hook)
+
+
+class InstalledMemoryTests(unittest.TestCase):
+    def test_installed_memory_gate_is_used_without_local_sources(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            installed = root / 'installed personal memory'
+            installed.mkdir()
+            for name in ('gate.py', 'hubs.py', 'schema.py', 'procedures.py'):
+                (installed / name).write_text('# installed helper\n')
+            git(root, 'init', '-q')
+            git(root, 'config', 'cowork.personalMemoryPath', str(installed))
+            old = Path.cwd()
+            os.chdir(root)
+            try:
+                self.assertEqual(hook.memory_gate(), installed / 'gate.py')
+            finally:
+                os.chdir(old)
+
+    def test_unavailable_memory_audit_is_explicitly_blocked(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            git(root, 'init', '-q')
+            (root / 'memory').mkdir()
+            (root / 'memory/index.md').write_text('# Memory\n')
+            git(root, 'add', 'memory/index.md')
+            result = subprocess.run([sys.executable, str(HOOK)], cwd=root,
+                                    capture_output=True, text=True, env=clean_env())
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn('personal-memory', result.stderr)
 
 
 class AuditTriggerTests(unittest.TestCase):
