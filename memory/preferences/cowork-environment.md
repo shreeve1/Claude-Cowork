@@ -3,7 +3,7 @@ title: Claude Cowork Environment
 type: preference
 status: promoted
 created: 2026-10-10
-updated: 2026-10-27
+updated: 2026-11-01
 topics: [preference, workspace-layout, tools]
 ---
 
@@ -17,10 +17,15 @@ topics: [preference, workspace-layout, tools]
 - Installed skill paths: when `personal-memory` or `memory-setup` says `<skills>` or `~/.claude/skills`, use the verified parent of the actual skill folder in this session, not an assumed host path. In a starter workspace prefer its complete `.claude/skills/` copy. For another project, locate the installed Cowork copy and check `tasks.md`, `task-templates.md`, `supporting-templates.md` and `scaffold/` there before selecting it. Run helpers from the target workspace root. Task/proposal recovery follows `tasks.md`, not the memory-only `recovery.py`.
 - Video skills installed: not asked yet
 - Tool names in shipped text: `Read`, `Write`, `Edit`, `Glob`, `Grep`, `Bash`, `web_fetch`, `WebSearch`, `Agent` (subagents, including the "reviewer agent"), `AskUserQuestion`. Where a skill says to ask in plain text, do not use `AskUserQuestion`. The reviewer checks a skill-script diff against `CODING_STANDARDS.md`.
-- Updates: a newer version is a new copy of this edition. Follow "A newer version arrived" in the new copy's `.claude/setup/README.md`; it shows cards only for new or changed skills (`python3 .claude/cowork/cowork_skills.py changed <old workspace>`).
+- Setup source: only first-time setup asks the owner to download a copy. Migration and updates fetch `https://github.com/shreeve1/Claude-Cowork`; use its `.claude/setup/README.md` at one recorded revision.
+- Updates keep the existing workspace folder, after a verified pre-update backup. Follow "A newer version arrived" in the fetched guide; compare installed skill changes against that backup (`python3 .claude/cowork/cowork_skills.py changed "<backup folder>"`). Preserve personal content and stop for conflicts or failed checks.
 - `artifacts/migration/` holds the previous workspace from an update. Exclude it from searches; never edit it.
 
 ## Notes
 
-- Last reviewed: 2026-10-27
-- Changed 2026-10-27: skills are installed into Cowork as `.skill` packages instead of loader skills; paths no longer name one owner's folder.
+- Last reviewed: 2026-11-01
+- Changed 2026-11-01: owner chose same-folder updates and GitHub-sourced migration/updates; manual download is first-time only.
+
+## Related
+
+- [Documents Go in Folders](memory/preferences/document-scaffolding.md) - owner document folders and project files survive updates.

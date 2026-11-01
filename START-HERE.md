@@ -7,7 +7,7 @@ This is a ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory
 - Claude Cowork on Windows.
 - Nothing else is required. Git and Python 3.10+ add version history and the commit checks; the setup works without them and your agent tells you what is off.
 
-Memory edits preserve verified previous content in `.memory-recovery/` even without Git. Without Python, the agent must copy and verify with file tools and disclose manual-only checks; if verification is unavailable, it stops. Recovery may contain sensitive summaries; it is ignored, not encrypted. Release copies exclude it; upgrades retain the old workspace and copy recovery separately only with owner approval.
+Memory edits preserve verified previous content in `.memory-recovery/` even without Git. Without Python, the agent must copy and verify with file tools and disclose manual-only checks; if verification is unavailable, it stops. Recovery may contain sensitive summaries; it is ignored, not encrypted. Release copies exclude it; in-place updates keep recovery in place and include it in the verified pre-update backup. Migration copies recovery separately only with owner approval.
 
 ## Fit it to your agent or bot
 
@@ -33,16 +33,20 @@ Your agent copies this workspace into the new folder, reads your old setup, deci
 
 Later, ask your agent "set up memory in `<folder>`" for any other project, or "bring my old notes from `<place>` into memory".
 
+## Migrating an existing setup
+
+No download is needed. Give the agent access to your existing setup and a new empty destination folder, then say:
+
+> Read `.claude/setup/README.md` in `https://github.com/shreeve1/Claude-Cowork` and fetch the workspace files from that repo. Follow “First setup” to migrate from `<existing setup>` into `<new folder>`. Show me the placement plan and wait for approval before migrating content. Leave my existing setup untouched.
+
 ## A newer version arrived
 
-Open your agent with the new version, a new empty folder, and your current workspace, then say: "Follow the 'A newer version arrived' section of `.claude/setup/README.md` in the new version." Your current workspace is left untouched; it is the way back.
+No download or new workspace folder is needed. Give the agent access to your current workspace, then say:
+
+> Read `.claude/setup/README.md` in `https://github.com/shreeve1/Claude-Cowork` and fetch the latest workspace files from that repo. Follow “A newer version arrived” to update `<current workspace>` in place. Create and verify a backup before changing anything. Preserve my personal content and ask before removing or replacing my own changes. Verify the update and walk me through changed Cowork skill installs. Keep using the same workspace folder.
 
 ## Upgrading from an earlier Release
 
-Use this when your workspace was set up from an earlier Release, whichever one, and you want this version with your own content brought across. Open your agent with three folders: this one, a new empty folder, and your current workspace. Paste this, with the paths filled in:
-
-> Upgrade my workspace at `<current workspace>` to the Release in `<this folder>`, building it in `<new folder>`. Follow `<this folder>/.claude/setup/README.md`, section "A newer version arrived", including "Older Releases". Read my current workspace's `CHANGELOG.md` (or `MANIFEST.json`) to see which Release I am on, and read this folder's `CHANGELOG.md` for everything that changed since. Bring all my notes, rules, procedures, decisions and my own skills across, in the places this Release uses. If I or my agent edited shipped files, show me those changes and ask before keeping or dropping each one. Change nothing in my current workspace. At the end, run the memory check and tell me what moved, what was left behind and why.
-
-Your current workspace stays as it is; if anything looks wrong afterwards, keep using it.
+Use the same update prompt, adding: “Include ‘Older Releases’, read everything that changed since my installed Release, and report any compatibility checks that need my help before applying the update.” The agent keeps the verified pre-update backup as the way back; restoring it requires your approval and preservation of work done since the update.
 
 Some apps and file browsers hide folders whose names start with a dot; the setup instructions are in `.claude/setup/`.

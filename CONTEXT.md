@@ -9,7 +9,7 @@ One of the two standalone builds of this workspace made for a different audience
 _Avoid_: version, fork, flavor
 
 **Release**:
-A numbered version of one Edition. The owner's agent copies it into a new folder and migrates the owner's content in. It is built one-way from the source workspace.
+A numbered version of one Edition, built one-way from the source workspace. First setup and migration create a workspace; later Releases update its shipped files in place after a verified backup.
 _Avoid_: update, sync, pull
 
 **Manifest**:
@@ -46,9 +46,9 @@ _Avoid_: next steps, resolution plan
 
 ## Relationships
 
-- An **Edition** is built one-way from its source workspace: changes an owner makes never flow back, and each **Release** is set up by the owner's agent into a new folder, migrating the owner's content in.
+- An **Edition** is built one-way from its source workspace: changes an owner makes never flow back. First setup and migration create a workspace; routine updates keep that workspace’s path.
 - An **Edition**'s skill list is chosen on its own, so a skill left out of one **Edition** is never restored because the other includes it.
-- An update is a fresh copy of the new **Release** with the owner's content brought across by their agent; shared files arrive as shipped, and personal rules live in memory, never in shared files.
+- An update fetches the new **Release** from the public GitHub repo and refreshes shipped files in the existing workspace after a verified backup. Owner content stays in place; personal rules live in memory, never in shared files. Only first-time setup asks the owner to download a copy.
 - The audit keeps failing any note whose subject is not in the **Schema**; the owner's agent moves such notes to a valid subject first.
 - **Client Subject** and topic values come from the **Schema**; an agent adds one only with the owner's approval.
 - **Client Memory** is the single home for lasting client facts; other memory topics hold tool quirks, not client facts.

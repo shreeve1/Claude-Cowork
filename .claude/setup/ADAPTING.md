@@ -6,7 +6,7 @@ Three steps: settle the tracking model (what the owner needs remembered), make i
 
 Follow `.claude/skills/memory-setup/tracking-model.md`. Settle the agent or bot's purpose, tracked things, project layout and procedure topics together before filing notes. Recommend from what the owner already said; do not assume client work or merely rename `clients/` while retaining its folders.
 
-Memory edits preserve verified previous content in `.memory-recovery/` even without Git. Without Python, the agent must copy and verify with file tools and disclose manual-only checks; if verification is unavailable, it stops. Recovery may contain sensitive summaries; it is ignored, not encrypted. Release copies exclude it; upgrades retain the old workspace and copy recovery separately only with owner approval.
+Memory edits preserve verified previous content in `.memory-recovery/` even without Git. Without Python, the agent must copy and verify with file tools and disclose manual-only checks; if verification is unavailable, it stops. Recovery may contain sensitive summaries; it is ignored, not encrypted. Release copies exclude it; in-place updates keep recovery in place and include it in the verified pre-update backup. Migration copies recovery separately only with owner approval.
 
 ## Part 1: harness and machine
 
@@ -36,11 +36,11 @@ After the interview, restate the answers as a short list, ask "Is anything here 
 
 ## What survives an update
 
-An update is a fresh copy of the new version with the owner's content brought across (`README.md`, "A newer version arrived").
+An update refreshes shipped files in the existing workspace after a verified backup (`README.md`, "A newer version arrived"). The agent fetches the public GitHub source; the owner needs no new download or workspace folder.
 
 | What | On an update |
 |---|---|
-| Memory notes, `memory/index.md`, `memory/rules.md`, the glossary, `CONTEXT.md`, the folder map, the owner's own skills, documents | Copied across whole. |
+| Memory notes, `memory/index.md`, `memory/rules.md`, the glossary, `CONTEXT.md`, the folder map, the owner's own skills, documents | Kept in place; only approved compatibility edits are applied. The environment note follows the update guide’s exception. |
 | Schema choices (`client_folder`, `client_subjects`, `client_dirs`, `topics`), project READMEs and project files | Preserved; reconcile schema additions as described in README.md, never reset to client defaults. |
 | Shipped files (`CLAUDE.md`, shipped skills, these docs) | Replaced by the new version. Never put personal content in them. |
 | A rule that overrides a shipped one | Kept: it lives in a preference note. |
