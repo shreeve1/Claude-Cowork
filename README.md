@@ -112,18 +112,6 @@ Procedure topics are chosen during setup. Empty workflow indexes are normal unti
 - **Video** (HyperFrames, from HeyGen, Apache-2.0): 20+ skills for making videos from a URL, PR, script or music: `hyperframes` is the entry point. Licence in `.claude/third-party/hyperframes/`.
 - **Safety**: git history, with a commit hook that scans for secrets and checks memory.
 
-## Requirements
-
-Claude Cowork on Windows. Git and Python 3.10+ are optional (Cowork's sandbox has Python);
-setup works without them and your agent tells you what's off.
-
-Some file browsers hide folders starting with a dot. The setup lives in `.claude/setup/`.
-
-## For the maintainer
-
-`convert-release` turns a new upstream starter-agent Release into this edition. It is
-never installed as a Cowork skill; owners get the converted version from this repo.
-
 ## Working with your workspace
 
 Use ordinary language; these are example phrases, not special commands. Keep the workspace attached in Cowork so the agent can read and update it.
