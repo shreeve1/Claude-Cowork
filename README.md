@@ -4,19 +4,77 @@ A ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory and git
 Your AI agent in Claude Cowork sets it up, updates it, brings your existing
 notes into it, and adapts it to how you work. You don't copy files by hand.
 
-## Get started
+## Start here
 
-1. Download this repo (**Code → Download ZIP**, unzip) or clone it.
-2. Make a new, empty folder for your workspace.
-3. Open your agent with access to this folder, the new folder, and (if you have one)
-   your current agent setup.
-4. Point your agent at the setup folder:
+Download this repo (**Code → Download ZIP**, unzip) or clone it. Then choose the situation that matches you.
 
-   > Read `<this folder>/.claude/setup/README.md` and set me up in `<new folder>`.
-   > Bring over what is useful from `<my current setup>` (or "nothing to migrate").
-   > Decide where my files and notes go, and ask me before anything is dropped.
+In Claude Cowork, give the agent access to the downloaded folder and the other folders your chosen prompt names. Replace the bracketed descriptions with your actual folder names or paths.
 
-Your agent copies the workspace, reads your old setup, asks you how you work, decides where things belong and tells you what it did. In Claude Cowork it then shows a card for each skill: click **Save skill** on each to install it. Video skills are optional.
+### 1. I’m starting fresh
+
+Use this if you have no existing notes, memory, or agent setup to bring across. Create a new, empty folder for your workspace.
+
+**Copy and paste:**
+
+```text
+Read [downloaded folder]/.claude/setup/README.md and follow “First setup”.
+
+Set me up in [new empty workspace folder]. I have nothing to migrate.
+
+Help me choose where my files and notes should go, adapt the workspace
+to how I work, and walk me through installing the Cowork skills.
+```
+
+### 2. I have an existing setup to migrate
+
+Use this if you already have notes, saved memory, instructions, or skills and want to move into this workspace’s layout. Create a new, empty destination folder.
+
+**Copy and paste:**
+
+```text
+Read [downloaded folder]/.claude/setup/README.md and follow “First setup”,
+using [existing setup folder] as the migration source.
+
+Set up my new workspace in [new empty workspace folder].
+
+Review my existing setup and show me what you recommend bringing across,
+where it belongs, and what would be left behind. Wait for my approval
+before migrating content. Leave my existing setup untouched.
+
+Finish adapting the workspace and walk me through installing the Cowork skills.
+```
+
+### 3. I already use this workspace and want to update
+
+Use this if you’re moving from an earlier version of this workspace to a newer one. Download the newer version separately and create a new, empty destination folder. **Don’t unzip it over your current workspace.**
+
+**Copy and paste:**
+
+```text
+Read [new version folder]/.claude/setup/README.md and follow
+“A newer version arrived”, including “Older Releases” if needed.
+
+My current workspace is [current workspace folder].
+Set up the updated workspace in [new empty workspace folder].
+
+Preserve my notes, memory, rules, saved tasks, documents, and personal skills.
+Leave my current workspace untouched and ask before leaving anything behind.
+
+Show me what changed, walk me through any changed Cowork skill installs,
+and tell me which folder to use when the update is complete.
+```
+
+### Not sure which applies?
+
+Give the agent access to your existing setup and ask:
+
+```text
+Read [downloaded folder]/.claude/setup/README.md and inspect my existing
+setup at [existing folder]. Tell me whether I need a migration or an
+update, and explain why. Do not change anything yet.
+```
+
+In Claude Cowork, the agent shows a card for each skill to install: click **Save skill** on each. Video skills are optional. Keep your workspace folder attached when using its skills.
 
 ## What the setup folder does
 
@@ -57,3 +115,60 @@ Some file browsers hide folders starting with a dot. The setup lives in `.claude
 
 `convert-release` turns a new upstream starter-agent Release into this edition. It is
 never installed as a Cowork skill; owners get the converted version from this repo.
+
+## Working with your workspace
+
+Use ordinary language; these are example phrases, not special commands. Keep the workspace attached in Cowork so the agent can read and update it.
+
+### Procedures: a repeatable way to do something
+
+A procedure is a tested, approved set of steps for the agent to follow when the same situation comes up again. A workflow is the broader process; a saved procedure makes its repeatable steps explicit.
+
+To create one:
+
+1. Describe the work and when the procedure should apply.
+2. The agent checks for an existing procedure and proposes the steps, approval points, and how to check the result.
+3. Run the steps together and verify they work. If the work cannot be tested yet, leave it as a draft rather than an approved procedure.
+4. Review the full procedure and approve it before the agent saves it and connects it to the situations where it should be used.
+
+Saved procedures live under `memory/workflows/`. The agent checks the matching procedure before using it, stops for required approvals, and stops if a step fails or the situation has changed. A saved procedure is not permission to send messages, delete data, or change a live system.
+
+| You want to | Example phrase |
+|---|---|
+| Create a procedure | “Create a procedure for X. Help me work through it, test the steps, and show me the full procedure before saving it.” |
+| Find an existing procedure | “Do we already have a procedure for X? Show me what it covers.” |
+| Use a procedure | “Use our procedure for X. Stop at any approval points.” |
+| Change a procedure | “Our procedure for X has changed. Propose an update, verify the changed steps with me, and wait for my approval before saving it.” |
+| Draft a guide for someone to follow | “Write a step-by-step guide for X in this project’s documents, not an agent procedure.” |
+
+### Tasks: unfinished work you can pick up later
+
+A saved task holds the goal, useful context, progress, and the next action for a piece of work. It is not a reusable procedure. Task records live in `tasks/`; a short active/waiting list is in `tasks/index.md`, and closed records go to `tasks/archive/`.
+
+The usual flow is: **save the task, pick it up, record progress or a blocker, then complete or archive it**. Once you ask the agent to continue a task, it keeps the progress and next action up to date at meaningful stopping points. You tell it when the task is complete.
+
+| You want to | Example phrase |
+|---|---|
+| Save something for later | “Create a task for X. Save the goal, what we know, and the next action. Don’t start the work yet.” |
+| Save where you stopped | “Save this as a task so we can pick it up later. Include what we tried and what still needs doing.” |
+| Find a task without starting it | “Look up the task about X and tell me where we left it. Don’t resume it yet.” |
+| Resume work | “Pick up the task about X and continue from the next action.” |
+| Review open work | “What needs attention? Show me active tasks, anything waiting, and review dates that have arrived.” |
+| Record a blocker | “Mark the task about X as waiting for Y. Record what needs to happen before we can continue.” |
+| Finish a task | “The task about X is complete. Record the outcome and archive it.” |
+| Stop unfinished work | “Archive the task about X without marking it complete. Record what we left unfinished and why.” |
+| Reopen closed work | “Reopen the archived task about X so we can continue it.” |
+
+Use the task’s title or ID if several tasks sound similar. Looking up or reviewing tasks does not start them. A waiting status or review date does not schedule a reminder or run anything in the background. Continuing a task does not grant permission for sends, publishing, deletions, or live-system changes.
+
+### Other useful phrases
+
+| You want to | Example phrase |
+|---|---|
+| Think before changing anything | “Help me talk through X. Recommend an approach, but don’t change files yet.” |
+| Remember a preference | “Remember that I prefer X when we do Y.” |
+| Check what is already known | “What do you remember about X? Check the saved notes before answering.” |
+| Correct an outdated fact | “The saved note about X is out of date. It is now Y; update it and tell me what changed.” |
+| Continue in another chat | “Create a handoff for a new chat with the goal, what we checked, and what to do next.” |
+
+You do not have to ask the agent to remember every useful fact: it checks for lasting facts, preferences, and settled decisions at the end of a task. Saving memory is separate from approving a procedure or authorizing an action.
