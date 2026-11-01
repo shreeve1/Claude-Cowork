@@ -18,14 +18,14 @@ topics: [preference, workspace-layout, tools]
 - Installed skill paths: when `personal-memory` or `memory-setup` says `<skills>` or `~/.claude/skills`, use the verified parent of the actual skill folder in this session, not an assumed host path. In a starter workspace prefer its complete `.claude/skills/` copy. For another project, locate the installed Cowork copy and check `tasks.md`, `task-templates.md`, `supporting-templates.md` and `scaffold/` there before selecting it. Run helpers from the target workspace root. Task/proposal recovery follows `tasks.md`, not the memory-only `recovery.py`.
 - Video skills installed: not asked yet
 - Tool names in shipped text: `Read`, `Write`, `Edit`, `Glob`, `Grep`, `Bash`, `web_fetch`, `WebSearch`, `Agent` (subagents, including the "reviewer agent"), `AskUserQuestion`. Where a skill says to ask in plain text, do not use `AskUserQuestion`. The reviewer checks a skill-script diff against `CODING_STANDARDS.md`.
-- Setup source: only first-time setup asks the owner to download a copy. Migration and updates fetch `https://github.com/shreeve1/Claude-Cowork`; use its `.claude/setup/README.md` at one recorded revision.
-- Updates keep the existing workspace folder, after a verified pre-update backup. Follow "A newer version arrived" in the fetched guide; compare installed skill changes against that backup (`python3 .claude/cowork/cowork_skills.py changed "<backup folder>"`). Preserve personal content and stop for conflicts or failed checks.
+- Setup source: for all three paths (first setup, migration, update), the owner downloads the workspace ZIP, adds it to the conversation, and pastes the matching numbered README prompt. Use the attached ZIP and its `.claude/setup/README.md`; do not fetch the source from GitHub. Owner testing found restricted systems need this attachment-based route.
+- Updates keep the existing workspace folder, after a verified pre-update backup. Follow "A newer version arrived" in the attached ZIP’s guide; compare installed skill changes against that backup (`python3 .claude/cowork/cowork_skills.py changed "<backup folder>"`). Preserve personal content and stop for conflicts or failed checks.
 - `artifacts/migration/` holds the previous workspace from an update. Exclude it from searches; never edit it.
 
 ## Notes
 
 - Last reviewed: 2026-11-01
-- Changed 2026-11-01: owner chose same-folder updates and GitHub-sourced migration/updates; manual download is first-time only.
+- Changed 2026-11-01: after testing a restricted system, owner requires a downloaded ZIP attached to the conversation for all three paths; same-folder updates remain unchanged.
 
 ## Related
 

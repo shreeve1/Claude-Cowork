@@ -48,7 +48,7 @@ _Avoid_: next steps, resolution plan
 
 - An **Edition** is built one-way from its source workspace: changes an owner makes never flow back. First setup and migration create a workspace; routine updates keep that workspace’s path.
 - An **Edition**'s skill list is chosen on its own, so a skill left out of one **Edition** is never restored because the other includes it.
-- An update fetches the new **Release** from the public GitHub repo and refreshes shipped files in the existing workspace after a verified backup. Owner content stays in place; personal rules live in memory, never in shared files. Only first-time setup asks the owner to download a copy.
+- Every setup, migration and update starts with the owner downloading the workspace ZIP and adding it to the conversation. An update uses that attached **Release** to refresh shipped files in the existing workspace after a verified backup. Owner content stays in place; personal rules live in memory, never in shared files. Agent-side GitHub access is not required.
 - The audit keeps failing any note whose subject is not in the **Schema**; the owner's agent moves such notes to a valid subject first.
 - **Client Subject** and topic values come from the **Schema**; an agent adds one only with the owner's approval.
 - **Client Memory** is the single home for lasting client facts; other memory topics hold tool quirks, not client facts.

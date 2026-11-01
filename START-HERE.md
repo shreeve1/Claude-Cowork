@@ -23,11 +23,11 @@ Task updates preserve previous content in `.task-recovery/` with or without Git.
 
 ## First setup
 
-1. Make a new, empty folder for your workspace.
-2. Open your agent with access to three folders: this one, the new empty one, and (if you have one) your current agent setup.
-3. Paste this, with the paths filled in:
+For first setup, migration and updates, download the ZIP from `https://github.com/shreeve1/Claude-Cowork` (**Code → Download ZIP**) and add it to the conversation. For an update, download a fresh copy. Then paste the prompt matching your situation below, or use the numbered prompts in `README.md`. The agent uses the attachment rather than fetching GitHub files.
 
-   > Read `<this folder>/.claude/setup/README.md` and set me up in `<new folder>`. Bring over what is useful from `<my current setup>` (or "nothing to migrate"). Decide where my files and notes go, and ask me before anything is dropped.
+For a fresh setup, make a new, empty workspace folder and give the agent access to it. Paste this, with the path filled in:
+
+> Use the attached workspace ZIP. Extract it into separate staging, read `.claude/setup/README.md` inside the extracted repo folder, and follow “First setup” to set me up in `<new folder>`. I have nothing to migrate. Help me choose where files and notes go and adapt the workspace to how I work. Do not fetch the source from GitHub.
 
 Your agent copies this workspace into the new folder, reads your old setup, decides where things belong and tells you what it did. Then it shows a card for each skill: click **Save skill** on each to install it. Video skills are optional.
 
@@ -35,15 +35,15 @@ Later, ask your agent "set up memory in `<folder>`" for any other project, or "b
 
 ## Migrating an existing setup
 
-No download is needed. Give the agent access to your existing setup and a new empty destination folder, then say:
+Download and attach the ZIP as above. Give the agent access to your existing setup and a new empty destination folder, then say:
 
-> Read `.claude/setup/README.md` in `https://github.com/shreeve1/Claude-Cowork` and fetch the workspace files from that repo. Follow “First setup” to migrate from `<existing setup>` into `<new folder>`. Show me the placement plan and wait for approval before migrating content. Leave my existing setup untouched.
+> Use the attached workspace ZIP. Extract it into separate staging and read `.claude/setup/README.md` inside the extracted repo folder. Follow “First setup” to migrate from `<existing setup>` into `<new folder>`. Show me the placement plan and wait for approval before migrating content. Leave my existing setup untouched. Do not fetch the source from GitHub.
 
 ## A newer version arrived
 
-No download or new workspace folder is needed. Give the agent access to your current workspace, then say:
+Download the latest ZIP and attach it as above. Give the agent access to your current workspace; no new workspace folder is needed. Then say:
 
-> Read `.claude/setup/README.md` in `https://github.com/shreeve1/Claude-Cowork` and fetch the latest workspace files from that repo. Follow “A newer version arrived” to update `<current workspace>` in place. Create and verify a backup before changing anything. Preserve my personal content and ask before removing or replacing my own changes. Verify the update and walk me through changed Cowork skill installs. Keep using the same workspace folder.
+> Use the attached workspace ZIP. Extract it into separate staging and read `.claude/setup/README.md` inside the extracted repo folder. Follow “A newer version arrived” to update `<current workspace>` in place. Create and verify a backup before changing anything. Preserve my personal content and ask before removing or replacing my own changes. Verify the update and walk me through changed Cowork skill installs. Keep using the same workspace folder. Do not fetch the source from GitHub.
 
 ## Upgrading from an earlier Release
 

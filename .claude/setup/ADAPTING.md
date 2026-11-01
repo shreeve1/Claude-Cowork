@@ -36,7 +36,7 @@ After the interview, restate the answers as a short list, ask "Is anything here 
 
 ## What survives an update
 
-An update refreshes shipped files in the existing workspace after a verified backup (`README.md`, "A newer version arrived"). The agent fetches the public GitHub source; the owner needs no new download or workspace folder.
+An update refreshes shipped files in the existing workspace after a verified backup (`README.md`, "A newer version arrived"). The owner downloads the latest workspace ZIP and adds it to the conversation. The agent uses that attached source; no new workspace folder or agent-side GitHub access is needed.
 
 | What | On an update |
 |---|---|
