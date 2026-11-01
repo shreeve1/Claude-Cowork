@@ -9,7 +9,7 @@ topics: [preference, workspace-layout, tools]
 
 ## Active memory
 
-- This workspace runs in Claude Cowork on Windows. It is the Claude-layout edition of the starter workspace: `CLAUDE.md` and `.claude/`. No `AGENTS.md` or `.agents/` may exist.
+- This product is exclusively for Claude Cowork and always has been (owner clarification, 2026-11-01). Claude Code, Codex and other agent apps are not supported end-user targets; inherited multi-app instructions are drift, not an approved requirement. Maintainer tooling is separate from end-user installation. Use `CLAUDE.md` and `.claude/`; no `AGENTS.md` or `.agents/` may exist.
 - Paths: file tools (`Read`, `Write`, `Edit`, `Glob`, `Grep`) use the attached folder's Windows path. `Bash` runs in a Linux sandbox where the folder is mounted under `/sessions/<session>/mnt/<folder name>/`; each call starts fresh, so begin with `cd` into it. Never show `/sessions/...` paths to the owner.
 - Python is `python3` in the sandbox (3.10 or newer; the shipped scripts support 3.10). `python`/`py -3` in shipped docs means `python3` in the sandbox. Delete `__pycache__/` after running tests.
 - Git: hooks at `.githooks`. Run every git command in the sandbox. `.gitattributes` keeps files LF so the hooks run there.
@@ -25,7 +25,7 @@ topics: [preference, workspace-layout, tools]
 ## Notes
 
 - Last reviewed: 2026-11-01
-- Changed 2026-11-01: after testing a restricted system, owner requires a downloaded ZIP attached to the conversation for all three paths; same-folder updates remain unchanged.
+- Changed 2026-11-01: owner confirmed the product has always been Cowork-only; all three setup paths use an attached ZIP and updates keep the same folder.
 
 ## Related
 
