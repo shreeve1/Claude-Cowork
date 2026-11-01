@@ -29,6 +29,7 @@ DROP_FILES = (
     "memory/docs/it-client-subjects.md",
     "docs/superpowers/plans/2026-10-30-procedure-first-memory.md",
     "docs/superpowers/plans/2026-10-31-workspace-tasks.md",
+    "docs/superpowers/plans/2026-11-01-flexible-workspace-setup.md",
     "docs/superpowers/specs/2026-10-30-procedure-first-memory-design.md",
     "docs/superpowers/specs/2026-10-31-workspace-supporting-templates.md",
     "docs/superpowers/specs/2026-10-31-workspace-tasks-design.md",
@@ -58,6 +59,8 @@ EXTRA_FILES = {
     ".agents/skills/personal-memory/tests/test_tasks_policy.py": "merge",
     "docs/testing/procedure-first-memory-cases.md": "merge",
     "docs/testing/workspace-tasks-cases.md": "merge",
+    "docs/testing/flexible-workspace-setup-cases.md": "merge",
+    "projects/README.md": "merge",
     "tasks/index.md": "seed",
 }
 

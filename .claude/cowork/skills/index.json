@@ -117,7 +117,7 @@
  },
  "memory-setup": {
   "set": "core",
-  "sha256": "44e19ffff5cc126072d37c13220ea43bb6e493eff7bb562fc20fd9981a604a83"
+  "sha256": "be040f3ddb689af598b6d8ab58afa35683747891900922edd7c8e3e13f156088"
  },
  "motion-doctrine": {
   "set": "video",
@@ -137,7 +137,7 @@
  },
  "personal-memory": {
   "set": "core",
-  "sha256": "48ceddd22cca7bf62495b863a457a73d19630fa4b5d43e8d6c4fc7d44aa37d4c"
+  "sha256": "dee254699db0d96b8b868fab385b550f814a67058af5399bce8df21908af09c7"
  },
  "pr-to-video": {
   "set": "video",

@@ -18,6 +18,10 @@ Use `memory/` to preserve durable non-code preferences and useful working contex
 - Decisions deliberately finalized by decision-capture workflows.
 - Lasting client facts (Client Memory).
 
+## Projects
+
+Independent work lives in `projects/<short>/README.md` plus useful project folders, according to `memory/preferences/document-scaffolding.md`. Client-owned work can retain its client project path. Use personal-memory's installed `supporting-templates.md` for the Project README. It groups a goal, completion check, files and task/memory links; it does not duplicate task status or grant authority. A project with no durable facts needs no memory hub. Setup chooses tracked folder, subjects, document folders and procedure topics together; the internal `client_*` keys also support non-client tracked things.
+
 ## Saved work and document formats
 
 Unfinished work belongs in workspace-local `tasks/`, not durable memory. The active/waiting index is read at startup; individual records load only when relevant. Create, look up, continue, review, complete or archive through personal-memory's installed `tasks.md`; its adjacent `task-templates.md` and `supporting-templates.md` supply record/index, proposal and research formats. No external authoring skill is needed. Completion archives the record before removing its index row; pending approval does not block cleanup. Task content grants no authority to act.
@@ -76,7 +80,7 @@ Capture concise grounded ordinary facts automatically, retaining source context;
 
 Ordinary grounded facts are captured automatically under Memory authority, without a candidates queue. At the end of each task, when a capture trigger fired (a correction, a stated rule/preference, a described workflow/boundary, a settled decision, or a reusable fact discovered while working) and the item is not a one-off detail or work still in motion, the agent writes it to the proper topic file itself (workflows and decisions go into a topic folder from the `topics` list in `memory/schema.json`; lasting client facts go to Client Memory, then `hubs.py`), updates `index.md`, runs `python3 .claude/skills/personal-memory/indexes.py` for workflow/decision changes and `gate.py audit`, commits with a `memory: <what changed>` message (the commit is the log), and reports what it saved. Credentials are omitted automatically.
 
-Not memory: `<client_folder>/<short>/tickets/`, `<client_folder>/<short>/projects/`, `<client_folder>/<short>/meetings/` and `<client_folder>/<short>/procedures/` (workspace root) are documents about one ticket, project, meeting or client workflow. The one-off / work-in-motion exclusion does not apply to them; write them freely. Lasting facts learned there are copied into Client Memory.
+Not memory: `projects/<short>/` and root `<client_folder>/<short>/` hold project or tracked-thing documents in the agreed layout. The one-off / work-in-motion exclusion does not apply to those documents; write them freely. Lasting grounded facts belong in memory without duplicating authoritative project docs. Agent procedures live in `memory/workflows/<topic>/`; project `procedures/` holds human runbooks or links, not executable agent leads.
 
 
 Workflows that finalize durable knowledge with the user in the loop, such as `talk-it-through`, promote settled items directly to their proper topic file at wrap-up.
@@ -87,7 +91,7 @@ Lasting facts about a client go to `memory/<client_folder>/<subject>/<short>/<sl
 
 A fact that spans subjects is filed where a task would look first and linked from a note in the other subject. Every note carries `type: client-memory`, `client`, `subject`, `title`, `verified` (date last confirmed) and `source` (ticket number, "the owner said", or meeting id).
 
-After writing notes, run `python3 .claude/skills/personal-memory/hubs.py`. It regenerates `memory/<client_folder>/_hubs/<short>.md`, one hub per client listing every note by subject plus that client's `<client_folder>/<short>/tickets/`, `projects/` and `procedures/` files. Hubs are never hand-edited. Each hub has one row in `index.md`. Client skills read a client's memory through its hub.
+After writing notes, run `python3 .claude/skills/personal-memory/hubs.py`. It regenerates `memory/<client_folder>/_hubs/<short>.md`, one hub per client listing every note by subject plus an existing `<client_folder>/<short>/README.md` and Markdown documents in the folders listed by `client_dirs`, in configured order. `client_dirs` accepts unique lowercase folder names or an empty list, never paths. Document links stay within the tracked thing and workspace; a hub still requires at least one durable note. Hubs are never hand-edited. Each hub has one row in `index.md`. Client skills read a client's memory through its hub.
 
 ## Naming
 

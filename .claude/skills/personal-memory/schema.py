@@ -58,4 +58,14 @@ def load(memory_dir):
             f"Alert: memory schema file {path}: client_folder {folder!r} must be one lowercase word "
             f"(letters, digits, hyphen) that is not already a workspace or memory folder"
         )
+    dirs = data["client_dirs"]
+    if (
+        not isinstance(dirs, list)
+        or any(not isinstance(d, str) or not re.fullmatch(r"[a-z][a-z0-9-]*", d) for d in dirs)
+        or len(dirs) != len(set(dirs))
+    ):
+        sys.exit(
+            f"Alert: memory schema file {path}: client_dirs must be a list of unique "
+            "lowercase folder names (letters, digits, hyphen); an empty list is allowed"
+        )
     return data

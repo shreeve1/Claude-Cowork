@@ -7,10 +7,12 @@ import sys
 import tempfile
 import unittest
 import zipfile
+from importlib import import_module
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "cowork"))
-import cowork_skills as cs  # noqa: E402
+cs = import_module("cowork_skills")
 
 
 def skill(root, name, front=None, files=None):
@@ -136,6 +138,20 @@ class ShippedPackageTests(unittest.TestCase):
                              {f"personal-memory/{p.relative_to(folder).as_posix()}" for p in cs.skill_files(folder)})
 
 
+    def test_memory_setup_package_matches_all_source_files(self):
+        root = Path(__file__).resolve().parents[4]
+        folder = root / ".claude/skills/memory-setup"
+        with zipfile.ZipFile(root / cs.PACKAGES / "core/memory-setup.skill") as archive:
+            expected = {
+                f"memory-setup/{p.relative_to(folder).as_posix()}": cs.file_bytes(p)
+                for p in cs.skill_files(folder)
+            }
+            self.assertEqual(set(archive.namelist()), set(expected))
+            for name, content in expected.items():
+                with self.subTest(file=name):
+                    self.assertEqual(archive.read(name), content)
+
+
 class ChangedTests(unittest.TestCase):
     def setUp(self):
         self.td = Path(tempfile.mkdtemp())
@@ -174,16 +190,15 @@ class ChangedTests(unittest.TestCase):
         self.assertEqual(len(out), 4)
 
     def test_core_skill_moved_to_video_is_not_reported_removed(self):
-        cs_core = cs.CORE
-        self.addCleanup(setattr, cs, "CORE", cs_core)
-        cs.CORE = tuple(n for n in cs_core if n != "adhd")
-        self.assertEqual(self.lines(), ["moved to video: adhd", "nothing to install: no new or changed skills"])
+        core = tuple(name for name in cs.CORE if name != "adhd")
+        with patch.object(cs, "CORE", core):
+            self.assertEqual(self.lines(), ["moved to video: adhd", "nothing to install: no new or changed skills"])
 
     def test_earlier_package_edition_is_not_called_loaders(self):
         shutil.rmtree(self.old / ".claude/cowork")
         (self.old / ".claude/cowork-skills.json").write_text("{}", encoding="utf-8")
         out = self.lines()
-        self.assertFalse(any(l.startswith("loaders") for l in out))
+        self.assertFalse(any(line.startswith("loaders") for line in out))
         self.assertEqual(len(out), 3)
 
     def test_old_workspace_must_differ(self):

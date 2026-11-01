@@ -1,6 +1,42 @@
-# Pending proposal and research templates
+# Project, pending proposal and research templates
 
 Copy only the needed format. These examples are not live records. Task lifecycle and cleanup are in [task operations](tasks.md).
+
+## Project README
+
+Use for a real goal spanning related tasks or files. In a workspace, save to `projects/<short>/README.md`; a client-owned project can stay under its existing client project path. In a code repository, use its existing README or link to it instead of creating a duplicate. Read the entry point before work on that project.
+
+Create only the subfolders the agreed folder map needs. Replace placeholders with grounded information or Unknown; remove unused sections. A README groups work, not permissions. Reference saved task records by stable ID and path without copying their live status or next steps. No task is created or picked up merely by linking it. Lasting facts and verified agent procedures stay in memory; human runbooks may live with project files.
+
+```markdown
+# <Project name>
+
+## Goal
+
+<The outcome and why it matters.>
+
+## Scope
+
+<What is included and what is not.>
+
+## Completion check
+
+<Observable evidence that the goal has been reached, or Unknown.>
+
+## Tasks
+
+- <Stable task ID and current workspace-relative path; or None yet.>
+
+## Files
+
+- <Existing workspace-relative file/folder and what it contains; or None yet.>
+
+## Memory and procedures
+
+- <Existing authoritative memory, decision, hub or verified procedure path; or None yet.>
+```
+
+Do not invent dates, a project status system or a second task index. Keep references current when relevant records move or archive. When there are no durable notes, the README is the entry point; no generated hub is required.
 
 ## Pending proposal
 
@@ -44,7 +80,7 @@ Keep Still needed current as evidence or owner decisions arrive. Preserve explic
 
 ## General research record
 
-Use for research that has no skill-specific format. Save to `research/<topic>-YYYY-MM-DD.md`, unless the owner or a skill specifies another path. An applicable skill's own section order takes precedence.
+Use for research that has no skill-specific format. Use the agreed folder map: research confined to one project uses its configured research folder; otherwise default to `research/<topic>-YYYY-MM-DD.md`. An owner-named or skill-required path takes precedence. An applicable skill's own section order takes precedence.
 
 Use plain words, answer first, and distinguish evidence from guesses. Apply `memory/preferences/research-documents.md` and `memory/preferences/writing.md` when those local preferences exist. Every Findings block starts with a one-line answer and has at most seven sourced bullets, one fact per bullet. State uncertainty and checks not performed. When research continues, append a dated Findings block rather than rewriting earlier findings; explicitly identify any earlier conclusion that new evidence corrects. Replace Path to Close and Questions with the current remaining work.
 

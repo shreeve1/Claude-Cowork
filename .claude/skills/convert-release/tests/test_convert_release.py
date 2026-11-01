@@ -4,11 +4,12 @@ import json
 import sys
 import tempfile
 import unittest
+from importlib import import_module
 from pathlib import Path
 from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-import convert_release as cr  # noqa: E402
+cr = import_module("convert_release")
 
 
 def release(root, files):
@@ -154,6 +155,35 @@ class MainTests(unittest.TestCase):
             converted = cr.new_path(rel)
             self.assertEqual((self.out / converted).read_text(), text)
             self.assertEqual(manifest[converted]["class"], "seed" if rel == "tasks/index.md" else "merge")
+
+    def test_project_scaffold_and_historical_evidence_are_included(self):
+        release(self.src, {"a.md": "x"})
+        files = {
+            "projects/README.md": "Use .agents/skills/personal-memory/supporting-templates.md\n",
+            "docs/testing/flexible-workspace-setup-cases.md": "Upstream .agents/ receipt; native Cowork NOT RUN.\n",
+        }
+        for rel, text in files.items():
+            path = self.src / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(text, encoding="utf-8")
+        code, log = run(self.src, self.out, self.ws)
+        self.assertEqual(code, 0, log)
+        self.assertNotIn("warning:", log)
+        self.assertEqual(
+            (self.out / "projects/README.md").read_text(),
+            "Use .claude/skills/personal-memory/supporting-templates.md\n",
+        )
+        receipt = "docs/testing/flexible-workspace-setup-cases.md"
+        self.assertEqual((self.out / receipt).read_text(), files[receipt])
+        manifest = json.loads((self.out / "MANIFEST.json").read_text())["files"]
+        self.assertEqual(manifest["projects/README.md"]["class"], "merge")
+
+    def test_upstream_internal_project_plan_is_not_shipped(self):
+        rel = "docs/superpowers/plans/2026-11-01-flexible-workspace-setup.md"
+        release(self.src, {"a.md": "x", rel: "Internal upstream plan\n"})
+        code, log = run(self.src, self.out, self.ws)
+        self.assertEqual(code, 0, log)
+        self.assertFalse((self.out / rel).exists())
 
     def test_recovery_and_runtime_state_are_never_copied_even_if_listed(self):
         excluded = {f"{folder}/private.md": "private" for folder in cr.DROP_DIRS}

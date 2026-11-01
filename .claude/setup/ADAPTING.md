@@ -4,7 +4,7 @@ Three steps: settle the tracking model (what the owner needs remembered), make i
 
 ## Tracking model (before filing old notes)
 
-Follow `.claude/skills/memory-setup/tracking-model.md`.
+Follow `.claude/skills/memory-setup/tracking-model.md`. Settle the agent or bot's purpose, tracked things, project layout and procedure topics together before filing notes. Recommend from what the owner already said; do not assume client work or merely rename `clients/` while retaining its folders.
 
 Memory edits preserve verified previous content in `.memory-recovery/` even without Git. Without Python, the agent must copy and verify with file tools and disclose manual-only checks; if verification is unavailable, it stops. Recovery may contain sensitive summaries; it is ignored, not encrypted. Release copies exclude it; upgrades retain the old workspace and copy recovery separately only with owner approval.
 
@@ -24,7 +24,7 @@ Start by recommending a setup from what the owner has already said. Use these qu
 1. **What do you mostly use an agent for?** Writing, research, IT support, coding, planning, something else. This decides which skills matter.
 2. **Which skills will you not use?** List the skills under `.claude/skills/` with one line each. Do not delete shipped skills; the check fails without them. Instead add a row to `memory/rules.md` (When: Always, Note: "never use skill `<name>`") so the agent leaves it alone.
 3. **How should answers read?** Length, tone, bullets or prose, language. Save the answer as a preference note with `personal-memory` and add a row to `memory/rules.md`. Do not edit `CLAUDE.md` for this: a preference note never conflicts with an update.
-4. **Where should files go?** Show `memory/preferences/document-scaffolding.md` (the folder map). Change it to the owner's folders. It is the owner's file and updates leave it alone.
+4. **Where should files go?** Apply the layout agreed in the tracking model to `memory/preferences/document-scaffolding.md`. Project work gets a README and only useful document folders; tasks and durable memory retain their separate homes. It is the owner's file and updates leave it alone.
 5. **Who and what do you refer to by short names?** People, companies, systems. Add each to `memory/glossary.md`. The things settled in "Tracking model" are already there.
 6. **Which words do you use in a specific way?** Add them to `CONTEXT.md` through `talk-it-through`.
 7. **Which rules in `CLAUDE.md` do not fit?** Read the headings with the owner. Never edit `CLAUDE.md`: write a preference note that overrides the rule, with a row in `memory/rules.md` (When: Always). The note wins because it is loaded for every task.
@@ -41,6 +41,7 @@ An update is a fresh copy of the new version with the owner's content brought ac
 | What | On an update |
 |---|---|
 | Memory notes, `memory/index.md`, `memory/rules.md`, the glossary, `CONTEXT.md`, the folder map, the owner's own skills, documents | Copied across whole. |
+| Schema choices (`client_folder`, `client_subjects`, `client_dirs`, `topics`), project READMEs and project files | Preserved; reconcile schema additions as described in README.md, never reset to client defaults. |
 | Shipped files (`CLAUDE.md`, shipped skills, these docs) | Replaced by the new version. Never put personal content in them. |
 | A rule that overrides a shipped one | Kept: it lives in a preference note. |
 
@@ -50,4 +51,4 @@ Run the `startday-spec` skill with the owner through `talk-it-through`. It picks
 
 The loop is optional. With no runner the owner types `startday` when they want a run, and nothing else changes.
 
-Do not treat any of this as working until the owner has run it once.
+Do not treat a routine or integration as working until the owner has run it once. An empty project/procedure scaffold can be complete without a saved fact or verified procedure; report what remains untested.

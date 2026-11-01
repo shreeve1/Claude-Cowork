@@ -91,6 +91,12 @@ Everything is in [`.claude/setup/`](.claude/setup/README.md). `README.md` there 
 
 Your old setup is never edited. Nothing is dropped without your approval. When setup is finished, the agent deletes `.claude/setup/` from your new workspace (not from this repo); updates read it from the newer version.
 
+## Projects or clients: fit the workspace to your work
+
+Setup chooses the layout from the agent or bot's purpose. Non-client work uses `projects/<short>/README.md` with a goal, completion check, and links to files, saved tasks and memory. It chooses useful subfolders instead of inheriting client ticket folders. Client work can retain `clients/` and still have independent projects; other bots can use their own recurring subjects.
+
+Procedure topics are chosen during setup. Empty workflow indexes are normal until a procedure has been verified and approved. These formats ship in the ready-made personal-memory and memory-setup packages; existing Cowork users must save the updated skill cards to update their installed copies. Source-folder edits alone do not update installed skills.
+
 ## What you get
 
 - **Memory** (`personal-memory`, `memory-setup`): remembers preferences, rules, procedures and client facts. Checks saved procedures before use and preserves previous memory content before edits. `memory-setup` sets memory up in this or another project.

@@ -32,6 +32,23 @@ class SchemaLoadTests(unittest.TestCase):
             self.assertEqual(data["topic_dirs"], ["workflows", "decisions"])
             self.assertEqual(data["client_dirs"][0], "tickets")
 
+    def test_document_folders_allow_project_layout_and_empty_list(self):
+        for folders in (["design", "research", "procedures"], []):
+            with self.subTest(folders=folders), tempfile.TemporaryDirectory() as td:
+                mem = Path(td)
+                write_schema(mem, client_dirs=folders)
+                self.assertEqual(schema.load(mem)["client_dirs"], folders)
+
+    def test_document_folders_reject_unsafe_or_malformed_values(self):
+        for bad in ("docs", None, ["../private"], ["/outside"], ["."], ["docs/private"],
+                    ["C:\\private"], [5], [""], ["docs", "docs"]):
+            with self.subTest(value=bad), tempfile.TemporaryDirectory() as td:
+                mem = Path(td)
+                write_schema(mem, client_dirs=bad)
+                with self.assertRaises(SystemExit) as cm:
+                    schema.load(mem)
+                self.assertIn("client_dirs", str(cm.exception))
+
     def test_missing_file_error_names_path(self):
         with tempfile.TemporaryDirectory() as td:
             mem = Path(td)

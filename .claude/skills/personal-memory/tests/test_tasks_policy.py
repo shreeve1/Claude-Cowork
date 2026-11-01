@@ -2,8 +2,8 @@
 import re
 import sys
 import tempfile
-from datetime import date
 import unittest
+from datetime import date
 from pathlib import Path
 
 PM = Path(__file__).resolve().parents[1]
@@ -55,10 +55,13 @@ class TaskTemplateTests(unittest.TestCase):
         path = PM / "supporting-templates.md"
         self.assertTrue(path.is_file(), "Installed supporting templates missing")
         blocks = markdown_blocks(path)
-        self.assertEqual(len(blocks), 2)
-        self.assertIn("## Still needed", blocks[0])
-        self.assertIn("## Findings:", blocks[1])
-        self.assertIn("## Questions", blocks[1])
+        proposals = [block for block in blocks if block.startswith("# Proposal:")]
+        research = [block for block in blocks if block.startswith("# Research:")]
+        self.assertEqual(len(proposals), 1)
+        self.assertEqual(len(research), 1)
+        self.assertIn("## Still needed", proposals[0])
+        self.assertIn("## Findings:", research[0])
+        self.assertIn("## Questions", research[0])
 
     def test_workspace_index_keeps_template_header(self):
         if not (ROOT / "CLAUDE.md").is_file():

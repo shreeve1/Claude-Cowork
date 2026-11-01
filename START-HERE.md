@@ -9,6 +9,12 @@ This is a ready-made agent workspace: instructions (`CLAUDE.md`), skills, memory
 
 Memory edits preserve verified previous content in `.memory-recovery/` even without Git. Without Python, the agent must copy and verify with file tools and disclose manual-only checks; if verification is unavailable, it stops. Recovery may contain sensitive summaries; it is ignored, not encrypted. Release copies exclude it; upgrades retain the old workspace and copy recovery separately only with owner approval.
 
+## Fit it to your agent or bot
+
+Setup chooses the folder layout from the work you do. With no clients, independent work uses `projects/<short>/README.md` and useful project folders instead of client ticket folders. Client work can keep `clients/` and still have independent projects. Other bots can organize around the things they look after. Tell setup the bot's purpose; it personalizes memory subjects and procedure topics too.
+
+A project groups related work; saved tasks track individual pieces of unfinished work. Verified, owner-approved agent procedures go in `memory/workflows/<topic>/`. An empty workflow index is normal until there is a real procedure to save.
+
 ## Saved tasks
 
 Say “create a task”, “look up task X”, “continue task X”, “what needs attention?”, or “complete task X”. Tasks stay in this workspace; agents maintain progress after explicit pickup. Completion archives the record and removes its active-index row. Pending proposals stay separate and never prevent cleanup. Detailed formats ship with personal-memory; no external writing skill is required.

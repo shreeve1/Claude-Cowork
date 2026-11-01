@@ -10,6 +10,8 @@ Kept from the earlier Cowork edition: `convert-release`, `memory/preferences/cow
 
 Cowork-only changes:
 
+- Ported starter-agent `8d248ad` project scaffolding: purpose-led client/project/other tracking, project README format, selected document folders and procedure topics, honest empty setup, and upgrade preservation. Kept Claude paths, sandbox Python 3.10 compatibility and Save skill cards; rebuilt personal-memory and memory-setup packages. Converter recognizes project scaffolding and upstream evidence while excluding the internal upstream plan. Local checks and native-Cowork limits are recorded in `docs/testing/cowork-project-scaffolding-cases.md`.
+
 - Ported saved-task operations and templates, procedure readiness/authority checks, exact-content memory recovery and the new startup routing. The Cowork environment still loads on every session; detailed writing, diagram and folder guidance loads only when relevant.
 - The converter includes the new files omitted from upstream's manifest and excludes recovery and tool state even if listed. Retained-skill drift is checked against actual source bytes, not a stale manifest hash. Reviewed non-Codex improvements to `adhd` and `brainstorm-idea` are included.
 - Setup preserves task history and proposals, excludes both recovery directories from fresh copies, and uses a sandbox archive copy instead of copying private snapshots and deleting them afterwards.

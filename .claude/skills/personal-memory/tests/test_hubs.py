@@ -10,7 +10,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import hubs
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from test_indexes import GATE, HUBS, INDEXES, make_client_note, make_index, run_script  # noqa: E402
+from test_indexes import (
+    GATE,
+    HUBS,
+    INDEXES,
+    make_client_note,
+    make_index,
+    run_script,
+)
 
 
 def make_schema(memory_dir, client_subjects=None):
@@ -104,6 +111,117 @@ class HubProcedureTests(unittest.TestCase):
             text = wanted[hub]
             self.assertIn("## procedures\n", text)
             self.assertIn("- [mail-backup](clients/exampleco/procedures/365/mail-backup.md)", text)
+
+    def test_project_hub_lists_readme_and_configured_document_folders(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            mem = root / "memory"
+            note = mem / "projects/setup/robot"
+            note.mkdir(parents=True)
+            make_schema(mem, client_subjects=["setup"])
+            data = json.loads((mem / "schema.json").read_text(encoding="utf-8"))
+            data.update(client_folder="projects", client_dirs=["design", "procedures"])
+            (mem / "schema.json").write_text(json.dumps(data), encoding="utf-8")
+            (note / "note.md").write_text("---\ntitle: Setup\n---\n", encoding="utf-8")
+            project = root / "projects/robot"
+            for kind in ("design", "procedures", "tickets"):
+                (project / kind).mkdir(parents=True)
+                (project / kind / "record.md").write_text("# Record\n", encoding="utf-8")
+            (project / "README.md").write_text("# Robot\n", encoding="utf-8")
+            wanted, _ = hubs.plan(mem)
+            text = wanted[mem / "projects/_hubs/robot.md"]
+            self.assertIn("[README](projects/robot/README.md)", text)
+            self.assertIn("[record](projects/robot/design/record.md)", text)
+            self.assertIn("[record](projects/robot/procedures/record.md)", text)
+            self.assertNotIn("projects/robot/tickets/", text)
+            self.assertLess(text.index("## design"), text.index("## procedures"))
+
+    def test_empty_document_folder_list_does_not_restore_client_defaults(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            mem = root / "memory"
+            (mem / "clients/halo/abx").mkdir(parents=True)
+            make_schema(mem)
+            data = json.loads((mem / "schema.json").read_text(encoding="utf-8"))
+            data["client_dirs"] = []
+            (mem / "schema.json").write_text(json.dumps(data), encoding="utf-8")
+            (mem / "clients/halo/abx/note.md").write_text("---\ntitle: Note\n---\n")
+            (root / "clients/abx/tickets").mkdir(parents=True)
+            (root / "clients/abx/tickets/old.md").write_text("# Old\n")
+            wanted, _ = hubs.plan(mem)
+            self.assertNotIn("clients/abx/tickets/", wanted[mem / "clients/_hubs/abx.md"])
+
+    def test_hub_does_not_follow_document_symlinks_outside_tracked_thing(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            mem = root / "memory"
+            (mem / "clients/halo/abx").mkdir(parents=True)
+            make_schema(mem)
+            (mem / "clients/halo/abx/note.md").write_text("---\ntitle: Note\n---\n")
+            outside = root / "private"
+            outside.mkdir()
+            (outside / "hidden.md").write_text("# Private\n")
+            entity = root / "clients/abx"
+            (entity / "procedures").mkdir(parents=True)
+            try:
+                (entity / "tickets").symlink_to(outside, target_is_directory=True)
+                (entity / "README.md").symlink_to(outside / "hidden.md")
+                (entity / "procedures/leak.md").symlink_to(outside / "hidden.md")
+            except OSError as exc:
+                self.skipTest(f"Symlinks unavailable: {exc}")
+            wanted, _ = hubs.plan(mem)
+            text = wanted[mem / "clients/_hubs/abx.md"]
+            self.assertNotIn("clients/abx/tickets/", text)
+            self.assertNotIn("clients/abx/README.md", text)
+            self.assertNotIn("clients/abx/procedures/leak.md", text)
+
+    def test_hub_does_not_link_another_entity_through_symlinked_root(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            mem = root / "memory"
+            (mem / "clients/halo/abx").mkdir(parents=True)
+            make_schema(mem)
+            (mem / "clients/halo/abx/note.md").write_text("---\ntitle: Note\n---\n")
+            other = root / "clients/other"
+            other.mkdir(parents=True)
+            (other / "README.md").write_text("# Other entity\n")
+            try:
+                (root / "clients/abx").symlink_to(other, target_is_directory=True)
+            except OSError as exc:
+                self.skipTest(f"Symlinks unavailable: {exc}")
+            wanted, _ = hubs.plan(mem)
+            self.assertNotIn("clients/abx/README.md", wanted[mem / "clients/_hubs/abx.md"])
+
+    def test_project_documents_round_trip_through_cli_with_unicode_and_spaces(self):
+        with tempfile.TemporaryDirectory(prefix="project workspace ") as td:
+            root = Path(td)
+            mem = root / "memory"
+            (mem / "projects/setup/robot").mkdir(parents=True)
+            make_schema(mem, client_subjects=["setup"])
+            data = json.loads((mem / "schema.json").read_text(encoding="utf-8"))
+            data.update(client_folder="projects", client_dirs=["design"])
+            (mem / "schema.json").write_text(json.dumps(data), encoding="utf-8")
+            (mem / "projects/setup/robot/note.md").write_text("---\ntitle: Setup\n---\n")
+            project = root / "projects/robot"
+            (project / "design").mkdir(parents=True)
+            (project / "README.md").write_text("# Robot\n", encoding="utf-8")
+            (project / "design/maquette-é.md").write_text("# Design\n", encoding="utf-8")
+            (project / "design/screen draft (v1).md").write_text("# Draft\n", encoding="utf-8")
+            run = run_script(HUBS, mem)
+            self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
+            hub = mem / "projects/_hubs/robot.md"
+            original = hub.read_bytes()
+            self.assertIn("projects/robot/design/maquette-%C3%A9.md", original.decode("utf-8"))
+            self.assertIn(
+                "[screen draft (v1)](projects/robot/design/screen%20draft%20%28v1%29.md)",
+                original.decode("utf-8"),
+            )
+            check = run_script(HUBS, mem, "--check")
+            self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
+            self.assertEqual(run_script(HUBS, mem).returncode, 0)
+            self.assertEqual(hub.read_bytes(), original)
+            (project / "design/new.md").write_text("# New\n")
+            self.assertEqual(run_script(HUBS, mem, "--check").returncode, 1)
 
     def test_hub_sections_follow_schema_order_then_unknown_subjects(self):
         with tempfile.TemporaryDirectory() as td:

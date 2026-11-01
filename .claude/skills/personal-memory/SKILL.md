@@ -12,7 +12,7 @@ Use this skill to operate the local `memory/` workspace memory system. In a proj
 
 For a saved task request (create, look up, pick up, continue, review, complete or archive), read [tasks.md](tasks.md) before acting. Once picked up, maintain progress and its active-index row without repeated approval. This is supporting bookkeeping: the actual work's procedure or skill remains lead. Mere index relevance does not authorize work. Task files live outside durable memory in the current workspace's `tasks/`.
 
-For a pending proposal or general research record without a skill-specific format, read [supporting-templates.md](supporting-templates.md). Task and index formats are in [task-templates.md](task-templates.md). These installed files work without design docs or an external authoring skill.
+For a project README, pending proposal or general research record without a skill-specific format, read [supporting-templates.md](supporting-templates.md). Task and index formats are in [task-templates.md](task-templates.md). These installed files work without design docs or an external authoring skill.
 
 ## Scope
 
