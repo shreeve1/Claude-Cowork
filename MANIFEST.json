@@ -269,7 +269,7 @@
   },
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
-   "sha256": "4afd81225a92bb9f187ca9c46e34e8d58138ed0179c0880defa571b64e4b1dc1",
+   "sha256": "e23bab32e0d2cd1b4aa82d1f46eef2d1eec02fd69d48b8142d3b3742df99bff3",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
@@ -284,7 +284,7 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "f00a73e144024c12f850f7f591e974e00505a76b025371b705bcdaea48d9822e",
+   "sha256": "47d47d307959aec4770471505476b1675a3847bab1f0b01704ec17c7316ceae5",
    "mode": "644"
   },
   ".claude/setup/WEEKLY-SWEEP.md": {
@@ -7120,11 +7120,11 @@
   "README.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "9226dd0bf958d946ebb88840474538dff5d740681a01a5902bbf03000a5d0d26"
+   "sha256": "75f1546b404002fec4ac3c2206fe2e989b0e4c5e692bf2373df766ae1882fbd4"
   },
   "START-HERE.md": {
    "class": "local",
-   "sha256": "60eff8a9a5871341a2cd67c39de889158ca3acb3a610ce10d3144faa27469120",
+   "sha256": "4334d75b5924ad6bf2ce233cef35c37438c83beca98373438324276d6da9b952",
    "mode": "644"
   },
   "docs/testing/cowork-project-scaffolding-cases.md": {
@@ -7189,7 +7189,7 @@
   },
   "memory/index.md": {
    "class": "local",
-   "sha256": "32d73154ce1636082bb36b17355161978545480e0ea65ba5181da7974b9744ff",
+   "sha256": "2e64ce08c517b5d9f55edbd3c8011418c094f4d85289c3354cd6af8dee53e570",
    "mode": "644"
   },
   "memory/preferences/.gitkeep": {
@@ -7205,7 +7205,7 @@
   "memory/preferences/cowork-environment.md": {
    "class": "seed",
    "mode": "644",
-   "sha256": "5f74ed29286f976597e02e13b553f446ef54b2fe496182fa14e849b516b8c770"
+   "sha256": "8a45fabee5e14bd872be75ab9b5096523da44466038a61f0980b09f7f1f81917"
   },
   "memory/preferences/diagrams.md": {
    "class": "seed",

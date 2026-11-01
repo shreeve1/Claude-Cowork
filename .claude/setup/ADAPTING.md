@@ -2,9 +2,11 @@
 
 Claude Cowork is the sole supported end-user app. Read installed memory-setup’s tracking-model instructions before filing old notes. The staged Release is setup material, not a skill-source tree to copy into the workspace.
 
+Follow staged `README.md`, "Guide the owner at every step", throughout adaptation. Give the next concrete action when owner input is needed and verify its result before continuing. Keep routine path discovery, file operations and checks with the agent. Personalization remains a conversation about the owner’s work, not a questionnaire about technical tools.
+
 ## 1. Verify installation and access
 
-Confirm the owner saved the selected ready-made `.skill` cards into Cowork and attached the workspace. Locate the actual installed personal-memory package in this session; verify its task templates, supporting templates, scaffold and helper scripts. Do not assume a path, create a workspace source copy or claim installation from the presence of source files. If access is missing, explain the blocked operation and use only documented manual checks where permitted.
+Confirm the owner saved the selected ready-made `.skill` cards into Cowork and attached the workspace. Locate the actual installed personal-memory package in this session; verify its task templates, supporting templates, scaffold and helper scripts. Do not assume a path, create a workspace source copy or claim installation from the presence of source files. If workspace access is missing, say: “Click **Add folder**, select your workspace folder and confirm, then tell me when it is attached.” Use **Choose folder** if that is the visible picker label. For installed-skill access, explain which saved card or permission is missing; do not ask the owner to guess an installation path. Use only documented manual checks where permitted.
 
 For an optional Git repository with Python, verify the installed helpers before configuring local `cowork.personalMemoryPath` and `.githooks`. The machine-local path can change across sessions; missing helpers must be reported, never silently skip an audit. Without Python, disclose that only the message-length hook is available.
 

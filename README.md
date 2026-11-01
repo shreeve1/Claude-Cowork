@@ -10,14 +10,16 @@ For **all three situations** below:
 
 1. Download the ZIP from `https://github.com/shreeve1/Claude-Cowork` (**Code → Download ZIP**). For an update, download a fresh copy of the latest version.
 2. Add the downloaded ZIP to your Claude Cowork conversation.
-3. Give the agent access to the local folders your chosen prompt names.
+3. Give Claude access to the local folders your chosen prompt names: click **Add folder** below the message box, select **Choose folder** if offered, browse to the folder, then confirm the selection. Button labels can vary; use the matching folder-selection control.
 4. Paste **one** prompt below: 1 for a fresh setup, 2 for migration, or 3 for an update. Replace the bracketed descriptions with your actual folder names or paths.
+
+Claude should guide you through every step: what to click, which folder to select, and what happens next. It handles the technical work and asks you about your preferences, permissions and changes that need approval. You do not need to choose technical methods.
 
 The agent uses the attached ZIP, so it does not need to download files from GitHub. It extracts the ZIP separately, never over your existing workspace. If the attachment cannot be read, it should tell you what access is missing before making changes.
 
 ### 1. I’m starting fresh
 
-Use this if you have no existing notes, memory, or agent setup to bring across. Create a new, empty folder for your workspace.
+Use this if you have no existing notes, memory, or agent setup to bring across. In File Explorer, open **Documents**, click **New → Folder**, and name the empty folder **Cowork Workspace** (or a name you prefer). In Cowork, click **Add folder** and select that new folder. If your version offers **Choose folder**, click it to open the folder picker.
 
 **Copy and paste:**
 
@@ -34,7 +36,7 @@ to how I work, and walk me through installing the Cowork skills.
 
 ### 2. I have an existing setup to migrate
 
-Use this if you already have notes, saved memory, instructions, or skills and want to move into this workspace’s layout. Create a new, empty destination folder.
+Use this if you already have notes, saved memory, instructions, or skills and want to move into this workspace’s layout. In File Explorer, open **Documents**, click **New → Folder**, and give the new empty folder a different name from your existing setup. In Cowork, use **Add folder** to select your existing setup, then repeat for the new empty folder. Tell Claude which is the original and which is the destination. Your original stays untouched.
 
 **Copy and paste:**
 
@@ -55,7 +57,7 @@ Finish adapting the workspace and walk me through installing the Cowork skills.
 
 ### 3. I already use this workspace and want to update
 
-Use this if you already use this workspace and want the version in the attached ZIP in the same folder. Give the agent access to your current workspace; no new workspace folder is needed. The agent verifies a backup before making changes.
+Use this if you already use this workspace and want the version in the attached ZIP in the same folder. Give the agent access to your current workspace; no new workspace folder is needed. The agent verifies a backup before making changes. If Claude needs backup access, click **Add folder**, then **Choose folder** if offered, select **Documents**, and confirm. Claude will recommend a dated backup subfolder there and ask you to confirm its location before copying. It checks that the backup is outside your workspace and the extracted ZIP; granting access does not select a replacement workspace.
 
 **Copy and paste:**
 
