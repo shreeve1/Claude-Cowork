@@ -11,7 +11,7 @@ Use with [task operations](tasks.md). Copy only the needed format; these example
 
 ## Task record
 
-Copy to `tasks/<slug>.md`. Keep its `id` unchanged through renaming and archival. ID: creation date plus initial slug; add a suffix on collision, never overwrite. Replace all angle-bracket placeholders. Omit `review_after` when no review date was agreed. Dates use `YYYY-MM-DD`.
+Copy to `projects/<subject>/tasks/<task-name>.md` or `clients/<client>/tasks/<task-name>.md`, using the approved folder map. Unassigned and legacy work may use `tasks/<task-name>.md`; preserve existing locations. See task operations for other approved task homes and workspace-wide ID checks. Keep its `id` unchanged through renaming and archival. ID: creation date plus initial slug; add a suffix on collision, never overwrite. Replace all angle-bracket placeholders. Omit `review_after` when no review date was agreed. Dates use `YYYY-MM-DD`.
 
 ```markdown
 ---
@@ -59,7 +59,7 @@ Not completed.
 None yet.
 ```
 
-`status` is `active` or `waiting` while unfinished. Set it to `completed` when the owner completes the task, or `archived` when the owner stops tracking unfinished work. Both closure states belong in `tasks/archive/`, not in the active index.
+`status` is `active` or `waiting` while unfinished. Set it to `completed` when the owner completes the task, or `archived` when the owner stops tracking unfinished work. Both closure states belong in the same task home’s `archive/` subfolder, not in the active index; follow task operations for collisions and legacy locations.
 
 Current position and Next action describe the present. Progress preserves meaningful history; do not replace failed attempts with only the final success. Use additional dated entries only when useful. No entry is required just because a tool ran.
 
@@ -73,8 +73,8 @@ Copy this empty template to `tasks/index.md` at setup or first task creation. Ro
 # Active tasks
 
 Read at session start. Open relevant task files before relying on their contents.
-Rows are discovery pointers; they do not authorize work. Lookups also search
-`tasks/archive/` in this workspace.
+Rows are discovery pointers; they do not authorize work. Lookups search approved
+project/client task homes, legacy root tasks and their archives in this workspace.
 
 | Task | Purpose | Status | Next / waiting for | Review after | Updated |
 | --- | --- | --- | --- | --- | --- |
@@ -83,7 +83,7 @@ Rows are discovery pointers; they do not authorize work. Lookups also search
 Add one row per active or waiting task, using this shape; replace every placeholder before saving:
 
 ```markdown
-| [<title>](tasks/<slug>.md) | <short purpose> | active | <next action> | <date or blank> | <updated date> |
+| [<title>](<workspace-relative-task-path>) | <short purpose> | active | <next action> | <date or blank> | <updated date> |
 ```
 
-Use workspace-relative paths, interpreted from the workspace root. Keep each cell brief; detailed context belongs in the task record. Leave Review after blank when absent. On meaningful changes to indexed fields, update the row as part of routine task maintenance. Do not retain completed or archived rows in another section of this index.
+Use workspace-relative paths, interpreted from the workspace root, such as `projects/website/tasks/review-homepage.md` or `clients/acme/tasks/check-renewal.md`. Use one central index, not separate project/client indexes. Keep each cell brief; detailed context belongs in the task record. Leave Review after blank when absent. On meaningful changes to indexed fields, update the row as part of routine task maintenance. Do not retain completed or archived rows in another section of this index.

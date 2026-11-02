@@ -153,7 +153,7 @@ Saved procedures live under `memory/workflows/`. The agent checks the matching p
 
 ### Tasks: unfinished work you can pick up later
 
-A saved task holds the goal, useful context, progress, and the next action for a piece of work. It is not a reusable procedure. Task records live in `tasks/`; a short active/waiting list is in `tasks/index.md`, and closed records go to `tasks/archive/`.
+A saved task holds the goal, useful context, progress, and the next action for a piece of work. It is not a reusable procedure. One root `tasks/index.md` links active/waiting work to records in `projects/<subject>/tasks/` or `clients/<client>/tasks/`. Closed records stay in that task folder’s `archive/`. Root `tasks/` remains available for unassigned and legacy records; adaptation preserves existing organization unless a change is approved.
 
 The usual flow is: **save the task, pick it up, record progress or a blocker, then complete or archive it**. Once you ask the agent to continue a task, it keeps the progress and next action up to date at meaningful stopping points. You tell it when the task is complete.
 

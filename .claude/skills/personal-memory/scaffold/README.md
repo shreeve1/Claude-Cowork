@@ -16,7 +16,7 @@ Not memory: what the project's own docs or code already state (link to them), on
 
 ## Saved work and document formats
 
-Workspace-local `tasks/` holds unfinished work separately from durable memory. Follow `tasks.md` beside the installed personal-memory skill for create, lookup, continue, review, complete and archive; the project's instructions name that project/global location. Adjacent `task-templates.md` and `supporting-templates.md` supply copyable records, indexes, proposals and research formats without external skills or design docs. Read only the active/waiting index at startup, and relevant records on demand. Completion archives the record then removes its row; pending approval never blocks that cleanup. A saved task does not authorize action.
+Root `tasks/index.md` lists active/waiting work; task records live in approved project/client task folders, with root `tasks/` for unassigned and legacy work, separately from durable memory. Follow `tasks.md` beside the installed personal-memory skill for create, lookup, continue, review, complete and archive; the project's instructions name that project/global location. Adjacent `task-templates.md` and `supporting-templates.md` supply copyable records, indexes, proposals and research formats without external skills or design docs. Read only the active/waiting index at startup, and relevant records on demand. Completion archives the record then removes its row; pending approval never blocks that cleanup. A saved task does not authorize action.
 
 ## Safety
 

@@ -95,6 +95,53 @@ class TaskTemplateTests(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_distributed_tasks_keep_one_central_index_and_safe_homes(self):
+        policy = (PM / "tasks.md").read_text(encoding="utf-8")
+        for home in ("projects/<subject>/tasks/", "clients/<client>/tasks/", "tasks/index.md"):
+            self.assertIn(home, policy)
+        for rule in ("approved task homes", "workspace-wide", "same task home", "escaping symlinks",
+                     "legacy", "missing or stale", "never authorizes execution", "Search recursively",
+                     "verified move", "update affected README"):
+            self.assertIn(rule, policy)
+        self.assertNotIn("Work only in the current workspace's `tasks/` and `tasks/archive/`.", policy)
+
+    def test_distributed_lifecycle_safeguards_are_explicit(self):
+        policy = (PM / "tasks.md").read_text(encoding="utf-8")
+        scope = policy.split("## Scope and permission", 1)[1].split("## Start", 1)[0]
+        for safeguard in ("including archive collision subfolders",
+                          "check each directory's containment before descending",
+                          "an index link cannot approve a new home",
+                          "never follow an unverified link during discovery"):
+            self.assertIn(safeguard, scope)
+        start = policy.split("## Start", 1)[1].split("## Lookup", 1)[0]
+        self.assertIn("must be workspace-wide unique across all approved task homes and archives", start)
+        reopen = policy.split("## Continue", 1)[1].split("## Review", 1)[0]
+        for safeguard in ("Reopening is a verified move, not a second live copy",
+                          "preserve prior bytes in task recovery",
+                          "update affected README and proposal links under the same recovery checks",
+                          "Verify the old archive path is gone before adding the active row"):
+            self.assertIn(safeguard, reopen)
+        recovery = policy.split("## Recovery and failures", 1)[1]
+        self.assertIn("handwritten task index, task-linked README or proposal", recovery)
+        self.assertIn("no automatic pruning, retention expiry or deletion outside an authorized, verified move", recovery)
+
+    def test_distributed_templates_support_project_and_client_records(self):
+        templates = (PM / "task-templates.md").read_text(encoding="utf-8")
+        for target in ("projects/<subject>/tasks/<task-name>.md", "clients/<client>/tasks/<task-name>.md",
+                       "<workspace-relative-task-path>"):
+            self.assertIn(target, templates)
+
+    def test_distributed_adaptation_preserves_owner_layout(self):
+        path = ROOT / ".claude/skills/memory-setup/tracking-model.md"
+        if not path.is_file():
+            self.skipTest("Standalone skill install has no setup guide")
+        tracking = path.read_text(encoding="utf-8")
+        self.assertIn("one root `tasks/index.md`", tracking)
+        adaptation = (ROOT / ".claude/setup/ADAPTING.md").read_text(encoding="utf-8")
+        self.assertIn("preserve the owner's existing organization", adaptation)
+        self.assertIn("tasks/index.md", adaptation)
+        self.assertIn("Do not move existing tasks", adaptation)
+
     def test_operations_are_packaged_with_copied_skill(self):
         # A self-contained copy must contain the targets reached by its reader.
         for name in ("tasks.md", "task-templates.md", "supporting-templates.md"):

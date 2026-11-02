@@ -10,6 +10,8 @@ Kept from the earlier Cowork edition: `convert-release`, `memory/preferences/cow
 
 Cowork-only changes:
 
+- Saved tasks use one root active/waiting index linking project/client-local records and archives, while retaining legacy root tasks. Adaptation fits the owner's existing organization; no automatic task moves or per-owner skill patches.
+
 - Added an experimental exact-plan content update/recovery helper, read-only comparison and persistent standalone restore. Keep the full-backup requirement until shipped-helper and ordinary ZIP-flow acceptance pass. Cowork primitives were measured; permissions/Windows metadata and power-loss protection are not promised.
 
 - Separated the maintainer Release from the end-user workspace. Setup copies only user files and presents ready-made Cowork skill cards; skill sources, persona libraries and builders stay in staging. Installed personal-memory supplies templates and audit/recovery helpers. Same-folder updates preserve owner content and require a verified backup. Native Save skill and installed-file access still need a Cowork test.
