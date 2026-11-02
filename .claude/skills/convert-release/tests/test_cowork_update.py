@@ -69,7 +69,7 @@ class UpdateTests(unittest.TestCase):
 
     def snapshot(self):
         return {p.relative_to(self.ws).as_posix(): p.read_bytes() if p.is_file() else None
-                for p in self.ws.rglob('*') if '.workspace-backups' not in p.parts}
+                for p in self.ws.rglob('*') if '.workspace-backups' not in p.relative_to(self.ws).parts}
 
     def test_normal_apply_and_restore_exact_bytes_and_absence(self):
         before = self.snapshot()
@@ -219,6 +219,19 @@ class UpdateTests(unittest.TestCase):
         e.rollback_transaction(second, self.identifier(second))
         e.rollback_transaction(first, self.identifier(first))
         self.assertEqual((self.ws / 'config.md').read_bytes(), b'owner\r\n')
+
+
+class SnapshotTests(unittest.TestCase):
+    def test_snapshot_keeps_workspace_files_under_backup_ancestor(self):
+        with tempfile.TemporaryDirectory() as td:
+            case = UpdateTests()
+            case.ws = Path(td) / '.workspace-backups' / 'Workspace ü'
+            case.ws.mkdir(parents=True)
+            case.put('owner.md', b'owner\r\n')
+            case.put('.workspace-backups/retained.md', b'recovery')
+            self.assertEqual(case.snapshot(), {'owner.md': b'owner\r\n'})
+            case.put('owner.md', b'changed')
+            self.assertEqual(case.snapshot(), {'owner.md': b'changed'})
 
 
 class UpdateCliTests(unittest.TestCase):
