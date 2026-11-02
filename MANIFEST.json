@@ -75,7 +75,7 @@
   ".claude/cowork/skills/core/personal-memory.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "977271d7e2028a9c83fda85f71881158f08c1156233be0c121ee7bcdcfd861ba"
+   "sha256": "2d0e32374eb5482bba350541114ede47e6ea62a67ef9fe151b1e7c9b5946d77a"
   },
   ".claude/cowork/skills/core/professional-guidance.skill": {
    "class": "merge",
@@ -115,7 +115,7 @@
   ".claude/cowork/skills/index.json": {
    "class": "merge",
    "mode": "644",
-   "sha256": "a97688e3452728f751cccbc6f68193f1b8b35b63c17e1bd5a13ceb9be13e9782"
+   "sha256": "3561ba02034369266669122f47d9cd101d0db22ee491637e8502ab7bcd51547b"
   },
   ".claude/cowork/skills/video/captions-overlay.skill": {
    "class": "merge",
@@ -4515,7 +4515,7 @@
   ".claude/skills/personal-memory/tasks.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "f455e4a41fda1c31362469071df03fc11f975cd50aa5aff8310b1d766b54d862"
+   "sha256": "ef2914cdf780661902032e4b9ebc483f54acd3370ecb8d7afe75a4098eed3f4e"
   },
   ".claude/skills/personal-memory/tests/test_bloat.py": {
    "class": "merge",
@@ -4570,7 +4570,7 @@
   ".claude/skills/personal-memory/tests/test_tasks_policy.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "09d08bd36f3bc509345c42eae3d9fe2f38f5c8c890404499eefbe2813b0459e7"
+   "sha256": "d332dfc612189548f87144c51d2724474b89fcecaea4e8648041d507870b13bc"
   },
   ".claude/skills/pr-to-video/SKILL.md": {
    "class": "merge",
@@ -7124,7 +7124,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "14baa3ad056acd8d3f127f7f8cd5787206dd2e00e78b4d90ca867ee3fa63ecab",
+   "sha256": "688e3e99edd4a53b546a5ed42f7e0e251452c07be2910881ad7fb2ce6c542a31",
    "mode": "644"
   },
   "CLAUDE.md": {

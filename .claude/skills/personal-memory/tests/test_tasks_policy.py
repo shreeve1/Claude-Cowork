@@ -125,6 +125,23 @@ class TaskTemplateTests(unittest.TestCase):
         self.assertIn("handwritten task index, task-linked README or proposal", recovery)
         self.assertIn("no automatic pruning, retention expiry or deletion outside an authorized, verified move", recovery)
 
+    def test_failed_archive_reconciles_references_before_reporting_cleanup(self):
+        policy = (PM / "tasks.md").read_text(encoding="utf-8")
+        closure = policy.split("## Complete and archive", 1)[1].split("## Recovery", 1)[0]
+        for safeguard in (
+            "If movement fails after references changed",
+            "re-read both copies",
+            "identical copies are retained together with the index row",
+            "incomplete movement with no deletion",
+            "differing copies are both preserved",
+            "task edits stop until reconciliation",
+            "never selecting or overwriting an authoritative copy",
+            "Restore the changed links only to the verified retained source when the archive is absent or differs",
+            "preserve current reference bytes before each repair",
+            "report unresolved reference repairs as incomplete cleanup",
+        ):
+            self.assertIn(safeguard, closure)
+
     def test_distributed_templates_support_project_and_client_records(self):
         templates = (PM / "task-templates.md").read_text(encoding="utf-8")
         for target in ("projects/<subject>/tasks/<task-name>.md", "clients/<client>/tasks/<task-name>.md",
