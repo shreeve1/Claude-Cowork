@@ -10,6 +10,8 @@ Kept from the earlier Cowork edition: `convert-release`, `memory/preferences/cow
 
 Cowork-only changes:
 
+- Fresh setup and migration no longer add `START-HERE.md` or the shipped Cowork environment preference. Projected memory rules/index omit that reference; generated instructions retain helper discovery without requiring the note. Update plans exclude both reference files and preserve existing owner copies.
+
 - A failed saved-task archive move now re-reads both record copies: identical copies are retained with the index row as incomplete movement with no deletion, while differing copies are both preserved as a reported conflict with task edits stopped until reconciliation, never selecting an authoritative copy. Changed links are restored only to the verified retained source when the archive is absent or differs, under byte-preserving recovery checks, and unresolved reference repairs are reported as incomplete cleanup. Policy regressions added; personal-memory package rebuilt in sync.
 
 - Saved tasks use one root active/waiting index linking project/client-local records and archives, while retaining legacy root tasks. Adaptation fits the owner's existing organization; no automatic task moves or per-owner skill patches.

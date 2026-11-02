@@ -14,9 +14,11 @@ from pathlib import Path, PurePosixPath
 OVERRIDES = {
     'CLAUDE.md': '.claude/cowork/workspace/CLAUDE.md',
     'memory/README.md': '.claude/skills/personal-memory/scaffold/README.md',
-    'memory/preferences/cowork-environment.md': '.claude/cowork/workspace/cowork-environment.md',
+    'memory/rules.md': '.claude/cowork/workspace/rules.md',
+    'memory/index.md': '.claude/cowork/workspace/index.md',
 }
-ROOT_FILES = {'README.md', 'START-HERE.md', 'CHANGELOG.md', 'CLAUDE.md', 'CONTEXT.md',
+REFERENCE_FILES = {'START-HERE.md', 'memory/preferences/cowork-environment.md'}
+ROOT_FILES = {'README.md', 'CHANGELOG.md', 'CLAUDE.md', 'CONTEXT.md',
               '.gitignore', '.gitattributes'}
 HOOKS = {'.githooks/pre-commit', '.githooks/commit-msg', '.githooks/secret-allow.json',
          '.githooks/nopython/commit-msg'}
@@ -37,7 +39,7 @@ def source_file(root, relative):
 
 
 def selected(relative):
-    return (relative in ROOT_FILES or relative in HOOKS or relative == INDEX
+    return relative not in REFERENCE_FILES and (relative in ROOT_FILES or relative in HOOKS or relative == INDEX
             or relative.startswith(('memory/', 'tasks/', 'projects/')))
 
 

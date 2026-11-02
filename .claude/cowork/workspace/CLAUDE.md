@@ -6,7 +6,7 @@ This is an end-user workspace for Claude Cowork only, not the maintainer reposit
 
 1. Read `memory/index.md`, `memory/glossary.md`, `memory/rules.md` and every Always-row file. Skip missing files. Before reading optional `tasks/index.md`, verify that it is a regular file inside this workspace with no escaping symlink; never create it on a startup read.
 2. Load only relevant task records and linked memory. Index rows are pointers, not facts or permission. Match the work to its procedure or installed skill before acting.
-3. Read `memory/preferences/cowork-environment.md` for installed-skill resolution. Locate the actual installed personal-memory package for this session; verify its instructions, `tasks.md`, adjacent templates, `scaffold/` and helper scripts before relying on it. Never assume a maintainer path or a fixed `/home/...` path. Missing access or incomplete installation blocks the affected operation: report it and use the skill’s documented manual checks only where permitted.
+3. Locate the actual installed personal-memory package for this session; verify its instructions, `tasks.md`, adjacent templates, `scaffold/` and helper scripts before relying on it. Never assume a maintainer path or a fixed `/home/...` path. Missing access or incomplete installation blocks the affected operation: report it and use the skill’s documented manual checks only where permitted.
 
 ## How to work
 
@@ -26,7 +26,7 @@ Exclude `.workspace-backups/` from routine search and recall. It holds retained 
 
 ## Git, when available
 
-Git is optional. Commit only this session’s verified changes by exact path; preserve unrelated staged work. Never commit the owner’s existing staged documents to prepare an update. Never bypass enabled hooks. For the standalone memory-audit hook, verify the installed personal-memory helper folder and configure the machine-local `cowork.personalMemoryPath` setting as described in the environment note. A stale path blocks a memory commit until repaired. Push only with current approval.
+Git is optional. Commit only this session’s verified changes by exact path; preserve unrelated staged work. Never commit the owner’s existing staged documents to prepare an update. Never bypass enabled hooks. For the standalone memory-audit hook, verify the installed personal-memory helper folder and configure the machine-local `cowork.personalMemoryPath` setting using `git config --local cowork.personalMemoryPath "<verified installed personal-memory folder>"` and `git config core.hooksPath .githooks`. Recheck the installed folder after a session or machine change. A stale path blocks a memory commit until repaired. Push only with current approval.
 
 ## Updating
 

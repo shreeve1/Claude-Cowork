@@ -265,17 +265,27 @@
   ".claude/cowork/workspace.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "7b99dab796b3448f84f3c349f99a6d8243b700987e6950d847af9fd4310fb1ee"
+   "sha256": "8fb1589a085a3ce07377c3247a4e1f3537a2a645c6949f898791f27c138a7dc4"
   },
   ".claude/cowork/workspace/CLAUDE.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "ac19264d8afc2ce8601397cd1f140b42372d81a9bdb42acd555f78e1b1f349ba"
+   "sha256": "cc1dbc6c8ae93fff4c0ad5e80a50f13069d99d8e4e450fd8e51597ff29733e23"
   },
   ".claude/cowork/workspace/cowork-environment.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "1ba4c44e92e65a364761e4716890ab1135cae8a52d767da4e05114645477f003"
+   "sha256": "874ea41bca1304341035e91899dafefe6e4480fa38c6ee26144a60637dec795c"
+  },
+  ".claude/cowork/workspace/index.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "b0f4c3002895e264b3a6d5b775aacf5b8cc236b88b0209cce89cef20d03a9b98"
+  },
+  ".claude/cowork/workspace/rules.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "ac770e3f4bafee8c6ed241626a4c11a9b4588925851476ae66d47805b17f8bd3"
   },
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
@@ -284,7 +294,7 @@
   },
   ".claude/setup/MANIFEST.md": {
    "class": "merge",
-   "sha256": "c38ecb38764d2f7d8f86fbd05656cfa9909e17de79184bc9965a636d3bbd4e07",
+   "sha256": "d4b720916fe7df6d0ce4a10944a4472a1ba02959a645916ae6e9bdd13a87838b",
    "mode": "644"
   },
   ".claude/setup/MARKERS.md": {
@@ -294,7 +304,7 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "c739b8f81585911515d28c38f79e686d2d9a5ffff72bd3cd20cba58e4332efb1",
+   "sha256": "2a8088f18beb4989a5e64c839806c8371982b15641fb05a9a17d9e894fb5797a",
    "mode": "644"
   },
   ".claude/setup/UPDATE-RECOVERY.md": {
@@ -445,7 +455,7 @@
   ".claude/skills/convert-release/tests/test_cowork_update.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "26356ed480636246afb5235699b1572f3fd58d739e2fdd5b55a4a93e0386a173"
+   "sha256": "8b75084070119447149d4a245675ed8bb0de5a95602446d97d7ad00c0c1d124f"
   },
   ".claude/skills/convert-release/tests/test_cowork_update_failures.py": {
    "class": "merge",
@@ -7124,7 +7134,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "688e3e99edd4a53b546a5ed42f7e0e251452c07be2910881ad7fb2ce6c542a31",
+   "sha256": "b561cbaff28e4ae6544d533cf24233a885e84654e5a661ee1101431388d95082",
    "mode": "644"
   },
   "CLAUDE.md": {
@@ -7230,7 +7240,7 @@
   "memory/preferences/cowork-environment.md": {
    "class": "seed",
    "mode": "644",
-   "sha256": "d8faa4f1f7b7ce446d7645c458bab92e05818235e1950dc6fc892ef83ce68238"
+   "sha256": "953006a0197c99ed22c9f74d472bbe4517a062c679803942fdc11e906846e951"
   },
   "memory/preferences/diagrams.md": {
    "class": "seed",

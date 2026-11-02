@@ -87,6 +87,8 @@ WORKSPACE_ONLY = {
     ".claude/cowork/cowork_skills.py": {"class": "merge", "mode": "755"},
     ".claude/cowork/workspace.py": {"class": "merge", "mode": "755"},
     ".claude/cowork/workspace/CLAUDE.md": {"class": "merge", "mode": "644"},
+    ".claude/cowork/workspace/rules.md": {"class": "merge", "mode": "644"},
+    ".claude/cowork/workspace/index.md": {"class": "merge", "mode": "644"},
     ".claude/cowork/workspace/cowork-environment.md": {"class": "merge", "mode": "644"},
     ".claude/setup/README.md": {"class": "merge", "mode": "644"},
     ".claude/setup/ADAPTING.md": {"class": "merge", "mode": "644"},

@@ -25,6 +25,9 @@ class WorkspaceTests(unittest.TestCase):
         self.files = {
             'CLAUDE.md': 'maintainer instructions',
             'README.md': 'owner guide',
+            'START-HERE.md': 'agent setup reference',
+            'memory/rules.md': 'maintainer environment routing',
+            'memory/index.md': 'maintainer environment index',
             'memory/README.md': 'maintainer memory guide',
             'memory/schema.json': '{}',
             'memory/preferences/cowork-environment.md': 'maintainer environment',
@@ -36,6 +39,8 @@ class WorkspaceTests(unittest.TestCase):
             '.claude/skills/professional-guidance/agent-personas/a.txt': 'persona',
             '.claude/skills/personal-memory/scaffold/README.md': 'installed skill memory guide',
             '.claude/cowork/workspace/CLAUDE.md': 'Cowork instructions',
+            '.claude/cowork/workspace/rules.md': 'owner routing',
+            '.claude/cowork/workspace/index.md': 'owner index',
             '.claude/cowork/workspace/cowork-environment.md': 'Cowork environment',
             '.claude/cowork/skills/index.json': '{}',
             '.claude/cowork/skills/core/personal-memory.skill': 'package',
@@ -61,13 +66,18 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertEqual((self.dest / 'CLAUDE.md').read_text(), 'Cowork instructions')
         self.assertEqual((self.dest / 'memory/README.md').read_text(), 'installed skill memory guide')
-        self.assertEqual((self.dest / 'memory/preferences/cowork-environment.md').read_text(), 'Cowork environment')
+        self.assertEqual((self.dest / 'memory/rules.md').read_text(), 'owner routing')
+        self.assertEqual((self.dest / 'memory/index.md').read_text(), 'owner index')
+        for rel in ('START-HERE.md', 'memory/preferences/cowork-environment.md'):
+            self.assertFalse((self.dest / rel).exists(), rel)
         self.assertTrue((self.dest / '.githooks/pre-commit').is_file())
         self.assertTrue((self.dest / '.claude/cowork/skills/index.json').is_file())
         for rel in ['.claude/skills', '.claude/setup', '.claude/cowork/skills/core', '.githooks/tests', 'docs', 'CODING_STANDARDS.md']:
             self.assertFalse((self.dest / rel).exists(), rel)
         man = json.loads((self.dest / 'MANIFEST.json').read_text())
         self.assertEqual(man['files']['CLAUDE.md']['sha256'], hashlib.sha256(b'Cowork instructions').hexdigest())
+        for rel in ('START-HERE.md', 'memory/preferences/cowork-environment.md'):
+            self.assertNotIn(rel, man['files'])
         self.assertNotIn('.claude/skills/professional-guidance/agent-personas/a.txt', man['files'])
         self.assertEqual((self.source / 'CLAUDE.md').read_text(), 'maintainer instructions')
         self.assertTrue((self.dest / 'tasks/index.md').is_file())
@@ -75,12 +85,39 @@ class WorkspaceTests(unittest.TestCase):
     def test_plan_does_not_modify_existing_owner_content(self):
         self.dest.mkdir()
         (self.dest / 'owner.md').write_text('keep')
+        for rel in ('START-HERE.md', 'memory/preferences/cowork-environment.md'):
+            target = self.dest / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(b'owner content\r\n')
         result = self.run_command('plan', self.source)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         paths = json.loads(result.stdout)['files']
         self.assertEqual(paths['CLAUDE.md']['source'], '.claude/cowork/workspace/CLAUDE.md')
         self.assertNotIn('.claude/skills/professional-guidance/agent-personas/a.txt', paths)
         self.assertEqual((self.dest / 'owner.md').read_text(), 'keep')
+        for rel in ('START-HERE.md', 'memory/preferences/cowork-environment.md'):
+            self.assertNotIn(rel, paths)
+            self.assertEqual((self.dest / rel).read_bytes(), b'owner content\r\n')
+
+    def test_reference_files_are_not_required_to_create_or_plan(self):
+        manifest_path = self.source / 'MANIFEST.json'
+        manifest = json.loads(manifest_path.read_text())
+        for relative in ('START-HERE.md', 'memory/preferences/cowork-environment.md'):
+            (self.source / relative).unlink()
+            del manifest['files'][relative]
+        manifest_path.write_text(json.dumps(manifest))
+        result = self.run_command('create', self.source, self.dest)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        result = self.run_command('plan', self.source)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_setup_explicitly_excludes_references_during_migration(self):
+        guide = (ROOT / '.claude/setup/README.md').read_text()
+        for safeguard in ('Do not copy or recreate them in new or migrated workspaces',
+                          'including during approved content migration',
+                          'preserve existing owner files',
+                          'Do not create a Cowork environment preference'):
+            self.assertIn(safeguard, guide)
 
     def test_nonempty_destination_is_rejected_without_changes(self):
         self.dest.mkdir()
@@ -156,6 +193,12 @@ class InstalledWorkspaceTests(unittest.TestCase):
                                      capture_output=True, text=True)
             self.assertEqual(created.returncode, 0, created.stdout + created.stderr)
             self.assertFalse((workspace / '.claude/skills').exists())
+            for relative in ('START-HERE.md', 'memory/preferences/cowork-environment.md'):
+                self.assertFalse((workspace / relative).exists(), relative)
+            for relative in ('CLAUDE.md', 'memory/rules.md', 'memory/index.md'):
+                text = (workspace / relative).read_text()
+                self.assertNotIn('cowork-environment.md', text)
+                self.assertNotIn('environment note', text)
             self.assertFalse(list(workspace.rglob('*.skill')))
             for relative in ('projects/README.md', 'memory/preferences/document-scaffolding.md'):
                 self.assertNotIn('.claude/skills/', (workspace / relative).read_text())

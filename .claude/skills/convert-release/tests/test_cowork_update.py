@@ -247,6 +247,9 @@ class UpdateCliTests(unittest.TestCase):
                      'memory/schema.json': b'{}\n', '.claude/cowork/skills/index.json': b'{}\n'}
             files.update({'.claude/cowork/workspace/CLAUDE.md': b'cowork\n',
                           '.claude/cowork/workspace/cowork-environment.md': b'environment\n',
+                          'memory/rules.md': b'old routing', 'memory/index.md': b'old index',
+                          '.claude/cowork/workspace/rules.md': b'routing\n',
+                          '.claude/cowork/workspace/index.md': b'index\n',
                           '.claude/skills/personal-memory/scaffold/README.md': b'layout\n'})
             for rel, data in files.items():
                 target = source / rel

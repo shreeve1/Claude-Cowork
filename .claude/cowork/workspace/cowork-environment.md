@@ -7,6 +7,8 @@ updated: 2026-11-01
 topics: [preference, workspace-layout, tools]
 ---
 
+Reference only for setup agents in staging. Do not copy or recreate this note in a new or migrated owner workspace; runtime helper resolution is in the generated `CLAUDE.md`. Existing owner notes are not permission for automatic deletion.
+
 ## Active memory
 
 - This workspace is for Claude Cowork only. Maintainer skill sources, persona files, package-builder scripts and tests stay in the Release, not the owner’s workspace.
