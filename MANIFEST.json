@@ -289,7 +289,7 @@
   },
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
-   "sha256": "1b2b4f667444814df8cb87252fb383e7e6ea67d7fabc4c8d8e68be4f541cf2dd",
+   "sha256": "efb327fdc82aaaa6812f6680fb378404a6397e488eb01fe1c3dc36078bd10d88",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
@@ -304,7 +304,7 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "2a8088f18beb4989a5e64c839806c8371982b15641fb05a9a17d9e894fb5797a",
+   "sha256": "2a048148cda230dec482e8cf78fcccfeb1f055adcf955deed2d5045825d0516c",
    "mode": "644"
   },
   ".claude/setup/UPDATE-RECOVERY.md": {
@@ -7134,7 +7134,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "b561cbaff28e4ae6544d533cf24233a885e84654e5a661ee1101431388d95082",
+   "sha256": "be4124b4e68bd5d0f9c1f8040b8c423099f0c1f8ae173a3a452c16e94f339933",
    "mode": "644"
   },
   "CLAUDE.md": {
@@ -7155,7 +7155,7 @@
   "README.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "49b3d644f88fc1bcfc0c1eb88d147f4486dde2ab6bf874ba7feccdfadd565bbd"
+   "sha256": "319582348e83c829216a3802d0951328dca0e62945020067440015d730113ca9"
   },
   "START-HERE.md": {
    "class": "local",

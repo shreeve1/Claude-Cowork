@@ -16,9 +16,24 @@ Use installed memory-setup and personal-memory to recommend from the work the ow
 
 Set the folder map and schema together with approval. Preserve existing `client_folder`, subjects, `client_dirs` including an empty list, topics and topic directories during updates; proposed additions need approval. Verify real project/file links when available. Use installed personal-memory’s task and supporting templates. Keep one root `tasks/index.md` linking active/waiting records in `projects/<subject>/tasks/` or `clients/<client>/tasks/`, or other task homes agreed in the folder map. Root `tasks/` supports unassigned and legacy work. Do not move existing tasks or remove existing indexes without approval. Use tasks.md for discovery, progress, recovery and archival across these homes; memory holds lasting facts, not duplicate task status.
 
-## 3. Personalize behavior
+## 3. Learn the owner’s environment
 
-Discuss only choices relevant to this owner’s work, such as answer style, document destinations or recurring work; skip settled or irrelevant topics rather than run an exhaustive checklist. Save approved preferences through installed personal-memory, with rule rows pointing to the relevant notes. Preserve previous handwritten memory before edits. Do not put personal rules into shipped `CLAUDE.md` or edit packaged skills as a substitute for a preference.
+Ask what the owner works in day to day: apps, accounts, connected services, shared folders and the files they reach for most. Check what this Cowork session can actually reach (attached folders, connectors) and say plainly what works now and what needs a folder attached or a connector added. Save approved durable facts through installed personal-memory as the owner’s own note, such as `memory/preferences/tools-and-accounts.md`, with a `memory/rules.md` row that loads it when tools come up. This note is the owner’s, separate from the shipped Cowork environment preference. Done when the owner has confirmed the list and each item is marked reachable, needs access, or out of scope.
+
+## 4. Practice on real work
+
+Adaptation is finished by doing. Run up to four short practice runs on the owner’s real material, choosing those that fit their work:
+
+1. **A project or tracked thing:** set up one real project README or tracked subject with its actual files and links.
+2. **A saved task:** save one piece of real unfinished work. After a migration, pick up a migrated task instead.
+3. **A recurring job:** do one job the owner repeats, such as an email draft, a meeting transcript, research or a report, end to end with them.
+4. **A procedure:** when that job repeats, offer to draft it as a procedure. The practice run counts as its verification only if the owner watched it work; save it only on their approval.
+
+Before each run, say in one line what it will show them. After each, ask: “What would you change about how that went?” Turn answers and corrections into proposed preferences for section 5. Done when each chosen run is finished or the owner skipped it. When the owner wants to stop early, offer to save the remaining runs as one saved task, “Finish adapting the workspace”, with the next run as its next action.
+
+## 5. Personalize behavior
+
+Start from what practice showed: propose preferences from the owner’s answers and corrections during the runs. Then discuss only other choices relevant to this owner’s work, such as answer style, document destinations or recurring work; skip settled or irrelevant topics rather than run an exhaustive checklist. Save approved preferences through installed personal-memory, with rule rows pointing to the relevant notes. Preserve previous handwritten memory before edits. Do not put personal rules into shipped `CLAUDE.md` or edit packaged skills as a substitute for a preference.
 
 Optional video skills and any start-of-day routine are separate choices. For meetings, use the installed meeting skill’s first-use instructions and verify a real run. For a routine or memory sweep, use Cowork only; do not prescribe another app, external headless command or a scheduler that cannot reach this workspace. Report untested scheduling as untested.
 

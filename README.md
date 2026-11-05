@@ -13,7 +13,7 @@ For **all three situations** below:
 3. Give Claude access to the local folders your chosen prompt names: click **Add folder** below the message box, select **Choose folder** if offered, browse to the folder, then confirm the selection. Button labels can vary; use the matching folder-selection control.
 4. Paste **one** prompt below: 1 for a fresh setup, 2 for migration, or 3 for an update. Replace the bracketed descriptions with your actual folder names or paths.
 
-Claude should guide you through every step: what to click, which folder to select, and what happens next. It handles the technical work and asks you about your preferences, permissions and changes that need approval. You do not need to choose technical methods.
+Claude should guide you through every step: what to click, which folder to select, and what happens next. It handles the technical work and asks you about your preferences, permissions and changes that need approval. You do not need to choose technical methods. It shows the route at the start, keeps going after each approval, and ends each message with what comes next. Setup finishes with a few short practice runs on your real work so the workspace fits how you work; you can pause them and pick them up later as a saved task. An update ends by showing what is new for how you work.
 
 The agent uses the attached ZIP, so it does not need to download files from GitHub. It extracts the ZIP separately, never over your existing workspace. If the attachment cannot be read, it should tell you what access is missing before making changes.
 
