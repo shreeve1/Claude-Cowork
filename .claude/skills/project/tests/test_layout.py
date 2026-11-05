@@ -98,6 +98,63 @@ class LayoutTests(unittest.TestCase):
                 with self.subTest(file=path.name, target=relative):
                     self.assertTrue((SKILLS / relative).exists(), relative)
 
+    def import_text(self):
+        return self.read_required("import.md")
+
+    def test_reads_cowork_project_copy(self):
+        text = self.import_text()
+        for needle in ("metadata.json", "memory.md", "docs/", "files/", "Add folder"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
+    def test_four_verdicts(self):
+        text = self.import_text()
+        for verdict in ("`project`", "`owner-wide`", "`covered`", "`drop`"):
+            with self.subTest(verdict=verdict):
+                self.assertIn(verdict, text)
+
+    def test_approval_before_write(self):
+        text = self.import_text()
+        self.assertIn("Write nothing until", text)
+        write_step = re.search(r"^\d+\. \*\*Write", text, re.M)
+        if write_step is None:
+            self.fail("Missing numbered Write step")
+        self.assertLess(text.index("Write nothing until"), write_step.start())
+
+    def test_reimport_never_overwrites(self):
+        text = self.import_text()
+        for needle in ("Source:", "differences", "not deleted"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
+    def test_files_limits_named(self):
+        text = self.import_text()
+        for needle in ("Word", "text only", "ID", "git-ignored"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
+    def test_credentials_by_line(self):
+        text = self.import_text()
+        self.assertIn("by line", text)
+        self.assertIn("never value", text)
+
+    def test_no_copy_visible_fallback(self):
+        text = self.import_text()
+        for needle in ("paste", "Add project context from", "Add folder", "project page"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
+    def test_batch(self):
+        text = self.import_text()
+        self.assertIn("one project per chat", text)
+        self.assertRegex(text, r"(?s)done.{0,200}Source:|Source:.{0,200}done")
+
+    def test_ends_with_open_as_proof(self):
+        steps = re.findall(r"^\d+\. .*(?:\n(?!\d+\. ).+)*", self.import_text(), re.M)
+        self.assertGreaterEqual(len(steps), 8)
+        self.assertIn("Open a project", steps[-1])
+        self.assertIn("briefing", steps[-1])
+
     def test_no_personal_content(self):
         # Split fixtures so scanning this test does not flag the fixtures themselves.
         forbidden = (
