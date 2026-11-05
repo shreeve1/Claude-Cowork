@@ -101,6 +101,15 @@ class LayoutTests(unittest.TestCase):
     def import_text(self):
         return self.read_required("import.md")
 
+    def test_single_source_line_format(self):
+        text = self.import_text()
+        source_formats = re.findall(r"Source: Claude Project[^\n`]*", text)
+        self.assertEqual(
+            source_formats,
+            ["Source: Claude Project <id>, imported YYYY-MM-DD"],
+        )
+        self.assertNotIn("naming the project's name instead of an ID", text)
+
     def test_reads_cowork_project_copy(self):
         text = self.import_text()
         for needle in ("metadata.json", "memory.md", "docs/", "files/", "Add folder"):
