@@ -247,6 +247,28 @@ class InstalledWorkspaceTests(unittest.TestCase):
                 text = (workspace / relative).read_text()
                 self.assertNotRegex(text, r'\]\(memory/', relative)
 
+    def test_setup_offers_project_import_before_finish(self):
+        guide = (ROOT / '.claude/setup/README.md').read_text()
+        first = guide.split('## First setup', 1)[1].split('## Skills in Cowork', 1)[0]
+        offer = first.index('7. **Offer project import.**')
+        self.assertIn('project', first[offer:first.index('**Finish.**')])
+        self.assertIn('import', first[offer:first.index('**Finish.**')])
+        self.assertLess(offer, first.index('8. **Finish.**'))
+
+    def test_setup_documents_project_skill_exception(self):
+        guide = (ROOT / '.claude/setup/README.md').read_text()
+        section = guide.split('## Skills in Cowork', 1)[1].split('## Git and Python', 1)[0]
+        self.assertIn('project-skills.md', section)
+        self.assertIn('Save skill', section)
+
+    def test_update_switches_project_row_after_install(self):
+        guide = (ROOT / '.claude/setup/README.md').read_text()
+        update = guide.split('## A newer version arrived', 1)[1].split('6. **Verify and finish.**', 1)[0]
+        step = update[update.index('5. **Install changed cards.**'):]
+        self.assertIn('Starting or continuing work on a project', step)
+        self.assertIn('`project` card is confirmed installed', step)
+        self.assertIn('keep the previous row', step)
+
 
 if __name__ == '__main__':
     unittest.main()

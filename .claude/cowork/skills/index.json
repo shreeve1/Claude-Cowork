@@ -151,6 +151,10 @@
   "set": "core",
   "sha256": "51e9266aaa0482f36f9ddb664b2fc71929a71d7081136e50b0dd47991a6da2dd"
  },
+ "project": {
+  "set": "core",
+  "sha256": "5edb2a682171b665ad7481b5bddd5e563d560e33c2d8b11812f130a89a30b0e3"
+ },
  "remotion-to-hyperframes": {
   "set": "video",
   "sha256": "d02be65b7f3f4a63803327cc6011486da008317f94c612b20566a80d07a9ef23"
