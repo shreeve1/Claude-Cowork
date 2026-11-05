@@ -229,6 +229,24 @@ class InstalledWorkspaceTests(unittest.TestCase):
             self.assertEqual(checked.returncode, 0, checked.stdout + checked.stderr)
             self.assertFalse((workspace / '.claude/skills').exists())
 
+    def test_first_stage_installs_every_rule_skill_and_ships_no_maintainer_decisions(self):
+        # The first-stage card batch must cover the rules' skills, or memory setup's audit fails.
+        guide = (ROOT / '.claude/setup/README.md').read_text()
+        self.assertIn('every other skill a `skill` pointer in the workspace’s `memory/rules.md` names', guide)
+        with tempfile.TemporaryDirectory() as td:
+            workspace = Path(td) / 'ws'
+            created = subprocess.run([sys.executable, str(SCRIPT), 'create', str(ROOT), str(workspace)],
+                                     capture_output=True, text=True)
+            self.assertEqual(created.returncode, 0, created.stdout + created.stderr)
+            rules = (workspace / 'memory/rules.md').read_text()
+            rows = '\n'.join(line for line in rules.splitlines() if line.startswith('|'))
+            for name in {'personal-memory', 'memory-setup', *re.findall(r'skill `([^`]+)`', rows)}:
+                self.assertTrue((ROOT / '.claude/cowork/skills/core' / (name + '.skill')).is_file(), name)
+            # Generated indexes ship as-is; maintainer decisions/workflows would leave broken links.
+            for relative in ('memory/decisions/index.md', 'memory/workflows/index.md'):
+                text = (workspace / relative).read_text()
+                self.assertNotRegex(text, r'\]\(memory/', relative)
+
 
 if __name__ == '__main__':
     unittest.main()

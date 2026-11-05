@@ -10,7 +10,7 @@ Kept from the earlier Cowork edition: `convert-release`, `memory/preferences/cow
 
 Cowork-only changes:
 
-- Guided setup keeps momentum and adapts by practice. The agent shows the route at the start, continues after each approval and ends each turn with `Next:`. First setup installs only personal-memory and memory-setup up front; remaining cards follow practice, matched to the owner's work. Adaptation adds the owner's tools and environment and up to four practice runs on real work, resumable as a saved task. Updates end by showing what's new for the owner. Guide-only change; native Cowork run not yet tested.
+- Guided setup keeps momentum and adapts by practice. The agent shows the route at the start, continues after each approval and ends each turn with `Next:`. Migration groups are approved in one reply. First setup installs personal-memory, memory-setup and the skills the workspace rules name up front (the memory audit requires them); remaining cards follow practice, matched to the owner's work. Adaptation adds the owner's tools and environment and up to four practice runs on real work; a paused adaptation saves a self-contained task, since staged guides stay outside the workspace. Updates end by showing what's new for the owner. A new test keeps the first-stage cards and shipped topic indexes in step. Guide-only change; native Cowork run not yet tested.
 
 - Fresh setup and migration no longer add `START-HERE.md` or the shipped Cowork environment preference. Projected memory rules/index omit that reference; generated instructions retain helper discovery without requiring the note. Update plans exclude both reference files and preserve existing owner copies.
 

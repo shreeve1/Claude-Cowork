@@ -289,7 +289,7 @@
   },
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
-   "sha256": "efb327fdc82aaaa6812f6680fb378404a6397e488eb01fe1c3dc36078bd10d88",
+   "sha256": "5afbd95aa9cfc6bb3c4392f3370fa52c7fea697c1f1f833e1f6fb1ad7cb7331d",
    "mode": "644"
   },
   ".claude/setup/MANIFEST.md": {
@@ -304,7 +304,7 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "2a048148cda230dec482e8cf78fcccfeb1f055adcf955deed2d5045825d0516c",
+   "sha256": "12093357473c319e85391748f858e401f05726808ed234a3ace9251ed6fdf64b",
    "mode": "644"
   },
   ".claude/setup/UPDATE-RECOVERY.md": {
@@ -7134,7 +7134,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "be4124b4e68bd5d0f9c1f8040b8c423099f0c1f8ae173a3a452c16e94f339933",
+   "sha256": "856e63dd6e8c7090652ec71a5388f444e444d0c1817ca74982cfcb268cb36fd4",
    "mode": "644"
   },
   "CLAUDE.md": {
@@ -7224,7 +7224,7 @@
   },
   "memory/index.md": {
    "class": "local",
-   "sha256": "b47aa52ed741a2f981ebf9dd81f8ca75fc2341135cb6ae2bf7374859bd5f4907",
+   "sha256": "2f5a8c353a466b780d5a9ba5a7944fac3eb011873d029564a23061553761584d",
    "mode": "644"
   },
   "memory/preferences/.gitkeep": {
@@ -7240,7 +7240,7 @@
   "memory/preferences/cowork-environment.md": {
    "class": "seed",
    "mode": "644",
-   "sha256": "953006a0197c99ed22c9f74d472bbe4517a062c679803942fdc11e906846e951"
+   "sha256": "deca2c89243f7881030c54ea36071f910457687ebb17304c1938cfe4be60f1ee"
   },
   "memory/preferences/diagrams.md": {
    "class": "seed",

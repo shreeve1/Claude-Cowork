@@ -3,7 +3,7 @@ title: Claude Cowork Environment
 type: preference
 status: promoted
 created: 2026-10-10
-updated: 2026-11-01
+updated: 2026-11-02
 topics: [preference, workspace-layout, tools]
 ---
 
@@ -22,7 +22,7 @@ topics: [preference, workspace-layout, tools]
 - Tool names in shipped text: `Read`, `Write`, `Edit`, `Glob`, `Grep`, `Bash`, `web_fetch`, `WebSearch`, `Agent` (subagents, including the "reviewer agent"), `AskUserQuestion`. Where a skill says to ask in plain text, do not use `AskUserQuestion`. The reviewer checks a skill-script diff against `CODING_STANDARDS.md`.
 - Setup source: first setup, migration and update use an owner-attached ZIP and its `.claude/setup/README.md`, with the matching numbered README prompt. Do not fetch GitHub; restricted-system testing requires the attachment route.
 - Updates keep the existing workspace folder, after a verified pre-update backup. Follow "A newer version arrived" in the attached ZIP’s guide; run the comparison helper from the extracted Release against that backup, not from the user workspace. Preserve personal content and stop for conflicts or failed checks.
-- Guided setup/migration/update: Claude handles technical work; give exact visible controls, next action and expected result. Ask only real personalization/approval questions. Recommend Documents for backup only after checking safety/access; explain the subfolder, preserve the working path and confirm location.
+- Guided setup (owner, 2026-11-02): Roadmap, keep going after each reply, end turns `Next:`, batch migration groups into one reply. First stage installs memory skills plus every skill rules name (audit fails otherwise); adapt by practice. Record maintainer decisions here: `memory/decisions/index.md` ships to users.
 - Adaptation (owner approved, 2026-11-01): root `tasks/index.md` links active/waiting records in `projects/<subject>/tasks/` and `clients/<client>/tasks/`, not local indexes. Root tasks support unassigned/legacy work. Other choices stay situational; preserve layouts unless changes are approved. Keep personal rules in preferences, not per-owner skill patches.
 - Update design (owner, 2026-11-01): keep it simple and prove it in Cowork; retain approval/projection safeguards and separate skill installs. Full backup stays mandatory until a tested replacement is adopted. Prototype feasibility: `docs/testing/cowork-update-feasibility-2026-11-01.md`. Actual helper synthetic CLI update/restore passed 15 checks; native suite had snapshot/staging defects, not clean acceptance (`docs/testing/cowork-shipped-updater-2026-11-01.md`). Snapshot exclusions must use workspace-relative paths: an absolute `.workspace-backups` ancestor otherwise hides every target. No metadata, outside-writer or power-loss guarantee; ordinary ZIP-prompt acceptance remains unproved.
 - `artifacts/migration/` holds the previous workspace from an update. Exclude it from searches; never edit it.
