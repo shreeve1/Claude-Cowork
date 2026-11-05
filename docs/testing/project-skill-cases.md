@@ -43,4 +43,23 @@ Each case ran a fresh agent (`cheap` alias) given only the installed skills and 
 
 ## Desktop acceptance (Task 6)
 
-Waiting for James. Each UI action (presenting and saving the card, import chat, fresh-chat open, project skill save, two projects in one chat) needs his go-ahead.
+Run 2026-11-05 on `wrk` against Windows Claude desktop (Opus 5.5), with James's approval for each UI action. James stopped after step 4; steps 3 and 5 were not run.
+
+| Step | Result |
+|---|---|
+| 1. Present and save the card | Pass. `project.skill` presented with `present_files` from `C:\Users\Public\project-skill-test`; James clicked **Save skill**; Customize > Skills > Yours lists it. |
+| 2. Import Openly design | Pass with caveats. `itastack - Copy` turned out to be the old Codex layout (no `CLAUDE.md`, `projects/`, Git or Project README template); the skill refused twice without writing, which is correct. Rerun into a fresh workspace (`Documents\cowork-project-test`, from `workspace.py create`). The proposal matched `import.md`: exact path, credential screen, keep/leave/conflicts, owner-wide rule offered, Word-as-text question, ID names with the no-history note, skill recommended, approve parts. After approval: 5 docs and 22 images/PDF byte-identical to the project copy; `Setup_Checklist.md` dropped as Claude-app-only; `memory.md` and `metadata.json` not copied raw; README with `Source: Claude Project 019e6a06-...`; one owner-wide rule in `memory/preferences/writing.md`; glossary row; briefing shown; audit passes. |
+| 3. Open in a fresh chat | Not run. The import chat showed the Open briefing as its proof step. |
+| 4. Project skill | Pass. `openly-design` written as steps only (opens the project first), saved with **Save skill**, `Skill:` line added. In a fresh chat, "draft an Openly one-pager for agents about the claims process" loaded the skill unprompted and saved a brand-compliant draft to `projects/openly-design/drafts/`. |
+| 5. Two projects in one chat | Not run; still an open question. |
+
+Caveats and drift:
+
+- Cowork could not commit in the test workspace: it skipped setup, so the hook had no personal-memory path and the audit failed on the rules' uninstalled `meeting` skill; the sandbox also left a 0-byte `.git/index.lock` it could not delete. Commits `a46f413` and `e810164` were made from WSL. A real setup installs every rules-named skill and sets the hook path, so this is a fixture gap.
+- The proposal offered look-based image renames; the skill allows renames only on a certain manifest match.
+- The README copied brand colours and fonts instead of linking `files/Openly_Brand_Reference.md`, and said "Git ignores these".
+- The skill run reviewed the design by eye because antislop was not installed in the test workspace, and said so.
+
+After testing, James renamed the skill to `project-import` (commit `00853d9`). The rules row names it, so first setup and migration install it in the first stage.
+
+Cleanup candidates (James decides; nothing removed): chats "Skill card project presentation", "Project import", "Openly agents claims one-pager"; folder `C:\Users\james\Documents\cowork-project-test`; `C:\Users\Public\project-skill-test`; helper scripts `abs.ps1` and `uiatext.ps1` in `C:\Users\Public\`; installed skills `project` (old name) and `openly-design`.
