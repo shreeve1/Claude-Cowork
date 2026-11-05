@@ -27,4 +27,4 @@ Owner decisions (James, 2026-11-02):
 ## Notes
 
 - Last reviewed: 2026-11-02
-- Design: `docs/superpowers/specs/2026-11-02-project-skill-design.md` (awaiting owner approval).
+- Design: `docs/superpowers/specs/2026-11-02-project-skill-design.md` (approved by James 2026-11-02); plan: `docs/superpowers/plans/2026-11-02-project-skill.md`.
