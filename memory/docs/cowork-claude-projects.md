@@ -1,6 +1,6 @@
 ---
-title: Claude Projects in Cowork - What a Chat Can Export
-summary: What a Cowork chat can export from a Claude app Project: exact instructions/memory, text docs, ID-named files, no chat history.
+title: Claude Projects in Cowork - Export and Import Decisions
+summary: What a Cowork chat can export from a Claude app Project, and James's decisions on sorted import and project skills.
 type: doc
 status: promoted
 created: 2026-11-02
@@ -20,9 +20,18 @@ topics: [tools, projects]
 - Not yet tested: several projects in one chat.
 - Driving the desktop from `wrk` (2026-11-02): PrintWindow showed only a loading skeleton; foregrounding the window and using CopyFromScreen worked. Call SetProcessDPIAware before reading window coordinates, or clicks miss. Pasting through the clipboard then verifying the draft before sending was reliable.
 
+Owner decisions (James, 2026-11-02; kept here because `memory/decisions/index.md` ships to users):
+
+- **Sorted import** (instructions, memory and files reviewed and approved), not a raw copy.
+- Import is **offered as the last step** of setup and migration, after adapting, and any time later; many projects allowed.
+- Filed wherever the workspace's setup keeps work (projects, clients or the owner's word); never assume client or project.
+- **Both shapes**: every project gets a folder opened by one shared `project` skill; a project with repeatable steps may also get its own skill.
+- **Exception to "never build skills for end users"**: import-made project skills, each owner-approved, installed with **Save skill**.
+- Setup and migration explain creating skills inside Cowork.
+- Design (approved): `docs/superpowers/specs/2026-11-02-project-skill-design.md`; plan: `docs/superpowers/plans/2026-11-02-project-skill.md`.
+
 ## Related
 
-- [Project import decisions](memory/decisions/projects/decision-project-import.md) - how imports use this.
 - [Claude Cowork Environment](memory/preferences/cowork-environment.md) - Windows desktop control used for the test.
 
 ## Notes
