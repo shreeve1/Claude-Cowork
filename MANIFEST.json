@@ -85,7 +85,7 @@
   ".claude/cowork/skills/core/project.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "ffe9827072a5277f5cfc4e1837e856b11b85ce7749a9539fc4ea3f26e4cf0cc7"
+   "sha256": "cee887d4772935336ae48e449405e6cae58d54eb3ede6107d8b58dbc13cde328"
   },
   ".claude/cowork/skills/core/startday-spec.skill": {
    "class": "merge",
@@ -120,7 +120,7 @@
   ".claude/cowork/skills/index.json": {
    "class": "merge",
    "mode": "644",
-   "sha256": "6f91e71c7d8322cb67f1c043a8b130b2fe001f0c2f75362cde82421dcb481049"
+   "sha256": "dc6785b74fee157d5183d97e3e938329914eb7d8c478f8d5edade53302c798b7"
   },
   ".claude/cowork/skills/video/captions-overlay.skill": {
    "class": "merge",
@@ -309,7 +309,7 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "ecf72897aeeee1fc7026b0c9e68d41efaa55558faf249c658b868fb5e83e6b7f",
+   "sha256": "82e480533107a52c76764308aeaf573a6d0245bc0ec052aadd1d4c8a057f7c4c",
    "mode": "644"
   },
   ".claude/setup/UPDATE-RECOVERY.md": {
@@ -5490,12 +5490,12 @@
   ".claude/skills/project/SKILL.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "91132aeae7bc964e263928b99d32b128baa74f28e70d0f0a63b44b858d506273"
+   "sha256": "3fabf20801238de3a78fddd1fbde08f72e27dd065cc95206bd5ee29d1685c8d1"
   },
   ".claude/skills/project/import.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "9372859a3e9366507153d56ae1fb583aab40b0051e9b52f10ba82a0300b284d5"
+   "sha256": "d74fdf463074c89042a0d6a184d545e8c95881ac53f861feb769299bf0d05099"
   },
   ".claude/skills/project/project-skills.md": {
    "class": "merge",
@@ -5505,7 +5505,7 @@
   ".claude/skills/project/tests/test_layout.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "0200a6bf769cdf7744085be727a39a7233ad29ef84006742cb0cfa5b8bcbb7d8"
+   "sha256": "aa542c59501ad4968d60dfdfb3957ac2e63b104043fec966ec921154e567e812"
   },
   ".claude/skills/remotion-to-hyperframes/SKILL.md": {
    "class": "merge",

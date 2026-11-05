@@ -18,6 +18,7 @@ Read `memory/schema.json` (`client_folder`, `client_dirs`) and `memory/preferenc
   README.md        # Project README from personal-memory/supporting-templates.md
   instructions.md  # approved working instructions, if any
   files/           # imported knowledge files
+  skill/           # project skill source, if any
 ```
 
 Two plain lines go inside the README's Files section:
@@ -31,7 +32,7 @@ Skill: <name>
 
 ## Open a project
 
-1. **Find.** Match the owner's words against glossary rows and README titles across `projects/` and the tracked folder. One match: use it. If several match, ask which. None: list the projects and offer Import.
+1. **Find.** Match the owner's words against glossary rows and the titles of READMEs under `projects/`, `<client_folder>/` and `<client_folder>/*/projects/`. One match: use it. If several match, ask which. None: list the projects and offer Import or starting a new one. On the owner's yes to a new one, create `<home>/<short>/README.md` from personal-memory's Project README template, then open it.
 2. **Load.** Read `README.md`, `instructions.md`, every memory note and task record the README links, and the `tasks/index.md` rows for this project: rows whose task this README links, or whose task record sits inside this project's folder. Another project's task row is not this project's. Done when every link is opened or reported missing.
 3. **Brief**, about 150 words: goal, instructions in force, open tasks and next steps, key facts, gaps or conflicts. When the README has a `Skill:` line, name the skill in the briefing. End by asking what we are doing today.
 4. **Hold.** Follow `instructions.md` for the conversation; workspace and safety rules win, and you name any conflict once. Switching projects drops the old instructions and says so.

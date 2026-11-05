@@ -146,20 +146,44 @@ class LayoutTests(unittest.TestCase):
 
     def test_files_limits_named(self):
         text = self.import_text()
-        for needle in ("Word", "text only", "ID", "git-ignored"):
+        for needle in ("Word", "text only", "ID", "no saved history"):
             with self.subTest(needle=needle):
                 self.assertIn(needle, text)
 
     def test_credentials_by_line(self):
         text = self.import_text()
-        self.assertIn("by line", text)
-        self.assertIn("never value", text)
+        self.assertRegex(text, r"(?s)Screen every text source \(instructions, `memory.md`, `docs/`\).{0,120}by file and line, never any part of the value")
+        self.assertIn("kept with that line removed", text)
+        self.assertIn("which file and line held a credential, never any part of the value", text)
+        self.assertNotIn("git-ignored", text)
 
     def test_no_copy_visible_fallback(self):
         text = self.import_text()
         for needle in ("paste", "Add project context from", "Add folder", "project page"):
             with self.subTest(needle=needle):
                 self.assertIn(needle, text)
+
+    def test_project_copy_and_matching(self):
+        text = self.import_text()
+        for needle in (
+            "project cache",
+            "confirm the name before sorting",
+            "ask the owner to name them",
+            "glossary row or README title",
+            "a pasted import used it as its id",
+            "Never copy what a project file already says",
+            "uses a Claude app tool",
+        ):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
+    def test_open_new_project_and_search_scope(self):
+        text = self.read_required("SKILL.md")
+        open_section = self.section("Open a project")
+        for needle in ("Import or starting a new one", "Project README template", "<client_folder>/*/projects/"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, open_section)
+        self.assertIn("skill/           # project skill source, if any", text)
 
     def test_batch(self):
         text = self.import_text()
