@@ -1,6 +1,8 @@
 import re
 import sys
+import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 SKILL = Path(__file__).resolve().parents[1]
@@ -163,6 +165,60 @@ class LayoutTests(unittest.TestCase):
         self.assertGreaterEqual(len(steps), 8)
         self.assertIn("Open a project", steps[-1])
         self.assertIn("briefing", steps[-1])
+
+    def project_skills_text(self):
+        return self.read_required("project-skills.md")
+
+    def test_template_passes_cowork_checks(self):
+        text = self.project_skills_text()
+        blocks = re.findall(r"```markdown\n(.*?)\n```", text, re.S)
+        self.assertEqual(len(blocks), 1, "Expected one fenced markdown template")
+        template = blocks[0]
+        for placeholder in ("<skill-name>", "<description>"):
+            self.assertIn(placeholder, template)
+        for needle in ("Open the project first", "## Steps"):
+            self.assertIn(needle, template)
+        filled = template.replace("<skill-name>", "brand-guide").replace(
+            "<description>", "Apply the brand guide to new material. Use when drafting or reviewing branded content."
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp) / "brand-guide"
+            folder.mkdir()
+            (folder / "SKILL.md").write_text(filled, encoding="utf-8")
+            self.assertEqual(cowork_skills.check(folder), [])
+            dest = Path(tmp) / "brand-guide.skill"
+            cowork_skills.package(folder, dest)
+            with zipfile.ZipFile(dest) as archive:
+                self.assertEqual(archive.namelist(), ["brand-guide/SKILL.md"])
+
+    def test_steps_only_no_facts(self):
+        text = self.project_skills_text()
+        for needle in ("steps", "no facts", "README.md", "repeatable"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
+    def test_requires_owner_approval_and_save_skill(self):
+        text = self.project_skills_text()
+        for needle in ("approval", "present_files", "Save skill", "skill/SKILL.md", "Skill: <name>"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
+
+    def test_blocked_install_reported(self):
+        text = self.project_skills_text()
+        self.assertIn("forbids", text)
+        self.assertIn("blocked", text)
+        self.assertIn("opener", text)
+
+    def test_name_collision_checked(self):
+        text = self.project_skills_text()
+        self.assertIn("installed", text)
+        self.assertIn("shipped", text)
+
+    def test_upload_rules_listed(self):
+        text = self.project_skills_text()
+        for needle in ("allowed-tools", "compatibility", "1024", "kebab-case", "64", "zipfile"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, text)
 
     def test_no_personal_content(self):
         # Split fixtures so scanning this test does not flag the fixtures themselves.
