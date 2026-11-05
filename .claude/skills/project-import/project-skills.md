@@ -45,7 +45,7 @@ description: <description>
 
 # <skill-name>
 
-Open the project first: run the `project` skill's Open a project branch for `<short>`, then read `<home>/<short>/README.md` for facts, files and instructions.
+Open the project first: run the `project-import` skill's Open a project branch for `<short>`, then read `<home>/<short>/README.md` for facts, files and instructions.
 
 ## Steps
 

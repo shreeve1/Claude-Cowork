@@ -266,7 +266,7 @@ class InstalledWorkspaceTests(unittest.TestCase):
         update = guide.split('## A newer version arrived', 1)[1].split('6. **Verify and finish.**', 1)[0]
         step = update[update.index('5. **Install changed cards.**'):]
         self.assertIn('Starting or continuing work on a project', step)
-        self.assertIn('`project` card is confirmed installed', step)
+        self.assertIn('`project-import` card is confirmed installed', step)
         self.assertIn('keep the previous row', step)
 
 

@@ -21,7 +21,7 @@ Read at session start. Load every Always row now. Before each task, load every r
 | Designing a visual output: HTML page, PDF, slide, UI | | skill `antislop`, skill `antislop-ui` | Show the full antislop PASS/FAIL report with the deliverable. |
 | Writing a research file | | `memory/preferences/research-documents.md` | |
 | A question about a website, portal or web app, or a step blocked behind a web sign-in | | `memory/preferences/browser-shared-view.md` | |
-| Starting or continuing work on a project | skill `project` | `memory/preferences/document-scaffolding.md` | Open the project and brief before work. |
+| Starting or continuing work on a project | skill `project-import` | `memory/preferences/document-scaffolding.md` | Open the project and brief before work. |
 | Work on one client | | `memory/clients/_hubs/<short>.md` | Short name from the glossary. Setup (the Tracking model step in the setup docs) renames this row to the owner's word and folder, or deletes it. |
 | Shorthand name of a client, person or system | | `memory/glossary.md` | |
 | A word that sounds like a defined term | | `CONTEXT.md` | |

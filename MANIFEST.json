@@ -5,7 +5,7 @@
   ".claude/cowork/cowork_skills.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "46416bbafe5e755f3f0e8f47009e9b60cf243e75e73dd3b3799fa297a14658b8"
+   "sha256": "6842b17e06c42a45f9f452ddc96bc273230a30655e7777894a0956ce6236028f"
   },
   ".claude/cowork/skills/core/adhd.skill": {
    "class": "merge",
@@ -82,10 +82,10 @@
    "mode": "644",
    "sha256": "7e7e319b54881161155eb5b70ce6ccd3bdf9f988715f880ab8a7b015a039ca37"
   },
-  ".claude/cowork/skills/core/project.skill": {
+  ".claude/cowork/skills/core/project-import.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "cee887d4772935336ae48e449405e6cae58d54eb3ede6107d8b58dbc13cde328"
+   "sha256": "a6144d1731c6b102cd013c5905de2c40346ba4af72666e507318f5fdfc6e4851"
   },
   ".claude/cowork/skills/core/startday-spec.skill": {
    "class": "merge",
@@ -120,7 +120,7 @@
   ".claude/cowork/skills/index.json": {
    "class": "merge",
    "mode": "644",
-   "sha256": "dc6785b74fee157d5183d97e3e938329914eb7d8c478f8d5edade53302c798b7"
+   "sha256": "2770f17e7952dba1d84f9d2becb65747b1c4dd34e8fc76211efb755bc3fc8709"
   },
   ".claude/cowork/skills/video/captions-overlay.skill": {
    "class": "merge",
@@ -290,7 +290,7 @@
   ".claude/cowork/workspace/rules.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "9a343eee1fdcb585cc2792cff135cc863b8edbfc8c430a4babd713dd7a1dcdc1"
+   "sha256": "af5fa89460da90367bd96a371135e04fc42245a88848b93a9635838939da13fc"
   },
   ".claude/setup/ADAPTING.md": {
    "class": "merge",
@@ -309,7 +309,7 @@
   },
   ".claude/setup/README.md": {
    "class": "merge",
-   "sha256": "82e480533107a52c76764308aeaf573a6d0245bc0ec052aadd1d4c8a057f7c4c",
+   "sha256": "7769cc30a67b2d8e25a6b30f8542089842929bd39171bfdffeab9378fe7c7ac9",
    "mode": "644"
   },
   ".claude/setup/UPDATE-RECOVERY.md": {
@@ -5487,25 +5487,25 @@
    "sha256": "c8f01e3e6431bf8462ccf699980dae65dd9b7ba5697ee2828c0f36c330ebcc8d",
    "mode": "644"
   },
-  ".claude/skills/project/SKILL.md": {
+  ".claude/skills/project-import/SKILL.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "3fabf20801238de3a78fddd1fbde08f72e27dd065cc95206bd5ee29d1685c8d1"
+   "sha256": "378299a8878cf867057975adf4ea267d0fee496dc654acdf6fe5b21f1a3cef9c"
   },
-  ".claude/skills/project/import.md": {
+  ".claude/skills/project-import/import.md": {
    "class": "merge",
    "mode": "644",
    "sha256": "d74fdf463074c89042a0d6a184d545e8c95881ac53f861feb769299bf0d05099"
   },
-  ".claude/skills/project/project-skills.md": {
+  ".claude/skills/project-import/project-skills.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "d2509b1d55c34ac6e99106bafb0afb1112dd771257032e1f4e61df073574874f"
+   "sha256": "da71e9ccf858bb956b19075fb8ed6cdd57e95d8c79809927a74d0c9d39955c72"
   },
-  ".claude/skills/project/tests/test_layout.py": {
+  ".claude/skills/project-import/tests/test_layout.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "aa542c59501ad4968d60dfdfb3957ac2e63b104043fec966ec921154e567e812"
+   "sha256": "39ec034cff7deff982d4e014f4dc5a57aae173435cb39d520f0ae61b1372e171"
   },
   ".claude/skills/remotion-to-hyperframes/SKILL.md": {
    "class": "merge",
@@ -7159,7 +7159,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "3f473a7c3d9716efea7bfbe2aee723c8df2ced0e1655186e4416d25e72375195",
+   "sha256": "20b93580ba62e52dca16f774916e7d3a66a6e45e10613ed1e133d5cae3bf3e2d",
    "mode": "644"
   },
   "CLAUDE.md": {
@@ -7304,7 +7304,7 @@
   },
   "memory/rules.md": {
    "class": "seed",
-   "sha256": "8863f5fd4fa3d1291bed7d77889aef9f745b9a1b3f04f30df0e3c7dbd0cd6405",
+   "sha256": "aca000ba0dcd2573206266233da135232c9767ab6ba266619d70a4eb4ae5623e",
    "mode": "644"
   },
   "memory/schema.json": {

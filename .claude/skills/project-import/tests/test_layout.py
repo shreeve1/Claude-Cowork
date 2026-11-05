@@ -34,7 +34,7 @@ class LayoutTests(unittest.TestCase):
         if match is None:
             self.fail("Missing frontmatter")
         fields = dict(line.split(":", 1) for line in match[1].splitlines())
-        self.assertEqual(fields["name"].strip(), "project")
+        self.assertEqual(fields["name"].strip(), "project-import")
         description = fields["description"].strip()
         self.assertTrue(description.startswith("Project"), "Front-load the word Project")
         for word in ("open", "import", "skill"):

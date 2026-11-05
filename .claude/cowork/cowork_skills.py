@@ -29,7 +29,7 @@ import zipfile
 from pathlib import Path
 
 CORE = (
-    "personal-memory", "memory-setup", "project", "meeting", "professional-guidance", "talk-it-through",
+    "personal-memory", "memory-setup", "project-import", "meeting", "professional-guidance", "talk-it-through",
     "brainstorm-idea", "adhd", "teach", "handoff", "startday-spec", "workflow-builder",
     "antislop", "antislop-code", "antislop-copywriting", "antislop-human", "antislop-layoutmobile",
     "antislop-ui", "excalidraw-diagram", "drawio", "youtube", "troubleshoot-my-pc",

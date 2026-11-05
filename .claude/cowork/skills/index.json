@@ -151,9 +151,9 @@
   "set": "core",
   "sha256": "51e9266aaa0482f36f9ddb664b2fc71929a71d7081136e50b0dd47991a6da2dd"
  },
- "project": {
+ "project-import": {
   "set": "core",
-  "sha256": "35e83985d05ccc691ee2be73c0fe49eb614ea623d843a972363b24c4d5899765"
+  "sha256": "57c0dd446885a01916bd90eb8f928b741ecf5170157b422f052f651d4f2d36a5"
  },
  "remotion-to-hyperframes": {
   "set": "video",

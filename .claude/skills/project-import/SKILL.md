@@ -1,5 +1,5 @@
 ---
-name: project
+name: project-import
 description: Project work - open a project so the conversation is aligned with its goal, instructions, tasks and memory; import Claude app Projects into this workspace; or turn a project's repeatable steps into its own skill.
 ---
 
