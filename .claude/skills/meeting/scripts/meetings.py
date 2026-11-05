@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """List, show and archive the meeting transcripts waiting in one folder, for the `meeting` skill.
 
-    python3 .claude/skills/meeting/scripts/meetings.py --folder <transcripts folder> list
-    python3 .claude/skills/meeting/scripts/meetings.py --folder <transcripts folder> show <key>
-    python3 .claude/skills/meeting/scripts/meetings.py --folder <transcripts folder> archive <key>
+    python3 <skills>/meeting/scripts/meetings.py --folder <transcripts folder> list
+    python3 <skills>/meeting/scripts/meetings.py --folder <transcripts folder> show <key>
+    python3 <skills>/meeting/scripts/meetings.py --folder <transcripts folder> archive <key>
+
+`<skills>` is the folder holding the installed `meeting` skill. Run from the workspace root: `--root` (default: the
+current folder) is where Meeting Records are searched.
 
 A meeting is one transcript file (.txt .md .vtt .srt .json .docx) or one subfolder holding such files, for
 tools that save a folder per meeting. Names starting with "." and the archive folder (default
@@ -26,7 +29,6 @@ import zipfile
 from datetime import datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[4]
 EXTENSIONS = {".txt", ".md", ".vtt", ".srt", ".json", ".docx"}
 # A transcription tool may still be writing a file changed this recently.
 SETTLE_SECONDS = 120
@@ -324,7 +326,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="meetings.py", description="List, show and archive meeting transcripts.")
     ap.add_argument("--folder", required=True, help="the transcripts folder")
     ap.add_argument("--archive", help="where processed meetings go; default <folder>/Archive")
-    ap.add_argument("--root", default=str(ROOT), help="workspace root, searched for Meeting Records")
+    ap.add_argument("--root", default=".", help="workspace root, searched for Meeting Records; default the current folder")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("list", help="JSON list of waiting meetings, newest first")
     sub.add_parser("show", help="one meeting's text").add_argument("key")

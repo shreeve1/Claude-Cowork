@@ -65,7 +65,7 @@
   ".claude/cowork/skills/core/meeting.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "ecfbe6d93a6214d42d289724f5ad4320ad29a6fd192488da3afaf37d2c50fbba"
+   "sha256": "d593a9410bd9512bc2ba5d3b0cdf4ab70d43bb8c284a93b55306d2188d5b0d05"
   },
   ".claude/cowork/skills/core/memory-setup.skill": {
    "class": "merge",
@@ -115,7 +115,7 @@
   ".claude/cowork/skills/index.json": {
    "class": "merge",
    "mode": "644",
-   "sha256": "3561ba02034369266669122f47d9cd101d0db22ee491637e8502ab7bcd51547b"
+   "sha256": "1c0864d92a8d154809760a8b21d6eccf9af0dff956be3f2b905672e3a763863b"
   },
   ".claude/cowork/skills/video/captions-overlay.skill": {
    "class": "merge",
@@ -3395,12 +3395,12 @@
   ".claude/skills/meeting/SKILL.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "c0cf5c5a5dfff97a9e2a7a608239eea65e3aaa2ce1e53bdd0198a4690ed4cf99"
+   "sha256": "2d46b31025d4b04ac915709d8f7d136346f444dffece903384188045da95f60f"
   },
   ".claude/skills/meeting/scripts/meetings.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "ff145b30303fdef9b18e62c2c196a330ceae81fe997f0277e765f37b855063b4"
+   "sha256": "e4eba58eac8cd5eb4d46ae40e5b48fbd618c5ec7f6cada9e977be040181930c9"
   },
   ".claude/skills/meeting/scripts/tests/test_meetings.py": {
    "class": "merge",
@@ -7134,7 +7134,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "856e63dd6e8c7090652ec71a5388f444e444d0c1817ca74982cfcb268cb36fd4",
+   "sha256": "3c5e3d4bc1732c3cd7f481f97731999530b73b9ab1cd17dd47cb51b706aa0db1",
    "mode": "644"
   },
   "CLAUDE.md": {
