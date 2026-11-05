@@ -15,6 +15,7 @@
 | [Memory Updates - Replace Before Appending](memory/preferences/memory-maintenance.md) | preference | Search first; resolve authority and factual conflicts before replacing; preserve previous content; sweep references. | 2026-10-30 |
 | [Writing Guideline - Plain Prose for Any Agent Output](memory/preferences/writing.md) | preference | Plain prose for anything the owner reads - answer first, one fact per line, expand acronyms, state what was and was not checked. | 2026-10-10 |
 | [Recommendation-Led Talk It Through](memory/preferences/talk-it-through.md) | preference | Talk-it-through sessions should state understanding and recommend a direction before asking only decision-changing questions. | 2026-10-27 |
+| [Guided Setup Adapts by Practice](memory/decisions/projects/decision-guided-setup-practice.md) | decision | Setup shows a roadmap, keeps momentum, installs two memory skills first, then adapts via environment and practice runs; updates show what's new. | 2026-11-02 |
 | [Migration Ledger 2026-10-10](memory/docs/migration-ledger-2026-10-10.md) | doc | Release 1 Claude workspace -> Release 3 migration record. | 2026-10-10 |
 
 ## Client Hubs
