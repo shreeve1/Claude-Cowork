@@ -12,14 +12,15 @@ Steps and decisions about how to do the work. It keeps no facts. Facts, files an
 
 ## Steps
 
-1. **Name.** Use the project short name. Check it against the installed skill names and the shipped skill names (the ready-made cards the workspace offers). On a clash, ask the owner for another name. Done when no skill has the name.
+1. **Name.** Use the project short name. Check it against the installed skills listed in this session and the shipped skill names, which are the keys of `.claude/cowork/skills/index.json`. If that index is absent, ask the owner whether a ready-made card uses the name. On a clash, ask the owner for another name. Done when no skill has the name.
 2. **Write the source** at `<home>/<short>/skill/SKILL.md` from the template below. Replace every `<...>` placeholder. The description says what the skill does and when to use it. Each step ends with how to tell it is done. Cowork's built-in skill-creator, if installed, may draft it; the same rules apply. Done when no placeholder is left.
 3. **Check** the frontmatter against Cowork's upload rules: keys only `name`, `description`, `license`, `allowed-tools`, `metadata`, `compatibility`; description at most 1024 characters, no `<` or `>`, no unquoted `: ` (quote the value); name kebab-case, at most 64 characters, equal to the folder name. Done when each rule holds.
-4. **Package** with Bash (python3 runs in the sandbox) into the session outputs. The `.skill` zip holds exactly `<name>/SKILL.md`, the same layout as the shipped cards. Done when the zip lists only that file.
+4. **Package** with Bash (python3 runs in the sandbox) into the session's outputs folder (the folder `present_files` presents from, outside the workspace). Replace `<session outputs>` with that folder's sandbox path. The `.skill` zip holds exactly `<name>/SKILL.md`, the same layout as the shipped cards. Done when the zip lists only that file.
 
    ```python
-   import zipfile
+   import os, zipfile
    name, src, out = "<name>", "<home>/<short>/skill/SKILL.md", "<session outputs>"
+   os.makedirs(out, exist_ok=True)
    with zipfile.ZipFile(f"{out}/{name}.skill", "w", zipfile.ZIP_DEFLATED) as z:
        z.write(src, f"{name}/SKILL.md")
        print(z.namelist())

@@ -11,7 +11,7 @@ Keep each project in one folder in the owner's workspace. Three branches: open a
 
 ## Find the home
 
-Read `memory/schema.json` (`client_folder`, `client_dirs`) and `memory/preferences/document-scaffolding.md`. The folder map says where a project lives: `projects/<short>/` for an independent project, or `<client_folder>/<short>/` for work that belongs to a tracked thing. Say the owner's word for the tracked thing, whatever the schema calls it. When both homes exist, recommend one per project and let the owner choose.
+Read `memory/schema.json` (`client_folder`, `client_dirs`) and `memory/preferences/document-scaffolding.md`. The folder map says where a project lives. `<home>` is the folder that holds the project folder, one of: `projects/` (an independent project); `<client_folder>/` (the project is itself a tracked thing); `<client_folder>/<client>/projects/` (a project that belongs to one tracked thing, using the existing projects document folder). The project folder is always `<home>/<short>/`. Say the owner's word for the tracked thing, whatever the schema calls it. When several homes fit, recommend one per project and let the owner choose.
 
 ```text
 <home>/<short>/

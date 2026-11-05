@@ -213,6 +213,7 @@ class LayoutTests(unittest.TestCase):
         text = self.project_skills_text()
         self.assertIn("installed", text)
         self.assertIn("shipped", text)
+        self.assertIn(".claude/cowork/skills/index.json", text)
 
     def test_upload_rules_listed(self):
         text = self.project_skills_text()
