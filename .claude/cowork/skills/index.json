@@ -153,7 +153,7 @@
  },
  "project": {
   "set": "core",
-  "sha256": "5edb2a682171b665ad7481b5bddd5e563d560e33c2d8b11812f130a89a30b0e3"
+  "sha256": "a3e3b04af8f38195a8b054e18147fc8fb4721ff37740cfaef2ca4d1bb4b61140"
  },
  "remotion-to-hyperframes": {
   "set": "video",

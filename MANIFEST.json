@@ -85,7 +85,7 @@
   ".claude/cowork/skills/core/project.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "dce9055c9409313dc6b1069e56e4f6cd33ea4ad3ce11a256c00b2ea186153765"
+   "sha256": "ffe9827072a5277f5cfc4e1837e856b11b85ce7749a9539fc4ea3f26e4cf0cc7"
   },
   ".claude/cowork/skills/core/startday-spec.skill": {
    "class": "merge",
@@ -120,7 +120,7 @@
   ".claude/cowork/skills/index.json": {
    "class": "merge",
    "mode": "644",
-   "sha256": "2212b094c97687ce3190d4a4a7c6d6ab816ec1d799b28331a6d6eac9cece9df1"
+   "sha256": "6f91e71c7d8322cb67f1c043a8b130b2fe001f0c2f75362cde82421dcb481049"
   },
   ".claude/cowork/skills/video/captions-overlay.skill": {
    "class": "merge",
@@ -5490,7 +5490,7 @@
   ".claude/skills/project/SKILL.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "93037f22e0e3ee54ee12582342af0fdc5dbc48795193954be69b2252bb7eaf34"
+   "sha256": "91132aeae7bc964e263928b99d32b128baa74f28e70d0f0a63b44b858d506273"
   },
   ".claude/skills/project/import.md": {
    "class": "merge",
@@ -5505,7 +5505,7 @@
   ".claude/skills/project/tests/test_layout.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "c3f7ad499a54f9893eafcb013e976aa4d2d735a48232e0f0b98aea2e2da29305"
+   "sha256": "0200a6bf769cdf7744085be727a39a7233ad29ef84006742cb0cfa5b8bcbb7d8"
   },
   ".claude/skills/remotion-to-hyperframes/SKILL.md": {
    "class": "merge",

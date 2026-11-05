@@ -74,6 +74,12 @@ class LayoutTests(unittest.TestCase):
             with self.subTest(needle=needle):
                 self.assertIn(needle, open_section)
 
+    def test_open_load_scopes_task_rows(self):
+        open_section = self.section("Open a project")
+        for needle in ("whose task this README links", "inside this project's folder"):
+            with self.subTest(needle=needle):
+                self.assertIn(needle, open_section)
+
     def test_open_asks_on_multiple_matches(self):
         open_section = self.section("Open a project")
         self.assertIn("several", open_section)
