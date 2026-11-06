@@ -69,7 +69,10 @@ class WatchTests(unittest.TestCase):
         self.config({"path": str(self.dir)})
         self.state.write_text(json.dumps({"manual": {"files": {"x": {"a": "1:2"}}, "pending": {}}}))
         self.run_watch()
-        self.assertEqual(json.loads(self.state.read_text())["manual"], {"files": {"x": {"a": "1:2"}}, "pending": {}})
+        self.assertEqual(
+            json.loads(self.state.read_text())["manual"],
+            {"files": {"x": {"a": "1:2"}}, "pending": {}},
+        )
 
     def test_folder_baseline_then_new_changed_gone(self):
         self.config({"path": str(self.dir), "use": "meetings"})
@@ -78,10 +81,15 @@ class WatchTests(unittest.TestCase):
         self.file("b.md", "two")
         self.file("a.md", "one edited")
         code, out = self.run_watch()
-        self.assertEqual(sorted((c["change"], Path(c["file"]).name) for c in out),
-                         [("changed", "a.md"), ("new", "b.md")])
+        self.assertEqual(
+            sorted((c["change"], Path(c["file"]).name) for c in out),
+            [("changed", "a.md"), ("new", "b.md")],
+        )
         self.assertEqual(out[0]["use"], "meetings")
-        self.assertEqual({c["id"] for c in out}, {watch.path_id(self.dir / "a.md"), watch.path_id(self.dir / "b.md")})
+        self.assertEqual(
+            {c["id"] for c in out},
+            {watch.path_id(self.dir / "a.md"), watch.path_id(self.dir / "b.md")},
+        )
         a.unlink()
         code, out = self.run_watch()
         self.assertEqual([(c["change"], Path(c["file"]).name) for c in out], [("gone", "a.md")])
@@ -112,7 +120,9 @@ class WatchTests(unittest.TestCase):
         self.run_watch()
         self.file("t.md", "first part")
         code, out = self.run_watch(ack=False)
-        self.assertEqual([(c["change"], c["id"]) for c in out], [("new", watch.path_id(self.dir / "t.md"))])
+        self.assertEqual(
+            [(c["change"], c["id"]) for c in out], [("new", watch.path_id(self.dir / "t.md"))]
+        )
         self.file("t.md", "first part, fixed")
         code, again = self.run_watch(ack=False)
         self.assertEqual([c["change"] for c in again], ["new"])
@@ -128,7 +138,9 @@ class WatchTests(unittest.TestCase):
         self.run_watch()
         self.file("a.md", "x")
         real = watch.files_under
-        watch.files_under = lambda root: (_ for _ in ()).throw(PermissionError("denied")) if root == bad else real(root)
+        watch.files_under = lambda root: (
+            (_ for _ in ()).throw(PermissionError("denied")) if root == bad else real(root)
+        )
         self.addCleanup(setattr, watch, "files_under", real)
         code, out = self.run_watch()
         self.assertEqual(sorted(c["change"] for c in out), ["error", "new"])

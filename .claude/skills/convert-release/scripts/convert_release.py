@@ -11,6 +11,7 @@ sha256 values match the converted files. Files in KEEP_WORKSPACE are copied from
 Only mechanical, repeatable rules live here. Cowork-specific rules are not shipped files:
 they live in memory (`memory/preferences/cowork-environment.md`).
 """
+
 import hashlib
 import json
 import re
@@ -35,8 +36,15 @@ DROP_FILES = (
     "docs/superpowers/specs/2026-10-31-workspace-tasks-design.md",
     "docs/superpowers/specs/2026-10-31-workspace-tasks-templates.md",
 )
-DROP_DIRS = {".git", "__pycache__", ".memory-recovery", ".task-recovery",
-             ".pi", ".pytest_cache", ".ruff_cache"}
+DROP_DIRS = {
+    ".git",
+    "__pycache__",
+    ".memory-recovery",
+    ".task-recovery",
+    ".pi",
+    ".pytest_cache",
+    ".ruff_cache",
+}
 
 # Upstream files shipped but missing from upstream MANIFEST.json, with their class.
 # Any other unlisted upstream file is reported so a rule can be added here.
@@ -104,9 +112,14 @@ WORKSPACE_ONLY = {
     ".claude/skills/drawio/scripts/tests/test_svg.py": {"class": "merge", "mode": "644"},
 }
 
-EDITION_OWNED = {".claude/skills/memory-setup/SKILL.md", ".claude/skills/personal-memory/SKILL.md",
-                 ".claude/setup/README.md", ".claude/setup/ADAPTING.md",
-                 ".claude/setup/WEEKLY-SWEEP.md", ".claude/setup/MANIFEST.md"}
+EDITION_OWNED = {
+    ".claude/skills/memory-setup/SKILL.md",
+    ".claude/skills/personal-memory/SKILL.md",
+    ".claude/setup/README.md",
+    ".claude/setup/ADAPTING.md",
+    ".claude/setup/WEEKLY-SWEEP.md",
+    ".claude/setup/MANIFEST.md",
+}
 
 TEXT_EXT = (".md", ".py", ".json", ".txt", ".html", ".toml", ".yaml", ".ps1", ".sh", ".gitignore")
 
@@ -125,15 +138,22 @@ TEXT_RULES = [
     ("No `question` tool", "No `AskUserQuestion` tool"),
     ("use `question` when", "use `AskUserQuestion` when"),
     ("use `question` with", "use `AskUserQuestion` with"),
-    ("Use `read`, `glob`, `grep`, and limited `bash`", "Use `Read`, `Glob`, `Grep`, and limited `Bash`"),
+    (
+        "Use `read`, `glob`, `grep`, and limited `bash`",
+        "Use `Read`, `Glob`, `Grep`, and limited `Bash`",
+    ),
     ("Use `task` subagents", "Use `Agent` subagents"),
     ("use `task` subagents", "use `Agent` subagents"),
     ("Use `webfetch`", "Use `web_fetch`"),
-    ("Use `read` for directories when possible. Use `bash`",
-     "Use `Glob` (or `ls` via Bash) for directories. Use `Bash`"),
+    (
+        "Use `read` for directories when possible. Use `bash`",
+        "Use `Glob` (or `ls` via Bash) for directories. Use `Bash`",
+    ),
     ("Use `glob` and `grep`", "Use `Glob` and `Grep`"),
-    ("then `read` the `memory/preferences/` directory",
-     "then list the `memory/preferences/` directory (Glob `memory/preferences/*.md`)"),
+    (
+        "then `read` the `memory/preferences/` directory",
+        "then list the `memory/preferences/` directory (Glob `memory/preferences/*.md`)",
+    ),
 ]
 
 # Per-file rules, applied after TEXT_RULES and the AGENTS.md rename. Each strips upstream's
@@ -141,22 +161,32 @@ TEXT_RULES = [
 FILE_RULES = {
     "CLAUDE.md": [
         (re.compile(r"## Codex runtime\n.*?\n\n+(?=## )", re.S), ""),
-        (" They are not enabled in this Codex workspace; run those checks directly before commits.", ""),
+        (
+            " They are not enabled in this Codex workspace; run those checks directly before commits.",
+            "",
+        ),
     ],
     "START-HERE.md": [
         ("Git and Python 3.11+ add version history", "Git and Python 3.10+ add version history"),
-        ("Your AI agent (Claude Cowork or Codex) sets it up", "Your AI agent in Claude Cowork sets it up"),
+        (
+            "Your AI agent (Claude Cowork or Codex) sets it up",
+            "Your AI agent in Claude Cowork sets it up",
+        ),
         ("- Claude Cowork or Codex.", "- Claude Cowork on Windows."),
-        ("decides where things belong and tells you what it did.\n",
-         "decides where things belong and tells you what it did. Then it shows a card for each skill: "
-         "click **Save skill** on each to install it. Video skills are optional.\n"),
+        (
+            "decides where things belong and tells you what it did.\n",
+            "decides where things belong and tells you what it did. Then it shows a card for each skill: "
+            "click **Save skill** on each to install it. Video skills are optional.\n",
+        ),
     ],
     ".githooks/nopython/commit-msg": [
         ("without Python 3.11+", "without Python 3.10+"),
     ],
     ".claude/skills/personal-memory/SKILL.md": [
-        ("saved workspace tasks: create, look up, continue, review, complete or archive a task.",
-         "saved workspace tasks (create, look up, continue, review, complete or archive a task)."),
+        (
+            "saved workspace tasks: create, look up, continue, review, complete or archive a task.",
+            "saved workspace tasks (create, look up, continue, review, complete or archive a task).",
+        ),
     ],
     ".claude/skills/personal-memory/task-templates.md": [
         (re.compile(r"\n+\Z"), "\n"),
@@ -166,54 +196,99 @@ FILE_RULES = {
     ],
     # Cowork's skill upload rejects angle brackets in a description.
     ".claude/skills/hyperframes-audio/SKILL.md": [
-        ("for several tracks at once (`<hf-audio-group>`).", "for several tracks at once (an `hf-audio-group` element)."),
+        (
+            "for several tracks at once (`<hf-audio-group>`).",
+            "for several tracks at once (an `hf-audio-group` element).",
+        ),
     ],
     ".claude/skills/startday-spec/references/adaptation-list.md": [
-        (re.compile(r"   In Codex, use the available automation tools.*?shell loop\.\n\n", re.S), ""),
+        (
+            re.compile(r"   In Codex, use the available automation tools.*?shell loop\.\n\n", re.S),
+            "",
+        ),
     ],
     # The upstream author's own skill paths; in Cowork the draw.io canvas is the visual companion.
     ".claude/skills/talk-it-through/SKILL.md": [
-        ("If accepted, read `visual-companion.md` from the installed superpowers brainstorming skill directory. "
-         "In this workspace that is `/home/james/.pi/agent/git/github.com/obra/superpowers/skills/brainstorming/visual-companion.md`. "
-         "If it is unavailable,",
-         "If accepted and the picture is a flow, structure or map, use the `drawio` skill. Otherwise read "
-         "`visual-companion.md` from the installed superpowers brainstorming skill, if there is one. If it is unavailable,"),
-        (" In this workspace that is `/home/james/.pi/agent/git/github.com/obra/superpowers/skills/brainstorming/builder-check-prompt.md`.",
-         ""),
+        (
+            "If accepted, read `visual-companion.md` from the installed superpowers brainstorming skill directory. "
+            "In this workspace that is `/home/james/.pi/agent/git/github.com/obra/superpowers/skills/brainstorming/visual-companion.md`. "
+            "If it is unavailable,",
+            "If accepted and the picture is a flow, structure or map, use the `drawio` skill. Otherwise read "
+            "`visual-companion.md` from the installed superpowers brainstorming skill, if there is one. If it is unavailable,",
+        ),
+        (
+            " In this workspace that is `/home/james/.pi/agent/git/github.com/obra/superpowers/skills/brainstorming/builder-check-prompt.md`.",
+            "",
+        ),
     ],
     ".claude/skills/youtube/SKILL.md": [
-        ("Use when the user says `/youtube <url>`,", "Use when the user says `/youtube` with a URL,"),
-        (re.compile(r"In Codex, use the supplied OS and shell context first\..*?into shell code\.\n\n", re.S), ""),
-        ("   - Prefer built-in web search for background research; use a connected read-only search tool if needed.\n"
-         "   - Use the available web page-open tool for known, reachable URLs.",
-         "   - Prefer this workspace's browser search when search results are needed.\n"
-         "   - Use `web_fetch` for direct URL fetches when URL is known and reachable."),
+        (
+            "Use when the user says `/youtube <url>`,",
+            "Use when the user says `/youtube` with a URL,",
+        ),
+        (
+            re.compile(
+                r"In Codex, use the supplied OS and shell context first\..*?into shell code\.\n\n",
+                re.S,
+            ),
+            "",
+        ),
+        (
+            "   - Prefer built-in web search for background research; use a connected read-only search tool if needed.\n"
+            "   - Use the available web page-open tool for known, reachable URLs.",
+            "   - Prefer this workspace's browser search when search results are needed.\n"
+            "   - Use `web_fetch` for direct URL fetches when URL is known and reachable.",
+        ),
     ],
     "projects/README.md": [
-        ("`.claude/skills/personal-memory/supporting-templates.md`",
-         "`supporting-templates.md` beside the verified Cowork-installed personal-memory skill"),
+        (
+            "`.claude/skills/personal-memory/supporting-templates.md`",
+            "`supporting-templates.md` beside the verified Cowork-installed personal-memory skill",
+        ),
     ],
     "memory/preferences/document-scaffolding.md": [
-        ("`.claude/skills/personal-memory/supporting-templates.md`",
-         "`supporting-templates.md` beside the verified Cowork-installed personal-memory skill"),
+        (
+            "`.claude/skills/personal-memory/supporting-templates.md`",
+            "`supporting-templates.md` beside the verified Cowork-installed personal-memory skill",
+        ),
     ],
     "memory/README.md": [
-        (" Shipped hooks are disabled in this Codex workspace; run the memory audit directly before committing.", ""),
-        ("; this workspace's does: [GitHub repository](memory/decisions/projects/decision-github-repository.md).", "."),
+        (
+            " Shipped hooks are disabled in this Codex workspace; run the memory audit directly before committing.",
+            "",
+        ),
+        (
+            "; this workspace's does: [GitHub repository](memory/decisions/projects/decision-github-repository.md).",
+            ".",
+        ),
     ],
     "memory/rules.md": [
-        ("| Always | | `tasks/index.md` | Optional; skip absence without creating files. |",
-         "| Always | | `tasks/index.md` | Optional; skip absence without creating files. |\n"
-         "| Always | | `memory/preferences/cowork-environment.md` | |"),
-        (re.compile(r"\| Updating this workspace to a new Release \| \| `memory/decisions/workstation/"
-                    r"decision-codex-workspace\.md` \|[^\n]*\n"), ""),
+        (
+            "| Always | | `tasks/index.md` | Optional; skip absence without creating files. |",
+            "| Always | | `tasks/index.md` | Optional; skip absence without creating files. |\n"
+            "| Always | | `memory/preferences/cowork-environment.md` | |",
+        ),
+        (
+            re.compile(
+                r"\| Updating this workspace to a new Release \| \| `memory/decisions/workstation/"
+                r"decision-codex-workspace\.md` \|[^\n]*\n"
+            ),
+            "",
+        ),
     ],
     "memory/index.md": [
-        ("| [Workflows Index](memory/workflows/index.md) | index | Workflows by topic; generated by `indexes.py`. | |",
-         "| [Workflows Index](memory/workflows/index.md) | index | Workflows by topic; generated by `indexes.py`. | |\n"
-         "| [Claude Cowork Environment](memory/preferences/cowork-environment.md) | preference | "
-         "Cowork paths, sandbox Python, git, installing skills as .skill packages, update flow. | 2026-10-27 |"),
-        (re.compile(r"\| \[IT Client Subjects\]\(memory/docs/it-client-subjects\.md\) \|[^\n]*\n"), ""),
+        (
+            "| [Workflows Index](memory/workflows/index.md) | index | Workflows by topic; generated by `indexes.py`. | |",
+            "| [Workflows Index](memory/workflows/index.md) | index | Workflows by topic; generated by `indexes.py`. | |\n"
+            "| [Claude Cowork Environment](memory/preferences/cowork-environment.md) | preference | "
+            "Cowork paths, sandbox Python, git, installing skills as .skill packages, update flow. | 2026-10-27 |",
+        ),
+        (
+            re.compile(
+                r"\| \[IT Client Subjects\]\(memory/docs/it-client-subjects\.md\) \|[^\n]*\n"
+            ),
+            "",
+        ),
     ],
     "memory/decisions/index.md": [
         (re.compile(r"- \[Starter-agent GitHub repository\][^\n]*\n"), ""),
@@ -225,8 +300,15 @@ FILE_RULES = {
 DROP_EMPTY_SECTIONS = ("memory/decisions/index.md",)
 
 # Codex wording that should not survive conversion outside third-party skills.
-CODEX_MARKERS = ("Codex collaboration", "fork_turns", "In Codex,", "Codex workspace",
-                 "in Codex on Windows", "CODEX.md", "decision-codex-workspace")
+CODEX_MARKERS = (
+    "Codex collaboration",
+    "fork_turns",
+    "In Codex,",
+    "Codex workspace",
+    "in Codex on Windows",
+    "CODEX.md",
+    "decision-codex-workspace",
+)
 CODEX_OK = (".claude/skills/hyperframes", "CHANGELOG.md", "docs/testing/")
 
 
@@ -234,7 +316,7 @@ def new_path(rel):
     if rel == "AGENTS.md":
         return "CLAUDE.md"
     if rel.startswith(".agents/"):
-        return ".claude/" + rel[len(".agents/"):]
+        return ".claude/" + rel[len(".agents/") :]
     return rel
 
 
@@ -263,7 +345,9 @@ def convert_text(rel, text):
             text = text.replace(a, b)
         if not n:
             pat = a.pattern if isinstance(a, re.Pattern) else a
-            raise SystemExit(f"{rel}: rule no longer matches upstream text: {pat[:80]!r}; update convert_release.py")
+            raise SystemExit(
+                f"{rel}: rule no longer matches upstream text: {pat[:80]!r}; update convert_release.py"
+            )
     if rel in DROP_EMPTY_SECTIONS:
         text = drop_empty_sections(text)
     return text.replace("\n", "\r\n") if crlf else text
@@ -287,8 +371,11 @@ def tree_sha(src, rels):
 
 
 def upstream_files(src):
-    return {p.relative_to(src).as_posix() for p in src.rglob("*")
-            if p.is_file() and not DROP_DIRS & set(p.relative_to(src).parts)}
+    return {
+        p.relative_to(src).as_posix()
+        for p in src.rglob("*")
+        if p.is_file() and not DROP_DIRS & set(p.relative_to(src).parts)
+    }
 
 
 def main(argv):
@@ -306,7 +393,9 @@ def main(argv):
     if out.exists():
         print(f"{out} already exists; pick a new folder", file=sys.stderr)
         return 2
-    missing = [rel for rel in ("CLAUDE.md", *KEEP_WORKSPACE, *WORKSPACE_ONLY) if not (ws / rel).is_file()]
+    missing = [
+        rel for rel in ("CLAUDE.md", *KEEP_WORKSPACE, *WORKSPACE_ONLY) if not (ws / rel).is_file()
+    ]
     if missing:
         print(f"{ws} is not this workspace (missing {', '.join(missing)})", file=sys.stderr)
         return 2
@@ -331,7 +420,10 @@ def convert(src, mpath, out, ws):
         if rel in entries:
             print(f"note: {rel} is now in upstream MANIFEST.json; remove it from EXTRA_FILES")
         elif (src / rel).is_file():
-            entries[rel] = {"class": cls, "mode": "755" if rel.endswith(".py") and "/tests/" not in rel else "644"}
+            entries[rel] = {
+                "class": cls,
+                "mode": "755" if rel.endswith(".py") and "/tests/" not in rel else "644",
+            }
         else:
             print(f"note: EXTRA_FILES entry {rel} not in this Release")
     present = upstream_files(src)
@@ -339,15 +431,21 @@ def convert(src, mpath, out, ws):
     for folder, pinned in REPLACED_DIRS.items():
         rels = {rel for rel in present if rel.startswith(folder)}
         if rels and tree_sha(src, rels) != pinned:
-            print(f"check: upstream changed {folder}, which this workspace replaces; port what applies "
-                  f"to its WORKSPACE_ONLY files, then update its REPLACED_DIRS hash")
+            print(
+                f"check: upstream changed {folder}, which this workspace replaces; port what applies "
+                f"to its WORKSPACE_ONLY files, then update its REPLACED_DIRS hash"
+            )
         elif not rels:
-            print(f"note: {folder} not in this Release; remove it from REPLACED_DIRS if upstream dropped it")
+            print(
+                f"note: {folder} not in this Release; remove it from REPLACED_DIRS if upstream dropped it"
+            )
         replaced |= rels
     entries = {rel: meta for rel, meta in entries.items() if rel not in replaced}
     unlisted = present - replaced - set(entries) - set(DROP_FILES) - {"MANIFEST.json"}
     for rel in sorted(unlisted):
-        print(f"warning: {rel} is in the Release but not in MANIFEST.json or EXTRA_FILES; not copied")
+        print(
+            f"warning: {rel} is in the Release but not in MANIFEST.json or EXTRA_FILES; not copied"
+        )
 
     files, flagged = {}, []
     for rel, meta in entries.items():
@@ -359,8 +457,10 @@ def convert(src, mpath, out, ws):
             continue
         if nrel in KEEP_WORKSPACE:
             if sha((src / rel).read_bytes()) != KEEP_WORKSPACE[nrel]:
-                print(f"check: upstream changed {rel}, which is kept from the workspace; "
-                      f"review the upstream change, then update its KEEP_WORKSPACE sha256")
+                print(
+                    f"check: upstream changed {rel}, which is kept from the workspace; "
+                    f"review the upstream change, then update its KEEP_WORKSPACE sha256"
+                )
             data = (ws / nrel).read_bytes()
         else:
             data = (src / rel).read_bytes()

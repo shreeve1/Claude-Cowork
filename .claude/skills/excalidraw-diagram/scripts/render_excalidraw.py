@@ -89,10 +89,22 @@ def render(
     except ImportError:
         print("ERROR: playwright not installed.", file=sys.stderr)
         print("Run one setup path:", file=sys.stderr)
-        print("  uv: cd .claude/skills/excalidraw-diagram/scripts && uv sync && uv run playwright install chromium", file=sys.stderr)
-        print("  python macOS/Linux: cd .claude/skills/excalidraw-diagram/scripts && python3 -m venv .venv && . .venv/bin/activate && python -m pip install playwright && python -m playwright install chromium", file=sys.stderr)
-        print(r"  python Windows PowerShell: cd .claude\skills\excalidraw-diagram\scripts; py -m venv .venv; .\.venv\Scripts\Activate.ps1; python -m pip install playwright; python -m playwright install chromium", file=sys.stderr)
-        print("If Python is unavailable, skip PNG and use the standalone HTML preview.", file=sys.stderr)
+        print(
+            "  uv: cd .claude/skills/excalidraw-diagram/scripts && uv sync && uv run playwright install chromium",
+            file=sys.stderr,
+        )
+        print(
+            "  python macOS/Linux: cd .claude/skills/excalidraw-diagram/scripts && python3 -m venv .venv && . .venv/bin/activate && python -m pip install playwright && python -m playwright install chromium",
+            file=sys.stderr,
+        )
+        print(
+            r"  python Windows PowerShell: cd .claude\skills\excalidraw-diagram\scripts; py -m venv .venv; .\.venv\Scripts\Activate.ps1; python -m pip install playwright; python -m playwright install chromium",
+            file=sys.stderr,
+        )
+        print(
+            "If Python is unavailable, skip PNG and use the standalone HTML preview.",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     try:
@@ -132,10 +144,22 @@ def render(
             if "Executable doesn't exist" in str(e) or "browserType.launch" in str(e):
                 print("ERROR: Chromium not installed for Playwright.", file=sys.stderr)
                 print("Run one setup path:", file=sys.stderr)
-                print("  uv: cd .claude/skills/excalidraw-diagram/scripts && uv run playwright install chromium", file=sys.stderr)
-                print("  python macOS/Linux: cd .claude/skills/excalidraw-diagram/scripts && . .venv/bin/activate && python -m playwright install chromium", file=sys.stderr)
-                print(r"  python Windows PowerShell: cd .claude\skills\excalidraw-diagram\scripts; .\.venv\Scripts\Activate.ps1; python -m playwright install chromium", file=sys.stderr)
-                print("If Python is unavailable, skip PNG and use the standalone HTML preview.", file=sys.stderr)
+                print(
+                    "  uv: cd .claude/skills/excalidraw-diagram/scripts && uv run playwright install chromium",
+                    file=sys.stderr,
+                )
+                print(
+                    "  python macOS/Linux: cd .claude/skills/excalidraw-diagram/scripts && . .venv/bin/activate && python -m playwright install chromium",
+                    file=sys.stderr,
+                )
+                print(
+                    r"  python Windows PowerShell: cd .claude\skills\excalidraw-diagram\scripts; .\.venv\Scripts\Activate.ps1; python -m playwright install chromium",
+                    file=sys.stderr,
+                )
+                print(
+                    "If Python is unavailable, skip PNG and use the standalone HTML preview.",
+                    file=sys.stderr,
+                )
                 sys.exit(1)
             raise
 
@@ -148,7 +172,11 @@ def render(
 
         result = page.evaluate(f"window.renderDiagram({json.dumps(data)})")
         if not result or not result.get("success"):
-            error_msg = result.get("error", "Unknown render error") if result else "renderDiagram returned null"
+            error_msg = (
+                result.get("error", "Unknown render error")
+                if result
+                else "renderDiagram returned null"
+            )
             print(f"ERROR: Render failed: {error_msg}", file=sys.stderr)
             browser.close()
             sys.exit(1)

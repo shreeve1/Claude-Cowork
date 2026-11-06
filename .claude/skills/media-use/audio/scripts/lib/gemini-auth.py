@@ -15,7 +15,9 @@ def authenticate():
         from google.auth.transport.requests import Request
         from google.oauth2 import service_account
     except ImportError:
-        return {"error": "Service-account auth needs Python packages: pip install google-auth requests"}
+        return {
+            "error": "Service-account auth needs Python packages: pip install google-auth requests"
+        }
 
     try:
         path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
@@ -43,7 +45,9 @@ def authenticate():
         return {"token": credentials.token, "project": project}
     except Exception:
         # Library exceptions can contain credential data. Never forward them.
-        return {"error": "Gemini service-account authentication failed; check credentials, permissions, and network access"}
+        return {
+            "error": "Gemini service-account authentication failed; check credentials, permissions, and network access"
+        }
 
 
 if __name__ == "__main__":

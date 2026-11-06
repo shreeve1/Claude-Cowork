@@ -99,7 +99,11 @@ class TaskIndexPointerTests(unittest.TestCase):
 
     def test_task_index_existing_passes(self):
         with tempfile.TemporaryDirectory() as td:
-            mem = workspace(td, ["| Always | | `tasks/index.md` | |"], files=[("tasks/index.md", "# Active tasks\n")])
+            mem = workspace(
+                td,
+                ["| Always | | `tasks/index.md` | |"],
+                files=[("tasks/index.md", "# Active tasks\n")],
+            )
             self.assertEqual(audit(mem).returncode, 0)
 
     def test_task_index_symlink_escape_fails(self):
@@ -191,36 +195,46 @@ class ProcedureLeadTests(unittest.TestCase):
 
     def test_procedure_lead_passes(self):
         with tempfile.TemporaryDirectory() as td:
-            mem, _ = self.fixture(td, 'procedure `memory/workflows/projects/review.md`')
+            mem, _ = self.fixture(td, "procedure `memory/workflows/projects/review.md`")
             result = audit(mem)
             self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_multiple_leads_fail(self):
         with tempfile.TemporaryDirectory() as td:
-            mem, _ = self.fixture(td, 'procedure `memory/workflows/projects/review.md`, procedure `memory/workflows/projects/review.md`')
+            mem, _ = self.fixture(
+                td,
+                "procedure `memory/workflows/projects/review.md`, procedure `memory/workflows/projects/review.md`",
+            )
             result = audit(mem)
             self.assertEqual(result.returncode, 1, result.stdout)
-            self.assertIn('memory/rules.md:', result.stdout)
+            self.assertIn("memory/rules.md:", result.stdout)
 
     def test_procedure_lead_rejects_nonprocedure(self):
         with tempfile.TemporaryDirectory() as td:
-            mem, _ = self.fixture(td, 'procedure `memory/workflows/projects/review.md`', kind="workflow")
+            mem, _ = self.fixture(
+                td, "procedure `memory/workflows/projects/review.md`", kind="workflow"
+            )
             self.assertEqual(audit(mem).returncode, 1)
 
     def test_procedure_lead_rejects_escape(self):
-        for target in ('/tmp/outside.md', 'C:/outside.md', 'memory/../outside.md',
-                       'memory\\workflows\\projects\\review.md', 'memory/docs/review.md',
-                       'memory/workflows/unknown/review.md'):
+        for target in (
+            "/tmp/outside.md",
+            "C:/outside.md",
+            "memory/../outside.md",
+            "memory\\workflows\\projects\\review.md",
+            "memory/docs/review.md",
+            "memory/workflows/unknown/review.md",
+        ):
             with self.subTest(target=target), tempfile.TemporaryDirectory() as td:
-                mem, _ = self.fixture(td, f'procedure `{target}`')
+                mem, _ = self.fixture(td, f"procedure `{target}`")
                 result = audit(mem)
                 self.assertEqual(result.returncode, 1, result.stdout)
-                self.assertIn('memory/rules.md:', result.stdout)
+                self.assertIn("memory/rules.md:", result.stdout)
 
     def test_procedure_lead_rejects_symlink_escape(self):
         with tempfile.TemporaryDirectory() as td:
-            mem, path = self.fixture(td, 'procedure `memory/workflows/projects/review.md`')
-            outside = Path(td) / 'outside.md'
+            mem, path = self.fixture(td, "procedure `memory/workflows/projects/review.md`")
+            outside = Path(td) / "outside.md"
             outside.write_bytes(path.read_bytes())
             path.unlink()
             try:
@@ -231,7 +245,7 @@ class ProcedureLeadTests(unittest.TestCase):
 
     def test_procedure_lead_rejects_symlink_loop(self):
         with tempfile.TemporaryDirectory() as td:
-            mem, path = self.fixture(td, 'procedure `memory/workflows/projects/review.md`')
+            mem, path = self.fixture(td, "procedure `memory/workflows/projects/review.md`")
             path.unlink()
             try:
                 path.symlink_to(path.name)
@@ -239,18 +253,22 @@ class ProcedureLeadTests(unittest.TestCase):
                 self.skipTest(str(exc))
             result = audit(mem)
             self.assertEqual(result.returncode, 1)
-            self.assertTrue('invalid procedure target' in result.stdout or 'symlink' in result.stdout)
-            self.assertNotIn('Traceback', result.stderr)
+            self.assertTrue(
+                "invalid procedure target" in result.stdout or "symlink" in result.stdout
+            )
+            self.assertNotIn("Traceback", result.stderr)
 
     def test_procedure_lead_accepts_unicode_path(self):
-        with tempfile.TemporaryDirectory(prefix='memory space ') as td:
-            mem, _ = self.fixture(td, 'procedure `memory/workflows/projects/café.md`', name='café.md')
+        with tempfile.TemporaryDirectory(prefix="memory space ") as td:
+            mem, _ = self.fixture(
+                td, "procedure `memory/workflows/projects/café.md`", name="café.md"
+            )
             result = audit(mem)
             self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_unsupported_lead_fails(self):
         with tempfile.TemporaryDirectory() as td:
-            mem, _ = self.fixture(td, 'run `memory/workflows/projects/review.md`')
+            mem, _ = self.fixture(td, "run `memory/workflows/projects/review.md`")
             self.assertEqual(audit(mem).returncode, 1)
 
 

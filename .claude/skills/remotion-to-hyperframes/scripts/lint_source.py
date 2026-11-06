@@ -229,7 +229,7 @@ RULES: list[Rule] = [
         INFO,
         _regex_matcher(re.compile(r"\bstaticFile\s*\(")),
         "staticFile() reference — convert to a relative path in the HF composition",
-        "Replace `staticFile(\"x.png\")` with `\"x.png\"` and copy the asset alongside the HTML",
+        'Replace `staticFile("x.png")` with `"x.png"` and copy the asset alongside the HTML',
     ),
     Rule(
         "r2hf/interpolate-colors",
@@ -314,7 +314,9 @@ def lint_file(path: Path) -> list[Finding]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("path", type=Path, help="Directory or file to lint")
-    ap.add_argument("--json", action="store_true", help="Emit JSON instead of human-readable output")
+    ap.add_argument(
+        "--json", action="store_true", help="Emit JSON instead of human-readable output"
+    )
     args = ap.parse_args()
 
     if not args.path.exists():
@@ -359,9 +361,13 @@ def main() -> int:
             print(f"{f.file}:{f.line}:{f.column} [{f.severity}] {f.rule}: {f.message}")
             print(f"    -> {f.recommendation}")
         print()
-        print(f"{len(files)} files scanned · {blockers} blocker · {warnings} warning · {infos} info")
+        print(
+            f"{len(files)} files scanned · {blockers} blocker · {warnings} warning · {infos} info"
+        )
         if blockers:
-            print("RECOMMENDATION: do not attempt translation. Use the runtime interop pattern from PR #214.")
+            print(
+                "RECOMMENDATION: do not attempt translation. Use the runtime interop pattern from PR #214."
+            )
 
     return 1 if blockers else 0
 

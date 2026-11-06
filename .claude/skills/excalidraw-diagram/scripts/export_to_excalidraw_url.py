@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 r"""Serve a local Excalidraw editor URL for a .excalidraw scene.
 
-    Usage, macOS/Linux shell:
-    cd .claude/skills/excalidraw-diagram/scripts
-    uv run python export_to_excalidraw_url.py ../../../../artifacts/diagrams/example.excalidraw --port 0
-    # or without uv:
-    # . .venv/bin/activate && python export_to_excalidraw_url.py ../../../../artifacts/diagrams/example.excalidraw --port 0
+Usage, macOS/Linux shell:
+cd .claude/skills/excalidraw-diagram/scripts
+uv run python export_to_excalidraw_url.py ../../../../artifacts/diagrams/example.excalidraw --port 0
+# or without uv:
+# . .venv/bin/activate && python export_to_excalidraw_url.py ../../../../artifacts/diagrams/example.excalidraw --port 0
 
-    Usage, Windows PowerShell:
-    cd .claude\skills\excalidraw-diagram\scripts
-    uv run python export_to_excalidraw_url.py ..\..\..\..\artifacts\diagrams\example.excalidraw --port 0
-    # or without uv:
-    # .\.venv\Scripts\Activate.ps1; python export_to_excalidraw_url.py ..\..\..\..\artifacts\diagrams\example.excalidraw --port 0
+Usage, Windows PowerShell:
+cd .claude\skills\excalidraw-diagram\scripts
+uv run python export_to_excalidraw_url.py ..\..\..\..\artifacts\diagrams\example.excalidraw --port 0
+# or without uv:
+# .\.venv\Scripts\Activate.ps1; python export_to_excalidraw_url.py ..\..\..\..\artifacts\diagrams\example.excalidraw --port 0
 """
 
 from __future__ import annotations

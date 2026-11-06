@@ -56,7 +56,8 @@ def load_audio(path: str) -> tuple[np.ndarray, int, float]:
         wav = tmp.name
     subprocess.run(
         ["ffmpeg", "-y", "-i", path, "-ac", "1", "-ar", str(SR), wav],
-        capture_output=True, check=True,
+        capture_output=True,
+        check=True,
     )
     y, sr = sf.read(wav, dtype="float32")
     Path(wav).unlink(missing_ok=True)
@@ -84,15 +85,19 @@ def band_energy_curves(y: np.ndarray, sr: int) -> dict:
     freqs = librosa.fft_frequencies(sr=sr)
     # Tight drum bands: kick fundamental, snare body, hihat sizzle. Narrow bands
     # keep one drum's transient from leaking into another's flux on a full mix.
-    low = (freqs < 150)                       # kick
-    mid = (freqs >= 150) & (freqs < 900)      # snare body
-    high = (freqs >= 5000)                    # hihat / cymbal
+    low = freqs < 150  # kick
+    mid = (freqs >= 150) & (freqs < 900)  # snare body
+    high = freqs >= 5000  # hihat / cymbal
     e_low, e_mid, e_high = S[low].sum(axis=0), S[mid].sum(axis=0), S[high].sum(axis=0)
     return {
         "S": S,
-        "low": e_low, "mid": e_mid, "high": e_high,
+        "low": e_low,
+        "mid": e_mid,
+        "high": e_high,
         "total": S.sum(axis=0) + 1e-9,
-        "flux_low": _norm_flux(e_low), "flux_mid": _norm_flux(e_mid), "flux_high": _norm_flux(e_high),
+        "flux_low": _norm_flux(e_low),
+        "flux_mid": _norm_flux(e_mid),
+        "flux_high": _norm_flux(e_high),
         "flatness": librosa.feature.spectral_flatness(S=np.sqrt(S))[0],
         "centroid": librosa.feature.spectral_centroid(S=np.sqrt(S), sr=sr)[0],
         "n": S.shape[1],
@@ -114,8 +119,16 @@ def downbeat_phase(beat_frames: np.ndarray, bc: dict, beats_per_bar: int = 4) ->
 
 # ── metrical position: strong / weak / syncopated / off-grid ─────────────────
 # 16-step bar grid (4 beats x 4 sixteenths). Strength by metrical weight.
-GRID_CLASS = {0: "strong", 8: "strong", 4: "weak", 12: "weak",
-              2: "weak", 6: "weak", 10: "weak", 14: "weak"}  # else (odd 16ths) -> syncopated
+GRID_CLASS = {
+    0: "strong",
+    8: "strong",
+    4: "weak",
+    12: "weak",
+    2: "weak",
+    6: "weak",
+    10: "weak",
+    14: "weak",
+}  # else (odd 16ths) -> syncopated
 
 
 def classify_metric(t: float, beats: np.ndarray, phase: int, bpb: int = 4) -> tuple:
@@ -125,13 +138,13 @@ def classify_metric(t: float, beats: np.ndarray, phase: int, bpb: int = 4) -> tu
     i = int(np.searchsorted(beats, t) - 1)
     i = max(0, min(i, len(beats) - 2))
     beat_dur = beats[i + 1] - beats[i]
-    frac = (t - beats[i]) / max(beat_dur, 1e-6)         # 0..1 within the beat
-    sixteenth = int(round(frac * 4)) % 4                # nearest 16th in beat
+    frac = (t - beats[i]) / max(beat_dur, 1e-6)  # 0..1 within the beat
+    sixteenth = int(round(frac * 4)) % 4  # nearest 16th in beat
     carry = 1 if round(frac * 4) >= 4 else 0
     beat_idx = i + carry
-    beat_in_bar = (beat_idx - phase) % bpb              # 0..3
+    beat_in_bar = (beat_idx - phase) % bpb  # 0..3
     bar = (beat_idx - phase) // bpb
-    step16 = beat_in_bar * 4 + sixteenth                # 0..15
+    step16 = beat_in_bar * 4 + sixteenth  # 0..15
     # distance to the nearest 16th line (in seconds) → off-grid test
     nearest = beats[i] + (round(frac * 4) / 4) * beat_dur
     if abs(t - nearest) > 0.5 * (beat_dur / 4):
@@ -156,26 +169,35 @@ def classify_drum(t: float, bc: dict, sr: int) -> tuple:
     fl = float(bc["flux_low"][win].max())
     fm = float(bc["flux_mid"][win].max())
     fh = float(bc["flux_high"][win].max())
-    lo = float(bc["low"][win].mean()); md = float(bc["mid"][win].mean())
-    hi = float(bc["high"][win].mean()); tot = float(bc["total"][win].mean())
+    lo = float(bc["low"][win].mean())
+    md = float(bc["mid"][win].mean())
+    hi = float(bc["high"][win].mean())
+    tot = float(bc["total"][win].mean())
     flat = float(bc["flatness"][win].mean())
     lr, mr, hr = lo / tot, md / tot, hi / tot
 
     fluxes = {"kick": fl, "snare": fm, "hihat": fh}
     lead = max(fluxes, key=fluxes.get)
     lead_val = fluxes[lead]
-    if lead_val < 0.06:                      # no real transient → texture/perc
+    if lead_val < 0.06:  # no real transient → texture/perc
         drum = "glitch" if flat > 0.30 else "perc"
     elif lead == "snare" and flat > 0.30 and mr < 0.30:
-        drum = "glitch"                      # mid-band but noisy & thin → scratch/glitch
+        drum = "glitch"  # mid-band but noisy & thin → scratch/glitch
     else:
         drum = lead
     # feel (frequency character)
     has_bot, has_top, has_mid = lr > 0.30, hr > 0.20, mr > 0.30
-    feel = ("full" if has_bot and has_top and has_mid else
-            "heavy" if has_bot and not has_top else
-            "bright" if has_top and not has_bot else
-            "intimate" if has_mid else "sparse")
+    feel = (
+        "full"
+        if has_bot and has_top and has_mid
+        else "heavy"
+        if has_bot and not has_top
+        else "bright"
+        if has_top and not has_bot
+        else "intimate"
+        if has_mid
+        else "sparse"
+    )
     return drum, tot, feel
 
 
@@ -206,7 +228,9 @@ def energy_structure(y: np.ndarray, sr: int, dur: float, first_onset: float = 0.
     moments.sort(key=lambda m: abs(m["delta"]), reverse=True)
 
     # hard stop: a HIGH→low cliff (a sudden stop) in the back third
-    hard_stops = [m for m in moments if m["kind"] == "DROP" and m["t"] > dur * 0.6 and m["delta"] < -0.25]
+    hard_stops = [
+        m for m in moments if m["kind"] == "DROP" and m["t"] > dur * 0.6 and m["delta"] < -0.25
+    ]
 
     # NO forced Intro/Build/Drop/Outro template. The energy phases (audio-driven runs of
     # one energy level, variable count) are the raw structural blocks. The Music Reader
@@ -215,16 +239,22 @@ def energy_structure(y: np.ndarray, sr: int, dur: float, first_onset: float = 0.
     # interpretation; only the timing they snap to is fact.
     phases_sec = []
     for p in phases:
-        seg = norms[p["s"]:max(p["s"] + 1, p["e"])]
-        phases_sec.append({
-            "start": float(p["s"]),
-            "end": float(min(p["e"], round(dur, 1))),
-            "level": p["lvl"],
-            "energy": round(float(np.mean(seg)) if seg else 0.0, 2),
-        })
+        seg = norms[p["s"] : max(p["s"] + 1, p["e"])]
+        phases_sec.append(
+            {
+                "start": float(p["s"]),
+                "end": float(min(p["e"], round(dur, 1))),
+                "level": p["lvl"],
+                "energy": round(float(np.mean(seg)) if seg else 0.0, 2),
+            }
+        )
 
-    return {"norms": [round(n, 2) for n in norms], "phases": phases_sec,
-            "moments": moments[:8], "hard_stops": hard_stops}
+    return {
+        "norms": [round(n, 2) for n in norms],
+        "phases": phases_sec,
+        "moments": moments[:8],
+        "hard_stops": hard_stops,
+    }
 
 
 # ── rolls / fills (localized rapid-onset runs) ───────────────────────────────
@@ -232,9 +262,9 @@ def energy_structure(y: np.ndarray, sr: int, dur: float, first_onset: float = 0.
 # cascading visual (per-letter cascade, stagger). Derived straight from the onset
 # stream — runs never overlap, so no dedup is needed (unlike a band-energy detector).
 ROLL_MIN_HITS = 4
-ROLL_CONT = 0.55      # × beat_dur: gap up to ~half a beat still keeps a run alive
-ROLL_ACCEPT = 0.42    # × beat_dur: mean spacing denser than an 8th note counts
-ROLL_DEDUP = 0.08     # seconds: merge onsets closer than a 32nd (double-trigger)
+ROLL_CONT = 0.55  # × beat_dur: gap up to ~half a beat still keeps a run alive
+ROLL_ACCEPT = 0.42  # × beat_dur: mean spacing denser than an 8th note counts
+ROLL_DEDUP = 0.08  # seconds: merge onsets closer than a 32nd (double-trigger)
 
 
 def detect_rolls(events: list, beat_dur: float) -> list:
@@ -242,7 +272,7 @@ def detect_rolls(events: list, beat_dur: float) -> list:
     full hihat/snare roll is captured as ONE span (not fragmented down to its tail),
     while a sparse groove stays out — validated against the golden 7.5-9.5s roll.
     The linear scan means runs never overlap (no LEGACY-style double-counting)."""
-    cont = beat_dur * ROLL_CONT     # max gap that keeps a run alive
+    cont = beat_dur * ROLL_CONT  # max gap that keeps a run alive
     accept = beat_dur * ROLL_ACCEPT  # max MEAN gap for a run to count
     # collapse onset double-triggers (two onsets < a 32nd apart = one hit) so a
     # held/sparse passage can't masquerade as a roll on a duplicated transient.
@@ -265,20 +295,26 @@ def detect_rolls(events: list, beat_dur: float) -> list:
             if sum(gaps) / len(gaps) <= accept:
                 t0, t1 = times[i], times[j]
                 half = len(gaps) // 2
-                accel = (half >= 1 and
-                         sum(gaps[half:]) / (len(gaps) - half) <
-                         sum(gaps[:half]) / half * 0.85)
+                accel = (
+                    half >= 1
+                    and sum(gaps[half:]) / (len(gaps) - half) < sum(gaps[:half]) / half * 0.85
+                )
                 dcount: dict[str, int] = {}
-                for e in ev[i:j + 1]:
+                for e in ev[i : j + 1]:
                     dcount[e["drum"]] = dcount.get(e["drum"], 0) + 1
-                rolls.append({
-                    "start": round(t0, 3), "end": round(t1, 3),
-                    "dur_sec": round(t1 - t0, 3),
-                    "hits": j - i + 1,
-                    "rate_per_min": round((j - i) / max(t1 - t0, 1e-6) * 60),
-                    "kind": "accel-roll" if accel else ("sustained-fill" if t1 - t0 > 1.2 else "fill"),
-                    "drum": max(dcount, key=dcount.get),
-                })
+                rolls.append(
+                    {
+                        "start": round(t0, 3),
+                        "end": round(t1, 3),
+                        "dur_sec": round(t1 - t0, 3),
+                        "hits": j - i + 1,
+                        "rate_per_min": round((j - i) / max(t1 - t0, 1e-6) * 60),
+                        "kind": "accel-roll"
+                        if accel
+                        else ("sustained-fill" if t1 - t0 > 1.2 else "fill"),
+                        "drum": max(dcount, key=dcount.get),
+                    }
+                )
         i = j + 1
     return rolls
 
@@ -286,8 +322,14 @@ def detect_rolls(events: list, beat_dur: float) -> list:
 # ── per-section spectral character (sustained "feel") ────────────────────────
 # Coarse, reliable bands for how a SECTION sounds (not the noisy per-second dump).
 # Distinct from a per-event `feel`, which is the transient color of a single hit.
-FEEL_BANDS = [("sub", 0, 60), ("bass", 60, 250), ("low_mid", 250, 800),
-              ("mid", 800, 2500), ("presence", 2500, 6000), ("air", 6000, 1e9)]
+FEEL_BANDS = [
+    ("sub", 0, 60),
+    ("bass", 60, 250),
+    ("low_mid", 250, 800),
+    ("mid", 800, 2500),
+    ("presence", 2500, 6000),
+    ("air", 6000, 1e9),
+]
 
 
 def annotate_section_feel(bc: dict, sr: int, sections: list) -> None:
@@ -306,14 +348,21 @@ def annotate_section_feel(bc: dict, sr: int, sections: list) -> None:
         en = {name: float(seg[m].sum()) for name, m in masks}
         tot = sum(en.values()) + 1e-9
         ratios = {name: en[name] / tot for name in en}
-        present = sorted([bn for bn, r in ratios.items() if r > 0.12],
-                         key=lambda bn: -ratios[bn])
+        present = sorted([bn for bn, r in ratios.items() if r > 0.12], key=lambda bn: -ratios[bn])
         lo = ratios["sub"] + ratios["bass"]
         hi = ratios["presence"] + ratios["air"]
         mid = ratios["low_mid"] + ratios["mid"]
-        char = ("heavy" if lo > 0.5 else "bright" if hi > 0.45 else
-                "full" if lo > 0.25 and hi > 0.25 else
-                "warm" if mid > 0.5 else "sparse")
+        char = (
+            "heavy"
+            if lo > 0.5
+            else "bright"
+            if hi > 0.45
+            else "full"
+            if lo > 0.25 and hi > 0.25
+            else "warm"
+            if mid > 0.5
+            else "sparse"
+        )
         s["feel"] = {"character": char, "bands": present}
 
 
@@ -332,12 +381,14 @@ def derive_phrases(downbeats: list[float], phrase_bars: int, duration_sec: float
         start = downbeats[i]
         next_idx = i + phrase_bars
         end = downbeats[next_idx] if next_idx < len(downbeats) else duration_sec
-        phrases.append({
-            "index": index,
-            "start": round3(start),
-            "end": round3(end),
-            "bars": min(phrase_bars, len(downbeats) - i),
-        })
+        phrases.append(
+            {
+                "index": index,
+                "start": round3(start),
+                "end": round3(end),
+                "bars": min(phrase_bars, len(downbeats) - i),
+            }
+        )
         index += 1
     return phrases
 
@@ -368,9 +419,7 @@ def derive_phase_budgets(timeline: dict) -> list:
             if r["start"] < s["end"] - 1e-6 and r["end"] > s["start"] + 1e-6
         ]
         ph_stops = [
-            h["t"]
-            for h in hard_stops
-            if h["t"] >= s["start"] - 1e-6 and h["t"] < s["end"] + 1e-6
+            h["t"] for h in hard_stops if h["t"] >= s["start"] - 1e-6 and h["t"] < s["end"] + 1e-6
         ]
 
         if s.get("energy", 0) < 0.2 or onsets < 6:
@@ -414,9 +463,7 @@ def analyze(path: str, phrase_bars: int = 4) -> dict:
     downbeats = [float(beats[i]) for i in range(len(beats)) if (i - phase) % 4 == 0]
 
     # onsets → events
-    onset_t = librosa.onset.onset_detect(
-        y=y, sr=sr, hop_length=HOP, units="time", backtrack=True
-    )
+    onset_t = librosa.onset.onset_detect(y=y, sr=sr, hop_length=HOP, units="time", backtrack=True)
     en_at = bc["total"]
     en_max = float(en_at.max()) + 1e-9
     events = []
@@ -424,13 +471,19 @@ def analyze(path: str, phrase_bars: int = 4) -> dict:
         gclass, bar, bib, step16 = classify_metric(float(t), beats, phase)
         drum, energy, feel = classify_drum(float(t), bc, sr)
         f = frame_at(float(t), sr, bc["n"])
-        events.append({
-            "t": round(float(t), 3),
-            "bar": int(bar), "beat_in_bar": int(bib), "step16": int(step16),
-            "grid": gclass, "drum": drum,
-            "energy": round(float(en_at[f]) / en_max, 2), "feel": feel,
-            "special": None,
-        })
+        events.append(
+            {
+                "t": round(float(t), 3),
+                "bar": int(bar),
+                "beat_in_bar": int(bib),
+                "step16": int(step16),
+                "grid": gclass,
+                "drum": drum,
+                "energy": round(float(en_at[f]) / en_max, 2),
+                "feel": feel,
+                "special": None,
+            }
+        )
 
     first_onset = next((float(t) for t in onset_t if t >= 2.0), 0.0)
     es = energy_structure(y, sr, dur, first_onset)
@@ -451,11 +504,13 @@ def analyze(path: str, phrase_bars: int = 4) -> dict:
     beat_dur = float(np.median(np.diff(beats))) if len(beats) > 1 else 60.0 / max(bg["bpm"], 1e-6)
     rolls = detect_rolls(events, beat_dur)
     for r in rolls:
-        r["leads_to"] = next((m["kind"] for m in es["moments"]
-                              if 0 <= m["t"] - r["end"] <= 1.2), None)
+        r["leads_to"] = next(
+            (m["kind"] for m in es["moments"] if 0 <= m["t"] - r["end"] <= 1.2), None
+        )
     # near-silent windows (= VOID energy phases) — convenience for "hold / breathe"
-    silences = [{"start": p["start"], "end": p["end"]}
-                for p in es["phases"] if p["level"] == "VOID"]
+    silences = [
+        {"start": p["start"], "end": p["end"]} for p in es["phases"] if p["level"] == "VOID"
+    ]
     # per-phase sustained spectral character (how each energy block FEELS)
     annotate_section_feel(bc, sr, es["phases"])
 
@@ -466,17 +521,26 @@ def analyze(path: str, phrase_bars: int = 4) -> dict:
     for e in events:
         n_grid[e["grid"]] = n_grid.get(e["grid"], 0) + 1
 
-    summary = (f"{bg['bpm']:.0f} BPM · {len(beats)} beats / {len(downbeats)} bars · "
-               f"{len(events)} events ({n_drum}) · {len(rolls)} rolls · "
-               f"{len(es['phases'])} energy phases · {dur:.1f}s")
+    summary = (
+        f"{bg['bpm']:.0f} BPM · {len(beats)} beats / {len(downbeats)} bars · "
+        f"{len(events)} events ({n_drum}) · {len(rolls)} rolls · "
+        f"{len(es['phases'])} energy phases · {dur:.1f}s"
+    )
 
     timeline = {
         "summary": summary,
         "audio": {"path": path, "duration_sec": round(dur, 3), "sr": sr},
-        "tempo": {"bpm": round(bg["bpm"], 1), "beats_per_bar": 4,
-                  "downbeat_phase": phase, "n_beats": len(beats), "n_bars": len(downbeats)},
-        "grid": {"beats_sec": [round(float(b), 3) for b in beats],
-                 "downbeats_sec": [round(b, 3) for b in downbeats]},
+        "tempo": {
+            "bpm": round(bg["bpm"], 1),
+            "beats_per_bar": 4,
+            "downbeat_phase": phase,
+            "n_beats": len(beats),
+            "n_bars": len(downbeats),
+        },
+        "grid": {
+            "beats_sec": [round(float(b), 3) for b in beats],
+            "downbeats_sec": [round(b, 3) for b in downbeats],
+        },
         "energy_phases": es["phases"],
         "key_moments": es["moments"],
         "hard_stops": es["hard_stops"],
@@ -489,13 +553,15 @@ def analyze(path: str, phrase_bars: int = 4) -> dict:
 
 
 def print_brief(d: dict) -> None:
-    print(f"\n{d['summary']}\n{'='*70}")
+    print(f"\n{d['summary']}\n{'=' * 70}")
     print("ENERGY PHASES (audio-driven blocks; the Music Reader names the sections)")
     for s in d.get("energy_phases", []):
         feel = s.get("feel", {})
         bands = ",".join(feel.get("bands", []))
-        print(f"  {s['start']:5.1f}-{s['end']:5.1f}s  {s.get('level', ''):6s}  energy={s.get('energy')}  "
-              f"{feel.get('character', ''):6s}  [{bands}]  {s.get('density', '?')}")
+        print(
+            f"  {s['start']:5.1f}-{s['end']:5.1f}s  {s.get('level', ''):6s}  energy={s.get('energy')}  "
+            f"{feel.get('character', ''):6s}  [{bands}]  {s.get('density', '?')}"
+        )
     print("PHRASES")
     for p in d.get("phrases", []):
         print(f"  #{p['index']}  {p['start']:5.2f}-{p['end']:5.2f}s  bars={p['bars']}")
@@ -506,15 +572,19 @@ def print_brief(d: dict) -> None:
     print("ROLLS / FILLS")
     for r in d.get("rolls", []):
         lead = f"  → {r['leads_to']}" if r.get("leads_to") else ""
-        print(f"  {r['start']:6.2f}-{r['end']:5.2f}s  {r['hits']:2d} hits @ {r['rate_per_min']:4d}/min  "
-              f"{r['kind']:10s} ({r['drum']}){lead}")
+        print(
+            f"  {r['start']:6.2f}-{r['end']:5.2f}s  {r['hits']:2d} hits @ {r['rate_per_min']:4d}/min  "
+            f"{r['kind']:10s} ({r['drum']}){lead}"
+        )
     print(f"SILENCES: {[(s['start'], s['end']) for s in d.get('silences', [])]}")
     print(f"DRUM COUNTS: {d['stats']['drum_counts']}    GRID: {d['stats']['grid_counts']}")
     print(f"\nEVENTS ({len(d['events'])})  [t · bar:beat · grid · drum · energy · special]")
     for e in d["events"]:
         sp = f"  <{e['special']}>" if e["special"] else ""
-        print(f"  {e['t']:6.2f}s  b{e['bar']}:{e['beat_in_bar']}  {e['grid']:3s}  "
-              f"{e['drum']:6s}  e={e['energy']:.2f}  {e['feel']:8s}{sp}")
+        print(
+            f"  {e['t']:6.2f}s  b{e['bar']}:{e['beat_in_bar']}  {e['grid']:3s}  "
+            f"{e['drum']:6s}  e={e['energy']:.2f}  {e['feel']:8s}{sp}"
+        )
 
 
 def main() -> None:
@@ -529,7 +599,9 @@ def main() -> None:
         # ensure_ascii=False means the payload can carry non-ASCII, so the file
         # encoding cannot be left to the platform default (cp1252 on Windows).
         Path(a.out).write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
-        dens = " ".join(f"{s.get('level', '?')}:{s.get('density', '?')}" for s in d.get("energy_phases", []))
+        dens = " ".join(
+            f"{s.get('level', '?')}:{s.get('density', '?')}" for s in d.get("energy_phases", [])
+        )
         print(
             f"[analyze-beatgrid] wrote audiomap {a.out} · {len(d.get('energy_phases', []))} phases · density [{dens}]",
             file=sys.stderr,

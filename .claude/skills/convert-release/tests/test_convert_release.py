@@ -18,7 +18,10 @@ def release(root, files):
         p = root / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_bytes(text.encode("utf-8"))
-    man = {"release": 9, "files": {rel: {"class": "merge", "sha256": "x", "mode": "644"} for rel in files}}
+    man = {
+        "release": 9,
+        "files": {rel: {"class": "merge", "sha256": "x", "mode": "644"} for rel in files},
+    }
     (root / "MANIFEST.json").write_text(json.dumps(man), encoding="utf-8")
 
 
@@ -62,29 +65,37 @@ class ConvertTextTests(unittest.TestCase):
         self.assertIn("rule no longer matches", str(cm.exception))
 
     def test_saved_task_routing_keeps_cowork_environment(self):
-        text = ("# Rules\n\n| When | Lead | Also load | Note |\n|---|---|---|---|\n"
-                "| Always | | `tasks/index.md` | Optional; skip absence without creating files. |\n"
-                "| Updating this workspace to a new Release | | "
-                "`memory/decisions/workstation/decision-codex-workspace.md` | Re-apply Codex. |\n")
+        text = (
+            "# Rules\n\n| When | Lead | Also load | Note |\n|---|---|---|---|\n"
+            "| Always | | `tasks/index.md` | Optional; skip absence without creating files. |\n"
+            "| Updating this workspace to a new Release | | "
+            "`memory/decisions/workstation/decision-codex-workspace.md` | Re-apply Codex. |\n"
+        )
         out = cr.convert_text("memory/rules.md", text)
         self.assertIn("| Always | | `tasks/index.md` | Optional;", out)
         self.assertIn("| Always | | `memory/preferences/cowork-environment.md` | |", out)
         self.assertNotIn("decision-codex-workspace", out)
 
     def test_saved_task_description_has_no_unquoted_colon(self):
-        text = ("---\nname: personal-memory\ndescription: Use for saved workspace tasks: "
-                "create, look up, continue, review, complete or archive a task.\n---\n")
+        text = (
+            "---\nname: personal-memory\ndescription: Use for saved workspace tasks: "
+            "create, look up, continue, review, complete or archive a task.\n---\n"
+        )
         out = cr.convert_text(".claude/skills/personal-memory/SKILL.md", text)
         self.assertIn("saved workspace tasks (create,", out)
         self.assertNotIn("tasks: create", out)
         self.assertIn("archive a task).", out)
 
     def test_decisions_index_keeps_other_entries_and_drops_empty_sections(self):
-        text = ("# Decision Index\n\nGenerated.\n\n## projects\n\n"
-                "- [Starter-agent GitHub repository](a.md) x\n- [Keep me](b.md) y\n\n"
-                "## workstation\n\n- [Codex workspace with hooks skipped](c.md) z\n")
+        text = (
+            "# Decision Index\n\nGenerated.\n\n## projects\n\n"
+            "- [Starter-agent GitHub repository](a.md) x\n- [Keep me](b.md) y\n\n"
+            "## workstation\n\n- [Codex workspace with hooks skipped](c.md) z\n"
+        )
         out = cr.convert_text("memory/decisions/index.md", text)
-        self.assertEqual(out, "# Decision Index\n\nGenerated.\n\n## projects\n\n- [Keep me](b.md) y\n")
+        self.assertEqual(
+            out, "# Decision Index\n\nGenerated.\n\n## projects\n\n- [Keep me](b.md) y\n"
+        )
 
 
 class TreeShaTests(unittest.TestCase):
@@ -105,50 +116,68 @@ class MainTests(unittest.TestCase):
         self.ws = workspace(self.td / "ws")
 
     def test_converts_drops_and_keeps(self):
-        files = {".agents/skills/a/SKILL.md": "Use .agents/skills/a\n",
-                 ".agents/skills/a/agents/openai.yaml": "x",
-                 ".agents/skills/adhd/SKILL.md": "codex version"}
+        files = {
+            ".agents/skills/a/SKILL.md": "Use .agents/skills/a\n",
+            ".agents/skills/a/agents/openai.yaml": "x",
+            ".agents/skills/adhd/SKILL.md": "codex version",
+        }
         release(self.src, files)
         (self.src / "memory/decisions/projects").mkdir(parents=True)
         (self.src / "memory/decisions/projects/decision-github-repository.md").write_text("x")
         code, log = run(self.src, self.out, self.ws)
         self.assertEqual(code, 0, log)
-        self.assertEqual((self.out / ".claude/skills/a/SKILL.md").read_text(), "Use .claude/skills/a\n")
+        self.assertEqual(
+            (self.out / ".claude/skills/a/SKILL.md").read_text(), "Use .claude/skills/a\n"
+        )
         self.assertFalse((self.out / ".claude/skills/a/agents/openai.yaml").exists())
         self.assertFalse((self.out / "memory/decisions").exists())
-        self.assertEqual((self.out / ".claude/skills/adhd/SKILL.md").read_text(),
-                         "workspace .claude/skills/adhd/SKILL.md")
+        self.assertEqual(
+            (self.out / ".claude/skills/adhd/SKILL.md").read_text(),
+            "workspace .claude/skills/adhd/SKILL.md",
+        )
         self.assertIn("upstream changed .agents/skills/adhd/SKILL.md", log)
         man = json.loads((self.out / "MANIFEST.json").read_text())
-        self.assertEqual(sorted(man["files"]), sorted([".claude/skills/a/SKILL.md", ".claude/skills/adhd/SKILL.md",
-                                                       *cr.WORKSPACE_ONLY]))
+        self.assertEqual(
+            sorted(man["files"]),
+            sorted(
+                [".claude/skills/a/SKILL.md", ".claude/skills/adhd/SKILL.md", *cr.WORKSPACE_ONLY]
+            ),
+        )
         self.assertTrue((self.out / ".claude/cowork/cowork_skills.py").is_file())
         self.assertNotIn("warning:", log)
 
     def test_cowork_setup_stays_edition_owned_when_upstream_has_it(self):
-        release(self.src, {'.agents/setup/README.md': 'upstream multi-app setup',
-                           '.agents/skills/memory-setup/SKILL.md': 'upstream multi-app skill'})
+        release(
+            self.src,
+            {
+                ".agents/setup/README.md": "upstream multi-app setup",
+                ".agents/skills/memory-setup/SKILL.md": "upstream multi-app skill",
+            },
+        )
         code, log = run(self.src, self.out, self.ws)
         self.assertEqual(code, 0, log)
-        self.assertEqual((self.out / '.claude/setup/README.md').read_text(),
-                         'workspace .claude/setup/README.md')
-        self.assertEqual((self.out / '.claude/skills/memory-setup/SKILL.md').read_text(),
-                         'workspace .claude/skills/memory-setup/SKILL.md')
+        self.assertEqual(
+            (self.out / ".claude/setup/README.md").read_text(), "workspace .claude/setup/README.md"
+        )
+        self.assertEqual(
+            (self.out / ".claude/skills/memory-setup/SKILL.md").read_text(),
+            "workspace .claude/skills/memory-setup/SKILL.md",
+        )
 
     def test_existing_partial_path_is_preserved(self):
-        release(self.src, {'a.md': 'source'})
-        partial = self.out.with_name(self.out.name + '.partial')
+        release(self.src, {"a.md": "source"})
+        partial = self.out.with_name(self.out.name + ".partial")
         partial.mkdir()
-        (partial / 'owner.md').write_text('keep')
+        (partial / "owner.md").write_text("keep")
         code, log = run(self.src, self.out, self.ws)
         self.assertEqual(code, 2, log)
-        self.assertEqual((partial / 'owner.md').read_text(), 'keep')
+        self.assertEqual((partial / "owner.md").read_text(), "keep")
 
     def test_output_inside_source_or_workspace_is_rejected(self):
-        release(self.src, {'a.md': 'source'})
+        release(self.src, {"a.md": "source"})
         for parent in (self.src, self.ws):
             with self.subTest(parent=parent):
-                output = parent / 'nested-conversion'
+                output = parent / "nested-conversion"
                 code, log = run(self.src, output, self.ws)
                 self.assertEqual(code, 2, log)
                 self.assertFalse(output.exists())
@@ -182,7 +211,9 @@ class MainTests(unittest.TestCase):
         for rel, text in extras.items():
             converted = cr.new_path(rel)
             self.assertEqual((self.out / converted).read_text(), text)
-            self.assertEqual(manifest[converted]["class"], "seed" if rel == "tasks/index.md" else "merge")
+            self.assertEqual(
+                manifest[converted]["class"], "seed" if rel == "tasks/index.md" else "merge"
+            )
 
     def test_project_scaffold_and_historical_evidence_are_included(self):
         release(self.src, {"a.md": "x"})
@@ -252,8 +283,10 @@ class MainTests(unittest.TestCase):
         self.assertEqual(code, 0, log)
         self.assertNotIn("warning:", log)
         self.assertIn("check: upstream changed .agents/skills/drawio/", log)
-        self.assertEqual((self.out / ".claude/skills/drawio/SKILL.md").read_text(),
-                         "workspace .claude/skills/drawio/SKILL.md")
+        self.assertEqual(
+            (self.out / ".claude/skills/drawio/SKILL.md").read_text(),
+            "workspace .claude/skills/drawio/SKILL.md",
+        )
         self.assertFalse((self.out / ".claude/skills/drawio/scripts/server.mjs").exists())
 
     def test_wrong_workspace_writes_nothing(self):

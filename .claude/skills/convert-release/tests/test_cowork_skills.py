@@ -46,7 +46,7 @@ class CheckTests(unittest.TestCase):
         self.assertIn("description contains < or >", cs.check(d))
 
     def test_claude_code_only_keys_fail(self):
-        d = skill(self.td, "teach", "name: teach\ndescription: Teach.\nargument-hint: \"x\"")
+        d = skill(self.td, "teach", 'name: teach\ndescription: Teach.\nargument-hint: "x"')
         self.assertTrue(any("not allowed" in p for p in cs.check(d)))
 
     def test_yaml_breaking_forms_fail(self):
@@ -54,7 +54,7 @@ class CheckTests(unittest.TestCase):
         self.assertTrue(any("unquoted ': '" in p for p in cs.check(d)))
         d = skill(self.td, "nospace", "name: nospace\ndescription:Does things.")
         self.assertTrue(any("space after the colon" in p for p in cs.check(d)))
-        d = skill(self.td, "quoted", "name: quoted\ndescription: \"Use when: the owner asks.\"")
+        d = skill(self.td, "quoted", 'name: quoted\ndescription: "Use when: the owner asks."')
         self.assertEqual(cs.check(d), [])
 
     def test_nested_skill_md_fails(self):
@@ -67,7 +67,11 @@ class BuildTests(unittest.TestCase):
         self.td = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, self.td, True)
         self.ws = self.td / "ws"
-        skill(self.ws, "personal-memory", files={"gate.py": "#!/usr/bin/env python3\n", "__pycache__/g.pyc": "x"})
+        skill(
+            self.ws,
+            "personal-memory",
+            files={"gate.py": "#!/usr/bin/env python3\n", "__pycache__/g.pyc": "x"},
+        )
         skill(self.ws, "hyperframes")
         skill(self.ws, "convert-release")
         self.pk = self.ws / cs.PACKAGES
@@ -75,13 +79,20 @@ class BuildTests(unittest.TestCase):
     def test_build_sorts_core_and_video_and_skips_maintainer_skill(self):
         code, log = run("build", "--workspace", self.ws)
         self.assertEqual(code, 0, log)
-        self.assertEqual(sorted(p.relative_to(self.pk).as_posix() for p in self.pk.glob("*/*.skill")),
-                         ["core/personal-memory.skill", "video/hyperframes.skill"])
+        self.assertEqual(
+            sorted(p.relative_to(self.pk).as_posix() for p in self.pk.glob("*/*.skill")),
+            ["core/personal-memory.skill", "video/hyperframes.skill"],
+        )
         z = zipfile.ZipFile(self.pk / "core/personal-memory.skill")
-        self.assertEqual(sorted(z.namelist()), ["personal-memory/SKILL.md", "personal-memory/gate.py"])
+        self.assertEqual(
+            sorted(z.namelist()), ["personal-memory/SKILL.md", "personal-memory/gate.py"]
+        )
         self.assertEqual(z.getinfo("personal-memory/gate.py").external_attr >> 16, 0o100755)
         index = json.loads((self.ws / cs.INDEX).read_text())
-        self.assertEqual({n: e["set"] for n, e in index.items()}, {"personal-memory": "core", "hyperframes": "video"})
+        self.assertEqual(
+            {n: e["set"] for n, e in index.items()},
+            {"personal-memory": "core", "hyperframes": "video"},
+        )
 
     def test_build_is_byte_identical_when_unchanged(self):
         run("build", "--workspace", self.ws)
@@ -100,10 +111,21 @@ class BuildTests(unittest.TestCase):
 
     def test_build_refreshes_manifest(self):
         (self.ws / "START-HERE.md").write_bytes(b"new\r\n")
-        (self.ws / cs.MANIFEST).write_text(json.dumps({"release": 5, "files": {
-            "START-HERE.md": {"class": "merge", "mode": "644", "sha256": "old"},
-            ".claude/skills/convert-release/SKILL.md": {"class": "merge", "mode": "644", "sha256": "old"},
-        }}))
+        (self.ws / cs.MANIFEST).write_text(
+            json.dumps(
+                {
+                    "release": 5,
+                    "files": {
+                        "START-HERE.md": {"class": "merge", "mode": "644", "sha256": "old"},
+                        ".claude/skills/convert-release/SKILL.md": {
+                            "class": "merge",
+                            "mode": "644",
+                            "sha256": "old",
+                        },
+                    },
+                }
+            )
+        )
         code, log = run("build", "--workspace", self.ws)
         self.assertEqual(code, 0, log)
         man = json.loads((self.ws / cs.MANIFEST).read_text())
@@ -117,7 +139,9 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(list(files), sorted(files))
 
     def test_build_fails_when_a_listed_file_is_missing(self):
-        (self.ws / cs.MANIFEST).write_text(json.dumps({"files": {"gone.md": {"class": "merge", "mode": "644"}}}))
+        (self.ws / cs.MANIFEST).write_text(
+            json.dumps({"files": {"gone.md": {"class": "merge", "mode": "644"}}})
+        )
         code, log = run("build", "--workspace", self.ws)
         self.assertEqual(code, 1)
         self.assertIn("gone.md is listed but missing", log)
@@ -127,16 +151,32 @@ class ShippedPackageTests(unittest.TestCase):
     def test_personal_memory_package_is_complete_and_matches_source(self):
         root = Path(__file__).resolve().parents[4]
         folder = root / ".claude/skills/personal-memory"
-        required = ("tasks.md", "task-templates.md", "supporting-templates.md",
-                    "procedures.py", "recovery.py", "gate.py", "hubs.py", "schema.py",
-                    "scaffold/AGENTS-memory.md", "scaffold/rules.md", "scaffold/TEMPLATES.md")
+        required = (
+            "tasks.md",
+            "task-templates.md",
+            "supporting-templates.md",
+            "procedures.py",
+            "recovery.py",
+            "gate.py",
+            "hubs.py",
+            "schema.py",
+            "scaffold/AGENTS-memory.md",
+            "scaffold/rules.md",
+            "scaffold/TEMPLATES.md",
+        )
         with zipfile.ZipFile(root / cs.PACKAGES / "core/personal-memory.skill") as archive:
             for rel in required:
                 with self.subTest(file=rel):
-                    self.assertEqual(archive.read(f"personal-memory/{rel}"), cs.file_bytes(folder / rel))
-            self.assertEqual(set(archive.namelist()),
-                             {f"personal-memory/{p.relative_to(folder).as_posix()}" for p in cs.skill_files(folder)})
-
+                    self.assertEqual(
+                        archive.read(f"personal-memory/{rel}"), cs.file_bytes(folder / rel)
+                    )
+            self.assertEqual(
+                set(archive.namelist()),
+                {
+                    f"personal-memory/{p.relative_to(folder).as_posix()}"
+                    for p in cs.skill_files(folder)
+                },
+            )
 
     def test_memory_setup_package_matches_all_source_files(self):
         root = Path(__file__).resolve().parents[4]
@@ -175,8 +215,14 @@ class ChangedTests(unittest.TestCase):
         (self.new / ".claude/skills/adhd/extra.md").write_text("x", encoding="utf-8")
         shutil.rmtree(self.new / ".claude/skills/teach")
         skill(self.new, "meeting")
-        self.assertEqual(self.lines(), ["removed: teach", ".claude/cowork/skills/core/adhd.skill",
-                                        ".claude/cowork/skills/core/meeting.skill"])
+        self.assertEqual(
+            self.lines(),
+            [
+                "removed: teach",
+                ".claude/cowork/skills/core/adhd.skill",
+                ".claude/cowork/skills/core/meeting.skill",
+            ],
+        )
 
     def test_video_owner_gets_video_changes_core_owner_does_not(self):
         (self.new / ".claude/skills/hyperframes/x.md").write_text("x", encoding="utf-8")
@@ -192,7 +238,10 @@ class ChangedTests(unittest.TestCase):
     def test_core_skill_moved_to_video_is_not_reported_removed(self):
         core = tuple(name for name in cs.CORE if name != "adhd")
         with patch.object(cs, "CORE", core):
-            self.assertEqual(self.lines(), ["moved to video: adhd", "nothing to install: no new or changed skills"])
+            self.assertEqual(
+                self.lines(),
+                ["moved to video: adhd", "nothing to install: no new or changed skills"],
+            )
 
     def test_earlier_package_edition_is_not_called_loaders(self):
         shutil.rmtree(self.old / ".claude/cowork")

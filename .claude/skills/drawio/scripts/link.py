@@ -9,6 +9,7 @@ nothing is uploaded. Saving from that page is up to the owner (Save, Where: Devi
 --html also writes a preview page: a drawing of the first page, with the edit link on top.
 The drawing is built in, so the page loads nothing from the internet.
 """
+
 import argparse
 import base64
 import html
@@ -57,10 +58,22 @@ def link(path):
 def preview(path, out):
     found = svg.pages(Path(path).read_text(encoding="utf-8-sig"))
     drawing = svg.svg(found[0][1]) if found else "<p>This diagram has no pages yet.</p>"
-    note = f"(page {html.escape(found[0][0])}; {len(found) - 1} more in draw.io)" if len(found) > 1 else ""
+    note = (
+        f"(page {html.escape(found[0][0])}; {len(found) - 1} more in draw.io)"
+        if len(found) > 1
+        else ""
+    )
     Path(out).parent.mkdir(parents=True, exist_ok=True)
-    Path(out).write_text(PAGE.format(title=html.escape(Path(path).name), edit=html.escape(link(path)),
-                                     note=note, drawing=drawing), encoding="utf-8", newline="\n")
+    Path(out).write_text(
+        PAGE.format(
+            title=html.escape(Path(path).name),
+            edit=html.escape(link(path)),
+            note=note,
+            drawing=drawing,
+        ),
+        encoding="utf-8",
+        newline="\n",
+    )
 
 
 def main(argv=None):
@@ -71,13 +84,18 @@ def main(argv=None):
     if not Path(args.file).is_file():
         print(f"no such file: {args.file}", file=sys.stderr)
         return 2
-    if args.html and (not args.html.endswith(".html") or Path(args.html).resolve() == Path(args.file).resolve()):
+    if args.html and (
+        not args.html.endswith(".html") or Path(args.html).resolve() == Path(args.file).resolve()
+    ):
         print(f"--html must be a separate .html file: {args.html}", file=sys.stderr)
         return 2
     try:
         url = link(args.file)
         if len(url) > MAX_LINK:
-            print(f"link is {len(url)} characters, too long to click; give the file path instead", file=sys.stderr)
+            print(
+                f"link is {len(url)} characters, too long to click; give the file path instead",
+                file=sys.stderr,
+            )
             return 1
         if args.html:
             preview(args.file, args.html)
@@ -85,7 +103,9 @@ def main(argv=None):
         print(f"cannot read {args.file}: {e}", file=sys.stderr)
         return 2
     except (ET.ParseError, zlib.error, ValueError) as e:
-        print(f"cannot draw a preview of {args.file} (is it valid .drawio XML?): {e}", file=sys.stderr)
+        print(
+            f"cannot draw a preview of {args.file} (is it valid .drawio XML?): {e}", file=sys.stderr
+        )
         print(url)
         return 1
     print(url)

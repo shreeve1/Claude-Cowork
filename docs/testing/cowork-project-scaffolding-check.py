@@ -22,7 +22,9 @@ NEW_FILES = {
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--refresh", action="store_true", help="Register new shipped files before build")
+    parser.add_argument(
+        "--refresh", action="store_true", help="Register new shipped files before build"
+    )
     args = parser.parse_args()
     manifest_path = ROOT / "MANIFEST.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -49,7 +51,10 @@ def main():
     current = json.loads((ROOT / ".claude/cowork/skills/index.json").read_text(encoding="utf-8"))
     prior = subprocess.run(
         ["git", "show", "c033a99:.claude/cowork/skills/index.json"],
-        cwd=ROOT, capture_output=True, text=True, check=True,
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
     ).stdout
     previous = json.loads(prior)
     changed = {name for name, entry in current.items() if entry != previous.get(name)}
@@ -69,16 +74,25 @@ def main():
         output = io.StringIO()
         with contextlib.redirect_stdout(output):
             result = module.changed(ROOT, old, False)
-        expected = [".claude/cowork/skills/core/memory-setup.skill", ".claude/cowork/skills/core/personal-memory.skill"]
+        expected = [
+            ".claude/cowork/skills/core/memory-setup.skill",
+            ".claude/cowork/skills/core/personal-memory.skill",
+        ]
         if result != 0 or output.getvalue().splitlines() != expected:
             raise SystemExit(f"Unexpected update cards: {output.getvalue()}")
-    paths = [ROOT / ".claude/skills/personal-memory/hubs.py", ROOT / ".claude/skills/personal-memory/schema.py",
-             ROOT / ".claude/skills/convert-release/scripts/convert_release.py", Path(__file__)]
+    paths = [
+        ROOT / ".claude/skills/personal-memory/hubs.py",
+        ROOT / ".claude/skills/personal-memory/schema.py",
+        ROOT / ".claude/skills/convert-release/scripts/convert_release.py",
+        Path(__file__),
+    ]
     paths += list((ROOT / ".claude/skills/personal-memory/tests").glob("test_*.py"))
     paths += list((ROOT / ".claude/skills/convert-release/tests").glob("test_*.py"))
     for path in paths:
         ast.parse(path.read_text(encoding="utf-8"), filename=str(path), feature_version=(3, 10))
-    print(f"Verified {len(manifest['files'])} manifest hashes, two updated skill cards and Python 3.10 syntax.")
+    print(
+        f"Verified {len(manifest['files'])} manifest hashes, two updated skill cards and Python 3.10 syntax."
+    )
 
 
 if __name__ == "__main__":

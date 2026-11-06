@@ -63,7 +63,9 @@ class LayoutTests(unittest.TestCase):
             for name in ("SKILL.md", "tasks.md", "task-templates.md", "supporting-templates.md"):
                 self.assertTrue((copied / name).is_file(), name)
             for path in copied.glob("*.md"):
-                text = re.sub(r"^```.*?^```", "", path.read_text(encoding="utf-8"), flags=re.M | re.S)
+                text = re.sub(
+                    r"^```.*?^```", "", path.read_text(encoding="utf-8"), flags=re.M | re.S
+                )
                 for target in re.findall(r"\]\(([^)]+\.md)\)", text):
                     if "/" not in target:
                         self.assertTrue((copied / target).is_file(), target)

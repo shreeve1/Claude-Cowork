@@ -17,6 +17,7 @@ Prints a JSON list of changes and exits 0; exits 1 on a missing or bad config.
 - Pages are compared as visible text (scripts and styles dropped), so markup churn is not a change.
 - A target that cannot be read reports `error` (never pending) and keeps its old baseline.
 """
+
 import argparse
 import difflib
 import hashlib
@@ -66,8 +67,11 @@ def files_under(root):
     if root.is_file():
         return [root]
     # ponytail: rehashes every file each run; fine for a transcripts folder, add an mtime/size cache for big trees
-    return sorted(p for p in root.rglob("*")
-                  if p.is_file() and not any(part.startswith(".") for part in p.relative_to(root).parts))
+    return sorted(
+        p
+        for p in root.rglob("*")
+        if p.is_file() and not any(part.startswith(".") for part in p.relative_to(root).parts)
+    )
 
 
 def load_config(path):
@@ -76,12 +80,14 @@ def load_config(path):
     except FileNotFoundError:
         raise SystemExit(f"watch config not found: {path}")
     except (ValueError, KeyError, TypeError) as e:
-        raise SystemExit(f"watch config {path} needs a top-level \"watch\" list: {e!r}")
+        raise SystemExit(f'watch config {path} needs a top-level "watch" list: {e!r}')
     if not isinstance(targets, list):
-        raise SystemExit(f"watch config {path}: \"watch\" must be a list")
+        raise SystemExit(f'watch config {path}: "watch" must be a list')
     for t in targets:
         if not isinstance(t, dict) or ("path" in t) == ("url" in t):
-            raise SystemExit(f"watch config {path}: each entry needs exactly one of \"path\" or \"url\": {t!r}")
+            raise SystemExit(
+                f'watch config {path}: each entry needs exactly one of "path" or "url": {t!r}'
+            )
     return targets
 
 
@@ -98,15 +104,24 @@ def check_path(t, state, now, out):
         try:
             if now - p.stat().st_mtime < SETTLE:
                 if known is not None and str(p) in known:
-                    seen[str(p)] = known[str(p)]  # still being written: keep the old hash, report later
+                    seen[str(p)] = known[
+                        str(p)
+                    ]  # still being written: keep the old hash, report later
                 continue
             h = hashlib.sha256(p.read_bytes()).hexdigest()
         except OSError:
             continue
         seen[str(p)] = h
         if known is not None and known.get(str(p)) != h:
-            out.append({**base, "change": "changed" if str(p) in known else "new", "file": str(p), "sha256": h,
-                        "id": path_id(p)})
+            out.append(
+                {
+                    **base,
+                    "change": "changed" if str(p) in known else "new",
+                    "file": str(p),
+                    "sha256": h,
+                    "id": path_id(p),
+                }
+            )
     if known is not None:
         for p in sorted(set(known) - set(seen)):
             if not Path(p).exists():
@@ -151,7 +166,9 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="watch.py")
     ap.add_argument("--config", default=".claude/startday.json")
     ap.add_argument("--state", default=".claude/startday.state.json")
-    ap.add_argument("--ack", action="store_true", help="clear the pending changes (after handling them)")
+    ap.add_argument(
+        "--ack", action="store_true", help="clear the pending changes (after handling them)"
+    )
     a = ap.parse_args(argv)
     try:
         state = json.loads(Path(a.state).read_text(encoding="utf-8"))
@@ -174,9 +191,18 @@ def main(argv=None):
             found = []
             try:
                 check_path(t, state, now, found) if "path" in t else check_url(t, state, found)
-            except Exception as e:  # one bad target (permissions, dropped share) never blocks the rest
-                found.append({"target": t.get("path") or t.get("url"), "use": t.get("use"), "why": t.get("why"),
-                              "change": "error", "detail": repr(e)})
+            except (
+                Exception
+            ) as e:  # one bad target (permissions, dropped share) never blocks the rest
+                found.append(
+                    {
+                        "target": t.get("path") or t.get("url"),
+                        "use": t.get("use"),
+                        "why": t.get("why"),
+                        "change": "error",
+                        "detail": repr(e),
+                    }
+                )
             for c in found:
                 out.append(c) if c["change"] == "error" else merge(state["pending"], c)
     tmp = Path(a.state).with_suffix(".tmp")

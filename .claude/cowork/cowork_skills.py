@@ -19,6 +19,7 @@ An old workspace without an index lists every offered skill; if it used loader s
 also prints "loaders: yes".
 Nothing is built on the owner's side.
 """
+
 import argparse
 import fnmatch
 import hashlib
@@ -29,10 +30,28 @@ import zipfile
 from pathlib import Path
 
 CORE = (
-    "personal-memory", "memory-setup", "project-import", "meeting", "professional-guidance", "talk-it-through",
-    "brainstorm-idea", "adhd", "teach", "handoff", "startday-spec", "workflow-builder",
-    "antislop", "antislop-code", "antislop-copywriting", "antislop-human", "antislop-layoutmobile",
-    "antislop-ui", "excalidraw-diagram", "drawio", "youtube", "troubleshoot-my-pc",
+    "personal-memory",
+    "memory-setup",
+    "project-import",
+    "meeting",
+    "professional-guidance",
+    "talk-it-through",
+    "brainstorm-idea",
+    "adhd",
+    "teach",
+    "handoff",
+    "startday-spec",
+    "workflow-builder",
+    "antislop",
+    "antislop-code",
+    "antislop-copywriting",
+    "antislop-human",
+    "antislop-layoutmobile",
+    "antislop-ui",
+    "excalidraw-diagram",
+    "drawio",
+    "youtube",
+    "troubleshoot-my-pc",
 )
 # The workspace maintainer's own skill; never packaged.
 NEVER = ("convert-release",)
@@ -73,8 +92,11 @@ def frontmatter(text):
 
 def skipped(rel):
     parts = rel.parts
-    return (bool(SKIP_DIRS & set(parts)) or (len(parts) > 1 and parts[0] == "evals")
-            or any(fnmatch.fnmatch(rel.name, g) for g in SKIP_GLOBS))
+    return (
+        bool(SKIP_DIRS & set(parts))
+        or (len(parts) > 1 and parts[0] == "evals")
+        or any(fnmatch.fnmatch(rel.name, g) for g in SKIP_GLOBS)
+    )
 
 
 def skill_files(folder):
@@ -91,7 +113,9 @@ def check(folder):
     probs = []
     extra_md = [p for p in skill_files(folder) if p.name == "SKILL.md" and p != md]
     if extra_md:
-        probs.append(f"{len(extra_md)} extra SKILL.md file(s), e.g. {extra_md[0].relative_to(folder)}")
+        probs.append(
+            f"{len(extra_md)} extra SKILL.md file(s), e.g. {extra_md[0].relative_to(folder)}"
+        )
     fm, fm_probs = frontmatter(md.read_text(encoding="utf-8"))
     probs += fm_probs
     if fm is None:
@@ -149,7 +173,10 @@ def refresh_manifest(ws, names):
         for p in skill_files(ws / ".claude" / "skills" / n):
             rel = p.relative_to(ws).as_posix()
             if rel not in files:
-                files[rel] = {"class": "merge", "mode": "755" if p.read_bytes().startswith(b"#!") else "644"}
+                files[rel] = {
+                    "class": "merge",
+                    "mode": "755" if p.read_bytes().startswith(b"#!") else "644",
+                }
                 print(f"manifest: added {rel}")
     for package_path in (ws / PACKAGES).rglob("*"):
         if package_path.is_file():
@@ -169,7 +196,9 @@ def refresh_manifest(ws, names):
 
 def build(ws):
     skills_dir, out = ws / ".claude" / "skills", ws / PACKAGES
-    names = sorted(p.name for p in skills_dir.iterdir() if (p / "SKILL.md").is_file() and p.name not in NEVER)
+    names = sorted(
+        p.name for p in skills_dir.iterdir() if (p / "SKILL.md").is_file() and p.name not in NEVER
+    )
     missing = [n for n in CORE if n not in names]
     if missing:
         print(f"note: core skills not in this workspace: {', '.join(missing)}")
@@ -190,8 +219,13 @@ def build(ws):
         if index.get(stale.stem, {}).get("set") != stale.parent.name:
             stale.unlink()
             print(f"deleted stale {stale.relative_to(ws).as_posix()}")
-    (ws / INDEX).write_text(json.dumps(index, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
-    sizes = {k: sum(p.stat().st_size for p in (out / k).glob("*.skill")) // 1024 for k in ("core", "video")}
+    (ws / INDEX).write_text(
+        json.dumps(index, indent=1, sort_keys=True) + "\n", encoding="utf-8", newline="\n"
+    )
+    sizes = {
+        k: sum(p.stat().st_size for p in (out / k).glob("*.skill")) // 1024
+        for k in ("core", "video")
+    }
     print(f"built {len(index)} skills: core {sizes['core']} KB, video {sizes['video']} KB")
     missing = refresh_manifest(ws, names)
     return 1 if failed or missing else 0
@@ -199,7 +233,9 @@ def build(ws):
 
 def changed(ws, prev, video):
     if prev == ws or not (prev / ".claude").is_dir():
-        print(f"the argument must be the old workspace folder, not this one: {prev}", file=sys.stderr)
+        print(
+            f"the argument must be the old workspace folder, not this one: {prev}", file=sys.stderr
+        )
         return 2
     new = json.loads((ws / INDEX).read_text(encoding="utf-8"))
     try:
@@ -217,7 +253,12 @@ def changed(ws, prev, video):
             print(f"moved to video: {gone}" if gone in new else f"removed: {gone}")
     for n, e in sorted(offer.items()):
         before = (old or {}).get(n)
-        if old is not None and before and before["sha256"] == e["sha256"] and (video or before["set"] == "core"):
+        if (
+            old is not None
+            and before
+            and before["sha256"] == e["sha256"]
+            and (video or before["set"] == "core")
+        ):
             continue
         print((PACKAGES / e["set"] / f"{n}.skill").as_posix())
         shown += 1

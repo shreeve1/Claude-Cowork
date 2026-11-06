@@ -57,7 +57,12 @@ class LayoutTests(unittest.TestCase):
 
     def test_home_from_schema(self):
         text = self.read_required("SKILL.md")
-        for needle in ("memory/schema.json", "client_folder", "client_dirs", "memory/preferences/document-scaffolding.md"):
+        for needle in (
+            "memory/schema.json",
+            "client_folder",
+            "client_dirs",
+            "memory/preferences/document-scaffolding.md",
+        ):
             with self.subTest(needle=needle):
                 self.assertIn(needle, text)
         # Homes come from the schema, never from a fixed word.
@@ -70,7 +75,12 @@ class LayoutTests(unittest.TestCase):
 
     def test_open_loads_every_link(self):
         open_section = self.section("Open a project")
-        for needle in ("README.md", "instructions.md", "tasks/index.md", "opened or reported missing"):
+        for needle in (
+            "README.md",
+            "instructions.md",
+            "tasks/index.md",
+            "opened or reported missing",
+        ):
             with self.subTest(needle=needle):
                 self.assertIn(needle, open_section)
 
@@ -152,7 +162,10 @@ class LayoutTests(unittest.TestCase):
 
     def test_credentials_by_line(self):
         text = self.import_text()
-        self.assertRegex(text, r"(?s)Screen every text source \(instructions, `memory.md`, `docs/`\).{0,120}by file and line, never any part of the value")
+        self.assertRegex(
+            text,
+            r"(?s)Screen every text source \(instructions, `memory.md`, `docs/`\).{0,120}by file and line, never any part of the value",
+        )
         self.assertIn("kept with that line removed", text)
         self.assertIn("which file and line held a credential, never any part of the value", text)
         self.assertNotIn("git-ignored", text)
@@ -180,7 +193,11 @@ class LayoutTests(unittest.TestCase):
     def test_open_new_project_and_search_scope(self):
         text = self.read_required("SKILL.md")
         open_section = self.section("Open a project")
-        for needle in ("Import or starting a new one", "Project README template", "<client_folder>/*/projects/"):
+        for needle in (
+            "Import or starting a new one",
+            "Project README template",
+            "<client_folder>/*/projects/",
+        ):
             with self.subTest(needle=needle):
                 self.assertIn(needle, open_section)
         self.assertIn("skill/           # project skill source, if any", text)
@@ -209,7 +226,8 @@ class LayoutTests(unittest.TestCase):
         for needle in ("Open the project first", "## Steps"):
             self.assertIn(needle, template)
         filled = template.replace("<skill-name>", "brand-guide").replace(
-            "<description>", "Apply the brand guide to new material. Use when drafting or reviewing branded content."
+            "<description>",
+            "Apply the brand guide to new material. Use when drafting or reviewing branded content.",
         )
         with tempfile.TemporaryDirectory() as tmp:
             folder = Path(tmp) / "brand-guide"
@@ -229,7 +247,13 @@ class LayoutTests(unittest.TestCase):
 
     def test_requires_owner_approval_and_save_skill(self):
         text = self.project_skills_text()
-        for needle in ("approval", "present_files", "Save skill", "skill/SKILL.md", "Skill: <name>"):
+        for needle in (
+            "approval",
+            "present_files",
+            "Save skill",
+            "skill/SKILL.md",
+            "Skill: <name>",
+        ):
             with self.subTest(needle=needle):
                 self.assertIn(needle, text)
 

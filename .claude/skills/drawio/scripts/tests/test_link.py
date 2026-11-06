@@ -11,9 +11,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import link  # noqa: E402
 
-XML = '<mxfile><diagram id="p" name="Page-1"><mxGraphModel><root><mxCell id="0"/>' \
-      '<mxCell id="a" value="Ünïcode &amp; spaces" vertex="1" parent="0"><mxGeometry width="160" height="60" as="geometry"/>' \
-      '</mxCell></root></mxGraphModel></diagram></mxfile>\n'
+XML = (
+    '<mxfile><diagram id="p" name="Page-1"><mxGraphModel><root><mxCell id="0"/>'
+    '<mxCell id="a" value="Ünïcode &amp; spaces" vertex="1" parent="0"><mxGeometry width="160" height="60" as="geometry"/>'
+    "</mxCell></root></mxGraphModel></diagram></mxfile>\n"
+)
 
 
 def decode(url):
@@ -53,10 +55,14 @@ class LinkTests(unittest.TestCase):
         p.write_text(XML, encoding="utf-8")
         self.assertEqual(link.main([str(p), "--html", str(out)]), 0)
         page = out.read_text(encoding="utf-8")
-        self.assertEqual(html.unescape(re.search(r'<a href="([^"]+)"', page).group(1)), link.link(p))
+        self.assertEqual(
+            html.unescape(re.search(r'<a href="([^"]+)"', page).group(1)), link.link(p)
+        )
         self.assertIn("<svg", page)
         self.assertIn("Ünïcode &amp; spaces", page)
-        self.assertEqual(re.findall(r'(?:src|href)="(https?:[^"]+)"', page), [link.link(p).replace("&", "&amp;")])
+        self.assertEqual(
+            re.findall(r'(?:src|href)="(https?:[^"]+)"', page), [link.link(p).replace("&", "&amp;")]
+        )
 
     def test_unparseable_diagram_still_gets_its_link(self):
         p, out = self.td / "bad.drawio", self.td / "bad.html"
@@ -65,7 +71,10 @@ class LinkTests(unittest.TestCase):
         self.assertFalse(out.exists())
 
     def test_preview_escapes_the_file_name(self):
-        p, out = self.td / "a&b'c.drawio", self.td / "a.html"  # < and > aren't allowed in Windows names
+        p, out = (
+            self.td / "a&b'c.drawio",
+            self.td / "a.html",
+        )  # < and > aren't allowed in Windows names
         p.write_text(XML, encoding="utf-8")
         self.assertEqual(link.main([str(p), "--html", str(out)]), 0)
         page = out.read_text(encoding="utf-8")

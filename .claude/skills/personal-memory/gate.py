@@ -153,10 +153,13 @@ def audit_rules(memory_dir):
             except (OSError, RuntimeError):
                 contained = False
             valid = (
-                len(parts) == 4 and parts[:2] == ["memory", "workflows"]
-                and parts[2] in data["topics"] and parts[3].endswith(".md")
+                len(parts) == 4
+                and parts[:2] == ["memory", "workflows"]
+                and parts[2] in data["topics"]
+                and parts[3].endswith(".md")
                 and not any(p in ("", ".", "..") for p in parts)
-                and "\\" not in target and ":" not in target
+                and "\\" not in target
+                and ":" not in target
                 and contained
                 and path.is_file()
             )
@@ -187,8 +190,10 @@ def audit_rules(memory_dir):
                 parent_valid = path.parent.is_dir() or (
                     not path.parent.exists() and not path.parent.is_symlink()
                 )
-                valid = contained and parent_valid and (
-                    path.is_file() or (not path.exists() and not path.is_symlink())
+                valid = (
+                    contained
+                    and parent_valid
+                    and (path.is_file() or (not path.exists() and not path.is_symlink()))
                 )
                 if not valid:
                     problems.append("memory/rules.md: unsafe task index tasks/index.md")
@@ -431,11 +436,17 @@ def main():
     )
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("audit", help="Audit index alignment and Client Memory")
-    pc = sub.add_parser("procedures", help="Check selected or all shared procedures, not authorization")
-    pc.add_argument("path", nargs="?", help="Selected workspace-relative memory/workflows/<topic>/<file>.md")
+    pc = sub.add_parser(
+        "procedures", help="Check selected or all shared procedures, not authorization"
+    )
+    pc.add_argument(
+        "path", nargs="?", help="Selected workspace-relative memory/workflows/<topic>/<file>.md"
+    )
     sub.add_parser("crowded", help="Report memory folders holding more than 15 direct .md files")
     sub.add_parser("stale", help=f"List notes not updated or verified in over {STALE_DAYS} days")
-    sub.add_parser("compact", help="Snapshot and remove padding from memory/index.md, rules.md and glossary.md")
+    sub.add_parser(
+        "compact", help="Snapshot and remove padding from memory/index.md, rules.md and glossary.md"
+    )
     sub.add_parser("links", help="Report broken links and notes with no outgoing or inbound links")
     bl = sub.add_parser("backlinks", help="List notes linking to a note")
     bl.add_argument("path", help="Note path in memory/<rel> form")
@@ -446,13 +457,16 @@ def main():
     if args.cmd in ("procedures", "audit"):
         procedure_problems = (
             procedures.selected(mem_path, args.path)
-            if args.cmd == "procedures" and args.path else procedures.audit(mem_path)
+            if args.cmd == "procedures" and args.path
+            else procedures.audit(mem_path)
         )
         if procedure_problems:
             print("Procedure problems:")
             for line in procedure_problems:
                 print(f"- {line}")
-            if args.cmd == "procedures" or any("symlink" in p or "invalid workflow topic" in p for p in procedure_problems):
+            if args.cmd == "procedures" or any(
+                "symlink" in p or "invalid workflow topic" in p for p in procedure_problems
+            ):
                 sys.exit(1)
         if args.cmd == "procedures":
             print("Success: Procedures are structurally valid.")
@@ -484,7 +498,9 @@ def main():
                     if saved.read_bytes() != previous or path.read_bytes() != previous:
                         raise OSError("source changed after snapshot")
                 except (OSError, ValueError):
-                    print(f"Compaction stopped: memory/{name} preservation failed or source changed.")
+                    print(
+                        f"Compaction stopped: memory/{name} preservation failed or source changed."
+                    )
                     sys.exit(1)
                 with open(path, "w", encoding="utf-8", newline="") as f:
                     f.write(new)

@@ -12,6 +12,7 @@ A meeting is one transcript file (.txt .md .vtt .srt .json .docx) or one subfold
 tools that save a folder per meeting. Names starting with "." and the archive folder (default
 `<folder>/Archive`) are skipped. Only `archive` writes: it moves one meeting into the archive folder.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -84,7 +85,9 @@ def json_lines(node: object) -> list[str]:
     text = node.get("text")
     if inner or not isinstance(text, str) or not text.strip():
         return inner
-    who = next((node[k] for k in ("speaker", "speaker_name", "name") if isinstance(node.get(k), str)), None)
+    who = next(
+        (node[k] for k in ("speaker", "speaker_name", "name") if isinstance(node.get(k), str)), None
+    )
     return [f"{who}: {text.strip()}" if who else text.strip()]
 
 
@@ -117,9 +120,13 @@ def read_text(path: Path) -> str:
 def transcript_files(entry: Path) -> list[Path]:
     if entry.is_file():
         return [entry] if entry.suffix.lower() in EXTENSIONS else []
-    return sorted(p for p in entry.rglob("*")
-                  if p.is_file() and p.suffix.lower() in EXTENSIONS
-                  and not any(part.startswith(".") for part in p.relative_to(entry).parts))
+    return sorted(
+        p
+        for p in entry.rglob("*")
+        if p.is_file()
+        and p.suffix.lower() in EXTENSIONS
+        and not any(part.startswith(".") for part in p.relative_to(entry).parts)
+    )
 
 
 def transcript(entry: Path) -> str:
@@ -128,7 +135,9 @@ def transcript(entry: Path) -> str:
     if entry.is_file():
         return read_text(entry) if files else ""
     parts = ((f, read_text(f)) for f in files)
-    return "\n\n".join(f"## {f.relative_to(entry).as_posix()}\n\n{text}" for f, text in parts if text)
+    return "\n\n".join(
+        f"## {f.relative_to(entry).as_posix()}\n\n{text}" for f, text in parts if text
+    )
 
 
 def digest(text: str) -> str:
@@ -176,7 +185,11 @@ def scan(folder: Path, archive_dir: Path, root: Path, now: float | None = None) 
     by_hash, by_name = record_index(root)
     items, keys = [], set()
     for entry in sorted(folder.iterdir()):
-        if entry.name.startswith(".") or entry.resolve() == archive_dir.resolve() or not transcript_files(entry):
+        if (
+            entry.name.startswith(".")
+            or entry.resolve() == archive_dir.resolve()
+            or not transcript_files(entry)
+        ):
             continue
         text = transcript(entry)
         h = digest(text)
@@ -190,13 +203,24 @@ def scan(folder: Path, archive_dir: Path, root: Path, now: float | None = None) 
         # Done only when one record has both this text and this name. Same name, new text: the transcript
         # changed. Same text, other name: a copy or a re-export; the skill asks before skipping it.
         record = same_name if same_name and same_name == same_text else None
-        items.append({
-            "key": key, "name": entry.name, "path": rel(entry, root), "kind": "file" if entry.is_file() else "folder",
-            "modified": datetime.fromtimestamp(mtime).astimezone().isoformat(timespec="minutes"),
-            "words": len(text.split()), "transcript_hash": h, "settling": mtime > now - SETTLE_SECONDS,
-            "record": record, "same_name_record": None if record else same_name,
-            "same_text_record": None if record else same_text, "_mtime": mtime,
-        })
+        items.append(
+            {
+                "key": key,
+                "name": entry.name,
+                "path": rel(entry, root),
+                "kind": "file" if entry.is_file() else "folder",
+                "modified": datetime.fromtimestamp(mtime)
+                .astimezone()
+                .isoformat(timespec="minutes"),
+                "words": len(text.split()),
+                "transcript_hash": h,
+                "settling": mtime > now - SETTLE_SECONDS,
+                "record": record,
+                "same_name_record": None if record else same_name,
+                "same_text_record": None if record else same_text,
+                "_mtime": mtime,
+            }
+        )
     items.sort(key=lambda i: i["_mtime"], reverse=True)
     return items
 
@@ -231,8 +255,11 @@ def file_hashes(path: Path) -> dict[str, str]:
     """{name inside the meeting: sha256}; a single file is keyed "." so a copy under another name compares equal."""
     if path.is_file():
         return {".": hashlib.sha256(path.read_bytes()).hexdigest()}
-    return {p.relative_to(path).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-            for p in sorted(path.rglob("*")) if p.is_file()}
+    return {
+        p.relative_to(path).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+        for p in sorted(path.rglob("*"))
+        if p.is_file()
+    }
 
 
 def remove(path: Path) -> None:
@@ -288,11 +315,15 @@ def copy_then_remove(src: Path, dest: Path) -> None:
         remove(tmp)
         raise SystemExit(f"refused: {dest} appeared while copying; nothing moved") from None
     if file_hashes(src) != copied:
-        raise SystemExit(f"archived to {dest}, but {src} changed meanwhile; both kept, check and remove one by hand")
+        raise SystemExit(
+            f"archived to {dest}, but {src} changed meanwhile; both kept, check and remove one by hand"
+        )
     try:
         remove(src)
     except OSError as e:
-        raise SystemExit(f"archived to {dest}, but {src} could not be removed ({e}); remove it by hand") from e
+        raise SystemExit(
+            f"archived to {dest}, but {src} could not be removed ({e}); remove it by hand"
+        ) from e
 
 
 def archive(item: dict, folder: Path, archive_dir: Path, now: float | None = None) -> Path:
@@ -303,7 +334,9 @@ def archive(item: dict, folder: Path, archive_dir: Path, now: float | None = Non
     if src.resolve() == archive_dir.resolve() or src.resolve() in archive_dir.resolve().parents:
         raise SystemExit(f"refused: the archive folder {archive_dir} is inside {src}")
     if newest_mtime(src) > (time.time() if now is None else now) - SETTLE_SECONDS:
-        raise SystemExit(f"refused: {src.name} changed under {SETTLE_SECONDS}s ago; it may still be written")
+        raise SystemExit(
+            f"refused: {src.name} changed under {SETTLE_SECONDS}s ago; it may still be written"
+        )
     archive_dir.mkdir(parents=True, exist_ok=True)
     for _ in range(20):
         dest = free_name(archive_dir, src.name, src.is_file())
@@ -314,7 +347,9 @@ def archive(item: dict, folder: Path, archive_dir: Path, now: float | None = Non
             continue  # another process took the name: pick the next free one
         except OSError as e:
             if e.errno != errno.EXDEV:
-                raise SystemExit(f"refused: could not move {src} to {dest} ({e}); nothing moved") from e
+                raise SystemExit(
+                    f"refused: could not move {src} to {dest} ({e}); nothing moved"
+                ) from e
             copy_then_remove(src, dest)
             return dest
     raise SystemExit(f"refused: no free name for {src.name} in {archive_dir}; nothing moved")
@@ -323,10 +358,16 @@ def archive(item: dict, folder: Path, archive_dir: Path, now: float | None = Non
 def main(argv: list[str] | None = None) -> int:
     if isinstance(sys.stdout, io.TextIOWrapper):
         sys.stdout.reconfigure(encoding="utf-8")
-    ap = argparse.ArgumentParser(prog="meetings.py", description="List, show and archive meeting transcripts.")
+    ap = argparse.ArgumentParser(
+        prog="meetings.py", description="List, show and archive meeting transcripts."
+    )
     ap.add_argument("--folder", required=True, help="the transcripts folder")
     ap.add_argument("--archive", help="where processed meetings go; default <folder>/Archive")
-    ap.add_argument("--root", default=".", help="workspace root, searched for Meeting Records; default the current folder")
+    ap.add_argument(
+        "--root",
+        default=".",
+        help="workspace root, searched for Meeting Records; default the current folder",
+    )
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("list", help="JSON list of waiting meetings, newest first")
     sub.add_parser("show", help="one meeting's text").add_argument("key")
@@ -343,8 +384,10 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps([public(i) for i in items], indent=1, ensure_ascii=False))
     elif a.cmd == "show":
         item = find(items, a.key, folder)
-        print(f"# {item['name']}\n\nmodified {item['modified']} | words {item['words']} | "
-              f"transcript_hash {item['transcript_hash']}\n\n{transcript(folder / item['name'])}")
+        print(
+            f"# {item['name']}\n\nmodified {item['modified']} | words {item['words']} | "
+            f"transcript_hash {item['transcript_hash']}\n\n{transcript(folder / item['name'])}"
+        )
     else:
         print(rel(archive(find(items, a.key, folder), folder, archive_dir), root))
     return 0

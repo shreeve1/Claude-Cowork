@@ -40,8 +40,18 @@ class SchemaLoadTests(unittest.TestCase):
                 self.assertEqual(schema.load(mem)["client_dirs"], folders)
 
     def test_document_folders_reject_unsafe_or_malformed_values(self):
-        for bad in ("docs", None, ["../private"], ["/outside"], ["."], ["docs/private"],
-                    ["C:\\private"], [5], [""], ["docs", "docs"]):
+        for bad in (
+            "docs",
+            None,
+            ["../private"],
+            ["/outside"],
+            ["."],
+            ["docs/private"],
+            ["C:\\private"],
+            [5],
+            [""],
+            ["docs", "docs"],
+        ):
             with self.subTest(value=bad), tempfile.TemporaryDirectory() as td:
                 mem = Path(td)
                 write_schema(mem, client_dirs=bad)

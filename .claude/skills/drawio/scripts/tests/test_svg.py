@@ -24,7 +24,9 @@ MODEL = """<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/>
 
 def compressed(xml):
     c = zlib.compressobj(9, zlib.DEFLATED, -15)
-    return base64.b64encode(c.compress(urllib.parse.quote(xml, safe="").encode()) + c.flush()).decode()
+    return base64.b64encode(
+        c.compress(urllib.parse.quote(xml, safe="").encode()) + c.flush()
+    ).decode()
 
 
 class SvgTests(unittest.TestCase):
@@ -48,8 +50,10 @@ class SvgTests(unittest.TestCase):
         self.assertRegex(out, r'<rect x="420\.0" y="350\.0" width="160\.0" height="60\.0" rx="10')
 
     def test_compressed_pages_are_decoded_and_counted(self):
-        found, out = self.draw(f'<mxfile><diagram name="One">{compressed(MODEL)}</diagram>'
-                               '<diagram name="Two"><mxGraphModel><root/></mxGraphModel></diagram></mxfile>')
+        found, out = self.draw(
+            f'<mxfile><diagram name="One">{compressed(MODEL)}</diagram>'
+            '<diagram name="Two"><mxGraphModel><root/></mxGraphModel></diagram></mxfile>'
+        )
         self.assertEqual([n for n, _ in found], ["One", "Two"])
         self.assertIn("Lane", out)
 
@@ -80,7 +84,9 @@ class SvgTests(unittest.TestCase):
         self.assertIn('fill="#ffffff" stroke="#1d1d1f"', out)
 
     def test_empty_page_still_gives_an_svg(self):
-        _, out = self.draw('<mxfile><diagram><mxGraphModel><root><mxCell id="0"/></root></mxGraphModel></diagram></mxfile>')
+        _, out = self.draw(
+            '<mxfile><diagram><mxGraphModel><root><mxCell id="0"/></root></mxGraphModel></diagram></mxfile>'
+        )
         self.assertTrue(re.match(r'<svg [^>]*viewBox="', out))
 
 

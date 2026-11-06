@@ -3,6 +3,7 @@
 An approximation of what draw.io shows: common shapes, labels, colours and arrows.
 It loads nothing from the internet, so it shows where external pages are blocked.
 """
+
 import base64
 import html
 import re
@@ -65,10 +66,14 @@ def text_svg(lines, cx, cy, color="#1d1d1f", size=12):
     if not lines:
         return ""
     top = cy - (len(lines) - 1) * size * 0.6
-    spans = "".join(f'<tspan x="{cx:.1f}" y="{top + i * size * 1.2:.1f}">{html.escape(l)}</tspan>'
-                    for i, l in enumerate(lines))
-    return (f'<text text-anchor="middle" dominant-baseline="middle" font-family="Helvetica, Arial, sans-serif" '
-            f'font-size="{size}" fill="{html.escape(color)}">{spans}</text>')
+    spans = "".join(
+        f'<tspan x="{cx:.1f}" y="{top + i * size * 1.2:.1f}">{html.escape(l)}</tspan>'
+        for i, l in enumerate(lines)
+    )
+    return (
+        f'<text text-anchor="middle" dominant-baseline="middle" font-family="Helvetica, Arial, sans-serif" '
+        f'font-size="{size}" fill="{html.escape(color)}">{spans}</text>'
+    )
 
 
 def num(v, default=0.0):
@@ -99,27 +104,37 @@ def shape_svg(s, x, y, w, h):
         return f'<polygon points="{x + w / 2},{y} {x + w},{y + h / 2} {x + w / 2},{y + h} {x},{y + h / 2}" {paint}/>'
     if kind == "parallelogram":
         d = min(20, w / 4)
-        return f'<polygon points="{x + d},{y} {x + w},{y} {x + w - d},{y + h} {x},{y + h}" {paint}/>'
+        return (
+            f'<polygon points="{x + d},{y} {x + w},{y} {x + w - d},{y + h} {x},{y + h}" {paint}/>'
+        )
     if kind == "cylinder3":
         r = min(15, h / 4)
-        return (f'<path d="M{x},{y + r} A{w / 2},{r} 0 0 1 {x + w},{y + r} V{y + h - r} '
-                f'A{w / 2},{r} 0 0 1 {x},{y + h - r} Z M{x},{y + r} A{w / 2},{r} 0 0 0 {x + w},{y + r}" {paint}/>')
+        return (
+            f'<path d="M{x},{y + r} A{w / 2},{r} 0 0 1 {x + w},{y + r} V{y + h - r} '
+            f'A{w / 2},{r} 0 0 1 {x},{y + h - r} Z M{x},{y + r} A{w / 2},{r} 0 0 0 {x + w},{y + r}" {paint}/>'
+        )
     if kind == "note":
         f = min(14, w / 4, h / 4)
         return f'<polygon points="{x},{y} {x + w - f},{y} {x + w},{y + f} {x + w},{y + h} {x},{y + h}" {paint}/>'
     if kind == "umlActor":
         cx = x + w / 2
-        return (f'<g {paint} fill="none"><circle cx="{cx}" cy="{y + h * 0.15}" r="{h * 0.15}"/>'
-                f'<path d="M{cx},{y + h * 0.3} V{y + h * 0.65} M{x},{y + h * 0.42} H{x + w} '
-                f'M{cx},{y + h * 0.65} L{x},{y + h} M{cx},{y + h * 0.65} L{x + w},{y + h}"/></g>')
+        return (
+            f'<g {paint} fill="none"><circle cx="{cx}" cy="{y + h * 0.15}" r="{h * 0.15}"/>'
+            f'<path d="M{cx},{y + h * 0.3} V{y + h * 0.65} M{x},{y + h * 0.42} H{x + w} '
+            f'M{cx},{y + h * 0.65} L{x},{y + h} M{cx},{y + h * 0.65} L{x + w},{y + h}"/></g>'
+        )
     if kind == "swimlane":
         head = num(s.get("startSize"), 30)
-        return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" {paint}/>'
-                f'<line x1="{x}" y1="{y + head}" x2="{x + w}" y2="{y + head}" stroke="{html.escape(stroke)}"/>')
+        return (
+            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" {paint}/>'
+            f'<line x1="{x}" y1="{y + head}" x2="{x + w}" y2="{y + head}" stroke="{html.escape(stroke)}"/>'
+        )
     if kind == "process":
         d = min(12, w / 8)
-        return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" {paint}/>'
-                f'<path d="M{x + d},{y} V{y + h} M{x + w - d},{y} V{y + h}" stroke="{html.escape(stroke)}"/>')
+        return (
+            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" {paint}/>'
+            f'<path d="M{x + d},{y} V{y + h} M{x + w - d},{y} V{y + h}" stroke="{html.escape(stroke)}"/>'
+        )
     rx = min(10, w / 6, h / 6) if s.get("rounded") == "1" else 0
     return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" {paint}/>'
 
@@ -154,7 +169,9 @@ def svg(model):
             return 0.0, 0.0
         g = c.find("mxGeometry")
         ox, oy = origin(c.get("parent"), (*seen, cid))
-        return ox + num(g.get("x", 0)) if g is not None else ox, oy + num(g.get("y", 0)) if g is not None else oy
+        return ox + num(g.get("x", 0)) if g is not None else ox, oy + num(
+            g.get("y", 0)
+        ) if g is not None else oy
 
     for c in cells.values():
         g = c.find("mxGeometry")
@@ -162,8 +179,12 @@ def svg(model):
         on_edge = parent is not None and parent.get("edge") == "1"
         if c.get("vertex") == "1" and g is not None and g.get("relative") != "1" and not on_edge:
             ox, oy = origin(c.get("parent"))
-            boxes[c.get("id")] = (ox + num(g.get("x", 0)), oy + num(g.get("y", 0)),
-                                  num(g.get("width", 0)), num(g.get("height", 0)))
+            boxes[c.get("id")] = (
+                ox + num(g.get("x", 0)),
+                oy + num(g.get("y", 0)),
+                num(g.get("width", 0)),
+                num(g.get("height", 0)),
+            )
         elif c.get("edge") == "1":
             edges.append(c)
 
@@ -186,17 +207,32 @@ def svg(model):
 
     for e in edges:
         s, g = style_of(e), e.find("mxGeometry")
-        pts = [(num(p.get("x", 0)), num(p.get("y", 0))) for p in g.iter("mxPoint")
-               if p.get("as") is None] if g is not None else []
-        ends = {p.get("as"): (num(p.get("x", 0)), num(p.get("y", 0)))
-                for p in (g.iter("mxPoint") if g is not None else []) if p.get("as")}
+        pts = (
+            [
+                (num(p.get("x", 0)), num(p.get("y", 0)))
+                for p in g.iter("mxPoint")
+                if p.get("as") is None
+            ]
+            if g is not None
+            else []
+        )
+        ends = {
+            p.get("as"): (num(p.get("x", 0)), num(p.get("y", 0)))
+            for p in (g.iter("mxPoint") if g is not None else [])
+            if p.get("as")
+        }
         src, dst = boxes.get(e.get("source")), boxes.get(e.get("target"))
         a = (src[0] + src[2] / 2, src[1] + src[3] / 2) if src else ends.get("sourcePoint")
         b = (dst[0] + dst[2] / 2, dst[1] + dst[3] / 2) if dst else ends.get("targetPoint")
         if a is None or b is None:
             continue
         mid = list(pts)
-        if not mid and "orthogonalEdgeStyle" in s.get("edgeStyle", "") and abs(a[0] - b[0]) > 1 and abs(a[1] - b[1]) > 1:
+        if (
+            not mid
+            and "orthogonalEdgeStyle" in s.get("edgeStyle", "")
+            and abs(a[0] - b[0]) > 1
+            and abs(a[1] - b[1]) > 1
+        ):
             mid = [(b[0], a[1])]
         first, last = (mid[0] if mid else b), (mid[-1] if mid else a)
         if src:
@@ -208,23 +244,30 @@ def svg(model):
         dash = ' stroke-dasharray="5 4"' if s.get("dashed") == "1" else ""
         arrow = "" if s.get("endArrow") == "none" else ' marker-end="url(#arrow)"'
         d = "M" + " L".join(f"{px:.1f},{py:.1f}" for px, py in path)
-        parts.append(f'<path d="{d}" fill="none" stroke="{stroke}" stroke-width="1.2"{dash}{arrow}/>')
+        parts.append(
+            f'<path d="{d}" fill="none" stroke="{stroke}" stroke-width="1.2"{dash}{arrow}/>'
+        )
         lines = label_lines(e.get("value"), 120)
         if lines:
             i = len(path) // 2
             (x1, y1), (x2, y2) = path[i - 1], path[i]
             mx, my = (x1 + x2) / 2, (y1 + y2) / 2
             w = max(len(l) for l in lines) * CHAR_W + 6
-            parts.append(f'<rect x="{mx - w / 2:.1f}" y="{my - 8 * len(lines):.1f}" width="{w:.1f}" '
-                         f'height="{16 * len(lines)}" fill="#ffffff"/>')
+            parts.append(
+                f'<rect x="{mx - w / 2:.1f}" y="{my - 8 * len(lines):.1f}" width="{w:.1f}" '
+                f'height="{16 * len(lines)}" fill="#ffffff"/>'
+            )
             parts.append(text_svg(lines, mx, my, size=11))
 
     xs = [v for x, y, w, h in boxes.values() for v in (x, x + w)] or [0, 100]
     ys = [v for x, y, w, h in boxes.values() for v in (y, y + h + 24)] or [0, 100]
     x0, y0 = min(xs) - MARGIN, min(ys) - MARGIN
     width, height = max(xs) - x0 + MARGIN, max(ys) - y0 + MARGIN
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x0:.0f} {y0:.0f} {width:.0f} {height:.0f}" '
-            f'width="{width:.0f}" height="{height:.0f}" role="img">'
-            '<defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" '
-            'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1d1d1f"/></marker></defs>'
-            + "".join(parts) + "</svg>")
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x0:.0f} {y0:.0f} {width:.0f} {height:.0f}" '
+        f'width="{width:.0f}" height="{height:.0f}" role="img">'
+        '<defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" '
+        'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1d1d1f"/></marker></defs>'
+        + "".join(parts)
+        + "</svg>"
+    )

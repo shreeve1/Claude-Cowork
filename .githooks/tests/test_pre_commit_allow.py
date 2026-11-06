@@ -3,6 +3,7 @@
 A reviewed line is identified by the sha256 of its stripped text and a path prefix, so a new or changed
 credential in the same folder still blocks the commit.
 """
+
 import hashlib
 import json
 import os
@@ -39,7 +40,9 @@ class PreCommitAllowTests(unittest.TestCase):
     def allow(self, lines, prefix=LIB):
         digests = [hashlib.sha256(x.strip().encode("utf-8")).hexdigest() for x in lines]
         (self.repo / ".githooks" / "secret-allow.json").write_text(
-            json.dumps({"reviewed": [{"prefix": prefix, "line_sha256": digests, "reason": "t"}]}), encoding="utf-8")
+            json.dumps({"reviewed": [{"prefix": prefix, "line_sha256": digests, "reason": "t"}]}),
+            encoding="utf-8",
+        )
 
     def commit(self, rel, text):
         p = self.repo / rel
@@ -57,7 +60,9 @@ class PreCommitAllowTests(unittest.TestCase):
         self.allow([REVIEWED])
         self.assertEqual(self.commit(LIB + "a.md", REVIEWED + "\n").returncode, 0)
         r = self.commit("other/b.md", REVIEWED + "\n")
-        self.assertNotEqual(r.returncode, 0, "the same line outside the reviewed path must still block")
+        self.assertNotEqual(
+            r.returncode, 0, "the same line outside the reviewed path must still block"
+        )
 
     def test_new_credential_in_the_reviewed_folder_still_blocks(self):
         self.allow([REVIEWED])
