@@ -56,7 +56,7 @@ else
   # at make-composition, which only re-emits html from an already-compiled plan)
   if [[ -f "$PROJECT/cinematic.json" && "$C" == "make-composition.cjs" ]]; then RECOMPILER="make-cinematic.cjs"; fi
   ENGINE="$(dirname "$0")/../modes/cinematic/engine.html"
-  if [[ "$(dirname "$0")/$RECOMPILER" -nt "$PROJECT/index.html" || "$(dirname "$0")/lib-dna.cjs" -nt "$PROJECT/index.html" || ( -f "$ENGINE" && "$ENGINE" -nt "$PROJECT/index.html" ) ]]; then
+  if [[ "$(dirname "$0")/$RECOMPILER" -nt "$PROJECT/index.html" || "$(dirname "$0")/lib-dna.cjs" -nt "$PROJECT/index.html" || (-f "$ENGINE" && "$ENGINE" -nt "$PROJECT/index.html") ]]; then
     echo "[render] compiler/engine newer than index.html — recompiling via $RECOMPILER"
     node "$(dirname "$0")/$RECOMPILER" "$PROJECT"
   fi
@@ -70,12 +70,13 @@ fi
 # modes/standard/fonts/fonts.css) for whatever non-canonical families each HTML
 # actually uses, so measure-layout AND the capture see the true glyph metrics.
 # Idempotent; a no-op when every font is canonical/system or already declared.
-node "$(dirname "$0")/inject-fonts.cjs" "$PROJECT" \
-  || echo "[render] (font embed skipped — inject-fonts.cjs/fonts.css unavailable)" >&2
+node "$(dirname "$0")/inject-fonts.cjs" "$PROJECT" ||
+  echo "[render] (font embed skipped — inject-fonts.cjs/fonts.css unavailable)" >&2
 
 # gate ledger — each gate appends one line; echoed as a summary before "done"
 # (verdicts were drowning hundreds of lines up in ffmpeg logs)
-GATES="$PROJECT/_gates.txt"; : > "$GATES"
+GATES="$PROJECT/_gates.txt"
+: >"$GATES"
 
 # Gate: plan.json word timings must align with transcript.json within 80ms.
 # A caption whose animation fires 500ms before or after the word is spoken
@@ -86,7 +87,7 @@ if [[ -f "$PROJECT/plan.json" && -f "$PROJECT/transcript.json" ]]; then
     echo "[render] ABORTED — fix plan.json word timings to match transcript.json, then re-run." >&2
     exit 2
   fi
-  echo "timing            PASS (strict)" >> "$GATES"
+  echo "timing            PASS (strict)" >>"$GATES"
 fi
 
 # Gate: subject occlusion + frame-edge overflow — pixel-perfect via Chromium DOM
@@ -98,15 +99,18 @@ if [[ -f "$PROJECT/plan.json" && -d "$PROJECT/frames_fg" ]]; then
   # watchdog: once the verdict is printed, a stuck exit can't block us. We read the
   # pass/fail from its OUTPUT, not its exit code, so the hang is harmless.
   OCC_LOG="$PROJECT/_occlusion.log"
-  node "$(dirname "$0")/check-occlusion.cjs" "$PROJECT" --strict > "$OCC_LOG" 2>&1 &
-  OCC_PID=$!; occ_t0=$SECONDS; OCC_RC=""; verdict_at=""
+  node "$(dirname "$0")/check-occlusion.cjs" "$PROJECT" --strict >"$OCC_LOG" 2>&1 &
+  OCC_PID=$!
+  occ_t0=$SECONDS
+  OCC_RC=""
+  verdict_at=""
   while kill -0 "$OCC_PID" 2>/dev/null; do
     # mark when the verdict header is printed (analysis done). if-form: a failed grep
     # must NOT trip set -e (it silently killed the whole render on fresh projects).
     if [[ -z "$verdict_at" ]] && grep -qE '\[v2\].*word-fail' "$OCC_LOG" 2>/dev/null; then verdict_at=$SECONDS; fi
     # verdict printed but still alive 8s later → native (sharp) teardown hang; or no
     # verdict after 150s → measure/analysis stuck. Either way: kill + read verdict.
-    if { [[ -n "$verdict_at" ]] && (( SECONDS - verdict_at > 8 )); } || (( SECONDS - occ_t0 > 150 )); then
+    if { [[ -n "$verdict_at" ]] && ((SECONDS - verdict_at > 8)); } || ((SECONDS - occ_t0 > 150)); then
       kill -9 "$OCC_PID" 2>/dev/null
       if grep -q 'cap(s) FAIL' "$OCC_LOG"; then OCC_RC=2; else OCC_RC=0; fi
       echo "[render] occlusion gate hung after verdict (sharp teardown) — killed zombie; verdict rc=$OCC_RC" >&2
@@ -114,18 +118,21 @@ if [[ -f "$PROJECT/plan.json" && -d "$PROJECT/frames_fg" ]]; then
     fi
     sleep 2
   done
-  if [[ -z "$OCC_RC" ]]; then OCC_RC=0; wait "$OCC_PID" 2>/dev/null || OCC_RC=$?; fi   # capture rc without tripping set -e
+  if [[ -z "$OCC_RC" ]]; then
+    OCC_RC=0
+    wait "$OCC_PID" 2>/dev/null || OCC_RC=$?
+  fi # capture rc without tripping set -e
   cat "$OCC_LOG"
-  if (( OCC_RC != 0 )); then
+  if ((OCC_RC != 0)); then
     echo "[render] ABORTED — fix plan.json layout to reduce subject occlusion / frame-edge overflow, then re-run." >&2
     echo "         Override: OCCLUSION_SKIP=1 bash render-and-composite.sh <project>" >&2
     if [[ "${OCCLUSION_SKIP:-0}" != "1" ]]; then
       exit 2
     fi
     echo "[render] OCCLUSION_SKIP=1 set — continuing despite occlusion/overflow warnings." >&2
-    echo "occlusion+overflow OVERRIDDEN (OCCLUSION_SKIP=1 — conscious accept)" >> "$GATES"
+    echo "occlusion+overflow OVERRIDDEN (OCCLUSION_SKIP=1 — conscious accept)" >>"$GATES"
   fi
-  if (( OCC_RC == 0 )); then echo "occlusion+overflow PASS" >> "$GATES"; fi
+  if ((OCC_RC == 0)); then echo "occlusion+overflow PASS" >>"$GATES"; fi
 fi
 
 # Custom mode (no plan.json) skips the template gates above. Run a lightweight,
@@ -133,19 +140,19 @@ fi
 # off-frame intentionally, so it never aborts, but it surfaces captions that fall
 # off the canvas (the failure we otherwise only catch by eye).
 if [[ ! -f "$PROJECT/plan.json" && -f "$PROJECT/index.html" && -f "$(dirname "$0")/check-overflow.cjs" ]]; then
-  node "$(dirname "$0")/check-overflow.cjs" "$PROJECT" \
-    || echo "[render] (overflow check skipped — Chromium/puppeteer unavailable)" >&2
-  echo "overflow(index)   checked (custom mode, warning-only)" >> "$GATES"
+  node "$(dirname "$0")/check-overflow.cjs" "$PROJECT" ||
+    echo "[render] (overflow check skipped — Chromium/puppeteer unavailable)" >&2
+  echo "overflow(index)   checked (custom mode, warning-only)" >>"$GATES"
 fi
 # rail.html gets NO other automated coverage (the occlusion gate only reads plan.json
 # caps) — run its overflow check whenever it exists. Was dead code inside the
 # no-plan.json branch: Standard always HAS a derived plan.json, so it never ran.
 if [[ -f "$PROJECT/rail.html" && -f "$(dirname "$0")/check-overflow.cjs" ]]; then
   if node "$(dirname "$0")/check-overflow.cjs" "$PROJECT" rail.html; then
-    echo "overflow(rail)    PASS" >> "$GATES"
+    echo "overflow(rail)    PASS" >>"$GATES"
   else
     echo "[render] (rail overflow check skipped — Chromium/puppeteer unavailable)" >&2
-    echo "overflow(rail)    skipped (infra)" >> "$GATES"
+    echo "overflow(rail)    skipped (infra)" >>"$GATES"
   fi
 fi
 
@@ -162,9 +169,9 @@ if [[ -f "$PROJECT/rail.html" && -f "$PROJECT/index.html" && -f "$(dirname "$0")
       exit 2
     fi
     echo "[render] RAIL_CLIMAX_SKIP=1 — continuing despite the rail/climax duplicate." >&2
-    echo "rail-climax       OVERRIDDEN (RAIL_CLIMAX_SKIP=1)" >> "$GATES"
+    echo "rail-climax       OVERRIDDEN (RAIL_CLIMAX_SKIP=1)" >>"$GATES"
   else
-    echo "rail-climax       PASS (no duplicate reveal)" >> "$GATES"
+    echo "rail-climax       PASS (no duplicate reveal)" >>"$GATES"
   fi
 fi
 
@@ -173,7 +180,7 @@ fi
 # frame-count inference / 24. Warn if plan.json fps disagrees with the matte.
 FPS=""
 if [[ -f "$PROJECT/matte.fps" ]]; then
-  FPS="$(tr -dc '0-9' < "$PROJECT/matte.fps")"
+  FPS="$(tr -dc '0-9' <"$PROJECT/matte.fps")"
   if [[ -f "$PROJECT/plan.json" ]]; then
     PFPS="$(node -e 'try{process.stdout.write(String(require(process.argv[1]).fps??""))}catch(e){}' "$PROJECT/plan.json" 2>/dev/null || true)"
     if [[ -n "$PFPS" && "$PFPS" != "$FPS" ]]; then
@@ -221,7 +228,7 @@ HISTORY_DIR="$PROJECT/history"
 mkdir -p "$HISTORY_DIR"
 STAMP="$(date +%Y%m%d-%H%M%S)"
 cp "$PROJECT/index.html" "$HISTORY_DIR/index-${STAMP}.html"
-cp "$PROJECT/plan.json"  "$HISTORY_DIR/plan-${STAMP}.json" 2>/dev/null || true
+cp "$PROJECT/plan.json" "$HISTORY_DIR/plan-${STAMP}.json" 2>/dev/null || true
 echo "[render] snapshot → history/index-${STAMP}.html"
 
 echo "[render] hyperframes render @ ${FPS}fps"
@@ -244,13 +251,13 @@ hf_render_dir() {
 # its real name, so the shadow resolves whatever media the HTML references — including
 # the ORIGINAL video filename `hyperframes init` scaffolds (e.g. clip.mp4), not just a
 # fixed allow-list. Prevents the shadow-render 404 → silent/frozen output → abort.
-link_assets() {  # <project> <shadow>
+link_assets() { # <project> <shadow>
   local proj="$1" sh="$2" b
   for p in "$proj"/*; do
     [[ -e "$p" ]] || continue
     b="$(basename "$p")"
     case "$b" in
-      index.html|rail.html|index_fg.html|final.mp4|bg_plus_caps.mp4|fg_caps.mp4|rail.webm|history|_*) continue;;
+    index.html | rail.html | index_fg.html | final.mp4 | bg_plus_caps.mp4 | fg_caps.mp4 | rail.webm | history | _*) continue ;;
     esac
     ln -sf "$p" "$sh/$b"
   done
@@ -274,21 +281,33 @@ if [[ -f "$PROJECT/index_fg.html" ]]; then
   hf_render_dir "$FG_CAPS" "fg_caps" "$FG_SHADOW" &
   FG_PID=$!
   # Wait for both; fail if either fails.
-  BG_RC=0; wait "$BG_PID" || BG_RC=$?
-  FG_RC=0; wait "$FG_PID" || FG_RC=$?
+  BG_RC=0
+  wait "$BG_PID" || BG_RC=$?
+  FG_RC=0
+  wait "$FG_PID" || FG_RC=$?
   rm -rf "$FG_SHADOW"
-  if (( BG_RC != 0 )); then echo "[render] bg render failed" >&2; exit 1; fi
-  if (( FG_RC != 0 )); then echo "[render] fg render failed" >&2; exit 1; fi
+  if ((BG_RC != 0)); then
+    echo "[render] bg render failed" >&2
+    exit 1
+  fi
+  if ((FG_RC != 0)); then
+    echo "[render] fg render failed" >&2
+    exit 1
+  fi
 elif [[ -f "$PROJECT/rail.html" ]]; then
   # Standard mode: TWO independent hyperframes passes (base = index.html with the
   # embed; rail = rail.html transparent). Each renders from its own shadow dir (the
   # multiple-root ambiguity), and they share no state — run them IN PARALLEL like
   # the fg-hybrid above (~halves the Chromium wall time). The rail webm is consumed
   # by the composite stage below, which finds it already rendered.
-  BASE_SHADOW="$PROJECT/_base_shadow"; rm -rf "$BASE_SHADOW"; mkdir -p "$BASE_SHADOW"
+  BASE_SHADOW="$PROJECT/_base_shadow"
+  rm -rf "$BASE_SHADOW"
+  mkdir -p "$BASE_SHADOW"
   link_assets "$PROJECT" "$BASE_SHADOW"
   cp "$PROJECT/index.html" "$BASE_SHADOW/index.html"
-  RAIL_SHADOW="$PROJECT/_rail_shadow"; rm -rf "$RAIL_SHADOW"; mkdir -p "$RAIL_SHADOW"
+  RAIL_SHADOW="$PROJECT/_rail_shadow"
+  rm -rf "$RAIL_SHADOW"
+  mkdir -p "$RAIL_SHADOW"
   link_assets "$PROJECT" "$RAIL_SHADOW"
   cp "$PROJECT/rail.html" "$RAIL_SHADOW/index.html"
   RAIL_WEBM="$PROJECT/rail.webm"
@@ -297,18 +316,29 @@ elif [[ -f "$PROJECT/rail.html" ]]; then
   BASE_PID=$!
   hf_render_dir "$RAIL_WEBM" "rail" "$RAIL_SHADOW" "webm" &
   RAIL_PID=$!
-  BASE_RC=0; wait "$BASE_PID" || BASE_RC=$?
-  RAIL_RC=0; wait "$RAIL_PID" || RAIL_RC=$?
+  BASE_RC=0
+  wait "$BASE_PID" || BASE_RC=$?
+  RAIL_RC=0
+  wait "$RAIL_PID" || RAIL_RC=$?
   rm -rf "$BASE_SHADOW" "$RAIL_SHADOW"
-  if (( BASE_RC != 0 )); then echo "[render] bg render failed" >&2; exit 1; fi
-  if (( RAIL_RC != 0 )); then echo "[render] rail render failed" >&2; exit 1; fi
+  if ((BASE_RC != 0)); then
+    echo "[render] bg render failed" >&2
+    exit 1
+  fi
+  if ((RAIL_RC != 0)); then
+    echo "[render] rail render failed" >&2
+    exit 1
+  fi
 else
-  hf_render_dir "$BG" "bg_plus_caps" "$PROJECT" \
-    || { echo "[render] bg render failed" >&2; exit 1; }
+  hf_render_dir "$BG" "bg_plus_caps" "$PROJECT" ||
+    {
+      echo "[render] bg render failed" >&2
+      exit 1
+    }
 fi
 
 # Probe render dims for ffmpeg scale
-W="$(ffprobe -v error -select_streams v:0 -show_entries stream=width  -of default=nw=1:nk=1 -- "$BG")"
+W="$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nw=1:nk=1 -- "$BG")"
 H="$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 -- "$BG")"
 
 # Clamp every composite to the matte (= source-video) length. The render uses
@@ -370,7 +400,10 @@ if [[ -f "$PROJECT/rail.html" ]]; then
 
   # rail.webm was already rendered IN PARALLEL with the base pass above.
   RAIL_WEBM="$PROJECT/rail.webm"
-  [[ -f "$RAIL_WEBM" ]] || { echo "[render] rail.webm missing (parallel rail pass failed?)" >&2; exit 1; }
+  [[ -f "$RAIL_WEBM" ]] || {
+    echo "[render] rail.webm missing (parallel rail pass failed?)" >&2
+    exit 1
+  }
 
   # alpha-overlay the transparent rail in front of the matted video (force vp9
   # decode so the WebM alpha plane is honoured by overlay)
@@ -378,8 +411,11 @@ if [[ -f "$PROJECT/rail.html" ]]; then
     -filter_complex "[0:v][1:v]overlay=format=auto[v]" \
     -map "[v]" -map 0:a -r "$FPS" -t "$MATTE_DUR" -c:v libx264 -crf 11 -preset medium -c:a copy "$FINAL"
   rm -f "$MATTED"
-  if [[ -s "$GATES" ]]; then echo "[render] ── gates ──"; sed 's/^/[render]   /' "$GATES"; fi
-echo "[render] done → $FINAL"
+  if [[ -s "$GATES" ]]; then
+    echo "[render] ── gates ──"
+    sed 's/^/[render]   /' "$GATES"
+  fi
+  echo "[render] done → $FINAL"
   exit 0
 fi
 
@@ -421,5 +457,8 @@ else
     "$FINAL"
 fi
 
-if [[ -s "$GATES" ]]; then echo "[render] ── gates ──"; sed 's/^/[render]   /' "$GATES"; fi
+if [[ -s "$GATES" ]]; then
+  echo "[render] ── gates ──"
+  sed 's/^/[render]   /' "$GATES"
+fi
 echo "[render] done → $FINAL"

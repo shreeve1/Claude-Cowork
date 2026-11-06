@@ -27,9 +27,9 @@ fi
 # Drive lint_file() in-process so the per-case overhead is one Python startup,
 # not N (8 cases × ~80 ms forking python3 was the dominant cost).
 SCRIPTS_DIR="$SCRIPTS_DIR" \
-THIS_DIR="$THIS_DIR" \
-EXPECTED="$EXPECTED" \
-python3 <<'PY'
+  THIS_DIR="$THIS_DIR" \
+  EXPECTED="$EXPECTED" \
+  python3 <<'PY'
 import json
 import os
 import sys

@@ -131,25 +131,25 @@ run_render_tier() {
   fi
 
   echo "    ⏳ render Remotion baseline"
-  if ! (cd "$fixture_dir/remotion-src" && \
-        npx --no-install remotion render "$composition_id" out/baseline.mp4 >/dev/null 2>&1); then
+  if ! (cd "$fixture_dir/remotion-src" &&
+    npx --no-install remotion render "$composition_id" out/baseline.mp4 >/dev/null 2>&1); then
     echo "    ✗ Remotion render failed"
     write_result "$fixture_name" "fail" stage "remotion-render"
     return 0
   fi
 
   echo "    ⏳ render HF translation"
-  if ! (cd "$fixture_dir" && \
-        node "$HF_CLI" render hf-src/ --output hf.mp4 --quiet >/dev/null 2>&1); then
+  if ! (cd "$fixture_dir" &&
+    node "$HF_CLI" render hf-src/ --output hf.mp4 --quiet >/dev/null 2>&1); then
     echo "    ✗ HF render failed"
     write_result "$fixture_name" "fail" stage "hf-render"
     return 0
   fi
 
   if R2HF_SSIM_THRESHOLD="$threshold" "$DIFF" \
-      "$fixture_dir/remotion-src/out/baseline.mp4" \
-      "$fixture_dir/hf.mp4" \
-      "$fixture_dir/diff" >/dev/null; then
+    "$fixture_dir/remotion-src/out/baseline.mp4" \
+    "$fixture_dir/hf.mp4" \
+    "$fixture_dir/diff" >/dev/null; then
     local mean
     mean=$(read_json_value "$fixture_dir/diff/summary.json" "mean")
     echo "    ✓ pass (mean SSIM $mean, threshold $threshold)"
