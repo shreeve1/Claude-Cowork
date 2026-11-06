@@ -84,47 +84,45 @@ test("a film that is silent BY DESIGN still assembles untouched", () => {
 // .loop.wav-named file: decodes fine via ffprobe/ffmpeg/Chromium (which sniff the real
 // WAVE_FORMAT_MPEGLAYER3 tag), but hard-fails in any naive/strict WAV parser (e.g. Python's
 // stdlib `wave` module) that doesn't do full format-tag dispatch.
-test(
-  "loop-extended bgm is written as .mp3, not .loop.wav, even when the source is a .wav",
-  { skip: !HAS_FFMPEG },
-  () => {
-    const { dir, r } = assembleWith({
-      audioMeta: { bgm: { path: "assets/bgm/bed.wav" }, voices: [], sfx: [] },
-      beforeAssemble: (projectDir) => {
-        mkdirSync(join(projectDir, "assets", "bgm"), { recursive: true });
-        // 1s tone, well short of the 3s TOTAL from the single storyboard frame above —
-        // guarantees ensureBgmCovers() takes the loop-extend branch.
-        const gen = spawnSync(
-          "ffmpeg",
-          [
-            "-y",
-            "-f",
-            "lavfi",
-            "-i",
-            "sine=frequency=440:duration=1",
-            join(projectDir, "assets", "bgm", "bed.wav"),
-          ],
-          { encoding: "utf8" },
-        );
-        assert.equal(gen.status, 0, gen.stderr);
-      },
-    });
+test("loop-extended bgm is written as .mp3, not .loop.wav, even when the source is a .wav", {
+  skip: !HAS_FFMPEG,
+}, () => {
+  const { dir, r } = assembleWith({
+    audioMeta: { bgm: { path: "assets/bgm/bed.wav" }, voices: [], sfx: [] },
+    beforeAssemble: (projectDir) => {
+      mkdirSync(join(projectDir, "assets", "bgm"), { recursive: true });
+      // 1s tone, well short of the 3s TOTAL from the single storyboard frame above —
+      // guarantees ensureBgmCovers() takes the loop-extend branch.
+      const gen = spawnSync(
+        "ffmpeg",
+        [
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:duration=1",
+          join(projectDir, "assets", "bgm", "bed.wav"),
+        ],
+        { encoding: "utf8" },
+      );
+      assert.equal(gen.status, 0, gen.stderr);
+    },
+  });
 
-    assert.equal(r.status, 0, r.stderr);
-    const html = readFileSync(join(dir, "index.html"), "utf8");
-    const bgmEl = html.match(/id="el-bgm"[\s\S]*?src="([^"]+)"/);
-    assert.ok(bgmEl, "expected a bgm <audio> element in index.html");
-    const bgmSrc = bgmEl[1];
-    assert.match(bgmSrc, /\.mp3$/, `bgm src should end in .mp3, got "${bgmSrc}"`);
-    assert.doesNotMatch(bgmSrc, /\.wav$/);
+  assert.equal(r.status, 0, r.stderr);
+  const html = readFileSync(join(dir, "index.html"), "utf8");
+  const bgmEl = html.match(/id="el-bgm"[\s\S]*?src="([^"]+)"/);
+  assert.ok(bgmEl, "expected a bgm <audio> element in index.html");
+  const bgmSrc = bgmEl[1];
+  assert.match(bgmSrc, /\.mp3$/, `bgm src should end in .mp3, got "${bgmSrc}"`);
+  assert.doesNotMatch(bgmSrc, /\.wav$/);
 
-    const outPath = join(dir, bgmSrc);
-    assert.equal(existsSync(outPath), true);
-    const probe = spawnSync(
-      "ffprobe",
-      ["-v", "error", "-show_entries", "stream=codec_name", "-of", "csv=p=0", "--", outPath],
-      { encoding: "utf8" },
-    );
-    assert.equal(probe.stdout.trim(), "mp3");
-  },
-);
+  const outPath = join(dir, bgmSrc);
+  assert.equal(existsSync(outPath), true);
+  const probe = spawnSync(
+    "ffprobe",
+    ["-v", "error", "-show_entries", "stream=codec_name", "-of", "csv=p=0", "--", outPath],
+    { encoding: "utf8" },
+  );
+  assert.equal(probe.stdout.trim(), "mp3");
+});

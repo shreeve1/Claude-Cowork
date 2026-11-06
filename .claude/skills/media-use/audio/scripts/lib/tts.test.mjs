@@ -191,22 +191,18 @@ async function kokoroArgv(options) {
   }
 }
 
-test(
-  "synthesizeOne(kokoro) forwards a non-default speed to the CLI",
-  { skip: process.platform === "win32" },
-  async () => {
-    const argv = await kokoroArgv({ speed: 0.8, lang: "es" });
-    assert.deepEqual(argv.slice(-4), ["--lang", "es", "--speed", "0.8"]);
-  },
-);
+test("synthesizeOne(kokoro) forwards a non-default speed to the CLI", {
+  skip: process.platform === "win32",
+}, async () => {
+  const argv = await kokoroArgv({ speed: 0.8, lang: "es" });
+  assert.deepEqual(argv.slice(-4), ["--lang", "es", "--speed", "0.8"]);
+});
 
-test(
-  "synthesizeOne(kokoro) leaves --speed off at the default",
-  { skip: process.platform === "win32" },
-  async () => {
-    assert.ok(!(await kokoroArgv({})).includes("--speed"));
-  },
-);
+test("synthesizeOne(kokoro) leaves --speed off at the default", {
+  skip: process.platform === "win32",
+}, async () => {
+  assert.ok(!(await kokoroArgv({})).includes("--speed"));
+});
 
 test("pickProvider heygen with an unreadable credentials path says to fix that path", () => {
   const saved = ["HEYGEN_API_KEY", "HYPERFRAMES_API_KEY", "HEYGEN_CONFIG_DIR"].map((k) => [

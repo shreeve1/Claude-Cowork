@@ -5,9 +5,9 @@ import { pythonInvocation } from "./python.mjs";
 export function geminiConfigured() {
   return Boolean(
     process.env.GEMINI_API_KEY ||
-    process.env.GOOGLE_API_KEY ||
-    process.env.GOOGLE_APPLICATION_CREDENTIALS ||
-    process.env.GCS_CREDS,
+      process.env.GOOGLE_API_KEY ||
+      process.env.GOOGLE_APPLICATION_CREDENTIALS ||
+      process.env.GCS_CREDS,
   );
 }
 

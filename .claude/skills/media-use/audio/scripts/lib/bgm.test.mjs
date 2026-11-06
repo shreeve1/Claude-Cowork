@@ -38,37 +38,35 @@ test("the narrated default is well below the voice (≈ 0 dBFS)", () => {
   );
 });
 
-test(
-  "generating music again clears the engine's old track, so waiting cannot mistake it for the new one",
-  { skip: process.platform === "win32" && "the fake python is a shell script" },
-  (t) => {
-    const dir = mkdtempSync(join(tmpdir(), "hf-bgm-"));
-    const path = process.env.PATH;
-    t.after(() => {
-      process.env.PATH = path;
-      rmSync(dir, { recursive: true, force: true });
-    });
-    mkdirSync(join(dir, "bin"));
-    for (const name of ["python3", "python"])
-      writeFileSync(join(dir, "bin", name), "#!/bin/sh\nexit 0\n", { mode: 0o755 });
-    process.env.PATH = `${join(dir, "bin")}:${path}`;
-    mkdirSync(join(dir, "assets/bgm"), { recursive: true });
-    writeFileSync(join(dir, "assets/bgm/track.wav"), "last run's track");
-    appendRecord(dir, {
-      id: "bgm_001",
-      type: "bgm",
-      path: "assets/bgm/track.wav",
-      source: "generated",
-    });
+test("generating music again clears the engine's old track, so waiting cannot mistake it for the new one", {
+  skip: process.platform === "win32" && "the fake python is a shell script",
+}, (t) => {
+  const dir = mkdtempSync(join(tmpdir(), "hf-bgm-"));
+  const path = process.env.PATH;
+  t.after(() => {
+    process.env.PATH = path;
+    rmSync(dir, { recursive: true, force: true });
+  });
+  mkdirSync(join(dir, "bin"));
+  for (const name of ["python3", "python"])
+    writeFileSync(join(dir, "bin", name), "#!/bin/sh\nexit 0\n", { mode: 0o755 });
+  process.env.PATH = `${join(dir, "bin")}:${path}`;
+  mkdirSync(join(dir, "assets/bgm"), { recursive: true });
+  writeFileSync(join(dir, "assets/bgm/track.wav"), "last run's track");
+  appendRecord(dir, {
+    id: "bgm_001",
+    type: "bgm",
+    path: "assets/bgm/track.wav",
+    source: "generated",
+  });
 
-    const gen = generateBgmDetached({
-      prompt: "calm",
-      durationS: 5,
-      hyperframesDir: dir,
-      anomalies: [],
-    });
+  const gen = generateBgmDetached({
+    prompt: "calm",
+    durationS: 5,
+    hyperframesDir: dir,
+    anomalies: [],
+  });
 
-    assert.equal(gen.path, "assets/bgm/track.wav");
-    assert.equal(existsSync(join(dir, "assets/bgm/track.wav")), false);
-  },
-);
+  assert.equal(gen.path, "assets/bgm/track.wav");
+  assert.equal(existsSync(join(dir, "assets/bgm/track.wav")), false);
+});
