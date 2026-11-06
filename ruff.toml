@@ -1,0 +1,11 @@
+# Standard style contract (dotfiles .config/style/template). Its presence is
+# what lets pi-lens format Python on edit; style-check and post-work-cleanup
+# read the same file. Lint is bug-finding only: style is the formatter's job.
+target-version = "py312"
+line-length = 100
+
+[lint]
+select = ["E", "F", "I", "B"]
+# E501: the formatter owns line length; long strings and URLs it cannot wrap
+# are not defects.
+ignore = ["E501"]
