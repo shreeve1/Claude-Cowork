@@ -17,7 +17,7 @@
  },
  "antislop-human": {
   "set": "core",
-  "sha256": "60fffdb574aeabb45cea977d88028791837e6c0c6673a0e49291c2f996329d9a"
+  "sha256": "ee9802f67dce8053029ecc2dc76aa7cd4f2beb593f7c76e54533ad8fb4a875e0"
  },
  "antislop-layoutmobile": {
   "set": "core",
@@ -45,19 +45,19 @@
  },
  "drawio": {
   "set": "core",
-  "sha256": "9d03bcede9c3bbc61cdd63fb98f2370742f343f7d76124f1d74887c5e3ba1539"
+  "sha256": "0e4448ef8b7eaf03665f0979df90ff87c69008c5acef6017525fa36fff91a0f5"
  },
  "embedded-captions": {
   "set": "video",
-  "sha256": "692d56467d6b01a56a811ef9902ae5dd6095a6810c183677d9dea5c62aad8358"
+  "sha256": "4b9b22aed64cbe9c7d1ab48a307d0528db55db65b5160d2cfbdb0c6b02cf052a"
  },
  "excalidraw-diagram": {
   "set": "core",
-  "sha256": "56882b664302fa67b5cef85abb32449a74f486e98badbe6d76d57cc7fb585643"
+  "sha256": "4b797f7288f5474c2d72ce6e9e8b8cf05deac808e5ae5decc58de0606ec51481"
  },
  "faceless-explainer": {
   "set": "video",
-  "sha256": "fe5ac45ac43dee42a15a0575211f5478cf405f54a209d534ee3c8a75aa4ae6df"
+  "sha256": "7dd226a959ee791e16cb0a106342139ea02bd4762f34fab68025e9e322386560"
  },
  "figma": {
   "set": "video",
@@ -77,7 +77,7 @@
  },
  "hyperframes-animation": {
   "set": "video",
-  "sha256": "22166cefae86b317b3c74a005d17c2f68ca42335315f4e36791c11309bfa9244"
+  "sha256": "6745cab5f58059612fd31c23c27fe89fd5be68a9a54459c25bfdeb40ac137e4d"
  },
  "hyperframes-audio": {
   "set": "video",
@@ -93,7 +93,7 @@
  },
  "hyperframes-creative": {
   "set": "video",
-  "sha256": "8d0601ce26adc5608765a6dde4678c05e199b25e68b08fac380d9a30f3969580"
+  "sha256": "fc81a1a23d8684d262e0d4df7a13c804542a79d5b71ace424823c53c4127a696"
  },
  "hyperframes-keyframes": {
   "set": "video",
@@ -109,15 +109,15 @@
  },
  "media-use": {
   "set": "video",
-  "sha256": "1a841e4288d862afc7f9f5aa09bb02a64d2fc19873121b1131688ebe4c264cdd"
+  "sha256": "8d0045c2152e837aa2a9df7039f73bea5d042d77baac69219e0e625184c62ed0"
  },
  "meeting": {
   "set": "core",
-  "sha256": "1eb854394409550a54b4e80c90a351634f24b492d5887de3714f2f262d0aa307"
+  "sha256": "2ca815209847d6f1aa45f9f3746eb25d7cf6a5f883649731d2c542f5642e027a"
  },
  "memory-setup": {
   "set": "core",
-  "sha256": "926b7cab300f65d0b69dd0776ce89e7f12c20414a4f853eb5fb132d640486933"
+  "sha256": "612b33da9124ea68f4293427584133e9e2e3173da53e315bbeb196ad9ff9d59e"
  },
  "motion-doctrine": {
   "set": "video",
@@ -129,7 +129,7 @@
  },
  "music-to-video": {
   "set": "video",
-  "sha256": "b775f27b16efb1f23050d54a28c922a705ba11d9c898e7b8fe6f6b82e09c1a06"
+  "sha256": "486ba63bcc99e9ec1533fe45d9b15e392474d3ee865a149a075f8e0c55e3d939"
  },
  "oversized-cursor": {
   "set": "video",
@@ -137,15 +137,15 @@
  },
  "personal-memory": {
   "set": "core",
-  "sha256": "2d9917bf7ae378cae7769e6a2e8436bf374349f4d41fdb898b08f0e1f72e1047"
+  "sha256": "d5f89a32a41d0a838192684b5619ee8028c3b9d7fe7738ae600a31067284d3ec"
  },
  "pr-to-video": {
   "set": "video",
-  "sha256": "49dfd8081dfb3417f8f6b214e0e363afc5451b64341dd82fc7c601ddf0b9f844"
+  "sha256": "7696e0f9fa26a5bff7db5e56e00774a5e822362a67259302033de851e5ef9e2f"
  },
  "product-launch-video": {
   "set": "video",
-  "sha256": "39c46bb51002d67cbfdb28eea2bd49c2830520dfba32d621caf0f25bc1369ff0"
+  "sha256": "b4eb90e44b5260f0ef763557c9512bf97ac4726fc64bcd979e16ee167e37c297"
  },
  "professional-guidance": {
   "set": "core",
@@ -153,11 +153,11 @@
  },
  "project-import": {
   "set": "core",
-  "sha256": "57c0dd446885a01916bd90eb8f928b741ecf5170157b422f052f651d4f2d36a5"
+  "sha256": "2ad2ee7e3d9a372cc65a0453f82fe475bc7c6095188e68a64b8bf6e40bb9453b"
  },
  "remotion-to-hyperframes": {
   "set": "video",
-  "sha256": "d02be65b7f3f4a63803327cc6011486da008317f94c612b20566a80d07a9ef23"
+  "sha256": "c6f5b124526af856a670db111d9afa297f3f699e475b90bd7f05ae9374d1854a"
  },
  "seam-craft": {
   "set": "video",
@@ -169,7 +169,7 @@
  },
  "startday-spec": {
   "set": "core",
-  "sha256": "ffc8681b7b8da691b817ffa3ff2369e0b215d2c49b86d1ddf6db9feb7b0f9a39"
+  "sha256": "bc110860ff1fa11ef88e749b27d8ffae4389b6d61c3b308516607bc024301aca"
  },
  "talk-it-through": {
   "set": "core",

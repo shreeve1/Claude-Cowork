@@ -5,7 +5,7 @@
   ".claude/cowork/cowork_skills.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "6842b17e06c42a45f9f452ddc96bc273230a30655e7777894a0956ce6236028f"
+   "sha256": "d081a7e840ede23af388977bd9197f60c491fedab3d2df8b44c1fc7cd101607c"
   },
   ".claude/cowork/skills/core/adhd.skill": {
    "class": "merge",
@@ -25,7 +25,7 @@
   ".claude/cowork/skills/core/antislop-human.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "666c625904a023e5e34584235c1bcb1bdee793c938a0b91c14782aa583a7a364"
+   "sha256": "7c4a082721cd1607a205b952ec6ea35490a19f1598cec157ad0af75a0dd1db2e"
   },
   ".claude/cowork/skills/core/antislop-layoutmobile.skill": {
    "class": "merge",
@@ -50,12 +50,12 @@
   ".claude/cowork/skills/core/drawio.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "6578aa802f9895a056b56030137b9073a79522694aa18c0bfb65c9cd351ac0d2"
+   "sha256": "e4ba7c7255836937e0e83261cc66ec90a65962cd7c4d4122055c7cc4bc41b7c6"
   },
   ".claude/cowork/skills/core/excalidraw-diagram.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "b085c13c8451eeac35360f3ed048c03ea85e199c2d3d3b1316a425b7c32d85f1"
+   "sha256": "595f61efb298b8ff2a635cdabbe824fa9476fad7a4187d76db50109731696ce3"
   },
   ".claude/cowork/skills/core/handoff.skill": {
    "class": "merge",
@@ -65,17 +65,17 @@
   ".claude/cowork/skills/core/meeting.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "d593a9410bd9512bc2ba5d3b0cdf4ab70d43bb8c284a93b55306d2188d5b0d05"
+   "sha256": "05712de91a1589d1abe32b2f027628b724bdcd85be52777a5a5778d9f86c043f"
   },
   ".claude/cowork/skills/core/memory-setup.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "0dd8e24fae6d01b08d4b84ec9d2823f7b64980ff92d4d8de7633b974dd7a7f68"
+   "sha256": "7021a025945e3045e7e140778f6c7de81793e3f3c5963218300c2db3517d10d8"
   },
   ".claude/cowork/skills/core/personal-memory.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "2d0e32374eb5482bba350541114ede47e6ea62a67ef9fe151b1e7c9b5946d77a"
+   "sha256": "2c6f8b3ec0ddffd91fab7d06cf77ca31fc664bb575de42073b0a8f2cee9598a2"
   },
   ".claude/cowork/skills/core/professional-guidance.skill": {
    "class": "merge",
@@ -85,12 +85,12 @@
   ".claude/cowork/skills/core/project-import.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "a6144d1731c6b102cd013c5905de2c40346ba4af72666e507318f5fdfc6e4851"
+   "sha256": "8e8d406045858c10a5e1c6ab866b83faf4a22cb0d98d32f026e2738d0d779c57"
   },
   ".claude/cowork/skills/core/startday-spec.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "69b947bd909b51232b487c5954b5e48fb40645b31e1c5f39db410e2115b32a70"
+   "sha256": "60264d2e5f7272068a60e4f9af83d3d3ca8205dee17a43f43a98cd11d01b4b5e"
   },
   ".claude/cowork/skills/core/talk-it-through.skill": {
    "class": "merge",
@@ -120,7 +120,7 @@
   ".claude/cowork/skills/index.json": {
    "class": "merge",
    "mode": "644",
-   "sha256": "2770f17e7952dba1d84f9d2becb65747b1c4dd34e8fc76211efb755bc3fc8709"
+   "sha256": "3a2904df0795ca43a8946fa200d862e83d6ad7fc433f88169de244f6017cbdea"
   },
   ".claude/cowork/skills/video/captions-overlay.skill": {
    "class": "merge",
@@ -140,12 +140,12 @@
   ".claude/cowork/skills/video/embedded-captions.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "334a9ac50eab100efc92e64b167b924ac84c504b90a3acfb9b33f525f03c5955"
+   "sha256": "e1bc5852a053de54f8f0a279e215298822114647db95456626e048419c7de7c5"
   },
   ".claude/cowork/skills/video/faceless-explainer.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "07911502f0b6b960fcdee72e0554b6fe83be3016e02f26d4d8817b3f7bbc9e2e"
+   "sha256": "c431539e22c6e56693251de5d04fa326abf9669d78f033a1948cbb2ef8a8f800"
   },
   ".claude/cowork/skills/video/figma.skill": {
    "class": "merge",
@@ -160,7 +160,7 @@
   ".claude/cowork/skills/video/hyperframes-animation.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "f5a89e12e9ac72c44a2c1359d15251608d8d965ae8857bff3970b091427c1068"
+   "sha256": "2e7ebb63bb0d37c7b638afdf4d9ca806fa2a5555b06e20eaa1b8a64fb7006552"
   },
   ".claude/cowork/skills/video/hyperframes-audio.skill": {
    "class": "merge",
@@ -180,7 +180,7 @@
   ".claude/cowork/skills/video/hyperframes-creative.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "f9fc98783224bcdcd7475882c9328651abc36030d2aaa44b094a74df1ab9d7b3"
+   "sha256": "39aa586b5f36593a4ba30bb1b7e3f974b85970cdcf09a9a0b47e37de793916af"
   },
   ".claude/cowork/skills/video/hyperframes-keyframes.skill": {
    "class": "merge",
@@ -205,7 +205,7 @@
   ".claude/cowork/skills/video/media-use.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "6a032fda1079d359ef4ee0d6a33470e136012fc0bc695af6a7bf99de4662165a"
+   "sha256": "4c6d054e847ce008bced26a7428ab83b50d2d364fb778aa3781b3e08eef5fd43"
   },
   ".claude/cowork/skills/video/motion-doctrine.skill": {
    "class": "merge",
@@ -220,7 +220,7 @@
   ".claude/cowork/skills/video/music-to-video.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "de2c0d33980281f54ac41f1bb33e0ace8fe77997b27bde96956a1442251b016a"
+   "sha256": "174f101a2045a679a3d892e7f6790e194b5c2cfca713ca28aa0fd8f010d0ad65"
   },
   ".claude/cowork/skills/video/oversized-cursor.skill": {
    "class": "merge",
@@ -230,17 +230,17 @@
   ".claude/cowork/skills/video/pr-to-video.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "33a99bdcb8cf059936279795c956c32d99719ab74405d5e73e557cdca379f028"
+   "sha256": "eb2640b5ad9418d9e38ba128ef99caeb7f3d5ee2beaa3b99d5bf07eec91d3276"
   },
   ".claude/cowork/skills/video/product-launch-video.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "187351869f2455ffbe4139a1673babf5ea2be7a6db19b42423332957c2512e81"
+   "sha256": "c48e906d66b97507a963c8369cfad9df6fbcb478685fd46a19523c1782037413"
   },
   ".claude/cowork/skills/video/remotion-to-hyperframes.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "cfeea5baada844d2a4abe9e0a82238750fc92f140bb87ee9ef553ee94ce12327"
+   "sha256": "3f75dcca5f0609a3b0e7c9380ae423868ad52582a0947fe2e272a86a38d48038"
   },
   ".claude/cowork/skills/video/seam-craft.skill": {
    "class": "merge",
@@ -260,17 +260,17 @@
   ".claude/cowork/update.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "90f9d34f770f23b4184e43aa8d56d25f568924cd76d73bcb9ff452134f2db8c3"
+   "sha256": "2adfb0fffc2a44f2104a1794769732d82132893e8808b0ab21ae8fc261dad985"
   },
   ".claude/cowork/update_recovery.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "35fb3fd23aa2c1533c29d5501eec8b01a23806c3b9243be1d4d7841d4de1b834"
+   "sha256": "e59f2c91b74b197c5569b852e81a417b68fd142847a5cfe1069ef3c23a09c034"
   },
   ".claude/cowork/workspace.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "8fb1589a085a3ce07377c3247a4e1f3537a2a645c6949f898791f27c138a7dc4"
+   "sha256": "97799d7b51b0204bbc0b3fab9b250902ce1b7db062a7e204e4ed4ac51ad35114"
   },
   ".claude/cowork/workspace/CLAUDE.md": {
    "class": "merge",
@@ -344,12 +344,12 @@
   },
   ".claude/skills/antislop-human/contrast-check.py": {
    "class": "merge",
-   "sha256": "619cdf3da8b27f87d8e4049b4acecfe1a559b234ab2aa9cf09447c28745c3075",
+   "sha256": "1d6189eb2e236654025cb27924c775f62b230e7600bdd02ec600b73844e6d812",
    "mode": "644"
   },
   ".claude/skills/antislop-human/contrast-mcp.py": {
    "class": "merge",
-   "sha256": "2dff74f119829d81b28dd593c6fd2289d56d9301cb8e47f1b49d7c6ef03a429f",
+   "sha256": "8d90806c6c6178b6316e3f46f886104d62985e1f19287e059a18d1923f603c25",
    "mode": "644"
   },
   ".claude/skills/antislop-layoutmobile/SKILL.md": {
@@ -460,12 +460,12 @@
   ".claude/skills/convert-release/tests/test_cowork_update.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "8b75084070119447149d4a245675ed8bb0de5a95602446d97d7ad00c0c1d124f"
+   "sha256": "1bd71c6906b4579d542b5c69f00ffccad15f46898f153a11d700ed89009b6103"
   },
   ".claude/skills/convert-release/tests/test_cowork_update_failures.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "a714552fcba5552b715f929693bb3bb47f3c64ee1f10062917650bb2c9d992c5"
+   "sha256": "2f444799802e2fcc80594aff289d6a2eb8843d255a4062b332f825dd7a2941e7"
   },
   ".claude/skills/cut-the-curve/SKILL.md": {
    "class": "merge",
@@ -490,22 +490,22 @@
   ".claude/skills/drawio/scripts/link.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "9732e5cfafef4743a77867b86c963db74858a8a7ef3dbff56287492977557054"
+   "sha256": "f14299b379f31bc43cbc9a8cf2e69635d23344fe391eea503c24c0bd448fd00b"
   },
   ".claude/skills/drawio/scripts/svg.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "73d3f6fea7ed356b40c3f35ffab4234a95ea9f60f7ebee97c681d3b384e340ee"
+   "sha256": "eb733ea8405434861c54cc5fa1e06f5c36304bfe17f93dab7c58c5f3f61c6e08"
   },
   ".claude/skills/drawio/scripts/tests/test_link.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "dfa2c26a59d4e3fee4c1449a0c521ce0e064eb7975deb94123a1388900ec213f"
+   "sha256": "e49b061027186d6a9895e4133fd9b6e409ba648fdbc16dfc52b7b04eca2b205a"
   },
   ".claude/skills/drawio/scripts/tests/test_svg.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "ad450f2b7739eeb3287382e00e6d260fa9dec92fe18a83ad65f19f42ea077be3"
+   "sha256": "2b42ec87581751e7ebe2e07d8f44788de612f3d296f6ae394fded0e5d4e98aa1"
   },
   ".claude/skills/embedded-captions/.gitignore": {
    "class": "merge",
@@ -1004,7 +1004,7 @@
   },
   ".claude/skills/embedded-captions/scripts/gen-stroke-path.py": {
    "class": "merge",
-   "sha256": "5d1fa8ae9b6e5d7b8f1444860b3a56252abbcef128fc8a7e459dc4ffd27b7a22",
+   "sha256": "5b4098ca89cbabc11055cd0ef7991a5977da0c8eca636d8fe622ef657f65acd6",
    "mode": "644"
   },
   ".claude/skills/embedded-captions/scripts/hf-cli.cjs": {
@@ -1054,7 +1054,7 @@
   },
   ".claude/skills/embedded-captions/scripts/prepare.sh": {
    "class": "merge",
-   "sha256": "1ea6be6cc31286d7ab5252697db4ead1a019a565c99b3375976caf0ac7fde928",
+   "sha256": "923e43c39ffa56c5d824fe1535a3ca933bb0cb57b3c8e04e24797669fcabceea",
    "mode": "644"
   },
   ".claude/skills/embedded-captions/scripts/preview-frames.cjs": {
@@ -1069,7 +1069,7 @@
   },
   ".claude/skills/embedded-captions/scripts/render-and-composite.sh": {
    "class": "merge",
-   "sha256": "037251b4afb3889633521e250702e9c2374a0ccc14ad7f42e1ff0b0b5479770a",
+   "sha256": "6fee65fc0dbc420eea8369c1ebf3d17e6dfcad453f622204b447136a2b4a8cb6",
    "mode": "644"
   },
   ".claude/skills/embedded-captions/scripts/render-theme.sh": {
@@ -1249,7 +1249,7 @@
   },
   ".claude/skills/excalidraw-diagram/scripts/export_to_excalidraw_url.py": {
    "class": "merge",
-   "sha256": "e4698b70fa4b558a0f5f3319ec196cf8b0ff1d80e425ebb7bf545e927bb7ff90",
+   "sha256": "05766a3463c2c69a89b2b5d3dfff8ec4697e2dd0d1186d2ef061f259bd712c56",
    "mode": "644"
   },
   ".claude/skills/excalidraw-diagram/scripts/pyproject.toml": {
@@ -1259,7 +1259,7 @@
   },
   ".claude/skills/excalidraw-diagram/scripts/render_excalidraw.py": {
    "class": "merge",
-   "sha256": "f1deeffb2d40fe3ab1714d65f286b6b587c6af390734842bc0fa498aaf70b904",
+   "sha256": "acd0a72d3f80506fd0537d5719c4d5382677a5ee0108b2cd8764addbab866522",
    "mode": "644"
   },
   ".claude/skills/excalidraw-diagram/scripts/render_template.html": {
@@ -1304,7 +1304,7 @@
   },
   ".claude/skills/faceless-explainer/scripts/assemble-index.test.mjs": {
    "class": "merge",
-   "sha256": "abeafe05767e290ff751d23c26c01cae6d949dba20f57bc66f4906743c80a002",
+   "sha256": "28112f044c128daf2c17682dddd2a1df6675222af9fa2a2495e044964afc8679",
    "mode": "644"
   },
   ".claude/skills/faceless-explainer/scripts/audio.mjs": {
@@ -1984,7 +1984,7 @@
   },
   ".claude/skills/hyperframes-animation/scripts/package-loader.test.mjs": {
    "class": "merge",
-   "sha256": "504125ede3efaf687dba15de699c0100bf1fd47855fc83c98aec5c6fb9a4168f",
+   "sha256": "7fbf6ab27d6f8994c07db0168e152989ce94f8c89d9147e0b9fd43ba539980a9",
    "mode": "644"
   },
   ".claude/skills/hyperframes-animation/techniques.md": {
@@ -2599,7 +2599,7 @@
   },
   ".claude/skills/hyperframes-creative/scripts/extract-audio-data.py": {
    "class": "merge",
-   "sha256": "2b72d7aaa8688a4c524042274364f9696fb26fa9dd7125c58798cbdf021950e8",
+   "sha256": "b1a09295a24183be9905aee524b4ae1cb3a7597d6a179fab4c584a2567a6da4c",
    "mode": "644"
   },
   ".claude/skills/hyperframes-creative/scripts/package-loader.mjs": {
@@ -2609,7 +2609,7 @@
   },
   ".claude/skills/hyperframes-creative/scripts/package-loader.test.mjs": {
    "class": "merge",
-   "sha256": "504125ede3efaf687dba15de699c0100bf1fd47855fc83c98aec5c6fb9a4168f",
+   "sha256": "7fbf6ab27d6f8994c07db0168e152989ce94f8c89d9147e0b9fd43ba539980a9",
    "mode": "644"
   },
   ".claude/skills/hyperframes-creative/templates/design-picker.html": {
@@ -3069,7 +3069,7 @@
   },
   ".claude/skills/media-use/audio/scripts/lib/bgm.test.mjs": {
    "class": "merge",
-   "sha256": "59b6b3d23a7de4b8dcaef846290ec14c6f74530a4e9a8fd5fa354501c35c73ad",
+   "sha256": "8b6bdc76befbdab5347609f6793542066e72d13a563582736bd858df5708ede0",
    "mode": "644"
   },
   ".claude/skills/media-use/audio/scripts/lib/concurrency.mjs": {
@@ -3084,12 +3084,12 @@
   },
   ".claude/skills/media-use/audio/scripts/lib/gemini-auth.mjs": {
    "class": "merge",
-   "sha256": "72fa1b984693279656ef5398bbdc48c074040ac4feafaedd1b7c45f12545bf10",
+   "sha256": "c003be21f87db3f4e58ca6d08daefc0602c9aba2f7110a85e7f02323b38410f8",
    "mode": "644"
   },
   ".claude/skills/media-use/audio/scripts/lib/gemini-auth.py": {
    "class": "merge",
-   "sha256": "5ba85af3b5b46bfa04013f5d24b2c5b72dc7677b6cc5ef5ef926de82be4f8542",
+   "sha256": "ec7a4979da51c737aeaad1c66558d8b0a149046d1b5d4f61a421428c384d2b63",
    "mode": "644"
   },
   ".claude/skills/media-use/audio/scripts/lib/gemini-auth.test.mjs": {
@@ -3099,7 +3099,7 @@
   },
   ".claude/skills/media-use/audio/scripts/lib/gemini-auth_test.py": {
    "class": "merge",
-   "sha256": "5f524492aa5d4fa77c45bfed0002a33045677bd1c28027ff80554c9911f32b66",
+   "sha256": "134ff3f58caffe5f7fb1e2a1210970dc5a2b0af18fa316ffabf7a96093b5499f",
    "mode": "644"
   },
   ".claude/skills/media-use/audio/scripts/lib/gemini-tts.mjs": {
@@ -3179,7 +3179,7 @@
   },
   ".claude/skills/media-use/audio/scripts/lib/tts.test.mjs": {
    "class": "merge",
-   "sha256": "47185cb0d6ac4ca9350d65640a93e9f477d022a8a48d614f51e2ca57f3ca4a39",
+   "sha256": "4bfc6851e74f26adfc47c9a79c641ce29804c6e98415ce2cf16b7476c38f46ce",
    "mode": "644"
   },
   ".claude/skills/media-use/audio/scripts/lyria-recipe.py": {
@@ -3369,7 +3369,7 @@
   },
   ".claude/skills/media-use/scripts/resolve-plugin.test.mjs": {
    "class": "merge",
-   "sha256": "fe8f4dce139b3a88e9ba817da335ae7667a644a715f250613901f7cc1e75f0ed",
+   "sha256": "686092f31c63d9bd664c2e58af952eb4ee7fe8daefd87c852e6c4893c7b94b99",
    "mode": "644"
   },
   ".claude/skills/media-use/scripts/resolve.mjs": {
@@ -3384,7 +3384,7 @@
   },
   ".claude/skills/media-use/scripts/transcribe.test.mjs": {
    "class": "merge",
-   "sha256": "39a456ac37a0eca282417b09d7e556c0f2ac11ab3726bc361ff077e75a963ae1",
+   "sha256": "ea4f6034f439ec51909ef5d05055d8131b86d44ee3613584626fe7a114285bc7",
    "mode": "644"
   },
   ".claude/skills/media-use/scripts/transcript-cut.mjs": {
@@ -3394,7 +3394,7 @@
   },
   ".claude/skills/media-use/scripts/transcript-cut.test.mjs": {
    "class": "merge",
-   "sha256": "a73b6d1e6a40930d0f0b35d733eeeab661464b960b8f01e0770a6bd484e33925",
+   "sha256": "48d7eaea7dcac01ef94a0ae3495402c6f413b1b37d37760fee9810a46fb4cbc6",
    "mode": "644"
   },
   ".claude/skills/meeting/SKILL.md": {
@@ -3405,12 +3405,12 @@
   ".claude/skills/meeting/scripts/meetings.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "e4eba58eac8cd5eb4d46ae40e5b48fbd618c5ec7f6cada9e977be040181930c9"
+   "sha256": "6ce5c92bed19f508b308ace4121b23ab208dec13f5318bb37e09d959f9ac3c5f"
   },
   ".claude/skills/meeting/scripts/tests/test_meetings.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "e061e80361fa4539e881c256e63037d5db08cd862d7dd51b6549bffb057f41ed"
+   "sha256": "9ea88de099e6a13d279b5e8b10dfbe38e2cbc13deb8b240dc35c9817824384bd"
   },
   ".claude/skills/memory-setup/SKILL.md": {
    "class": "merge",
@@ -3434,7 +3434,7 @@
   },
   ".claude/skills/memory-setup/tests/test_layout.py": {
    "class": "merge",
-   "sha256": "b902cc445eef7473dfec54b623d0f33fb5d3e47ab376090680f75000e8ec8adc",
+   "sha256": "e21e13450310b49e22959c278d0a9b7a9f8c2554d47bd23dfc21752eb467cdad",
    "mode": "644"
   },
   ".claude/skills/memory-setup/tracking-model.md": {
@@ -4399,7 +4399,7 @@
   },
   ".claude/skills/music-to-video/scripts/analyze-beatgrid.py": {
    "class": "merge",
-   "sha256": "acc14ffbbbcfb59fbe89a6886380d584df07a14205b1a299f424810bc85baed0",
+   "sha256": "2ea6cef8f761d151229f23452fb5aaf1fd51faf05da4473ba7fa8ab3e3a585d9",
    "mode": "644"
   },
   ".claude/skills/music-to-video/scripts/assemble-index.mjs": {
@@ -4439,7 +4439,7 @@
   },
   ".claude/skills/personal-memory/gate.py": {
    "class": "merge",
-   "sha256": "dd4e9b0c956896970a2d49d750893c66e36af742751a6706035abf80d8aa45ee",
+   "sha256": "f03273cbbc4cee07be5efc14e9e95b467a0a968c938384c0af8e50a83517416e",
    "mode": "755"
   },
   ".claude/skills/personal-memory/hubs.py": {
@@ -4460,12 +4460,12 @@
   ".claude/skills/personal-memory/procedures.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "47e43b5910fdf99d62c15af3e9e163fc38090370cad26a7581a441f7c654b8e7"
+   "sha256": "94363bc9ddfb2ac246f030307fd6370b23b9fb3d058dad43191baab6353f6f3d"
   },
   ".claude/skills/personal-memory/recovery.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "ed9706167cfb309c22f8320a9fa69f6aa0e4e80ab40bf727b4c8fec036c68ddc"
+   "sha256": "0ed0dc7d2cbc47347f72ecc3c2535785e6cf8425d4caef91799fda910d0d16d7"
   },
   ".claude/skills/personal-memory/reference.md": {
    "class": "merge",
@@ -4555,26 +4555,26 @@
   ".claude/skills/personal-memory/tests/test_policy.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "d1dea67e44fa8c4d82259e5026977bcb26e39279b021006ce2538d553f670a45"
+   "sha256": "a303e245cabd42224baed04ae430741c9db60d627737c11b4d6d44bcedfd6904"
   },
   ".claude/skills/personal-memory/tests/test_procedures.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "b3c2cfba861d4a1a65a20bee0645170959f7df2a69bf466843b09efc83d90da4"
+   "sha256": "0eb2c1794cbd40ede48aba0e8976b72c6810428f959362cd3d47e45948719803"
   },
   ".claude/skills/personal-memory/tests/test_recovery.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "7017fc374b1628a00856fb90945852fc649ce1c0db5d0d6fd89ecad5ba2482a0"
+   "sha256": "46022bbbb9a2fd4c2c74be99586b6cc92b03a3cc2d59d37074872e976b4d008d"
   },
   ".claude/skills/personal-memory/tests/test_rules.py": {
    "class": "merge",
-   "sha256": "9c88c0bec85748999228faa108f9d28b9c324c54f7315333eb348469730fd65c",
+   "sha256": "85e4e2481cc639ea9cc1241afb215b606f207902d343feb3ffc094c730e4dfe2",
    "mode": "644"
   },
   ".claude/skills/personal-memory/tests/test_schema.py": {
    "class": "merge",
-   "sha256": "d3fb06266e867621092e2f5a4abaac3fd4b35975a669272364fb5a504b3404ab",
+   "sha256": "b14f01b0c568cf9f39b03b49d48d9e10bc07b24ecbce1df5261a82967fca8d91",
    "mode": "644"
   },
   ".claude/skills/personal-memory/tests/test_sweep.py": {
@@ -4585,7 +4585,7 @@
   ".claude/skills/personal-memory/tests/test_tasks_policy.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "d332dfc612189548f87144c51d2724474b89fcecaea4e8648041d507870b13bc"
+   "sha256": "84243176b4b867f27ec16df4e1ba79983f8ceb69694b5a2f74f0da0f74c73559"
   },
   ".claude/skills/pr-to-video/SKILL.md": {
    "class": "merge",
@@ -4624,7 +4624,7 @@
   },
   ".claude/skills/pr-to-video/scripts/assemble-index.test.mjs": {
    "class": "merge",
-   "sha256": "9b315e77e3cf352fbee80b16f164c14368bce941a447039792e1bd5cf5dfcb59",
+   "sha256": "db0614505d2d938198bab43196d7a43fc34982131338201a710de179eed9a7dd",
    "mode": "644"
   },
   ".claude/skills/pr-to-video/scripts/audio.mjs": {
@@ -4794,7 +4794,7 @@
   },
   ".claude/skills/product-launch-video/scripts/assemble-index.test.mjs": {
    "class": "merge",
-   "sha256": "abeafe05767e290ff751d23c26c01cae6d949dba20f57bc66f4906743c80a002",
+   "sha256": "28112f044c128daf2c17682dddd2a1df6675222af9fa2a2495e044964afc8679",
    "mode": "644"
   },
   ".claude/skills/product-launch-video/scripts/audio.mjs": {
@@ -5505,7 +5505,7 @@
   ".claude/skills/project-import/tests/test_layout.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "39ec034cff7deff982d4e014f4dc5a57aae173435cb39d520f0ae61b1372e171"
+   "sha256": "8df3d38f88fa772f95177bed04a4acb16472e777be6f0b487d7ee7b6df319d7e"
   },
   ".claude/skills/remotion-to-hyperframes/SKILL.md": {
    "class": "merge",
@@ -5524,7 +5524,7 @@
   },
   ".claude/skills/remotion-to-hyperframes/assets/test-corpus/run.sh": {
    "class": "merge",
-   "sha256": "b6ceead2abf0f155ca816c2a696e0ea4db9d0b2d55bba5ad1407d65ccbd23399",
+   "sha256": "bb4e29d9b18a0d021ade4df9f30a02c1926110c37d7b5a926e6fd9881d51d5b0",
    "mode": "644"
   },
   ".claude/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/.gitignore": {
@@ -5799,7 +5799,7 @@
   },
   ".claude/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/validate.sh": {
    "class": "merge",
-   "sha256": "75abb2f5a9d39591e75712113fd2a9ebe6bcae911b7bda33a1209aff101446b7",
+   "sha256": "c678883bcaeca25987b7f12bf9104fd82df8c5dcd501ae375426c0eb8fc10002",
    "mode": "644"
   },
   ".claude/skills/remotion-to-hyperframes/references/api-map.md": {
@@ -5869,7 +5869,7 @@
   },
   ".claude/skills/remotion-to-hyperframes/scripts/lint_source.py": {
    "class": "merge",
-   "sha256": "6043611ad04ce16d2ef5596822eb2887e865ed9759c8e528471b994dff7d88b1",
+   "sha256": "f850fd5d31813fdab3c5ef4610c98d1eefa4da793cee327700e2fde11c0c70dd",
    "mode": "644"
   },
   ".claude/skills/remotion-to-hyperframes/scripts/render_diff.sh": {
@@ -5944,12 +5944,12 @@
   },
   ".claude/skills/startday-spec/scripts/tests/test_watch.py": {
    "class": "merge",
-   "sha256": "eb66c3d86d8815068240f53554e4fa8f6e5b7be9be48ec40219d9b098a609aaa",
+   "sha256": "8d3a756b48cf3a84c8e5ee443a367e46ea97e88a6305720ad8ffbc2f7d827d1c",
    "mode": "644"
   },
   ".claude/skills/startday-spec/scripts/watch.py": {
    "class": "merge",
-   "sha256": "f8b758b3d8ec09bf9db1882c8c46ade03b3b1851c3e9da8160379128b41e78f9",
+   "sha256": "76ee71d56fa655edbbcd9cf3842980a0d2e7e3cc4107cf3840514bf61703a25b",
    "mode": "755"
   },
   ".claude/skills/talk-it-through/CONTEXT-FORMAT.md": {
@@ -7124,7 +7124,7 @@
   },
   ".githooks/commit-msg": {
    "class": "merge",
-   "sha256": "d5f3b36e5a756a2db5f0432635d48b596a7a74fe2f71214f52b5cdba752f6d08",
+   "sha256": "cd3c1cdd545d909fe680579b0d4712f026fff7876e150da176e47366e6dfa4ec",
    "mode": "755"
   },
   ".githooks/nopython/commit-msg": {
@@ -7144,12 +7144,12 @@
   },
   ".githooks/tests/test_pre_commit_allow.py": {
    "class": "merge",
-   "sha256": "44f00f50c52db14fbf51cee14f85ae39290699d9d753562af427d43141e18f41",
+   "sha256": "cb0606cefcddbc182d8c29f672810a463c38d8ec84f99e830ce6af7534a77234",
    "mode": "644"
   },
   ".githooks/tests/test_pre_commit_audit.py": {
    "class": "merge",
-   "sha256": "9d511bad392affe98d72de247a2fa00fc0e9404af0e94e595ec5d7c28670a217",
+   "sha256": "790c5b6647eac1bc969f3a62c3480b5b2c9ce9a4f4eb7377163231db44726bdc",
    "mode": "644"
   },
   ".gitignore": {
@@ -7159,7 +7159,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "20b93580ba62e52dca16f774916e7d3a66a6e45e10613ed1e133d5cae3bf3e2d",
+   "sha256": "1c2d2041ec1daae283afb2082a016867a5dc76af58fd08a43b9a9e0fea33ab5e",
    "mode": "644"
   },
   "CLAUDE.md": {
@@ -7195,7 +7195,7 @@
   "docs/testing/cowork-project-scaffolding-check.py": {
    "class": "merge",
    "mode": "644",
-   "sha256": "ece920b6889285f20ee9cbadebd8f3c29383e42495491fe852f5790e72373f03"
+   "sha256": "baaf41759397292d514456918917e69635b76acb5018bc9f5a67394189f23e62"
   },
   "docs/testing/cowork-project-scaffolding-plan.md": {
    "class": "merge",
