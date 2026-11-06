@@ -6,10 +6,8 @@ credential in the same folder still blocks the commit.
 
 import hashlib
 import json
-import os
 import shutil
 import subprocess
-import sys
 import tempfile
 import unittest
 from pathlib import Path
