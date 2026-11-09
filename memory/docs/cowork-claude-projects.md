@@ -18,7 +18,7 @@ topics: [tools, projects]
 - With a workspace folder also attached (**Add folder**), the chat can write the project into the workspace. Verified: 31 files, 147 MB, checksums identical.
 - Without an attached folder, written files land in the session's hidden `outputs/` folder.
 - Not yet tested: several projects in one chat.
-- A new chat reuses the last attached folder; check the attachment before importing. `itastack - Copy` is the old Codex layout (no `CLAUDE.md`, `projects/` or Git), so the import correctly refuses it; test imports use a fresh workspace from `workspace.py create`.
+- A new chat reuses the last attached folder; check the attachment before importing. `test-workspace copy` is the old Codex layout (no `CLAUDE.md`, `projects/` or Git), so the import correctly refuses it; test imports use a fresh workspace from `workspace.py create`.
 - Native import test, 2026-11-05: Openly design imported into `Documents\cowork-project-test`; all 27 kept files byte-identical to the project copy; project skill saved and auto-loaded in a fresh chat. Cowork could not commit there because that test workspace skipped setup (no hook path; rules name the uninstalled `meeting` skill) and its sandbox left a stale `.git/index.lock` it could not delete.
 - Driving the desktop from `wrk` (2026-11-02): PrintWindow showed only a loading skeleton; foregrounding the window and using CopyFromScreen worked. Call SetProcessDPIAware before reading window coordinates, or clicks miss. Pasting through the clipboard then verifying the draft before sending was reliable.
 

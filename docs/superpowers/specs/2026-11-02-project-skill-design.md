@@ -124,7 +124,7 @@ Only with owner approval per project.
 A fresh reviewer raised six questions; each is settled here by existing workspace rules or as a builder call.
 
 - **Re-import** never overwrites. It produces a fresh sorted proposal showing only differences from the existing folder; owner-edited `instructions.md`, renamed files and existing memory notes stay unless the owner approves a specific change. Removed source files are reported, not deleted.
-- **Where the source is**: the skill reads Cowork's project copy in the chat (outside the workspace) and writes only sorted results. No raw copy lands in the workspace; the test copy in `itastack - Copy` was a test artifact.
+- **Where the source is**: the skill reads Cowork's project copy in the chat (outside the workspace) and writes only sorted results. No raw copy lands in the workspace; the test copy in `test-workspace copy` was a test artifact.
 - **Rules row timing**: `gate.py` audit fails a rules row naming a missing skill (confirmed). First setup already installs every skill the rules name in stage one. On update, the rules row changes only after the `project` card is confirmed installed; if it is declined or blocked, the row stays as today (load the folder map, open the README).
 - **Lasting facts** follow the tracking model as setup chose it: tracked-thing notes when `client_folder` covers the home (for example `projects` or `clients`); otherwise project facts stay in the project's README and files, and only owner-wide facts go to ordinary memory topics. Import never changes `memory/schema.json` without separate owner approval.
 - **README format** stays personal-memory's Project README template. `Source` and `Skill` are plain lines inside its Files section, so no template change and no second card update.
@@ -135,7 +135,7 @@ A fresh reviewer raised six questions; each is settled here by existing workspac
 - Review the skill files against writing-for-agents.
 - Scenario tests in a scratch workspace: open with one, several and no matches; project-only and client-and-project workspaces; a tracked folder with a custom word; conflicting instructions; credential line; re-import; switching projects.
 - `cowork_skills.py build` passes; existing tests and `gate.py audit` pass.
-- Desktop acceptance with James's approval per UI action, in `itastack - Copy`: install the card; import Openly design; open it in a fresh chat; create and install one project skill; try two projects in one chat.
+- Desktop acceptance with James's approval per UI action, in `test-workspace copy`: install the card; import Openly design; open it in a fresh chat; create and install one project skill; try two projects in one chat.
 
 ## Left to the builder
 

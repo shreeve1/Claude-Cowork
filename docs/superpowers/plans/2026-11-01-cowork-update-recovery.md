@@ -75,7 +75,7 @@ Operation document v1: workspace identity, optional predecessor id, explicit ent
 - [ ] Update authoritative setup: inspect -> resolve/approve -> installed recovery checks -> stage merges/generated outputs -> freeze plan -> prepare/verify -> apply -> read-only verification -> separate card confirmation -> linked finalization. New scope needs a verified approved transaction, not direct edits.
 - [ ] Document recovery/conflicts, optional full backup, metadata limits, one-writer boundary, Git exclusion and partial installs. Add recovery Git/recall exclusions as planned existing-workspace changes.
 - [ ] Register new maintainer files/refresh release hashes; regenerate packages only if sources change. Run release tests, hook tests, memory audit and manifest checks. Inspect failures instead of repeating passing checks unchanged.
-- [ ] Commit verified code before desktop work. Drive Cowork in unique synthetic child inside `itastack - Copy`, revised ZIP and ordinary option-3 prompt. Record commands, actual package bytes/timings, interrupted apply/rollback and later-edit refusal. No Save skill clicks.
+- [ ] Commit verified code before desktop work. Drive Cowork in unique synthetic child inside `test-workspace copy`, revised ZIP and ordinary option-3 prompt. Record commands, actual package bytes/timings, interrupted apply/rollback and later-edit refusal. No Save skill clicks.
 - [ ] Switch normal guidance only after acceptance; otherwise retain experimental gate and report blocker. Run cleanup, fresh standards/risk review, final focused tests, memory capture/audit and exact-path commits. No push.
 
 ## Verified build ledger

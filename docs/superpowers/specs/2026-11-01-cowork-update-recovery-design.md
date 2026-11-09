@@ -2,7 +2,7 @@
 
 ## Intent and authority
 
-James approved building the reliable process discussed on 2026-11-01: close prototype safety gaps, ship a controlled update/recovery helper, integrate guided instructions, and run acceptance in disposable `itastack - Copy`. No push or installed-skill change is authorized. The details below are builder recommendations for review before product code changes.
+James approved building the reliable process discussed on 2026-11-01: close prototype safety gaps, ship a controlled update/recovery helper, integrate guided instructions, and run acceptance in disposable `test-workspace copy`. No push or installed-skill change is authorized. The details below are builder recommendations for review before product code changes.
 
 Keep the existing workspace folder. Claude handles technical work; the owner approves actual changes and meaningful conflicts. Preserve what the update can change rather than guessing which content is personal.
 
@@ -87,5 +87,5 @@ Retain verified old package index under its original relative path in recovery e
 2. Negative tests: Windows case aliases, unsafe links, corrupt/truncated plans/journals/packages, drift, unexpected payloads, disk/write/journal errors, missing helpers, later edits and competing writers. Fault injection stays in tests, not hidden production crash flags.
 3. Fresh-process restore with staging unavailable; linked finalization and reverse recovery; preserve pending-card state.
 4. Existing projection/conversion/package/memory/task tests and manifest checks pass; reviewer checks risk diff against CODING_STANDARDS.md. New tools/tests stay maintainer-only.
-5. Native Cowork test in unique synthetic child inside `itastack - Copy`, revised ZIP and ordinary option-3 prompt: actual helper commands, interrupted apply/rollback recovery and later-edit refusal. Preserve existing files and installed skills; no Save skill clicks. Save receipts, actual package bytes and timings. Never call a synthetic subset an update of the entire real copy.
+5. Native Cowork test in unique synthetic child inside `test-workspace copy`, revised ZIP and ordinary option-3 prompt: actual helper commands, interrupted apply/rollback recovery and later-edit refusal. Preserve existing files and installed skills; no Save skill clicks. Save receipts, actual package bytes and timings. Never call a synthetic subset an update of the entire real copy.
 6. Switch default only after acceptance. If desktop access/native approvals block it, retain experimental gate and report the exact gap. Local tests alone are not production readiness.

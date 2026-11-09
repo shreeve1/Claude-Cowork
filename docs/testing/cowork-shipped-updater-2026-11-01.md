@@ -6,7 +6,7 @@ The actual helper at commit `4900c9b` completed a synthetic mounted-folder CLI u
 
 ## Evidence
 
-Windows evidence root: `C:\Users\james\Documents\itastack - Copy\.workspace-backups\20261101T233638Z-shipped-updater-2ec6a7`.
+Windows evidence root: `<test workspace>\.workspace-backups\20261101T233638Z-shipped-updater-2ec6a7`.
 
 - `report.json` records Python 3.10.12, seven unchanged-suite chunks, five location-corrected chunks and two CLI smoke attempts. All eight staged source hashes were independently rechecked against `source-sha256.json`; no mismatch.
 - Unchanged suite: 35 collected, 31 passed, two errors, two skipped. Snapshot-dependent assertions are unreliable in that location. Errors: empty snapshot and omitted `.gitignore` staging input. Real symlink/hardlink cases were skipped by scope, not passed.

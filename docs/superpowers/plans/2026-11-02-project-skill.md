@@ -166,7 +166,7 @@
 - Modify: `docs/testing/project-skill-cases.md` (acceptance section)
 
 - [x] **Step 1:** Present `project.skill` in Cowork; James clicks **Save skill**; verify it is listed.
-- [x] **Step 2:** New chat with Openly design + `itastack - Copy` attached; "import this project"; approve; verify files on disk against the project copy (checksums), README, memory notes, audit.
+- [x] **Step 2:** New chat with Openly design + `test-workspace copy` attached; "import this project"; approve; verify files on disk against the project copy (checksums), README, memory notes, audit.
 - [ ] **Step 3:** Fresh chat: "let's work on Openly design"; record the briefing.
 - [x] **Step 4:** Create one project skill for a project with steps; James clicks **Save skill**; trigger it in a fresh chat.
 - [ ] **Step 5:** Try two projects in one chat; record whether both copies are visible (spec's open question).

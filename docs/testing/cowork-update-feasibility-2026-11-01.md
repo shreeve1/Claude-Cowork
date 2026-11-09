@@ -6,13 +6,13 @@ The small file-content update/recovery core is feasible in the tested Claude Cow
 
 ## Where this ran
 
-Actual Windows Claude Cowork, existing disposable test conversation, Python 3.10.12 inside its Linux sandbox. Probe and fixture files were on the mounted `itastack - Copy` folder, not just private Linux scratch. All cases used fresh synthetic data in a unique run. No real release update or skill installation was performed.
+Actual Windows Claude Cowork, existing disposable test conversation, Python 3.10.12 inside its Linux sandbox. Probe and fixture files were on the mounted `test-workspace copy` folder, not just private Linux scratch. All cases used fresh synthetic data in a unique run. No real release update or skill installation was performed.
 
 Evidence root:
-`C:\Users\james\Documents\itastack - Copy\.workspace-backups\20261101T224159Z-cowork-feasibility-3692fa`
+`<test workspace>\.workspace-backups\20261101T224159Z-cowork-feasibility-3692fa`
 
 Maintainer-readable root:
-`/mnt/c/Users/james/Documents/itastack - Copy/.workspace-backups/20261101T224159Z-cowork-feasibility-3692fa/`
+`<test workspace>/.workspace-backups/20261101T224159Z-cowork-feasibility-3692fa/`
 
 The desktop observer timed out, but Cowork had finished. Outcome evidence was read from saved files, not inferred from the observer's exit.
 
