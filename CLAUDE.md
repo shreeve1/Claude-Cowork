@@ -184,6 +184,8 @@ Use reusable project files when behavior becomes repeated:
 - `.claude/skills/<skill-name>/SKILL.md` for reusable capabilities, supporting code or native integrations.
 - `CLAUDE.md` for team-shared operating rules.
 
+Multi-session efforts live in `docs/maps/`; use session-map to continue one.
+
 Create new skills or agents only when the user asks or agrees.
 
 ## Answer style

@@ -280,7 +280,7 @@
   ".claude/cowork/workspace/CLAUDE.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "cc1dbc6c8ae93fff4c0ad5e80a50f13069d99d8e4e450fd8e51597ff29733e23"
+   "sha256": "4bcdb9113dac907808c7296b40441d605a877709e6990bd47780e71cb82a14fd"
   },
   ".claude/cowork/workspace/cowork-environment.md": {
    "class": "merge",
@@ -7219,12 +7219,12 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "7284c9d4f52d82ae165ed4190bd968ce4e3543916592ca4c92b97c715ea4c415",
+   "sha256": "e7b5788dc22e1563e96a433f9034c2e1fdf3c95d5346645e8ea144ddcdc7b8f3",
    "mode": "644"
   },
   "CLAUDE.md": {
    "class": "merge",
-   "sha256": "1f95d990112b577454f0cba7486571841e167f3d1380410201592717a2afab7b",
+   "sha256": "72b42e32c8998e078feac489fdfe245424d7b4b120f15be6a065492630715ce7",
    "mode": "644"
   },
   "CODING_STANDARDS.md": {
@@ -7309,7 +7309,7 @@
   },
   "memory/index.md": {
    "class": "local",
-   "sha256": "120e9e1b3c4581f55e6d8b1cbfeebb392cda79678207fbc22084a0f258198716",
+   "sha256": "ea442e1b10ad2acdb815805a26fd19beb3e1164aa6db7eebda451c0d72115313",
    "mode": "644"
   },
   "memory/preferences/.gitkeep": {
