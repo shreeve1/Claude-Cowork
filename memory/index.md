@@ -16,6 +16,7 @@
 | [Writing Guideline - Plain Prose for Any Agent Output](memory/preferences/writing.md) | preference | Plain prose for anything the owner reads - answer first, one fact per line, expand acronyms, state what was and was not checked. | 2026-10-10 |
 | [Recommendation-Led Talk It Through](memory/preferences/talk-it-through.md) | preference | Talk-it-through sessions should state understanding and recommend a direction before asking only decision-changing questions. | 2026-10-27 |
 | [Claude Projects in Cowork](memory/docs/cowork-claude-projects.md) | doc | What a Cowork chat can export from a Claude app Project, and James's decisions on sorted import and project skills. | 2026-11-02 |
+| [Pushing This Repo and Building Cowork Skill Packages](memory/docs/repo-push-and-skill-packaging.md) | doc | Push via github-personal SSH alias; Python 3.15 build churns all .skill zips; adapting personal skills for core. | 2026-11-14 |
 | [Migration Ledger 2026-10-10](memory/docs/migration-ledger-2026-10-10.md) | doc | Release 1 Claude workspace -> Release 3 migration record. | 2026-10-10 |
 
 ## Client Hubs
