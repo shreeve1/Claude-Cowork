@@ -80,7 +80,7 @@
   ".claude/cowork/skills/core/professional-guidance.skill": {
    "class": "merge",
    "mode": "644",
-   "sha256": "7e7e319b54881161155eb5b70ce6ccd3bdf9f988715f880ab8a7b015a039ca37"
+   "sha256": "a0c158e580c27faafbd37bcfc389a89a000f4fae624718c96e7a4cccdb42c0ba"
   },
   ".claude/cowork/skills/core/project-import.skill": {
    "class": "merge",
@@ -120,7 +120,7 @@
   ".claude/cowork/skills/index.json": {
    "class": "merge",
    "mode": "644",
-   "sha256": "3a2904df0795ca43a8946fa200d862e83d6ad7fc433f88169de244f6017cbdea"
+   "sha256": "94be1e9c84a47785a1d1f51f2e24ce3dad2000e008cbd55925614bb12e48c344"
   },
   ".claude/cowork/skills/video/captions-overlay.skill": {
    "class": "merge",
@@ -4949,543 +4949,543 @@
   },
   ".claude/skills/professional-guidance/SKILL.md": {
    "class": "merge",
-   "sha256": "4b7868e6921d94762768e60ff607e8eeb39f0586f5094af219967485309f476c",
+   "sha256": "943ea179a4fa8d87d2f996789fce966174a05a7d4afa98c4a21d377ec6a48e7b",
    "mode": "644"
   },
   ".claude/skills/professional-guidance/agent-personas/INDEX.json": {
    "class": "merge",
-   "sha256": "4a5348b97b17398a87cfdfc9c8a5f2ac00faa2e7a25032bf0985e26bfbd20b3c",
+   "sha256": "62976e2caf90bd8a5d49b66ee4ec1df49842913733ea0c46d5514bbfd3d9075d",
    "mode": "644"
   },
   ".claude/skills/professional-guidance/agent-personas/INDEX.md": {
    "class": "merge",
-   "sha256": "143c28d8d13ff59cd11491f7c20cc4b316bb7b08f407eba7527787fd896a467d",
+   "sha256": "d40bbef225703f3424f1e9433a7573aff2860f9e63059d20a987730321ec0487",
    "mode": "644"
   },
   ".claude/skills/professional-guidance/agent-personas/README.md": {
    "class": "merge",
-   "sha256": "16f1856536198ca6b5c82768dcf12e02421950348336a59e87505a8c86c7fcab",
+   "sha256": "e0ba48fc3a0a05c8f2dbc4214f305677e0d9b6b857013642e82945bb366fea08",
    "mode": "644"
   },
-  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Food Safety & Compliance Expert.txt": {
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/cmmc-assessment-and-gap-analysis-expert.txt": {
    "class": "merge",
-   "sha256": "9d1730bccd311ee01a437565c778f3dd407cc548aacf47f6286c48fa14bbe6b3",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "44501dd6ae40452e4dc8dc9f6612d55b56c958888426da5d79b2a1338e578a06"
   },
-  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Hospitality Labor Management Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/cmmc-cost-management-and-roi-strategist.txt": {
    "class": "merge",
-   "sha256": "23c83c98808099acc6bbdd421cb17837061ae0ce90061a1537c9b1838810204d",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "a6217985ff75d5fb547619a7201199a857cc352536e7013f6b236e388bd41d8c"
   },
-  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/IEP & Accommodation Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/cmmc-documentation-and-policy-manager.txt": {
    "class": "merge",
-   "sha256": "ef66c1b1fc4cd3a74e1742fd044c08ec25d96d9efd7b8152973bf73702c2be79",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "081c2343c0cdad1b0ad071743d633a0a99abbc8f2b774aa85f687d8754c5b9a6"
   },
-  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Menu Engineering & Pricing Strategist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/cmmc-supply-chain-security-and-flow-down-expert.txt": {
    "class": "merge",
-   "sha256": "1d61a91528ee54726e49d3eee870166d309af8fefa7fffcc5fc22e5782794809",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1b3b4dec11ab9e364047265eb0d37b26afbed09c3915a73107e85a5fe5e81ca0"
   },
-  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Restaurant & Cafe Consultant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/cmmc-technical-controls-implementation-specialist.txt": {
    "class": "merge",
-   "sha256": "617b4b9b4aa0f29e066b71e6372f965b9dabe4389db841f2a18ae354636649da",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "e11b1764a5c438b549c06be3e33f201445d7582f3104588a1d1d469d5719da45"
   },
-  ".claude/skills/professional-guidance/agent-personas/Restaurant & Hospitality Agents/Restaurant Marketing & Customer Experience Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/business-consultant.txt": {
    "class": "merge",
-   "sha256": "e7e61e7858ea50690040fd5a59c0fbf2a51f5dfcc9c5e072cc12a539259cdfc5",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "25edee432665dc2506cbbff6757105f24b5fe7678a435896a8824d116ec36036"
   },
-  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Assessment & Gap Analysis Expert.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/business-plan-assistant.txt": {
    "class": "merge",
-   "sha256": "44501dd6ae40452e4dc8dc9f6612d55b56c958888426da5d79b2a1338e578a06",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "d9dd75fefad0ab4a98a0371a57c011ec96a4b1780e38a2bcbf6eebfe605e1d96"
   },
-  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Cost Management & ROI Strategist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/career-path-navigator.txt": {
    "class": "merge",
-   "sha256": "a6217985ff75d5fb547619a7201199a857cc352536e7013f6b236e388bd41d8c",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "f836a5462b0279ef088356591102abfc31aff2869953f51ee35b0b928799b24c"
   },
-  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Documentation & Policy Manager.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/compliance-navigator.txt": {
    "class": "merge",
-   "sha256": "081c2343c0cdad1b0ad071743d633a0a99abbc8f2b774aa85f687d8754c5b9a6",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1db802d34821c823202c18a491463b58ddb8bd0ae963d4b8ef9a8dec673bf5aa"
   },
-  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Supply Chain Security & Flow-Down Expert.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/documentation-excellence.txt": {
    "class": "merge",
-   "sha256": "1b3b4dec11ab9e364047265eb0d37b26afbed09c3915a73107e85a5fe5e81ca0",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "9dcbbf2459e4379a562313821bc2a93c18182b0c9c70472cbe1ed75f74668109"
   },
-  ".claude/skills/professional-guidance/agent-personas/cmmc-compliance/CMMC Technical Controls Implementation Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/eos-implementer.txt": {
    "class": "merge",
-   "sha256": "e11b1764a5c438b549c06be3e33f201445d7582f3104588a1d1d469d5719da45",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "f33935db04ffc73be33d2d6c0e04035564339e9ba62aec120e85d56f748a81be"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Business Consultant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/financial-forecaster.txt": {
    "class": "merge",
-   "sha256": "25edee432665dc2506cbbff6757105f24b5fe7678a435896a8824d116ec36036",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "5fe1d3cb2020fbc0f7048172645b72e9a35c1292df631f90d562fa0f2842ff35"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Business Plan Assistant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/manager-general.txt": {
    "class": "merge",
-   "sha256": "d9dd75fefad0ab4a98a0371a57c011ec96a4b1780e38a2bcbf6eebfe605e1d96",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1d5ef35bb222a6453b40dec77aa963388b5fabfd644df2ce96207324d392932a"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Career Path Navigator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/operational-efficiency-expert.txt": {
    "class": "merge",
-   "sha256": "f836a5462b0279ef088356591102abfc31aff2869953f51ee35b0b928799b24c",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "717abb72071e7b928ec01340458ae8f495b20a635cd4e45e55f959d80053c144"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Compliance Navigator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/core-business-operations/startup-mentor.txt": {
    "class": "merge",
-   "sha256": "1db802d34821c823202c18a491463b58ddb8bd0ae963d4b8ef9a8dec673bf5aa",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "0ebff14c30091685bb29ab18e53965f67ad27e773c88c804e5331926b5acea7b"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Documentation Excellence.txt": {
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/change-management-advisor.txt": {
    "class": "merge",
-   "sha256": "9dcbbf2459e4379a562313821bc2a93c18182b0c9c70472cbe1ed75f74668109",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "8fdc7cba5ac3e524bea8c59b4046ce0fccc870f003cf0b06c4af1e519bf7c4e8"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/EOS Implementer.txt": {
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/corporate-communications-specialist.txt": {
    "class": "merge",
-   "sha256": "f33935db04ffc73be33d2d6c0e04035564339e9ba62aec120e85d56f748a81be",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "51a03f71951194065ebb547aef8fb74cf8ecb526b6d26d7b61f4e40803bd5606"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Financial Forecaster.txt": {
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/corporate-trainer-and-elearning-developer.txt": {
    "class": "merge",
-   "sha256": "5fe1d3cb2020fbc0f7048172645b72e9a35c1292df631f90d562fa0f2842ff35",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "4f2c2884c0765a356bcc682a5ef5a401d0d8a9e7cf9f1206efdbff7c0ab6f24e"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Manager General.txt": {
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/custom-agent-builder.txt": {
    "class": "merge",
-   "sha256": "1d5ef35bb222a6453b40dec77aa963388b5fabfd644df2ce96207324d392932a",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "2022590e10f98b8aaa97ca89bb2a9df1cdccff9e0a8e93b3e209eea7f437d3f5"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Operational Efficiency Expert.txt": {
+  ".claude/skills/professional-guidance/agent-personas/corporate-roles/supply-chain-and-logistics-coordinator.txt": {
    "class": "merge",
-   "sha256": "717abb72071e7b928ec01340458ae8f495b20a635cd4e45e55f959d80053c144",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "cd44dd7b67d1eae4c3757a8e6b38079a95bd429cd848fa0d8a615c80b4e07f95"
   },
-  ".claude/skills/professional-guidance/agent-personas/core-business-operations/Startup Mentor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/creative-design/brand-identity-consultant.txt": {
    "class": "merge",
-   "sha256": "0ebff14c30091685bb29ab18e53965f67ad27e773c88c804e5331926b5acea7b",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "81056c076e6039c62505359c8975ddb4fb72b52e81912a33a36acd331f4341a2"
   },
-  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Change Management Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/creative-design/graphic-design-briefer.txt": {
    "class": "merge",
-   "sha256": "8fdc7cba5ac3e524bea8c59b4046ce0fccc870f003cf0b06c4af1e519bf7c4e8",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "d85b3184fd40f67a25e954d498559e77865bbc56c4625c08db2470b5230aeb7c"
   },
-  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Corporate Communications Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/creative-design/podcast-production-assistant.txt": {
    "class": "merge",
-   "sha256": "51a03f71951194065ebb547aef8fb74cf8ecb526b6d26d7b61f4e40803bd5606",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "16af614bdf322d76e730ac4d633dd06c18e17cc5f62f750df3508ff990498dcd"
   },
-  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Corporate Trainer & eLearning Developer.txt": {
+  ".claude/skills/professional-guidance/agent-personas/creative-design/ux-ui-feedback-bot.txt": {
    "class": "merge",
-   "sha256": "4f2c2884c0765a356bcc682a5ef5a401d0d8a9e7cf9f1206efdbff7c0ab6f24e",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "5d8e0c3413035f5f85a8afd0a1774fdf7c0a467f6bf6184b0b788f682d7a3d5d"
   },
-  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Custom Agent Builder.txt": {
+  ".claude/skills/professional-guidance/agent-personas/creative-design/video-script-writer.txt": {
    "class": "merge",
-   "sha256": "2022590e10f98b8aaa97ca89bb2a9df1cdccff9e0a8e93b3e209eea7f437d3f5",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "260242412c455f9ffdd6c3dcb107f13bec5f9068d724d06cf6bd54b82dd0a5a7"
   },
-  ".claude/skills/professional-guidance/agent-personas/corporate-roles/Supply Chain & Logistics Coordinator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/creative-design/website-builder-assistant.txt": {
    "class": "merge",
-   "sha256": "cd44dd7b67d1eae4c3757a8e6b38079a95bd429cd848fa0d8a615c80b4e07f95",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "6fcf0ccdccb539d9ea3a7d8b3218942928eb1c5ba1f7e1aec5cc664242c219a4"
   },
-  ".claude/skills/professional-guidance/agent-personas/creative-design/Brand Identity Consultant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/customer-service-relationship-management/client-relationship-manager.txt": {
    "class": "merge",
-   "sha256": "81056c076e6039c62505359c8975ddb4fb72b52e81912a33a36acd331f4341a2",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "179f2e537cc4f99a860a4cd93c18c552cc3408e90f4b930f4a7117f46da0f9a1"
   },
-  ".claude/skills/professional-guidance/agent-personas/creative-design/Graphic Design Briefer.txt": {
+  ".claude/skills/professional-guidance/agent-personas/customer-service-relationship-management/community-manager-assistant.txt": {
    "class": "merge",
-   "sha256": "d85b3184fd40f67a25e954d498559e77865bbc56c4625c08db2470b5230aeb7c",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "f636437bc16596801cbf000eff3e7bc946089b29451febac8bd2918d227cffea"
   },
-  ".claude/skills/professional-guidance/agent-personas/creative-design/Podcast Production Assistant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/customer-service-relationship-management/customer-support-scripter.txt": {
    "class": "merge",
-   "sha256": "16af614bdf322d76e730ac4d633dd06c18e17cc5f62f750df3508ff990498dcd",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "74c77f4759f365a4634426e2736fe625e8d996544cffa9c92ac6ff43d99ba267"
   },
-  ".claude/skills/professional-guidance/agent-personas/creative-design/UX-UI Feedback Bot.txt": {
+  ".claude/skills/professional-guidance/agent-personas/e-commerce/e-commerce-financial-and-tax-advisor.txt": {
    "class": "merge",
-   "sha256": "5d8e0c3413035f5f85a8afd0a1774fdf7c0a467f6bf6184b0b788f682d7a3d5d",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "59d879095b7b51ed5078b40655e9037d4c368cee64aaf131598e598f64bd10f2"
   },
-  ".claude/skills/professional-guidance/agent-personas/creative-design/Video Script Writer.txt": {
+  ".claude/skills/professional-guidance/agent-personas/e-commerce/e-commerce-platform-and-operations-optimizer.txt": {
    "class": "merge",
-   "sha256": "260242412c455f9ffdd6c3dcb107f13bec5f9068d724d06cf6bd54b82dd0a5a7",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "ef8208531359ff3f3fe60443dadc752c7d2190695a7872afc3cc02612e1d9675"
   },
-  ".claude/skills/professional-guidance/agent-personas/creative-design/Website Builder Assistant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/e-commerce/e-commerce-specialist.txt": {
    "class": "merge",
-   "sha256": "6fcf0ccdccb539d9ea3a7d8b3218942928eb1c5ba1f7e1aec5cc664242c219a4",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "2d8cccda9d2881f1c9476853b8e6f11d0231069859677e91f14c605956bb0765"
   },
-  ".claude/skills/professional-guidance/agent-personas/customer-service-relationship-management/Client Relationship Manager.txt": {
+  ".claude/skills/professional-guidance/agent-personas/e-commerce/product-sourcing-and-supplier-management-specialist.txt": {
    "class": "merge",
-   "sha256": "179f2e537cc4f99a860a4cd93c18c552cc3408e90f4b930f4a7117f46da0f9a1",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "2a85f5a3572d717dca227a10d6dee108a10d837db04f70b2089791562afbd891"
   },
-  ".claude/skills/professional-guidance/agent-personas/customer-service-relationship-management/Community Manager Assistant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/bookkeeping-assistant.txt": {
    "class": "merge",
-   "sha256": "f636437bc16596801cbf000eff3e7bc946089b29451febac8bd2918d227cffea",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "ee15ec86b4b85be59143c69c9b1dbb8ad1607dbd6edc630cceeeac5145dba19b"
   },
-  ".claude/skills/professional-guidance/agent-personas/customer-service-relationship-management/Customer Support Scripter.txt": {
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/business-tax-primer.txt": {
    "class": "merge",
-   "sha256": "74c77f4759f365a4634426e2736fe625e8d996544cffa9c92ac6ff43d99ba267",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "56cbd8f668aaeedf94d7f481c06bba86b145273ae4a2928ee043247fcd73eca7"
   },
-  ".claude/skills/professional-guidance/agent-personas/e-commerce/E-commerce Financial & Tax Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/financial-advisor.txt": {
    "class": "merge",
-   "sha256": "59d879095b7b51ed5078b40655e9037d4c368cee64aaf131598e598f64bd10f2",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "c3aed5296d0164e10443b37ec2ecaa3a52a05d6717f5e945b5abe7a22355ac4d"
   },
-  ".claude/skills/professional-guidance/agent-personas/e-commerce/E-commerce Platform & Operations Optimizer.txt": {
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/invoice-and-collections-advisor.txt": {
    "class": "merge",
-   "sha256": "ef8208531359ff3f3fe60443dadc752c7d2190695a7872afc3cc02612e1d9675",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "da6dde8234feb607ff34326e51ac2366bcc87b2c215da4bf5a681ec4efa41520"
   },
-  ".claude/skills/professional-guidance/agent-personas/e-commerce/E-commerce Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/finance-accounting/pricing-strategy-expert.txt": {
    "class": "merge",
-   "sha256": "2d8cccda9d2881f1c9476853b8e6f11d0231069859677e91f14c605956bb0765",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1d236500df3dd6a8c07aa50bd01ba82e2569ad392620767b5c2bce6dc8a13b10"
   },
-  ".claude/skills/professional-guidance/agent-personas/e-commerce/Product Sourcing & Supplier Management Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/freelancers-corporate-roles/freelancer-and-consultant-toolkit.txt": {
    "class": "merge",
-   "sha256": "2a85f5a3572d717dca227a10d6dee108a10d837db04f70b2089791562afbd891",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "67873b0207b3949e353bc0987be7e268d52cd1d2b55ef73965b6a36b53af7c41"
   },
-  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Bookkeeping Assistant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/freelancers-corporate-roles/freelancer-client-acquisition-coach.txt": {
    "class": "merge",
-   "sha256": "ee15ec86b4b85be59143c69c9b1dbb8ad1607dbd6edc630cceeeac5145dba19b",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "cce0a48c96adbe053953e29b8932e798fe52bad8ca81bb0766ed9dd42314a08e"
   },
-  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Business Tax Primer.txt": {
+  ".claude/skills/professional-guidance/agent-personas/freelancers-corporate-roles/freelancer-legal-and-business-structure-advisor.txt": {
    "class": "merge",
-   "sha256": "56cbd8f668aaeedf94d7f481c06bba86b145273ae4a2928ee043247fcd73eca7",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "9a043610cbe113d8dfbb6ae336c320200a9a9c9b0082b64f9ea6c66d12e81f6b"
   },
-  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Financial Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/business-associate-agreement-and-contract-specialist.txt": {
    "class": "merge",
-   "sha256": "c3aed5296d0164e10443b37ec2ecaa3a52a05d6717f5e945b5abe7a22355ac4d",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "ae1ce2d94ad1c00192a2f40ee9ea781f08e96ea23c3836310943e9f79b53905b"
   },
-  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Invoice & Collections Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/hipaa-breach-response-and-patient-rights-advisor.txt": {
    "class": "merge",
-   "sha256": "da6dde8234feb607ff34326e51ac2366bcc87b2c215da4bf5a681ec4efa41520",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "c82b6be02981de4557f373a7480b665c14eeee5c3ec997121fe1e6c414eed268"
   },
-  ".claude/skills/professional-guidance/agent-personas/finance-accounting/Pricing Strategy Expert.txt": {
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/hipaa-policies-and-administrative-safeguards-manager.txt": {
    "class": "merge",
-   "sha256": "1d236500df3dd6a8c07aa50bd01ba82e2569ad392620767b5c2bce6dc8a13b10",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "368e637371c1d1ab15300d1ec675d635f3fcac326e5a4c261370556ddf7a0455"
   },
-  ".claude/skills/professional-guidance/agent-personas/freelancers-corporate-roles/Freelancer & Consultant Toolkit.txt": {
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/hipaa-risk-assessment-and-compliance-audit-expert.txt": {
    "class": "merge",
-   "sha256": "67873b0207b3949e353bc0987be7e268d52cd1d2b55ef73965b6a36b53af7c41",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "40a9f9a7de3edb319efd0fbcf5f148d5add2e138774907693251bd55cf919fe3"
   },
-  ".claude/skills/professional-guidance/agent-personas/freelancers-corporate-roles/Freelancer Client Acquisition Coach.txt": {
+  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/hipaa-technical-safeguards-and-it-security-specialist.txt": {
    "class": "merge",
-   "sha256": "cce0a48c96adbe053953e29b8932e798fe52bad8ca81bb0766ed9dd42314a08e",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "28903ea904b3d06ce34801f1ca1293c3c6d9cdc788742a2d13e78d9eba1186e0"
   },
-  ".claude/skills/professional-guidance/agent-personas/freelancers-corporate-roles/Freelancer Legal & Business Structure Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/basic-legal-document-reviewer.txt": {
    "class": "merge",
-   "sha256": "9a043610cbe113d8dfbb6ae336c320200a9a9c9b0082b64f9ea6c66d12e81f6b",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "7a9a605498e92a89416e46771eac1eb02f7f7a2a4bf1ef55960c2467da41bce5"
   },
-  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/Business Associate Agreement & Contract Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/contract-drafter.txt": {
    "class": "merge",
-   "sha256": "ae1ce2d94ad1c00192a2f40ee9ea781f08e96ea23c3836310943e9f79b53905b",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "e3116f72bea78d4620e3ae1206175da85dcd424528f2d3195f7e982eab875bb8"
   },
-  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/HIPAA Breach Response & Patient Rights Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/employee-onboarding-guide.txt": {
    "class": "merge",
-   "sha256": "c82b6be02981de4557f373a7480b665c14eeee5c3ec997121fe1e6c414eed268",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "f70030cc8e259950563c46467a1269a1fd6b891e5b2d119223f9e0a2337f205d"
   },
-  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/HIPAA Policies & Administrative Safeguards Manager.txt": {
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/hr-policy-advisor.txt": {
    "class": "merge",
-   "sha256": "368e637371c1d1ab15300d1ec675d635f3fcac326e5a4c261370556ddf7a0455",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "b70dee01acfca7a4940db13ce65ceeb1958795347906a9d1b4d4e98dc7de5c5e"
   },
-  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/HIPAA Risk Assessment & Compliance Audit Expert.txt": {
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/lawyer-general.txt": {
    "class": "merge",
-   "sha256": "40a9f9a7de3edb319efd0fbcf5f148d5add2e138774907693251bd55cf919fe3",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "28be0e38146871bb506027dd8be2a8727e3733e954700ff42cff1179894c6b00"
   },
-  ".claude/skills/professional-guidance/agent-personas/hipaa-compliance/HIPAA Technical Safeguards & IT Security Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/legal-hr/recruitment-assistant.txt": {
    "class": "merge",
-   "sha256": "28903ea904b3d06ce34801f1ca1293c3c6d9cdc788742a2d13e78d9eba1186e0",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "bccabf4eef5ac9df62cff577e3e846977488ee18cae218bd0e85fbb9e7bc659b"
   },
-  ".claude/skills/professional-guidance/agent-personas/legal-hr/Basic Legal Document Reviewer.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/ad-copywriter.txt": {
    "class": "merge",
-   "sha256": "7a9a605498e92a89416e46771eac1eb02f7f7a2a4bf1ef55960c2467da41bce5",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "ef9b77b72bfdfc10f83bd88d5411eb1a40f1fef252b16e2fca2ebcfd739b3ad1"
   },
-  ".claude/skills/professional-guidance/agent-personas/legal-hr/Contract Drafter.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/content-creator.txt": {
    "class": "merge",
-   "sha256": "e3116f72bea78d4620e3ae1206175da85dcd424528f2d3195f7e982eab875bb8",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "d237a9dd28bcd63a9065b8f517f0a8a4e88bf1aabf7ec033205204eebe4d38f4"
   },
-  ".claude/skills/professional-guidance/agent-personas/legal-hr/Employee Onboarding Guide.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/customer-persona-builder.txt": {
    "class": "merge",
-   "sha256": "f70030cc8e259950563c46467a1269a1fd6b891e5b2d119223f9e0a2337f205d",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "3d1634ff4a4ea1e3d679b2b822ad9fd35ab620ae51ce165857b77dc18316bfe2"
   },
-  ".claude/skills/professional-guidance/agent-personas/legal-hr/HR Policy Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/market-research-analyst.txt": {
    "class": "merge",
-   "sha256": "b70dee01acfca7a4940db13ce65ceeb1958795347906a9d1b4d4e98dc7de5c5e",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "072f823159fe47894455d988babcb5b13ee9928c4da0c1962e06179ec84e9a23"
   },
-  ".claude/skills/professional-guidance/agent-personas/legal-hr/Lawyer General.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/marketing-strategist.txt": {
    "class": "merge",
-   "sha256": "28be0e38146871bb506027dd8be2a8727e3733e954700ff42cff1179894c6b00",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "c4b5f2e66630b405d91d1ed0540ab22883b3651afdeb5b43b1a9993beeda360d"
   },
-  ".claude/skills/professional-guidance/agent-personas/legal-hr/Recruitment Assistant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/sales-coach.txt": {
    "class": "merge",
-   "sha256": "bccabf4eef5ac9df62cff577e3e846977488ee18cae218bd0e85fbb9e7bc659b",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "3576da73ccbf6eec36d1346d26bb11f77ef3a3301d6272d92f05389d8825c9ee"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Ad Copywriter.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/seo-specialist.txt": {
    "class": "merge",
-   "sha256": "ef9b77b72bfdfc10f83bd88d5411eb1a40f1fef252b16e2fca2ebcfd739b3ad1",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "0dadefe89d1a95cad33cea0c0eea985ddc0a5b5899c68d9ef7b112bac91bb4bb"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Content Creator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/social-media-manager.txt": {
    "class": "merge",
-   "sha256": "d237a9dd28bcd63a9065b8f517f0a8a4e88bf1aabf7ec033205204eebe4d38f4",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "c3a3784b56842c14593a3f6301fca33bcd76e83a7241b020cc7cbbf576dddb4c"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Customer Persona Builder.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/survey-and-feedback-form-creator.txt": {
    "class": "merge",
-   "sha256": "3d1634ff4a4ea1e3d679b2b822ad9fd35ab620ae51ce165857b77dc18316bfe2",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "6e85f66818e8ea98b2cc51455abc242bc57506c0671b5fe7ff61f25757f9b2c9"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Market Research Analyst.txt": {
+  ".claude/skills/professional-guidance/agent-personas/marketing-sales/swot-analysis-facilitator.txt": {
    "class": "merge",
-   "sha256": "072f823159fe47894455d988babcb5b13ee9928c4da0c1962e06179ec84e9a23",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1fb90e2ab71406b77db74b0ca674195c3a2a3242b828dfe6959bcbb4a320aca8"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Marketing Strategist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/non-profit/non-profit-advisor.txt": {
    "class": "merge",
-   "sha256": "c4b5f2e66630b405d91d1ed0540ab22883b3651afdeb5b43b1a9993beeda360d",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "be356ba73d00cf608586633d52c3d3c7bc2e0182d9a78264155656b7382175bc"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/SEO Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/non-profit/non-profit-grant-writing-and-funding-strategy-expert.txt": {
    "class": "merge",
-   "sha256": "0dadefe89d1a95cad33cea0c0eea985ddc0a5b5899c68d9ef7b112bac91bb4bb",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "f85cb609626c8f33e479ded189f5880b4a7f4d11ea44bb0ce6aa61de017c47f8"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/SWOT Analysis Facilitator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/non-profit/non-profit-legal-and-compliance-advisor.txt": {
    "class": "merge",
-   "sha256": "1fb90e2ab71406b77db74b0ca674195c3a2a3242b828dfe6959bcbb4a320aca8",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "f9be0fed958b35ca9cdb83d133ab121526630536b75c80f13b468098a8ef1674"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Sales Coach.txt": {
+  ".claude/skills/professional-guidance/agent-personas/non-profit/non-profit-marketing-and-community-outreach-strategist.txt": {
    "class": "merge",
-   "sha256": "3576da73ccbf6eec36d1346d26bb11f77ef3a3301d6272d92f05389d8825c9ee",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1f695586ff2fdffbfd09930b62725e9bdd0241d6ccd0122cea6a05e8bdc42449"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Social Media Manager.txt": {
+  ".claude/skills/professional-guidance/agent-personas/non-profit/program-development-and-impact-measurement-expert.txt": {
    "class": "merge",
-   "sha256": "c3a3784b56842c14593a3f6301fca33bcd76e83a7241b020cc7cbbf576dddb4c",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "dc4a7eed42631e4fd6a4eafa18e5f2af1845206f3c4a57b62d37fe961329f005"
   },
-  ".claude/skills/professional-guidance/agent-personas/marketing-sales/Survey & Feedback Form Creator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/non-profit/volunteer-management-and-engagement-specialist.txt": {
    "class": "merge",
-   "sha256": "6e85f66818e8ea98b2cc51455abc242bc57506c0671b5fe7ff61f25757f9b2c9",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "b8200de95b8b2fe2815c8c838ec7dd1c4daf508874be6d43633a8510a9e1e7b2"
   },
-  ".claude/skills/professional-guidance/agent-personas/non-profit/Non-Profit Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/planning/agile-project-maestro-agile-coach.txt": {
    "class": "merge",
-   "sha256": "be356ba73d00cf608586633d52c3d3c7bc2e0182d9a78264155656b7382175bc",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "bb7c52ef455c194b763c066a9241a63591ad015c43e26bfead661f0436ad4a8a"
   },
-  ".claude/skills/professional-guidance/agent-personas/non-profit/Non-Profit Grant Writing & Funding Strategy Expert.txt": {
+  ".claude/skills/professional-guidance/agent-personas/planning/eventpro-strategist.txt": {
    "class": "merge",
-   "sha256": "f85cb609626c8f33e479ded189f5880b4a7f4d11ea44bb0ce6aa61de017c47f8",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "4f72c61f1064c58ebcf4e38c1dd95f931362516df3c680b1be86d62b250a2a0c"
   },
-  ".claude/skills/professional-guidance/agent-personas/non-profit/Non-Profit Legal & Compliance Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/planning/project-management.txt": {
    "class": "merge",
-   "sha256": "f9be0fed958b35ca9cdb83d133ab121526630536b75c80f13b468098a8ef1674",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1782871d3afded0bf72dd5b0e7e80204065c12c81b802d3b49d7428894cde037"
   },
-  ".claude/skills/professional-guidance/agent-personas/non-profit/Non-Profit Marketing & Community Outreach Strategist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/planning/strategic-business-planner.txt": {
    "class": "merge",
-   "sha256": "1f695586ff2fdffbfd09930b62725e9bdd0241d6ccd0122cea6a05e8bdc42449",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "02a1553b305919f248f99706929d83757535e1fc5065e63b78a6c84c42e6f794"
   },
-  ".claude/skills/professional-guidance/agent-personas/non-profit/Program Development & Impact Measurement Expert.txt": {
+  ".claude/skills/professional-guidance/agent-personas/planning/wedding-workflow-coordinator.txt": {
    "class": "merge",
-   "sha256": "dc4a7eed42631e4fd6a4eafa18e5f2af1845206f3c4a57b62d37fe961329f005",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "c20aecb0d003b4f039df0d460da0d36136c7080b338d3bb2baae644456a55bb6"
   },
-  ".claude/skills/professional-guidance/agent-personas/non-profit/Volunteer Management & Engagement Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/productivity-coach.txt": {
    "class": "merge",
-   "sha256": "b8200de95b8b2fe2815c8c838ec7dd1c4daf508874be6d43633a8510a9e1e7b2",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "513a8ebf85debe5f0f68ec7d66af145cf7f864e1a789601155fde9409597eab6"
   },
-  ".claude/skills/professional-guidance/agent-personas/planning/Agile Project Maestro Agile Coach.txt": {
+  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/productivity-executive-assistant-simulator.txt": {
    "class": "merge",
-   "sha256": "bb7c52ef455c194b763c066a9241a63591ad015c43e26bfead661f0436ad4a8a",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "0dfb77103b06925abf261ed5c0e0f279a9a18752112d78fa5493f8f7d1c0cb11"
   },
-  ".claude/skills/professional-guidance/agent-personas/planning/EventPro Strategist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/productivity-leadership-and-management-mentor.txt": {
    "class": "merge",
-   "sha256": "4f72c61f1064c58ebcf4e38c1dd95f931362516df3c680b1be86d62b250a2a0c",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "9b9a724fb7ffbb1b2aa14ab9436e0936dac98c5043b79a40058db56f7016c396"
   },
-  ".claude/skills/professional-guidance/agent-personas/planning/Project Management.txt": {
+  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/public-speaking-and-presentation-coach.txt": {
    "class": "merge",
-   "sha256": "1782871d3afded0bf72dd5b0e7e80204065c12c81b802d3b49d7428894cde037",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "cf3a85c77cea9af1eb8e62b1ccfe0476c45a3470b10473d162f3d91b7a6b654e"
   },
-  ".claude/skills/professional-guidance/agent-personas/planning/Strategic Business Planner.txt": {
+  ".claude/skills/professional-guidance/agent-personas/real-estate/property-management-and-landlord-advisor.txt": {
    "class": "merge",
-   "sha256": "02a1553b305919f248f99706929d83757535e1fc5065e63b78a6c84c42e6f794",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "f83203b6dedf498700de8c46d4e04c9c0a94c602998ed920195d40366c4dbb73"
   },
-  ".claude/skills/professional-guidance/agent-personas/planning/Wedding Workflow Coordinator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/real-estate/property-valuation-and-investment-analyst.txt": {
    "class": "merge",
-   "sha256": "c20aecb0d003b4f039df0d460da0d36136c7080b338d3bb2baae644456a55bb6",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "ac28fceca43295b23bad7dea3f9c3d8b8510aff3345ef7921a601db4600da5d5"
   },
-  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/Productivity Coach.txt": {
+  ".claude/skills/professional-guidance/agent-personas/real-estate/real-estate-agent-assistant.txt": {
    "class": "merge",
-   "sha256": "513a8ebf85debe5f0f68ec7d66af145cf7f864e1a789601155fde9409597eab6",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "e524ffade1b5552bd8b315034c5cecd79eb13ae3745fbc2c748ce778062c8a8d"
   },
-  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/Productivity Executive Assistant Simulator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/real-estate/real-estate-legal-and-compliance-expert.txt": {
    "class": "merge",
-   "sha256": "0dfb77103b06925abf261ed5c0e0f279a9a18752112d78fa5493f8f7d1c0cb11",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "10bd954a332190e11df40ff571657a7bca1248937cd08b2b96b6f76c0c948d0f"
   },
-  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/Productivity Leadership & Management Mentor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/real-estate/real-estate-marketing-and-lead-generation-specialist.txt": {
    "class": "merge",
-   "sha256": "9b9a724fb7ffbb1b2aa14ab9436e0936dac98c5043b79a40058db56f7016c396",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "94d3fae6dc950030001937d74f9b4d117d5dd2666bed03dec991134d937d0014"
   },
-  ".claude/skills/professional-guidance/agent-personas/productivity-personal-development/Public Speaking & Presentation Coach.txt": {
+  ".claude/skills/professional-guidance/agent-personas/real-estate/real-estate-transaction-and-closing-coordinator.txt": {
    "class": "merge",
-   "sha256": "cf3a85c77cea9af1eb8e62b1ccfe0476c45a3470b10473d162f3d91b7a6b654e",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "90324d44b4b51a708b859df9a5a2e64c22c48da1115f21b887a1e21cabc3e8ff"
   },
-  ".claude/skills/professional-guidance/agent-personas/real-estate/Property Management & Landlord Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/real-estate/realtor-general.txt": {
    "class": "merge",
-   "sha256": "f83203b6dedf498700de8c46d4e04c9c0a94c602998ed920195d40366c4dbb73",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "29218cb6e2e669fb552b087011bc1ccb9a86f798c699e07bafde1aed7a9b7daa"
   },
-  ".claude/skills/professional-guidance/agent-personas/real-estate/Property Valuation & Investment Analyst.txt": {
+  ".claude/skills/professional-guidance/agent-personas/restaurant-and-hospitality-agents/food-safety-and-compliance-expert.txt": {
    "class": "merge",
-   "sha256": "ac28fceca43295b23bad7dea3f9c3d8b8510aff3345ef7921a601db4600da5d5",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "9d1730bccd311ee01a437565c778f3dd407cc548aacf47f6286c48fa14bbe6b3"
   },
-  ".claude/skills/professional-guidance/agent-personas/real-estate/Real Estate Agent Assistant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/restaurant-and-hospitality-agents/hospitality-labor-management-advisor.txt": {
    "class": "merge",
-   "sha256": "e524ffade1b5552bd8b315034c5cecd79eb13ae3745fbc2c748ce778062c8a8d",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "23c83c98808099acc6bbdd421cb17837061ae0ce90061a1537c9b1838810204d"
   },
-  ".claude/skills/professional-guidance/agent-personas/real-estate/Real Estate Legal & Compliance Expert.txt": {
+  ".claude/skills/professional-guidance/agent-personas/restaurant-and-hospitality-agents/iep-and-accommodation-specialist.txt": {
    "class": "merge",
-   "sha256": "10bd954a332190e11df40ff571657a7bca1248937cd08b2b96b6f76c0c948d0f",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "ef66c1b1fc4cd3a74e1742fd044c08ec25d96d9efd7b8152973bf73702c2be79"
   },
-  ".claude/skills/professional-guidance/agent-personas/real-estate/Real Estate Marketing & Lead Generation Specialist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/restaurant-and-hospitality-agents/menu-engineering-and-pricing-strategist.txt": {
    "class": "merge",
-   "sha256": "94d3fae6dc950030001937d74f9b4d117d5dd2666bed03dec991134d937d0014",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1d61a91528ee54726e49d3eee870166d309af8fefa7fffcc5fc22e5782794809"
   },
-  ".claude/skills/professional-guidance/agent-personas/real-estate/Real Estate Transaction & Closing Coordinator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/restaurant-and-hospitality-agents/restaurant-and-cafe-consultant.txt": {
    "class": "merge",
-   "sha256": "90324d44b4b51a708b859df9a5a2e64c22c48da1115f21b887a1e21cabc3e8ff",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "617b4b9b4aa0f29e066b71e6372f965b9dabe4389db841f2a18ae354636649da"
   },
-  ".claude/skills/professional-guidance/agent-personas/real-estate/Realtor General.txt": {
+  ".claude/skills/professional-guidance/agent-personas/restaurant-and-hospitality-agents/restaurant-marketing-and-customer-experience-specialist.txt": {
    "class": "merge",
-   "sha256": "29218cb6e2e669fb552b087011bc1ccb9a86f798c699e07bafde1aed7a9b7daa",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "e7e61e7858ea50690040fd5a59c0fbf2a51f5dfcc9c5e072cc12a539259cdfc5"
   },
-  ".claude/skills/professional-guidance/agent-personas/teachers/Classroom Behavior Strategist.txt": {
+  ".claude/skills/professional-guidance/agent-personas/teachers/classroom-behavior-strategist.txt": {
    "class": "merge",
-   "sha256": "429b8fd42325ae6d6a2b11dcc700e6440e84ac44ac66b4f32de4ce25e8489244",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "429b8fd42325ae6d6a2b11dcc700e6440e84ac44ac66b4f32de4ce25e8489244"
   },
-  ".claude/skills/professional-guidance/agent-personas/teachers/Grading & Feedback Assistant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/teachers/grading-and-feedback-assistant.txt": {
    "class": "merge",
-   "sha256": "a3f3f194a6aa1d2bb799ef93c5170587ee6bb46de6d65064cd5489838fb10915",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "a3f3f194a6aa1d2bb799ef93c5170587ee6bb46de6d65064cd5489838fb10915"
   },
-  ".claude/skills/professional-guidance/agent-personas/teachers/Lesson Plan Architect.txt": {
+  ".claude/skills/professional-guidance/agent-personas/teachers/lesson-plan-architect.txt": {
    "class": "merge",
-   "sha256": "8d90d0beb2f3387677bab9ba37eb3a89ef2b94b6a410bf60288441185ad656ae",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "8d90d0beb2f3387677bab9ba37eb3a89ef2b94b6a410bf60288441185ad656ae"
   },
-  ".claude/skills/professional-guidance/agent-personas/teachers/Parent Communication Navigator.txt": {
+  ".claude/skills/professional-guidance/agent-personas/teachers/parent-communication-navigator.txt": {
    "class": "merge",
-   "sha256": "14366f65b155165f0ac57a513dbcc54197795f6d13140da5c277d3bbdcb8b17d",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "14366f65b155165f0ac57a513dbcc54197795f6d13140da5c277d3bbdcb8b17d"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/Cybersecurity Basics Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/cybersecurity-basics-advisor.txt": {
    "class": "merge",
-   "sha256": "b6ec8b491fe8c3adabf2b1fb540fc217e91dab3e81e77d0201a638f88d633ce5",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "b6ec8b491fe8c3adabf2b1fb540fc217e91dab3e81e77d0201a638f88d633ce5"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/Cybersecurity Compliance.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/cybersecurity-compliance.txt": {
    "class": "merge",
-   "sha256": "1bc12eeb06ed986fda0d2b16dfaa1362e48f79aea7b00385898359e79d45ab06",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1bc12eeb06ed986fda0d2b16dfaa1362e48f79aea7b00385898359e79d45ab06"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/Data Pipeline Engineer.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/data-pipeline-engineer.txt": {
    "class": "merge",
-   "sha256": "39ef1ef15dadaf6b3bc5f4ecc541f67e839480a794f646a6241e0ab85555da15",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "39ef1ef15dadaf6b3bc5f4ecc541f67e839480a794f646a6241e0ab85555da15"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/DevOps Architecture.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/devops-architecture.txt": {
    "class": "merge",
-   "sha256": "0c4d4d09379d00f9ecf4c1d97c719e497749de0226121dcd76afc35c78f4b193",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "0c4d4d09379d00f9ecf4c1d97c719e497749de0226121dcd76afc35c78f4b193"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/Halo PSA Admin.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/halo-psa-admin.txt": {
    "class": "merge",
-   "sha256": "c008c34ffb0c2b7c701722d8a8699846d15f165ac83e5eb0e40378d820c59859",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "c008c34ffb0c2b7c701722d8a8699846d15f165ac83e5eb0e40378d820c59859"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/IT Project & Vendor Management.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/it-project-and-vendor-management.txt": {
    "class": "merge",
-   "sha256": "73e0cc16cb0c5d24d77f741f555fc1b24eb12742aa18b8e12b53f731ec20c2b0",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "73e0cc16cb0c5d24d77f741f555fc1b24eb12742aa18b8e12b53f731ec20c2b0"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/IT Support Troubleshooter.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/it-support-troubleshooter.txt": {
    "class": "merge",
-   "sha256": "06140d68ee1e2e7d42a69570ae3de13429ecf321202e72ed8a8bab079c804056",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "06140d68ee1e2e7d42a69570ae3de13429ecf321202e72ed8a8bab079c804056"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/MSP Consultant.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/msp-consultant.txt": {
    "class": "merge",
-   "sha256": "17a54c99859e8a5f33dc78e8a2c8d47bdc18d58e951e98b350e620b673f462c6",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "17a54c99859e8a5f33dc78e8a2c8d47bdc18d58e951e98b350e620b673f462c6"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/Software Architecture Advisor.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/software-architecture-advisor.txt": {
    "class": "merge",
-   "sha256": "1ab7c2afb8824d0bca3642b890d6866061928bf1c508a95d672e55dd21a56880",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "1ab7c2afb8824d0bca3642b890d6866061928bf1c508a95d672e55dd21a56880"
   },
-  ".claude/skills/professional-guidance/agent-personas/technology-it/Software Selector.txt": {
+  ".claude/skills/professional-guidance/agent-personas/technology-it/software-selector.txt": {
    "class": "merge",
-   "sha256": "c8f01e3e6431bf8462ccf699980dae65dd9b7ba5697ee2828c0f36c330ebcc8d",
-   "mode": "644"
+   "mode": "644",
+   "sha256": "c8f01e3e6431bf8462ccf699980dae65dd9b7ba5697ee2828c0f36c330ebcc8d"
   },
   ".claude/skills/project-import/SKILL.md": {
    "class": "merge",
@@ -7164,7 +7164,7 @@
   },
   "CLAUDE.md": {
    "class": "merge",
-   "sha256": "02913bf388a3a60433fc3e6b8a18550e820c74ad60799b79c4382df5fb36d145",
+   "sha256": "1f95d990112b577454f0cba7486571841e167f3d1380410201592717a2afab7b",
    "mode": "644"
   },
   "CODING_STANDARDS.md": {
@@ -7265,7 +7265,7 @@
   "memory/preferences/cowork-environment.md": {
    "class": "seed",
    "mode": "644",
-   "sha256": "47c9f4545474b79a1790b3a4952c36fc84eafd32fadba7c9732ef29525bfd915"
+   "sha256": "baf21f6165ed409620479160cf5352f05b3de7baf251d789a7b35e3f76cfde8f"
   },
   "memory/preferences/diagrams.md": {
    "class": "seed",
