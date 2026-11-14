@@ -5,7 +5,7 @@
   ".claude/cowork/cowork_skills.py": {
    "class": "merge",
    "mode": "755",
-   "sha256": "d081a7e840ede23af388977bd9197f60c491fedab3d2df8b44c1fc7cd101607c"
+   "sha256": "4c92f666f988dc9a0dbebb57c46ba4d5ae57ce0a08e60c63326547fe3ba2873e"
   },
   ".claude/cowork/skills/core/adhd.skill": {
    "class": "merge",
@@ -87,6 +87,11 @@
    "mode": "644",
    "sha256": "8e8d406045858c10a5e1c6ab866b83faf4a22cb0d98d32f026e2738d0d779c57"
   },
+  ".claude/cowork/skills/core/session-map.skill": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "218999e89fff8bf379374b788bddc9fadafbb95e1773d5caa9fdb33a186c9270"
+  },
   ".claude/cowork/skills/core/startday-spec.skill": {
    "class": "merge",
    "mode": "644",
@@ -120,7 +125,7 @@
   ".claude/cowork/skills/index.json": {
    "class": "merge",
    "mode": "644",
-   "sha256": "94be1e9c84a47785a1d1f51f2e24ce3dad2000e008cbd55925614bb12e48c344"
+   "sha256": "744e7237cbfec2e6be985335b6194a37751bdfd083d023bfab4c7177dee26edb"
   },
   ".claude/cowork/skills/video/captions-overlay.skill": {
    "class": "merge",
@@ -5897,6 +5902,61 @@
    "sha256": "c5aa27c6d6c088fa0bec2941692927975dcd382bc568f6f0ba8518e049e092fe",
    "mode": "644"
   },
+  ".claude/skills/session-map/SKILL.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "c0757c9a5141ecc5b8d84450bb34525948e2c21e48cf66dca36510b81e3cff8d"
+  },
+  ".claude/skills/session-map/references/audit.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "612232333f23aa14a3283cede6db3e6b5d4a852aa0443fe8415c1252ed03b47b"
+  },
+  ".claude/skills/session-map/references/example.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "1d4fd53643a86840a3bf086499d60ff9fd7e4fb83b1d6aec4c478871a1eb6acb"
+  },
+  ".claude/skills/session-map/references/finish.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "a32a31ac8cdfc59209409cd28be2fdd48f9945cbbb4991c2c81d911525aabc4e"
+  },
+  ".claude/skills/session-map/references/resume.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "196716170e55dfc972622754311205d4537a021ad8fe6aca2d5d7e373ef7b546"
+  },
+  ".claude/skills/session-map/references/review.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "d48994901d59282473c369f5e473bfce4050825df4f63455192571875bd40532"
+  },
+  ".claude/skills/session-map/references/start.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "60169e032c273ba6b196e7aaef1b21e02dcb2eaf2a1c56eff27fde54db981a98"
+  },
+  ".claude/skills/session-map/references/template.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "6f4950d83ffdedece136a2f0f976271080b4687369117263f4992a474a1cab6c"
+  },
+  ".claude/skills/session-map/references/update.md": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "99f36ac35637dda4e2e026a6165115f834051daf8d068a5b069283eb39b5e5a7"
+  },
+  ".claude/skills/session-map/scripts/map.py": {
+   "class": "merge",
+   "mode": "755",
+   "sha256": "f669abd20eb3f5fbb1f6e687670fb41093c8dfdd0975916f190cb500bceddece"
+  },
+  ".claude/skills/session-map/tests/test_map.py": {
+   "class": "merge",
+   "mode": "644",
+   "sha256": "6cf10d9c8a0d2e4454040e0f815e20720fb338e84548a84c15b8aeda300cdcbb"
+  },
   ".claude/skills/slideshow/SKILL.md": {
    "class": "merge",
    "sha256": "a17b9d27ec3a3256bda717cf4796b8b8bd1d6770fbd4dbf5cd2f7f59662ac11e",
@@ -7159,7 +7219,7 @@
   },
   "CHANGELOG.md": {
    "class": "local",
-   "sha256": "1c2d2041ec1daae283afb2082a016867a5dc76af58fd08a43b9a9e0fea33ab5e",
+   "sha256": "7284c9d4f52d82ae165ed4190bd968ce4e3543916592ca4c92b97c715ea4c415",
    "mode": "644"
   },
   "CLAUDE.md": {
@@ -7180,7 +7240,7 @@
   "README.md": {
    "class": "merge",
    "mode": "644",
-   "sha256": "319582348e83c829216a3802d0951328dca0e62945020067440015d730113ca9"
+   "sha256": "ce444e4baa7fcac419688f69e49f040ff2fc01d9e8ed17f19c71749540f7c810"
   },
   "START-HERE.md": {
    "class": "local",

@@ -163,6 +163,10 @@
   "set": "video",
   "sha256": "c926511e2ea22a40d102f89e18464ff1fe15b953461f294c0e8ba48f98fab0da"
  },
+ "session-map": {
+  "set": "core",
+  "sha256": "45f01a75ffc6c475ff3001eb677fe24e5e7c379113009b19d2064678b09dc697"
+ },
  "slideshow": {
   "set": "video",
   "sha256": "efc3c0be622fa9a17cff40a6e4d0a8336a1c691cac84ba9cc9279c389153531b"
