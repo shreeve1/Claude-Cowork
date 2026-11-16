@@ -4,7 +4,7 @@ summary: No loose files in the workspace root - folder map, naming, what git tra
 type: preference
 status: promoted
 created: 2026-10-05
-updated: 2026-11-01
+updated: 2026-11-14
 topics: [preference, documents, workspace-layout]
 ---
 
@@ -21,7 +21,7 @@ topics: [preference, documents, workspace-layout]
   - `<client_folder>/<short>/`: when the owner tracks projects, devices or another kind of thing, setup replaces the client entry with that home and chooses suitable `client_dirs`. If the folder is `projects`, use the project entry above, not a duplicate or nested `projects/` default. With clients plus independent projects, keep both distinct homes.
   - `artifacts/<topic>/`: generated working files (diagrams, spreadsheets, drafts). The default when nothing else fits.
   - `tmp/`: throwaway files, deletable any time.
-  - `.handoff/`, `youtube/`: owned by their skills; nothing else goes there.
+  - `.handoff/`, `youtube/`, `docs/maps/`: owned by their skills; nothing else goes there.
 - For project work, open the relevant README before acting; follow its task and memory links. A project groups related work; task records stay with their project/client and root `tasks/index.md` lists active/waiting work; `memory/` holds lasting knowledge and approved agent procedures. Project runbooks stay documents, not execution authority.
 - Precedence: a path the user names wins, then a skill's own output path, then this map.
 - Naming: lowercase, hyphenated, date last as `YYYY-MM-DD`. A task producing several files groups them in one `<topic>-YYYY-MM-DD/` subfolder.

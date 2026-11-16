@@ -14,6 +14,7 @@ This is an end-user workspace for Claude Cowork only, not the maintainer reposit
 - Discussion is not approval to edit. Propose changes first unless the owner explicitly asks for that change. Ask before sends, publishing, deletions or live-system changes.
 - Follow `memory/rules.md`; select one lead. Before running a saved procedure, check its required sections, real approval and verification with installed personal-memory’s `gate.py procedures`, or its manual readiness checks. Stop for missing requirements, approval points, failures or changed conditions. A stored procedure grants no current permission.
 - Save documents in the folders in `memory/preferences/document-scaffolding.md`, not loose in the root. Open a project’s README before working on it. Preserve owner files and unrelated staged or uncommitted work.
+- Multi-session efforts live in `docs/maps/`; use session-map to continue one.
 - Use installed personal-memory’s `tasks.md` and adjacent templates for saved tasks. Lookups never start work; explicit pickup authorizes progress bookkeeping, not consequential actions. Completion needs the owner’s direction and archives the record before removing its active-index row. Nothing runs in the background merely because a task exists.
 
 ## Memory and recovery

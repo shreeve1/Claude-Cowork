@@ -9,17 +9,17 @@ description: |
 
 # Professional Guidance
 
-Turn a plain-English problem into the right specialist. The user describes a problem; you **understand it first**, route to one persona file under `.claude/skills/professional-guidance/agent-personas/`, **become** that specialist, offer a Gemini Deep Research pass, then start solving — without making the user restate anything. Routing stays under the hood: the user experiences a specialist who gets their situation, not a menu.
+Turn a plain-English problem into the right specialist. The user describes a problem; you **understand it first**, route to one persona file under `agent-personas/`, **become** that specialist, offer a Gemini Deep Research pass, then start solving — without making the user restate anything. Routing stays under the hood: the user experiences a specialist who gets their situation, not a menu.
 
-**Locating the collection:** `.claude/skills/professional-guidance/agent-personas/` lives next to this skill file. All paths below are workspace-root-relative — resolve them from the workspace root. If a lookup comes back empty, confirm you are resolving full paths from the workspace root before concluding the collection is missing.
+**Locating the collection:** `agent-personas/` ships inside this skill, next to this SKILL.md, at `${CLAUDE_SKILL_DIR}/agent-personas/`. Resolve every `agent-personas/...` path below, including each `path` in INDEX.json, from this skill's own folder, not from the workspace. If a lookup comes back empty, confirm you resolved it from the skill folder before concluding the collection is missing.
 
-The routing map is `.claude/skills/professional-guidance/agent-personas/INDEX.json` — the live source of truth for which personas exist (each entry has a `name`, `purpose`, `category`, and `path`). Each persona `.txt` at that `path` is a full instruction set, and most bundle several named sub-agents (the index does **not** list sub-agents — read the `.txt`).
+The routing map is `agent-personas/INDEX.json` — the live source of truth for which personas exist (each entry has a `name`, `purpose`, `category`, and `path`). Each persona `.txt` at that `path` is a full instruction set, and most bundle several named sub-agents (the index does **not** list sub-agents — read the `.txt`).
 
 ## Flow
 
 ### 1. Read the problem and the index
 
-Take the problem description the user gave when invoking the skill. Read `.claude/skills/professional-guidance/agent-personas/INDEX.json`.
+Take the problem description the user gave when invoking the skill. Read `agent-personas/INDEX.json`.
 _Done when:_ you have the problem in hand and the persona list loaded.
 
 ### 2. Understand the problem — draw out the missing specifics
@@ -63,7 +63,7 @@ Adopt the persona's **own** frame of reference and vocabulary. Do **not** overla
 
 - **Routing stays internal:** the user only sees problem-clarifying questions and the one-line persona/sub-agent announcement with the Deep Research offer — never the scoring or sub-agent reasoning.
 - **No confident match:** if nothing scores well (the problem is outside the collection's domains), do not open a persona file. Say so and offer the closest 2–3 rather than force-adopting a poor fit. After the user chooses, re-run steps 3–4.
-- **Missing or stale index:** a failed lookup is almost always a wrong path, not an absent collection. Confirm the full workspace-relative path `.claude/skills/professional-guidance/agent-personas/INDEX.json` exists. If genuinely absent, route by scanning the `.claude/skills/professional-guidance/agent-personas/` folders and file names directly, and tell the user the index should be regenerated.
-- **Never fabricate a missing collection:** do not tell the user the personas are missing or need regenerating unless you have actually checked `.claude/skills/professional-guidance/agent-personas/` and found it empty.
+- **Missing or stale index:** a failed lookup is almost always a wrong path, not an absent collection. Confirm `${CLAUDE_SKILL_DIR}/agent-personas/INDEX.json` exists. If genuinely absent, route by scanning the `agent-personas/` folders and file names directly, and tell the user the index should be regenerated.
+- **Never fabricate a missing collection:** do not tell the user the personas are missing or need regenerating unless you have actually checked `agent-personas/` and found it empty.
 - **Switching mid-session:** the user can switch persona or sub-agent at any time; re-run steps 3–4 for the new pick.
 - **Stay in character** as the adopted persona until told to switch or stop.

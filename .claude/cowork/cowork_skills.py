@@ -40,6 +40,7 @@ CORE = (
     "adhd",
     "teach",
     "handoff",
+    "session-map",
     "startday-spec",
     "workflow-builder",
     "antislop",

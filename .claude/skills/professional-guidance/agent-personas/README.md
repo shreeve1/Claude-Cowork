@@ -16,7 +16,7 @@ Instead of asking a general AI a broad question like:
 
 You can upload a specific instruction file such as:
 
-> `marketing-sales/Marketing Strategist.txt`
+> `marketing-sales/marketing-strategist.txt`
 
 Then the AI will behave more like a marketing strategy assistant with defined roles, workflows, and outputs.
 
@@ -65,7 +65,7 @@ The repository is organized by topic. Each folder contains one or more `.txt` in
 | `planning/` | Agile coaching, event planning, project management, strategic planning, and wedding workflows |
 | `productivity-personal-development/` | Productivity, leadership, executive assistant simulation, and public speaking support |
 | `real-estate/` | Property management, valuation, legal compliance, transactions, marketing, and realtor support |
-| `Restaurant & Hospitality Agents/` | Restaurant consulting, food safety, labor management, menus, marketing, customer experience, and accommodations |
+| `restaurant-and-hospitality-agents/` | Restaurant consulting, food safety, labor management, menus, marketing, customer experience, and accommodations |
 | `teachers/` | Lesson planning, grading, classroom behavior, and parent communication agents |
 | `technology-it/` | Cybersecurity, DevOps, IT support, software architecture, MSP consulting, PSA administration, and software selection |
 
@@ -96,10 +96,10 @@ Browse the folders and pick the file that best matches what you want help with.
 
 Examples:
 
-- Need help with a business plan? Use `core-business-operations/Business Plan Assistant.txt`
-- Need a marketing assistant? Use `marketing-sales/Marketing Strategist.txt`
+- Need help with a business plan? Use `core-business-operations/business-plan-assistant.txt`
+- Need a marketing assistant? Use `marketing-sales/marketing-strategist.txt`
 - Need HIPAA compliance help? Use one of the files in `hipaa-compliance/`
-- Need IT troubleshooting help? Use `technology-it/IT Support Troubleshooter.txt`
+- Need IT troubleshooting help? Use `technology-it/it-support-troubleshooter.txt`
 - Need classroom help? Use a file from `teachers/`
 
 If you are not sure which file to use, start with the broadest file in the matching folder.
@@ -199,7 +199,7 @@ This is less convenient than a project, but it usually works.
 ### Example 1: Marketing Project
 
 1. Create a project named `Marketing Strategy Assistant`.
-2. Upload `marketing-sales/Marketing Strategist.txt`.
+2. Upload `marketing-sales/marketing-strategist.txt`.
 3. Start a chat and type:
 
 > Please activate the marketing strategy agent and help me create a 90-day marketing plan.
@@ -207,7 +207,7 @@ This is less convenient than a project, but it usually works.
 ### Example 2: HIPAA Project
 
 1. Create a project named `HIPAA Compliance Helper`.
-2. Upload `hipaa-compliance/HIPAA Risk Assessment & Compliance Audit Expert.txt`.
+2. Upload `hipaa-compliance/hipaa-risk-assessment-and-compliance-audit-expert.txt`.
 3. Start a chat and type:
 
 > Please show me the available HIPAA compliance agents and help me begin a basic risk assessment.
@@ -215,7 +215,7 @@ This is less convenient than a project, but it usually works.
 ### Example 3: IT Support Project
 
 1. Create a project named `IT Support Troubleshooter`.
-2. Upload `technology-it/IT Support Troubleshooter.txt`.
+2. Upload `technology-it/it-support-troubleshooter.txt`.
 3. Start a chat and type:
 
 > Please activate the IT support system. I need help troubleshooting a network issue.

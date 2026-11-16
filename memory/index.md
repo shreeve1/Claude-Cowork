@@ -9,13 +9,14 @@
 | [Claude Cowork Environment](memory/preferences/cowork-environment.md) | preference | Cowork guided setup, Windows control, full/targeted recovery tests and limits; user outcomes over inherited design choices. | 2026-11-02 |
 | [Shared Browser View for Web Questions](memory/preferences/browser-shared-view.md) | preference | For website questions or web sign-in walls, ask once to open a visible browser the owner can sign into; after a yes, open it automatically every time. | 2026-10-10 |
 | [Diagrams for Shared Understanding](memory/preferences/diagrams.md) | preference | Use flowcharts and diagrams as much as reasonably possible in every chat to reach shared understanding with the owner. | 2026-10-10 |
-| [Documents Go in Folders, Never the Root](memory/preferences/document-scaffolding.md) | preference | No loose files in the workspace root - folder map, naming, what git tracks vs ignores, formats; ask before new top-level folders. | 2026-11-01 |
+| [Documents Go in Folders, Never the Root](memory/preferences/document-scaffolding.md) | preference | No loose files in the workspace root - folder map, naming, what git tracks vs ignores, formats; ask before new top-level folders. | 2026-11-14 |
 | [Research Document Guideline - Findings, Path to Close, Questions](memory/preferences/research-documents.md) | preference | Research files - answer-first Findings, max 7 sourced bullets, one-line Path to Close steps, one-sentence Questions. | 2026-10-10 |
 | [Meetings - Where Transcripts Land and How They Are Filed](memory/preferences/meetings.md) | preference | Settings the meeting skill reads first; transcripts folder, archive, record folder, work items, always/never rules. Setup fills it in. | 2026-10-22 |
 | [Memory Updates - Replace Before Appending](memory/preferences/memory-maintenance.md) | preference | Search first; resolve authority and factual conflicts before replacing; preserve previous content; sweep references. | 2026-10-30 |
 | [Writing Guideline - Plain Prose for Any Agent Output](memory/preferences/writing.md) | preference | Plain prose for anything the owner reads - answer first, one fact per line, expand acronyms, state what was and was not checked. | 2026-10-10 |
 | [Recommendation-Led Talk It Through](memory/preferences/talk-it-through.md) | preference | Talk-it-through sessions should state understanding and recommend a direction before asking only decision-changing questions. | 2026-10-27 |
 | [Claude Projects in Cowork](memory/docs/cowork-claude-projects.md) | doc | What a Cowork chat can export from a Claude app Project, and James's decisions on sorted import and project skills. | 2026-11-02 |
+| [Pushing This Repo and Building Cowork Skill Packages](memory/docs/repo-push-and-skill-packaging.md) | doc | Push via github-personal SSH alias; Python 3.15 build churns all .skill zips; adapting personal skills for core. | 2026-11-14 |
 | [Migration Ledger 2026-10-10](memory/docs/migration-ledger-2026-10-10.md) | doc | Release 1 Claude workspace -> Release 3 migration record. | 2026-10-10 |
 
 ## Client Hubs
