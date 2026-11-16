@@ -189,6 +189,24 @@ class MainTests(unittest.TestCase):
         self.assertEqual(code, 0, log)
         self.assertIn("warning: stray.md", log)
 
+    def test_maintainer_catalog_is_not_shipped_or_reported(self):
+        for listed in (False, True):
+            with self.subTest(listed=listed):
+                source = self.td / f"release-{listed}"
+                output = self.td / f"output-{listed}"
+                files = {"a.md": "x"}
+                if listed:
+                    files["catalog.json"] = '{"schema_version": 1, "global": false, "values": {}}'
+                release(source, files)
+                if not listed:
+                    (source / "catalog.json").write_text("{}")
+                code, log = run(source, output, self.ws)
+                self.assertEqual(code, 0, log)
+                self.assertNotIn("warning: catalog.json", log)
+                self.assertFalse((output / "catalog.json").exists())
+                manifest = json.loads((output / "MANIFEST.json").read_text())
+                self.assertNotIn("catalog.json", manifest["files"])
+
     def test_new_memory_files_and_empty_task_index_are_included(self):
         release(self.src, {"a.md": "x"})
         extras = {

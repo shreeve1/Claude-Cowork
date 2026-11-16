@@ -24,6 +24,7 @@ DROP_SUFFIXES = ("/agents/openai.yaml",)
 
 # Upstream files that belong to the upstream workspace, not to a Release. Never copied.
 DROP_FILES = (
+    "catalog.json",
     ".agents/setup/CODEX.md",
     "memory/decisions/projects/decision-github-repository.md",
     "memory/decisions/workstation/decision-codex-workspace.md",
